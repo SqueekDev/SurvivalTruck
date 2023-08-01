@@ -5,31 +5,32 @@ using UnityEngine;
 public class ZombieSpawner : MonoBehaviour
 {
     [SerializeField] private float _delayBetweenSpawn;
-    [SerializeField] private int _count;
-    [SerializeField] private int _spawnSpread;
-    [SerializeField] private List<Zombie> _templates;
+    [SerializeField] private Vector2 _xLimits;
+    [SerializeField] private ObjectPooler _zombiePooler;
+    [SerializeField] private Car _car;
+    [SerializeField] private float _carZOffset;
 
-    private Coroutine _spawnCorutine;
 
     private void Start()
-    {
-        if (_spawnCorutine != null)
-            StopCoroutine(_spawnCorutine);
-        else
-            _spawnCorutine = StartCoroutine(InstantiateEnemies());
+    {      
+       StartCoroutine(SpawnZombies());
     }
 
-    private IEnumerator InstantiateEnemies()
+    private IEnumerator SpawnZombies()
     {
         WaitForSeconds delay = new WaitForSeconds(_delayBetweenSpawn);
 
-        for (int i = 0; i < _count; i++)
+        while (true)
         {
-            int spread = Random.Range(-_spawnSpread, _spawnSpread);
-            Vector3 spawnPosition = new Vector3(transform.position.x + spread, transform.position.y, transform.position.z + spread);
-            Zombie template = _templates[Random.Range(0, _templates.Count)];
-            Zombie zombie = Instantiate(template, spawnPosition, Quaternion.identity);
+            float randomX = Random.Range(_xLimits.x, _xLimits.y);
+            Vector3 spawnPosition = new Vector3(randomX, transform.position.y,_car.transform.position.z + _carZOffset);
+            if (_zombiePooler.TryGetObject(out GameObject zombie))
+            {
+                zombie.transform.position = spawnPosition;
+                zombie.SetActive(true);
+            }
 
+            yield return null;
             yield return delay;
         }
     }
