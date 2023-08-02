@@ -14,10 +14,10 @@ public class Shooter : MonoBehaviour
 
     private Coroutine _shooting;
     private bool _isShooting = false;
-    private Health _currentTarget;
+    private Transform _currentTarget;
     private Health _selfHealth;
 
-    public Health Target => _currentTarget;
+    public Transform Target => _currentTarget;
     public int Damage => _damage;
     public float BulletSpeed => _bulletSpeed;
 
@@ -37,14 +37,14 @@ public class Shooter : MonoBehaviour
             {
                 if (health.IsDead == false && health.gameObject != gameObject && _shooting == null)
                 {
-                    Shoot(health);
+                    Shoot(health.transform);
                     return;
                 }
             }
         }
     }
 
-    private void Shoot(Health target)
+    private void Shoot(Transform target)
     {
         _currentTarget = target;
         _isShooting = true;
@@ -64,11 +64,11 @@ public class Shooter : MonoBehaviour
 
     }
 
-    private IEnumerator Shooting(Health target)
+    private IEnumerator Shooting(Transform target)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenShoot);
-        while (_selfHealth.IsDead == false && _currentTarget != null
-            && target.IsDead == false && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
+        while (_currentTarget != null
+             && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {
             _weapon.Shoot(_currentTarget);
             yield return null;

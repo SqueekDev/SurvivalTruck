@@ -28,10 +28,9 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator Moving(Transform target)
     {
-        Vector3 newPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-        while (transform.position != newPosition)
+        while (target.gameObject.activeSelf)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
             yield return null;
         }
         //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);

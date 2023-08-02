@@ -4514,6 +4514,8 @@ GameObject:
   - component: {fileID: 1437961791}
   - component: {fileID: 1437961790}
   - component: {fileID: 1437961789}
+  - component: {fileID: 1437961793}
+  - component: {fileID: 1437961792}
   m_Layer: 0
   m_Name: Turrel
   m_TagString: Untagged
@@ -4600,6 +4602,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437961787}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1437961792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437961787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc81c09a54f6ce049940a2ee55f2be6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 17
+  _shooter: {fileID: 1437961793}
+--- !u!114 &1437961793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437961787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afe0cc5ec5e3a94da69393483af7041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 1562249700}
+  _timeBetweenShoot: 1
+  _bulletSpeed: 20
+  _damage: 10
+  _shootingDistance: 20
+  _stopShootingDistance: 21
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &1501784710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4980,6 +5017,7 @@ GameObject:
   - component: {fileID: 1562249699}
   - component: {fileID: 1562249698}
   - component: {fileID: 1562249697}
+  - component: {fileID: 1562249700}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -5065,6 +5103,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562249695}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1562249700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562249695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703f784aa146b264789e19f1cb394a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 9123046694955914511, guid: 2d42b259bdb3f3543b2530aa70c0c477, type: 3}
 --- !u!1001 &1562614659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6105,10 +6156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 451540131}
   _timeBetweenShoot: 1
-  _bulletSpeed: 10
+  _bulletSpeed: 20
   _damage: 10
-  _shootingDistance: 10
-  _stopShootingDistance: 11
+  _shootingDistance: 15
+  _stopShootingDistance: 16
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -6139,8 +6190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266257d34cf78a84aa3ffd2360f3b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
-  _speed: 2
+  _rotationSpeed: 12
+  _speed: 4
 --- !u!114 &1852185486
 MonoBehaviour:
   m_ObjectHideFlags: 0

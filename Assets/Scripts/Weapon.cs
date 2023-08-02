@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
         _damage = _shooter.Damage;
     }
 
-    public void Shoot(Health target) 
+    public void Shoot(Transform target) 
     {
         //_particle.Play();
         //_audioSource.Play();
