@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     public bool IsDead => _isDead;
 
     public event UnityAction<float> HealthChanged;
+    public event UnityAction<Health> Died;
 
     private void OnEnable()
     {
@@ -61,6 +62,7 @@ public class Health : MonoBehaviour
     }
     public void Die()
     {
+        Died?.Invoke(this);
         gameObject.SetActive(false);
     }
 
