@@ -10,14 +10,6 @@ public class RageArea : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Health zombie))
-        {
-            zombie.Died += OnZOmbieDied;
             ZombieAttacked?.Invoke(zombie);
-        }
-    }
-
-    private void OnZOmbieDied(Health zombie)
-    {
-        zombie.Died -= OnZOmbieDied;
     }
 }
