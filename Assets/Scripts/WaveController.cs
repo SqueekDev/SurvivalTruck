@@ -7,6 +7,7 @@ public class WaveController : MonoBehaviour
 {
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private List<RageArea> _rageAreas;
+    [SerializeField] private BossSpawner _bossSpawner;
     [SerializeField] private int _startZombieinWaveCount;
 
     private int _attackingZombiesCount = 0;
@@ -20,6 +21,7 @@ public class WaveController : MonoBehaviour
     {
         _levelChanger.Changed += OnlevelChanged;
         _levelChanger.BossLevelStarted += OnBossLevelStarted;
+        _bossSpawner.BossSpawned += OnBossSpawned;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked += OnZombieAttacked;
@@ -29,6 +31,7 @@ public class WaveController : MonoBehaviour
     {
         _levelChanger.Changed -= OnlevelChanged;
         _levelChanger.BossLevelStarted -= OnBossLevelStarted;
+        _bossSpawner.BossSpawned -= OnBossSpawned;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked -= OnZombieAttacked;
@@ -50,9 +53,15 @@ public class WaveController : MonoBehaviour
         _isBossLevel = true;
     }
 
-    private void OnBossDied()
+    private void OnBossSpawned(Health boss)
+    {
+        boss.Died += OnBossDied;
+    }
+
+    private void OnBossDied(Health boss)
     {
         _isBossLevel = false;
+        boss.Died -= OnBossDied;
         WaveEnded?.Invoke();
     }
 
