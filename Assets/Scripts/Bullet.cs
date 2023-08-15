@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
         {
             health.TakeDamage(_damage);
             //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);
-
             Destroy(gameObject);
 
         }
@@ -28,7 +27,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator Moving(Transform target)
     {
-        while (target.gameObject.activeSelf)
+        while (target.gameObject.activeSelf||transform.position!=target.position)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
             yield return null;
