@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private DynamicJoystick _joystick;
+    [SerializeField] private FloatingJoystick _joystick;
 
     private PlayerMover _mover;
     private Shooter _shooter;
     private Vector3 _currentRotation;
+    private Animator _animator;
 
     private void Start()
     {
         _mover = GetComponent<PlayerMover>();
         _shooter = GetComponent<Shooter>();
+        _animator = GetComponent<Animator>();
         _currentRotation = Vector3.zero;
     }
 
@@ -26,7 +28,17 @@ public class PlayerInput : MonoBehaviour
         if (_joystick.Horizontal != 0 && _joystick.Vertical != 0)
         {
             _mover.Move(newDirection);
-
+            if (_animator.GetBool("Run")==false)
+            {
+                _animator.SetBool("Run",true);
+            }
+        }
+        else
+        {
+            if (_animator.GetBool("Run"))
+            {
+                _animator.SetBool("Run", false);
+            }
         }
         if (_shooter.IsShooting == false)
         {

@@ -5,15 +5,17 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] protected int _maxHealth;
-    [SerializeField] protected string _savingName;
-    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private string _savingName;
+    [SerializeField]private Mover _mover;
+    [SerializeField] private AudioSource _audioSource;
 
     protected bool _isDead = false;
 
     //protected HealthBar _healthBar;
-    protected int _currentHealth;
-    //protected AnimatorController _animatorController;
+    private int _currentHealth;
+    private Animator _animator;
+    private Coroutine _dying;
 
     public bool IsDead => _isDead;
 
@@ -25,30 +27,37 @@ public class Health : MonoBehaviour
         Heal(_maxHealth);
         if (_isDead)
         {
+            _mover.SetStartSpeed();
             _isDead = false;
         }
     }
     private void Start()
     {
-        if (PlayerPrefs.HasKey(_savingName))
+        /*if (PlayerPrefs.HasKey(_savingName))
         {
             _maxHealth = PlayerPrefs.GetInt(_savingName);
-        }
+        }*/
         _currentHealth = _maxHealth;
-        //_animatorController = GetComponent<AnimatorController>();
+        _animator = GetComponent<Animator>();
     }
     public void TakeDamage(int count)
     {
-        _currentHealth -= count;
-        float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
-        HealthChanged?.Invoke(currentHealthByMaxHealth);
-
-        if (_currentHealth <= 0)
+        if (_isDead==false)
         {
-            _currentHealth = 0;
-            Die();
-            _isDead = true;
+
+            _currentHealth -= count;
+            float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
+            HealthChanged?.Invoke(currentHealthByMaxHealth);
+            Debug.Log(_currentHealth);
+
+            if (_currentHealth <= 0)
+            {
+                _currentHealth = 0;
+                Die();
+            }
+
         }
+
     }
     public void Heal(int count)
     {
@@ -62,8 +71,20 @@ public class Health : MonoBehaviour
     }
     public void Die()
     {
+        if (_dying==null)
+        {
+            _mover.SetNoSpeed();
+            _isDead = true;
+            _dying = StartCoroutine(Dying());
+        }
+
+    }
+    private IEnumerator Dying()
+    {
+        _animator.SetTrigger("Die");
+        yield return new WaitForSeconds(3);
         Died?.Invoke(this);
+        _dying = null;
         gameObject.SetActive(false);
     }
-
 }

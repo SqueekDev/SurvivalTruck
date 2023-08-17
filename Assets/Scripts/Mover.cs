@@ -2,14 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public abstract class Mover : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] protected float _speed;
+
+    private float _startSpeed;
 
     public void Rotate(Vector3 destination)
     {
         Vector3 direction = new Vector3(destination.x, transform.position.y, destination.z) - transform.position;
-        Quaternion newDirection = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
+        Quaternion newDirection=transform.rotation;
+        if (direction!=Vector3.zero)
+        {
+         newDirection= Quaternion.LookRotation(direction);
+
+        }
+            transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
+    }
+
+    public void SetNoSpeed()
+    {
+        _startSpeed = _speed;
+        _speed = 0;
+    }
+    
+    public void SetStartSpeed()
+    {
+        _speed = _startSpeed;
     }
 }
