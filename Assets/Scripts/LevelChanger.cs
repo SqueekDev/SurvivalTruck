@@ -9,6 +9,7 @@ public class LevelChanger : MonoBehaviour
     private const int BossLevelNubmerDivider = 10;
 
     [SerializeField] private WaveController _waveController;
+    [SerializeField] private Health _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
     [SerializeField] private NextLevelButton _nextLevelButton;
 
@@ -17,6 +18,7 @@ public class LevelChanger : MonoBehaviour
 
     public event UnityAction<int> Changed;
     public event UnityAction BossLevelStarted;
+    public event UnityAction BossLevelEnded;
 
     private void Awake()
     {
@@ -26,12 +28,14 @@ public class LevelChanger : MonoBehaviour
     private void OnEnable()
     {
         _waveController.WaveEnded += OnWaveEnded;
+        _boss.Died += OnBossDied;
         _nextLevelButton.Clicked += OnNextLevelButtonClick;
     }
 
     private void OnDisable()
     {
         _waveController.WaveEnded -= OnWaveEnded;        
+        _boss.Died -= OnBossDied;
         _nextLevelButton.Clicked -= OnNextLevelButtonClick;
     }
 
@@ -64,6 +68,12 @@ public class LevelChanger : MonoBehaviour
     private void OnWaveEnded()
     {
         _changeLevelArea.gameObject.SetActive(true);
+    }
+
+    private void OnBossDied(Health boss)
+    {
+        BossLevelEnded?.Invoke();
+        OnWaveEnded();
     }
 
     private void OnNextLevelButtonClick()
