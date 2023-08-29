@@ -22,15 +22,15 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         Vector3 newDirection = Vector3.zero;
-         newDirection = new Vector3(_joystick.Horizontal,
-            transform.position.y, _joystick.Vertical);
+        newDirection = new Vector3(_joystick.Horizontal,
+           transform.position.y, _joystick.Vertical);
 
         if (_joystick.Horizontal != 0 && _joystick.Vertical != 0)
         {
             _mover.Move(newDirection);
-            if (_animator.GetBool("Run")==false)
+            if (_animator.GetBool("Run") == false)
             {
-                _animator.SetBool("Run",true);
+                _animator.SetBool("Run", true);
             }
         }
         else
@@ -42,8 +42,12 @@ public class PlayerInput : MonoBehaviour
         }
         if (_shooter.IsShooting == false)
         {
-            _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y + newDirection.y,
-                transform.position.z + newDirection.z));
+            if (_joystick.Horizontal != 0 && _joystick.Vertical != 0)
+            {
+                _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y + newDirection.y,
+                    transform.position.z + newDirection.z));
+            }
+
         }
         else
         {

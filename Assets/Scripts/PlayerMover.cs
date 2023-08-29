@@ -32,7 +32,7 @@ public class PlayerMover : Mover
 
     public void Move(Vector3 direction)
     {
-        _rigidbody.velocity = new Vector3(direction.x * _speed,
-            _rigidbody.velocity.y, direction.z * _speed);
+        transform.position=new Vector3(transform.position.x+direction.x *Time.deltaTime* _speed,
+            transform.position.y, transform.position.z + direction.z * Time.deltaTime * _speed);
     }
 }
