@@ -48,7 +48,6 @@ public class Health : MonoBehaviour
             _currentHealth -= count;
             float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
             HealthChanged?.Invoke(currentHealthByMaxHealth);
-            Debug.Log(_currentHealth);
 
             if (_currentHealth <= 0)
             {

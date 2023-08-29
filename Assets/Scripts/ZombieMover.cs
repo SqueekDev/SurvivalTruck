@@ -27,12 +27,12 @@ public class ZombieMover : Mover
             _needMoveToTarget  = false;
         }
     }
-
+    
     private void Start()
     {
       _animator=GetComponent<Animator>();
 
-    _camera = Camera.main;
+     _camera = Camera.main;
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class ZombieMover : Mover
     {
         if (other.TryGetComponent(out Cabine cabine))
         {
-            MoveSide();
+            MoveSide(cabine.transform);
         }
         if (other.TryGetComponent(out RageArea rageArea))
         {
@@ -94,11 +94,11 @@ public class ZombieMover : Mover
 
     }
 
-    public void MoveSide()
+    public void MoveSide(Transform target)
     {
         if (_sideMoving==null)
         {
-            _sideMoving=StartCoroutine(SideMoving());
+            _sideMoving=StartCoroutine(SideMoving(target));
         }
     }
     
@@ -107,7 +107,7 @@ public class ZombieMover : Mover
         if (_movingTo==null)
         {
             _needMoveToTarget  = false;
-            _sideMoving=StartCoroutine(MovingTo(target));
+            _movingTo=StartCoroutine(MovingTo(target));
         }
     }
     
@@ -120,7 +120,7 @@ public class ZombieMover : Mover
         }
     }
 
-    private IEnumerator SideMoving()
+    private IEnumerator SideMoving(Transform target)
     {
         _needMoveForward = false;
         int randomAngle = Random.Range(0,2);
@@ -129,11 +129,11 @@ public class ZombieMover : Mover
         Vector3 newPosition;
         if (randomAngle==0)
         {
-            newPosition = new Vector3(transform.position.x+15,transform.position.y,transform.position.z);
+            newPosition = new Vector3(target.position.x+10,transform.position.y,transform.position.z);
         }
         else
         {
-            newPosition = new Vector3(transform.position.x -15, transform.position.y, transform.position.z);
+            newPosition = new Vector3(target.position.x -10, transform.position.y, transform.position.z);
 
         }
         _animator.SetTrigger("Jump");
@@ -145,6 +145,7 @@ public class ZombieMover : Mover
         _speed = startSpeed;
         _sideMoving = null;
         _needMoveForward = true;
+        Debug.Log("jumped");
     }
 
     private IEnumerator MovingTo(Transform target)

@@ -5,30 +5,62 @@ using UnityEngine.UI;
 
 public class UpgradesPanel : MonoBehaviour
 {
-    [SerializeField] private UpgradeButton[] _upgradeButtons;
+    [SerializeField] private GameObject[] _buttonGroups;
+
+    private int _currentGroupIndex;
+
 
 
     private void OnEnable()
     {
-
-        StartCoroutine(Renewing());
-
+        Time.timeScale = 0f;
+        ShowFirstButtons();
     }
 
-
-    private IEnumerator Renewing()
+    private void OnDisable()
     {
-        Time.timeScale = 0;
-        yield return new WaitForSeconds(0.2f);
-        foreach (var button in _upgradeButtons)
+        Time.timeScale = 1f;
+
+    }
+    public void ShowNextButtons()
+    {
+        if (_currentGroupIndex == _buttonGroups.Length-1)
         {
-            button.Renew();
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            ShowFirstButtons();
+            _currentGroupIndex = 0;
+        }
+        else 
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            _currentGroupIndex++;
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
+        }
+    }
+    public void ShowPreviousButtons()
+    {
+        if (_currentGroupIndex == 0)
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            ShowLastButtons();
+            _currentGroupIndex = _buttonGroups.Length - 1;
+        }
+        else
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            _currentGroupIndex--;
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
         }
     }
 
-    public void TurnOffPanel()
+    private void ShowFirstButtons()
     {
-        Time.timeScale = 1;
-        gameObject.SetActive(false);
+        _buttonGroups[0].gameObject.SetActive(true);
+    }
+
+    private void ShowLastButtons()
+    {
+        _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+        _buttonGroups[_buttonGroups.Length-1].gameObject.SetActive(true);
     }
 }
