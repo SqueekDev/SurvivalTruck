@@ -32,17 +32,17 @@ public class CameraPositionChanger : MonoBehaviour
     {
         transform.parent = _lowerPoint.transform;
         CheckCorutine(_moveCoroutine);
-        _moveCoroutine = StartCoroutine(MoveToTarget(_lowerPoint.transform, Descended));
+        _moveCoroutine = StartCoroutine(MoveToTarget(Descended));
     }
 
     private void OnBossLevelEnded()
     {
         transform.parent = _upperPoint.transform;
         CheckCorutine(_moveCoroutine);
-        _moveCoroutine = StartCoroutine(MoveToTarget(_upperPoint.transform, Climbed));
+        _moveCoroutine = StartCoroutine(MoveToTarget(Climbed));
     }
 
-    private IEnumerator MoveToTarget(Transform target, UnityAction action)
+    private IEnumerator MoveToTarget(UnityAction action)
     {
         Vector3 newPosition = new Vector3(0, 0, 0);
         Quaternion newAngle = Quaternion.Euler(0, 0, 0);
