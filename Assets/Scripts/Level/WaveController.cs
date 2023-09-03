@@ -11,6 +11,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] private int _startZombieinWaveCount;
 
     private int _attackingZombiesCount = 0;
+    private int _ragedZombieCount = 0;
     private int _levelToAddedZombieMultiplier = 5;
     private int _zombiesInWaveCount;
     private bool _isBossLevel;
@@ -42,6 +43,7 @@ public class WaveController : MonoBehaviour
         if (_isBossLevel == false)
         {
             ChangeZombiesCount(levelNumber);
+            _attackingZombiesCount = _zombiesInWaveCount;
 
             foreach (var rageArea in _rageAreas)
                 rageArea.gameObject.SetActive(true);
@@ -65,12 +67,12 @@ public class WaveController : MonoBehaviour
         WaveEnded?.Invoke();
     }
 
-    private void OnZombieAttacked(Health zombie)
+    private void OnZombieAttacked(Zombie zombie)
     {
         zombie.Died += OnZombieDied;
-        _attackingZombiesCount++;
+        _ragedZombieCount++;
 
-        if (_attackingZombiesCount >= _zombiesInWaveCount)
+        if (_ragedZombieCount >= _zombiesInWaveCount)
             foreach (var rageArea in _rageAreas)
                 rageArea.gameObject.SetActive(false);
     }
@@ -81,7 +83,10 @@ public class WaveController : MonoBehaviour
         _attackingZombiesCount--;
 
         if (_attackingZombiesCount <= 0)
+        {
+            _ragedZombieCount = 0;
             WaveEnded?.Invoke();
+        }
     }
 
     private void ChangeZombiesCount(int levelNumber)

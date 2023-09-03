@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerStateChanger : MonoBehaviour
 {
     [SerializeField] private LevelChanger _levelChanger;
@@ -13,6 +14,13 @@ public class PlayerStateChanger : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private FloatingJoystick _joystick;
+
+    private Rigidbody _rigidbody;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void OnEnable()
     {
@@ -36,6 +44,7 @@ public class PlayerStateChanger : MonoBehaviour
         _playerInput.enabled = false;
         _playerMover.enabled = false;
         _joystick.gameObject.SetActive(false);
+        _rigidbody.isKinematic = true;
         _moverToShootPlace.enabled = true;
     }
 
@@ -51,6 +60,7 @@ public class PlayerStateChanger : MonoBehaviour
         _bossShooter.enabled = false;
         _cameraMover.enabled = false;
         _joystick.gameObject.SetActive(false);
+        _rigidbody.isKinematic = false;
     }
 
     private void OnCameraClimbed()

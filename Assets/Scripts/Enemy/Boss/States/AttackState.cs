@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Boss))]
+[RequireComponent(typeof(Boss), typeof(Animator))]
 public class AttackState : BossState
 {
+    private const string AttackAnimationName = "Attack";
+
     [SerializeField] private Car _car;
 
+    private Animator _animator;
     private Vector3 _offset;
     private Coroutine _attackCorutine;
 
     public Boss Stats { get; private set; }
+    
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        Stats = GetComponent<Boss>();
+        _offset = _car.transform.position - transform.position;
+    }
 
     protected virtual void OnEnable()
     {
         StopAttackCorutine();
         _attackCorutine = StartCoroutine(StartAttack());
-    }
-
-    private void Start()
-    {
-        Stats = GetComponent<Boss>();
-        _offset = _car.transform.position - transform.position;
     }
 
     private void FixedUpdate()
@@ -36,6 +40,7 @@ public class AttackState : BossState
 
     protected virtual void Attack()
     {
+        //_animator.SetTrigger(AttackAnimationName);
     }
 
     private IEnumerator StartAttack()

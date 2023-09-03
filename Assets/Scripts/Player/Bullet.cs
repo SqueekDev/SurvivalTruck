@@ -16,7 +16,6 @@ public class Bullet : MonoBehaviour
             health.TakeDamage(_damage);
             //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
-
         }
     }
 

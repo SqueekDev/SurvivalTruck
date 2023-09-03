@@ -20,9 +20,7 @@ public class WorldBuilder : MonoBehaviour
     private void Update()
     {
         if (_car.transform.position.z > (_spawnedPlatforms[_spawnedPlatforms.Count - 1].transform.position.z - _spawnPlatformCorrection))
-        {
             SpawnPlatform();
-        }
 
         if (_spawnedPlatforms.Count >= _platformLimit)
             RemovePlatform();

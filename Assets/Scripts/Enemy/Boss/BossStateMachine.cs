@@ -2,35 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Boss))]
 public class BossStateMachine : MonoBehaviour
 {
     [SerializeField] private BossState _firstState;
     [SerializeField] private DyingState _dyingState;
 
-    private Health _boss;
+    private Boss _boss;
     private BossState _currentState;
 
     public BossState CurrentState => _currentState;
 
     private void Awake()
     {
-        _boss = GetComponent<Health>();
+        _boss = GetComponent<Boss>();
     }
 
     private void OnEnable()
     {
         _boss.Died += OnDying;
+        Reset(_firstState);
     }
 
     private void OnDisable()
     {
         _boss.Died -= OnDying;
-    }
-
-    private void Start()
-    {
-        Reset(_firstState);
     }
 
     private void Update()

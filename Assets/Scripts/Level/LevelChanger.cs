@@ -6,15 +6,16 @@ using UnityEngine.Events;
 public class LevelChanger : MonoBehaviour
 {
     private const string LevelNumberKey = "Level";
-    private const int BossLevelNubmerDivider = 10;
+    private const int BossLevelNubmerDivider = 2;
 
     [SerializeField] private WaveController _waveController;
-    [SerializeField] private Health _boss;
+    [SerializeField] private Boss _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
     [SerializeField] private NextLevelButton _nextLevelButton;
 
     private int _playerPrefsSavedLevelNumber = 1;
-    private int _currentLevelNumber = 1;
+
+    public int CurrentLevelNumber { get; private set; } = 1;
 
     public event UnityAction<int> Changed;
     public event UnityAction BossLevelStarted;
@@ -47,11 +48,11 @@ public class LevelChanger : MonoBehaviour
 
     private void SyncLevelNumber()
     {
-        if (_playerPrefsSavedLevelNumber > _currentLevelNumber)
-            _currentLevelNumber = _playerPrefsSavedLevelNumber;
+        if (_playerPrefsSavedLevelNumber > CurrentLevelNumber)
+            CurrentLevelNumber = _playerPrefsSavedLevelNumber;
         else
         {
-            _playerPrefsSavedLevelNumber = _currentLevelNumber;
+            _playerPrefsSavedLevelNumber = CurrentLevelNumber;
             PlayerPrefs.SetInt(LevelNumberKey, _playerPrefsSavedLevelNumber);
             PlayerPrefs.Save();
         }
@@ -59,10 +60,10 @@ public class LevelChanger : MonoBehaviour
 
     private void ChangeLevel()
     {
-        if (_currentLevelNumber % BossLevelNubmerDivider == 0)
+        if (CurrentLevelNumber % BossLevelNubmerDivider == 0)
             BossLevelStarted?.Invoke();
 
-        Changed?.Invoke(_currentLevelNumber);
+        Changed?.Invoke(CurrentLevelNumber);
     }
 
     private void OnWaveEnded()
@@ -78,10 +79,10 @@ public class LevelChanger : MonoBehaviour
 
     private void OnNextLevelButtonClick()
     {
-        _currentLevelNumber++;
+        CurrentLevelNumber++;
         _changeLevelArea.gameObject.SetActive(false);
 
-        if (_currentLevelNumber != _playerPrefsSavedLevelNumber)
+        if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
             SyncLevelNumber();
 
         ChangeLevel();

@@ -90,7 +90,7 @@ public class ZombieMover : Mover
             Vector3 newPosition = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
             transform.position = newPosition;
         }
-        transform.Translate(Vector3.forward*_speed*Time.deltaTime);
+        transform.Translate(Vector3.forward*Speed*Time.deltaTime);
 
     }
 
@@ -124,8 +124,8 @@ public class ZombieMover : Mover
     {
         _needMoveForward = false;
         int randomAngle = Random.Range(0,2);
-        float startSpeed = _speed;
-        _speed *= 9;
+        float startSpeed = Speed;
+        Speed *= 9;
         Vector3 newPosition;
         if (randomAngle==0)
         {
@@ -139,10 +139,10 @@ public class ZombieMover : Mover
         _animator.SetTrigger("Jump");
         while (transform.position.x!=newPosition.x)
         {
-            transform.position = Vector3.MoveTowards(transform.position,newPosition,_speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,newPosition,Speed*Time.deltaTime);
             yield return null;
         }
-        _speed = startSpeed;
+        Speed = startSpeed;
         _sideMoving = null;
         _needMoveForward = true;
         Debug.Log("jumped");
@@ -154,7 +154,7 @@ public class ZombieMover : Mover
         Vector3 newPosition = new Vector3(target.position.x,transform.position.y,target.position.z);
         while (transform.position!=newPosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position,newPosition,_speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,newPosition,Speed *Time.deltaTime);
             yield return null;
         }
         _movingTo = null;

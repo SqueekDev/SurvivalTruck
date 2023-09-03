@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AttackPlayerState : AttackState
 {
-    [SerializeField] private Health _player;
+    [SerializeField] private Player _player;
 
     protected override void Attack()
     {
+        base.Attack();
         _player.TakeDamage(Stats.Damage);
     }
 }

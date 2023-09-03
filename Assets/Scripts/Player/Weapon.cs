@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected Bullet _bulletPrefab;
+    [SerializeField] private WeaponShootPoint _shootPoint;
     //[SerializeField] protected ParticleSystem _particle;
     //[SerializeField] protected AudioSource _audioSource;
     //[SerializeField] protected string _savingName;
@@ -24,7 +25,7 @@ public class Weapon : MonoBehaviour
     {
         //_particle.Play();
         //_audioSource.Play();
-        Bullet bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+        Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.transform.position, Quaternion.identity);
         bullet.SetSpeed(_bulletSpeed);
         bullet.SetDamage(_damage);
         bullet.MoveTo(target.transform);

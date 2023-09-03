@@ -8,7 +8,8 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private Cabine _cabine;
     [SerializeField] private Boss _template;
     [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private int _zSpawnOffset;
+    [SerializeField] private float _zSpawnOffset;
+    [SerializeField] private float _ySpawnOffset;
     [SerializeField] private int _delayBeforeSpawn;
 
     public Coroutine _spawnCorutine; 
@@ -36,7 +37,7 @@ public class BossSpawner : MonoBehaviour
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(_delayBeforeSpawn);
-        Vector3 spawnPosition = new Vector3(_cabine.transform.position.x, _cabine.transform.position.y, _cabine.transform.position.z - _zSpawnOffset);
+        Vector3 spawnPosition = new Vector3(_cabine.transform.position.x, _cabine.transform.position.y - _ySpawnOffset, _cabine.transform.position.z - _zSpawnOffset);
         _template.transform.position = spawnPosition;
         _template.gameObject.SetActive(true);
         BossSpawned?.Invoke(_template);
