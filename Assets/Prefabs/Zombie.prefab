@@ -999,6 +999,7 @@ GameObject:
   - component: {fileID: 4191716626977275584}
   - component: {fileID: 7154820901196419258}
   - component: {fileID: 4815710542013469597}
+  - component: {fileID: 2205917242501538530}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Untagged
@@ -1085,11 +1086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43f78e5a5a92c44cb33bf973ddd3eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 30
-  _additionalHealth: 5
-  _audioSource: {fileID: 0}
-  _levelChanger: {fileID: 0}
-  _mover: {fileID: 4815710542013469597}
 --- !u!114 &7154820901196419258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,13 +1114,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _startSpeed: 5
+  _speed: 5
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: 0, y: 0}
   _movingDistance: 10
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2205917242501538530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05684ee437acac14e852936a7785da64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 50
+  _savingName: 
+  _mover: {fileID: 4815710542013469597}
+  _audioSource: {fileID: 0}
 --- !u!1 &1452346760094399335
 GameObject:
   m_ObjectHideFlags: 0

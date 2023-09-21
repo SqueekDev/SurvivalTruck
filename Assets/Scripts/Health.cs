@@ -3,91 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int _startHealth;
-    [SerializeField] private int _additionalHealth;
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private string _savingName;
+    [SerializeField]private Mover _mover;
     [SerializeField] private AudioSource _audioSource;
 
+    protected bool _isDead = false;
+
+    //protected HealthBar _healthBar;
     private int _currentHealth;
-    private int _maxHealth;
     private Animator _animator;
     private Coroutine _dying;
 
-    //protected HealthBar _healthBar;
-    protected int AddHealthMultiplier = 0;
-
-    public bool IsDead { get; private set; } = false;
+    public bool IsDead => _isDead;
 
     public event UnityAction<float> HealthChanged;
     public event UnityAction<Health> Died;
 
-    protected virtual void OnEnable()
+    private void OnEnable()
     {
-        ChangeMaxHealth();
-
-        if (IsDead)
-            IsDead = false;
+        Heal(_maxHealth);
+        if (_isDead)
+        {
+            _mover.SetStartSpeed();
+            _isDead = false;
+        }
     }
-
     private void Start()
     {
+        /*if (PlayerPrefs.HasKey(_savingName))
+        {
+            _maxHealth = PlayerPrefs.GetInt(_savingName);
+        }*/
+        _currentHealth = _maxHealth;
         _animator = GetComponent<Animator>();
     }
-
     public void TakeDamage(int count)
     {
-        if (IsDead==false)
+        if (_isDead==false)
         {
+
             _currentHealth -= count;
-            ChangeHealthStatus();
+            float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
+            HealthChanged?.Invoke(currentHealthByMaxHealth);
 
             if (_currentHealth <= 0)
             {
                 _currentHealth = 0;
                 Die();
             }
-        }
-    }
 
-    protected virtual void Die()
-    {
-        if (_dying==null)
-        {
-            IsDead = true;
-            _dying = StartCoroutine(Dying());
         }
-    }
-    protected void ChangeMaxHealth()
-    {
-        _maxHealth = _startHealth + (_additionalHealth * AddHealthMultiplier);
-        Heal(_maxHealth);
-    }
 
-    private void Heal(int count)
+    }
+    public void Heal(int count)
     {
         _currentHealth += count;
-
         if (_currentHealth >= _maxHealth)
         {
             _currentHealth = _maxHealth;
         }
-
-        ChangeHealthStatus();
-    }
-
-    private void ChangeHealthStatus()
-    {
         float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
         HealthChanged?.Invoke(currentHealthByMaxHealth);
     }
+    public void Die()
+    {
+        if (_dying==null)
+        {
+            _mover.SetNoSpeed();
+            _isDead = true;
+            _dying = StartCoroutine(Dying());
+        }
 
+    }
     private IEnumerator Dying()
     {
         _animator.SetTrigger("Die");
-        Died?.Invoke(this);
         yield return new WaitForSeconds(3);
+        Died?.Invoke(this);
         _dying = null;
         gameObject.SetActive(false);
     }
