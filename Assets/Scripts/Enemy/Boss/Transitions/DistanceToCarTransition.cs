@@ -9,7 +9,7 @@ public class DistanceToCarTransition : BossTransition
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, _target.position) < _transitionRange)
+        if (_target.position.z - transform.position.z < _transitionRange)
             NeedTransit = true;
     }
 }

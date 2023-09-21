@@ -47,10 +47,10 @@ public class CameraPositionChanger : MonoBehaviour
         Vector3 newPosition = new Vector3(0, 0, 0);
         Quaternion newAngle = Quaternion.Euler(0, 0, 0);
 
-        while (transform.localPosition != newPosition || transform.localRotation != newAngle)
+        while (transform.localPosition != newPosition || transform.localRotation.eulerAngles != newAngle.eulerAngles)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, newAngle, _rotateSpeed * Time.deltaTime);
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, newPosition, _moveSpeed * Time.deltaTime);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, newAngle, _rotateSpeed * Time.deltaTime);
             yield return null;
         }
 

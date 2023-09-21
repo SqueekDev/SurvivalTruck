@@ -9,7 +9,7 @@ public class PushBackState : JumpingOnCarState
 
     private void Update()
     {
-        if (Target.transform.position.z - transform.position.z < ZOffset)
+        if (Target.transform.position.z - transform.position.z > ZOffset)
             Fell?.Invoke();
     }
 }

@@ -9,7 +9,7 @@ public class MoveToPlayerState : BossState
 
     private void FixedUpdate()
     {
-        Vector3 direction = new Vector3(_target.transform.position.x - transform.position.x, transform.position.y, _target.transform.position.z - transform.position.z).normalized;
+        Vector3 direction = new Vector3(_target.transform.position.x - transform.position.x, 0, _target.transform.position.z - transform.position.z).normalized;
         transform.Translate(direction * _speed * Time.deltaTime);
     }
 }

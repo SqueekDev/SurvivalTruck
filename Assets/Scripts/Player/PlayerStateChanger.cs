@@ -50,6 +50,7 @@ public class PlayerStateChanger : MonoBehaviour
 
     private void OnCameraDescended()
     {
+        _moverToShootPlace.enabled = false;
         _joystick.gameObject.SetActive(true);
         _bossShooter.enabled = true;
         _cameraMover.enabled = true;

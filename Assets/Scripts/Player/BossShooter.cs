@@ -20,18 +20,12 @@ public class BossShooter : MonoBehaviour
 
     private void Start()
     {
-        _targetStartPositon = _target.transform.position;
+        _targetStartPositon = _target.transform.localPosition;
     }
 
     private void LateUpdate()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-            _target.transform.position = hit.point;
-        else
-            _target.transform.position = _targetStartPositon;
+        _target.transform.localPosition = _targetStartPositon;
     }
 
     private void OnDisable()

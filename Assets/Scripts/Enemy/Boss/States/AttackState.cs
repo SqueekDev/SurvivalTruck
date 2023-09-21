@@ -19,11 +19,11 @@ public class AttackState : BossState
     {
         _animator = GetComponent<Animator>();
         Stats = GetComponent<Boss>();
-        _offset = _car.transform.position - transform.position;
     }
 
     protected virtual void OnEnable()
     {
+        _offset = _car.transform.position - transform.position;
         StopAttackCorutine();
         _attackCorutine = StartCoroutine(StartAttack());
     }
