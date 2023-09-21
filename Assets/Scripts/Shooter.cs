@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     private Coroutine _shooting;
     private bool _isShooting = false;
     private Transform _currentTarget;
-    private Player _selfHealth;
+    private Health _selfHealth;
 
     public Transform Target => _currentTarget;
     public int Damage => _damage;
@@ -25,7 +25,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        _selfHealth = GetComponent<Player>();
+        _selfHealth = GetComponent<Health>();
     }
 
     private void Update()
