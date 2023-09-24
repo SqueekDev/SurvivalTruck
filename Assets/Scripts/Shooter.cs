@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     private Coroutine _shooting;
     private bool _isShooting = false;
     private Transform _currentTarget;
-    private Health _selfHealth;
+    private Player _selfHealth;
 
     public Transform Target => _currentTarget;
     public int Damage => _damage;
@@ -25,12 +25,12 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        _selfHealth = GetComponent<Health>();
+        _selfHealth = GetComponent<Player>();
     }
 
     private void Update()
     {
-        if (_isShooting==false)
+        if (_isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
             foreach (var collider in colliders)
@@ -71,7 +71,7 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shooting(Transform target)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenShoot);
-        while (_currentTarget.gameObject.activeSelf&&_currentTarget != null
+        while (_currentTarget.gameObject.activeSelf && _currentTarget != null
              && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {
             _weapon.Shoot(_currentTarget);

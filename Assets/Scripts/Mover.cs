@@ -5,30 +5,29 @@ using UnityEngine;
 public abstract class Mover : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] protected float _speed;
+    [SerializeField] private float _startSpeed;
 
-    private float _startSpeed;
+    protected float Speed;
 
     public void Rotate(Vector3 destination)
     {
         Vector3 direction = new Vector3(destination.x, transform.position.y, destination.z) - transform.position;
-        Quaternion newDirection=transform.rotation;
-        if (direction!=Vector3.zero)
+        Quaternion newDirection = transform.rotation;
+        if (direction != Vector3.zero)
         {
-         newDirection= Quaternion.LookRotation(direction);
+            newDirection = Quaternion.LookRotation(direction);
 
         }
-            transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
     }
 
     public void SetNoSpeed()
     {
-        _startSpeed = _speed;
-        _speed = 0;
+        Speed = 0;
     }
-    
+
     public void SetStartSpeed()
     {
-        _speed = _startSpeed;
+        Speed = _startSpeed;
     }
 }
