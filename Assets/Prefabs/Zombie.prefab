@@ -1069,10 +1069,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.81
   m_Height: 1.71
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.81, z: 0}
 --- !u!114 &4191716626977275584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43f78e5a5a92c44cb33bf973ddd3eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 30
+  _startHealth: 100
   _additionalHealth: 10
   _audioSource: {fileID: 0}
   _levelChanger: {fileID: 0}
@@ -1118,13 +1118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _startSpeed: 6
+  _startSpeed: 5
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: 0, y: 0}
-  _movingDistance: 10
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _jumpForce: 3
+  _player: {fileID: 0}
 --- !u!1 &1452346760094399335
 GameObject:
   m_ObjectHideFlags: 0

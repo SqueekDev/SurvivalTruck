@@ -20,14 +20,36 @@ public class ZombieAttacker : MonoBehaviour
     {
         if (other.TryGetComponent(out Obstacle obstacle))
         {
-            Attack(obstacle);
+            if (obstacle.IsDestroyed==false)
+            {
+                _zombieMover.StopMoveTo();
+                Attack(obstacle);
+            }
+            else
+            {
+                _zombieMover.Jump();
+            }
+
         }
-        if (other.TryGetComponent(out Health playerHealth))
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Health playerHealth))
         {
-            Attack(obstacle);
+            _zombieMover.StopMoveTo();
+            Attack(playerHealth);
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Health playerHealth))
+        {
+            StopAttack();
+            _zombieMover.MoveTo(playerHealth.transform);
+        }
+    }
     public void Attack(Obstacle obstacle)
     {
         if (_obstacleAttacking==null)
@@ -43,20 +65,29 @@ public class ZombieAttacker : MonoBehaviour
         }
     }
 
+    private  void StopAttack()
+    {
+        if (_attacking != null)
+        {
+            StopCoroutine(_attacking);
+            _attacking = null;
+            _animator.SetBool("Attack", false);
+        }
+    }
+
     private IEnumerator Attacking(Obstacle obstacle)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
         _animator.SetBool("Attack", true);
-        while (obstacle.gameObject.activeSelf)
+
+        while (obstacle.IsDestroyed==false)
         {
             obstacle.ApplyDamade(_damage);
             yield return null;
             yield return waitForSeconds;
         }
         _obstacleAttacking = null;
-        _zombieMover.SetNeedMoveToTarget();
-        _animator.SetTrigger("Jump");
-
+        _zombieMover.Jump();
     }
     private IEnumerator Attacking(Health playerHealth)
     {
@@ -69,7 +100,6 @@ public class ZombieAttacker : MonoBehaviour
             yield return waitForSeconds;
         }
         _attacking = null;
-        _zombieMover.SetNeedMoveToTarget();
         _animator.SetBool("Attack", false);
 
     }

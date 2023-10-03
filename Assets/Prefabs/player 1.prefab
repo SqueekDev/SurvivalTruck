@@ -912,6 +912,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7dd86a4c30a134599dcd5a71754bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startHealth: 0
+  _additionalHealth: 0
+  _audioSource: {fileID: 0}
+  _mover: {fileID: 0}
+  _savingName: 
 --- !u!114 &5461825164556447742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,9 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05684ee437acac14e852936a7785da64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 200
-  _savingName: 
-  _mover: {fileID: 6348992123279167642}
+  _startHealth: 0
+  _additionalHealth: 0
   _audioSource: {fileID: 0}
 --- !u!114 &6348992123279167642
 MonoBehaviour:
@@ -962,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 12
-  _speed: 5
+  _startSpeed: 0
   _upgradesPanel: {fileID: 0}
 --- !u!114 &6444844090801815269
 MonoBehaviour:
@@ -1022,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9123046694955914511, guid: 2d42b259bdb3f3543b2530aa70c0c477, type: 3}
+  _shootPoint: {fileID: 0}
 --- !u!1 &8571550099619574148
 GameObject:
   m_ObjectHideFlags: 0
