@@ -9,9 +9,12 @@ public class LevelChanger : MonoBehaviour
     private const int BossLevelNubmerDivider = 2;
 
     [SerializeField] private WaveController _waveController;
+    [SerializeField] private Player _player;
     [SerializeField] private Boss _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
+    [SerializeField] private LostPanel _lostPanel;
     [SerializeField] private NextLevelButton _nextLevelButton;
+    [SerializeField] private RestartLevelButton _restartLevelButton;
 
     private int _playerPrefsSavedLevelNumber = 1;
 
@@ -29,15 +32,19 @@ public class LevelChanger : MonoBehaviour
     private void OnEnable()
     {
         _waveController.WaveEnded += OnWaveEnded;
+        _player.Died += OnPlayerDied;
         _boss.Died += OnBossDied;
         _nextLevelButton.Clicked += OnNextLevelButtonClick;
+        _restartLevelButton.Clicked += OnRestartLevelButtonClick;
     }
 
     private void OnDisable()
     {
         _waveController.WaveEnded -= OnWaveEnded;
+        _player.Died -= OnPlayerDied;
         _boss.Died -= OnBossDied;
         _nextLevelButton.Clicked -= OnNextLevelButtonClick;
+        _restartLevelButton.Clicked -= OnRestartLevelButtonClick;
     }
 
     private void Start()
@@ -77,6 +84,12 @@ public class LevelChanger : MonoBehaviour
         OnWaveEnded();
     }
 
+    private void OnPlayerDied(Health player)
+    {
+        Time.timeScale = 0;
+        _lostPanel.gameObject.SetActive(true);
+    }
+
     private void OnNextLevelButtonClick()
     {
         CurrentLevelNumber++;
@@ -85,6 +98,13 @@ public class LevelChanger : MonoBehaviour
         if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
             SyncLevelNumber();
 
+        ChangeLevel();
+    }
+
+    private void OnRestartLevelButtonClick()
+    {
+        Time.timeScale = 1;
+        _lostPanel.gameObject.SetActive(false);
         ChangeLevel();
     }
 }
