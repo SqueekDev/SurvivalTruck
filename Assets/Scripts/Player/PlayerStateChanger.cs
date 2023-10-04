@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(Player))]
 public class PlayerStateChanger : MonoBehaviour
 {
     [SerializeField] private LevelChanger _levelChanger;
@@ -16,18 +16,28 @@ public class PlayerStateChanger : MonoBehaviour
     [SerializeField] private FloatingJoystick _joystick;
 
     private Rigidbody _rigidbody;
+    private Player _player;
+    private bool _actionsDisabled;
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
+        _actionsDisabled = false;
         _levelChanger.BossLevelStarted += OnBossLevelStarted;
         _levelChanger.BossLevelEnded += OnBossLevelEnded;
         _cameraPositionChanger.Descended += OnCameraDescended;
         _cameraPositionChanger.Climbed += OnCameraClimbed;
+    }
+
+    private void Update()
+    {
+        if (_actionsDisabled == false && _player.IsDead)
+            DisableActions();
     }
 
     private void OnDisable()
@@ -70,5 +80,17 @@ public class PlayerStateChanger : MonoBehaviour
         _shooter.enabled = true;
         _playerInput.enabled = true;
         _playerMover.enabled = true;
+    }
+
+    private void DisableActions()
+    {
+        _joystick.gameObject.SetActive(false);
+        _shooter.enabled = false;
+        _playerMover.enabled = false;
+        _playerInput.enabled = false;
+        _cameraMover.enabled = false;
+        _bossShooter.enabled = false;
+        _moverToShootPlace.enabled = false;
+        _actionsDisabled = true;
     }
 }

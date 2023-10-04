@@ -15,11 +15,11 @@ public class WinningState : BossState
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _offset = _car.transform.position - transform.position;
     }
 
     private void OnEnable()
     {
+        _offset = _car.transform.position - transform.position;
         //_animator.SetBool(WinAnimationName, true);
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private RestartLevelButton _restartLevelButton;
 
     private int _playerPrefsSavedLevelNumber = 1;
+    private Scene _currentScene;
 
     public int CurrentLevelNumber { get; private set; } = 1;
 
@@ -26,7 +28,9 @@ public class LevelChanger : MonoBehaviour
 
     private void Awake()
     {
-        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
+        //_playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
+        _playerPrefsSavedLevelNumber = 2;
+        _currentScene = SceneManager.GetActiveScene();
     }
 
     private void OnEnable()
@@ -105,6 +109,6 @@ public class LevelChanger : MonoBehaviour
     {
         Time.timeScale = 1;
         _lostPanel.gameObject.SetActive(false);
-        ChangeLevel();
+        SceneManager.LoadScene(_currentScene.name);
     }
 }

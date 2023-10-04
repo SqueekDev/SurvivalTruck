@@ -5,7 +5,15 @@ using UnityEngine;
 public class Player : Health
 {
     [SerializeField] private Mover _mover;
+    [SerializeField] private CameraLowerPoint _cameraLowerPoint;
     [SerializeField] private string _savingName;
+
+    private Car _car;
+
+    private void Awake()
+    {
+        _car = GetComponentInParent<Car>();
+    }
 
     protected override void OnEnable()
     {
@@ -18,6 +26,9 @@ public class Player : Health
 
     protected override void Die()
     {
+        Vector3 cameraLowerPointRotation = _cameraLowerPoint.transform.rotation.eulerAngles;
+        _cameraLowerPoint.transform.parent = _car.transform;
+        _cameraLowerPoint.transform.rotation = Quaternion.Euler(cameraLowerPointRotation);
         _mover.SetNoSpeed();
         base.Die();
     }
