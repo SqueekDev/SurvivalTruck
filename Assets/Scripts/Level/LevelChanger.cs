@@ -28,8 +28,7 @@ public class LevelChanger : MonoBehaviour
 
     private void Awake()
     {
-        //_playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
-        _playerPrefsSavedLevelNumber = 2;
+        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
         _currentScene = SceneManager.GetActiveScene();
     }
 
