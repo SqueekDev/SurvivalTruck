@@ -5483,6 +5483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9123046694955914511, guid: 2d42b259bdb3f3543b2530aa70c0c477, type: 3}
   _shootPoint: {fileID: 1471960002}
+  _bulletSpeed: 50
+  _damage: 10
+  _timeBetweenShoot: 1
 --- !u!65 &1104556194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7734,9 +7737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 1562249700}
-  _timeBetweenShoot: 1
-  _bulletSpeed: 50
-  _damage: 10
   _shootingDistance: 20
   _stopShootingDistance: 21
   _layerMask:
@@ -8612,6 +8612,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9123046694955914511, guid: 2d42b259bdb3f3543b2530aa70c0c477, type: 3}
   _shootPoint: {fileID: 260343978}
+  _bulletSpeed: 50
+  _damage: 10
+  _timeBetweenShoot: 1
 --- !u!1 &1569450980
 GameObject:
   m_ObjectHideFlags: 0
@@ -12920,9 +12923,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 1104556193}
-  _timeBetweenShoot: 1
-  _bulletSpeed: 50
-  _damage: 10
   _shootingDistance: 11
   _stopShootingDistance: 12
   _layerMask:
@@ -13019,7 +13019,6 @@ MonoBehaviour:
   _weapon: {fileID: 1104556193}
   _scope: {fileID: 1597714733}
   _target: {fileID: 659189461}
-  _timeBetweenShoot: 1
 --- !u!114 &8141956493425255390
 MonoBehaviour:
   m_ObjectHideFlags: 0

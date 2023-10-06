@@ -11,10 +11,10 @@ public class Shooter : MonoBehaviour
 
     private Coroutine _shooting;
     private bool _isShooting = false;
-    private Transform _currentTarget;
+    private Zombie _currentTarget;
     private Player _selfHealth;
 
-    public Transform Target => _currentTarget;
+    public Zombie Target => _currentTarget;
 
     public bool IsShooting => _isShooting;
 
@@ -30,11 +30,11 @@ public class Shooter : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
             foreach (var collider in colliders)
             {
-                if (collider.gameObject.TryGetComponent(out Health health))
+                if (collider.gameObject.TryGetComponent(out Zombie zombie))
                 {
-                    if (health.IsDead == false && health.gameObject != gameObject && _shooting == null)
+                    if (zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
                     {
-                        Shoot(health.transform);
+                        Shoot(zombie);
                         return;
                     }
                 }
@@ -43,7 +43,7 @@ public class Shooter : MonoBehaviour
 
     }
 
-    private void Shoot(Transform target)
+    private void Shoot(Zombie target)
     {
         _currentTarget = target;
         _isShooting = true;
@@ -63,13 +63,13 @@ public class Shooter : MonoBehaviour
 
     }
 
-    private IEnumerator Shooting(Transform target)
+    private IEnumerator Shooting(Zombie zombie)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
-        while (_currentTarget.gameObject.activeSelf && _currentTarget != null
+        while (_currentTarget.IsDead == false && _currentTarget != null
              && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {
-            _weapon.Shoot(_currentTarget);
+            _weapon.Shoot(_currentTarget.transform);
             yield return null;
             yield return waitForSeconds;
         }
