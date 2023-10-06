@@ -5,9 +5,6 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] private Weapon _weapon;
-    [SerializeField] private float _timeBetweenShoot;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private int _damage;
     [SerializeField] private float _shootingDistance;
     [SerializeField] private float _stopShootingDistance;
     [SerializeField] private LayerMask _layerMask;
@@ -18,8 +15,6 @@ public class Shooter : MonoBehaviour
     private Player _selfHealth;
 
     public Transform Target => _currentTarget;
-    public int Damage => _damage;
-    public float BulletSpeed => _bulletSpeed;
 
     public bool IsShooting => _isShooting;
 
@@ -70,7 +65,7 @@ public class Shooter : MonoBehaviour
 
     private IEnumerator Shooting(Transform target)
     {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenShoot);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
         while (_currentTarget.gameObject.activeSelf && _currentTarget != null
              && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {

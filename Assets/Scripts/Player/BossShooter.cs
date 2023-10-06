@@ -7,7 +7,6 @@ public class BossShooter : MonoBehaviour
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Scope _scope;
     [SerializeField] private Target _target;
-    [SerializeField] private float _timeBetweenShoot;
 
     private Coroutine _shootCorutine;
     private Vector3 _targetStartPositon;
@@ -39,7 +38,7 @@ public class BossShooter : MonoBehaviour
 
     private IEnumerator Shooting()
     {
-        WaitForSeconds delay = new WaitForSeconds(_timeBetweenShoot);
+        WaitForSeconds delay = new WaitForSeconds(_weapon.TimeBetweenShoot);
 
         while (true)
         {

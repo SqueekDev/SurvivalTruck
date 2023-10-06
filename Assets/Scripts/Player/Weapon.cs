@@ -6,20 +6,16 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] protected Bullet _bulletPrefab;
     [SerializeField] private WeaponShootPoint _shootPoint;
+    [SerializeField] private float _bulletSpeed;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _timeBetweenShoot;
     //[SerializeField] protected ParticleSystem _particle;
     //[SerializeField] protected AudioSource _audioSource;
     //[SerializeField] protected string _savingName;
 
-    protected Shooter _shooter;
-    protected float _bulletSpeed;
-    protected int _damage;
-
-    private void Start()
-    {
-        _shooter = GetComponentInParent<Shooter>();
-        _bulletSpeed = _shooter.BulletSpeed;
-        _damage = _shooter.Damage;
-    }
+    public float BulletSpeed => _bulletSpeed;
+    public int Damage => _damage;
+    public float TimeBetweenShoot => _timeBetweenShoot;
 
     public void Shoot(Transform target)
     {
