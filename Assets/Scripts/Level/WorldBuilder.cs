@@ -29,7 +29,7 @@ public class WorldBuilder : MonoBehaviour
     private void SpawnPlatform()
     {
         Platform newPlatform = Instantiate(_platformTemplate, transform);
-        newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position - newPlatform.StartPoint.localPosition;
+        newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
         _spawnedPlatforms.Add(newPlatform);
     }
 
