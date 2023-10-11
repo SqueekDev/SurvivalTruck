@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class WorldBuilder : MonoBehaviour
 {
+    [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private int _spawnPlatformCorrection;
     [SerializeField] private int _platformLimit;
     [SerializeField] private Car _car;
-    [SerializeField] private Platform _platformTemplate;
-    [SerializeField] private Platform _startPlatform;
+    [SerializeField] private List<Platform> _platformTemplates;
 
+    private int _changePlatformLevelNumberDivider;
+    private Platform _currentPlatformTemplate;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
+
+    private void Awake()
+    {
+        _changePlatformLevelNumberDivider = _levelChanger.BossLevelNumber;
+    }
+
+    private void OnEnable()
+    {
+        _levelChanger.Changed += OnLevelChanged;
+    }
 
     private void Start()
     {
-        _spawnedPlatforms.Add(_startPlatform);
+        OnLevelChanged(_levelChanger.CurrentLevelNumber);
+        Platform startPlatform = Instantiate(_currentPlatformTemplate, transform);
+        _spawnedPlatforms.Add(startPlatform);
     }
 
     private void Update()
@@ -26,9 +40,14 @@ public class WorldBuilder : MonoBehaviour
             RemovePlatform();
     }
 
+    private void OnDisable()
+    {
+        _levelChanger.Changed -= OnLevelChanged;
+    }
+
     private void SpawnPlatform()
     {
-        Platform newPlatform = Instantiate(_platformTemplate, transform);
+        Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
         newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
         _spawnedPlatforms.Add(newPlatform);
     }
@@ -37,5 +56,16 @@ public class WorldBuilder : MonoBehaviour
     {
         Destroy(_spawnedPlatforms[0].gameObject);
         _spawnedPlatforms.RemoveAt(0);
+    }
+
+    private void OnLevelChanged(int levelNumber)
+    {
+        int listIndexCorrection = 1;
+        int platformIndex = (levelNumber - listIndexCorrection) / _changePlatformLevelNumberDivider;
+
+        while (platformIndex > _platformTemplates.Count - listIndexCorrection)
+            platformIndex -= _platformTemplates.Count;
+
+        _currentPlatformTemplate = _platformTemplates[platformIndex];
     }
 }

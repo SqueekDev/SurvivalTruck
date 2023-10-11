@@ -12,11 +12,16 @@ public class WaveController : MonoBehaviour
 
     private int _attackingZombiesCount = 0;
     private int _ragedZombieCount = 0;
-    private int _levelToAddedZombieMultiplier = 5;
+    private int _levelToAddedZombieMultiplier;
     private int _zombiesInWaveCount;
     private bool _isBossLevel;
 
     public event UnityAction WaveEnded;
+
+    private void Awake()
+    {
+        _levelToAddedZombieMultiplier = _levelChanger.BossLevelNumber;
+    }
 
     private void OnEnable()
     {
