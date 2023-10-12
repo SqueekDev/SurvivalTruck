@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    private const string LevelNumberKey = "Level";
-
     [SerializeField] private WaveController _waveController;
     [SerializeField] private Player _player;
     [SerializeField] private Boss _boss;
@@ -31,7 +29,7 @@ public class LevelChanger : MonoBehaviour
     private void Awake()
     {
         _currentScene = SceneManager.GetActiveScene();
-        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
+        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumberName, 1);
         SyncLevelNumber();
     }
 
@@ -65,7 +63,7 @@ public class LevelChanger : MonoBehaviour
         else
         {
             _playerPrefsSavedLevelNumber = CurrentLevelNumber;
-            PlayerPrefs.SetInt(LevelNumberKey, _playerPrefsSavedLevelNumber);
+            PlayerPrefs.SetInt(PlayerPrefsKeys.LevelNumberName, _playerPrefsSavedLevelNumber);
             PlayerPrefs.Save();
         }
     }
