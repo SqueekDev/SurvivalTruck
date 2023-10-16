@@ -996,9 +996,10 @@ GameObject:
   - component: {fileID: 1452346760101677381}
   - component: {fileID: 8611951654772881943}
   - component: {fileID: 695133219085025006}
-  - component: {fileID: 4191716626977275584}
   - component: {fileID: 7154820901196419258}
   - component: {fileID: 4815710542013469597}
+  - component: {fileID: 721371419363270416}
+  - component: {fileID: -8074657250944961135}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Untagged
@@ -1057,7 +1058,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &695133219085025006
 CapsuleCollider:
@@ -1069,6 +1070,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+<<<<<<< Updated upstream
   m_Radius: 0.5
   m_Height: 1.71
   m_Direction: 1
@@ -1090,6 +1092,12 @@ MonoBehaviour:
   _audioSource: {fileID: 0}
   _levelChanger: {fileID: 0}
   _mover: {fileID: 4815710542013469597}
+=======
+  m_Radius: 0.41
+  m_Height: 1.71
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.81, z: 0}
+>>>>>>> Stashed changes
 --- !u!114 &7154820901196419258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,9 +1110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406b6157176c27946869c53499ccafd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBetweenAttacks: 1
+  _timeBetweenAttacks: 5
   _damage: 10
-  _zombieMover: {fileID: 4815710542013469597}
 --- !u!114 &4815710542013469597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,10 +1128,50 @@ MonoBehaviour:
   _startSpeed: 6
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: 0, y: 0}
+<<<<<<< Updated upstream
   _movingDistance: 10
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+=======
+  _jumpForce: 15
+  _jumpHeight: 1.8
+  _jumpOffset: 0.2
+  _throwAwaySpeed: 5
+--- !u!114 &721371419363270416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43f78e5a5a92c44cb33bf973ddd3eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zombieMover: {fileID: 4815710542013469597}
+  _zombieAttacker: {fileID: 7154820901196419258}
+  _player: {fileID: 0}
+--- !u!114 &-8074657250944961135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7986b1fc7f23b5c4b9cfc33c47f290ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startHealth: 100
+  _additionalHealth: 10
+  _audioSource: {fileID: 0}
+  _currentHealth: 0
+  _levelChanger: {fileID: 0}
+  _mover: {fileID: 4815710542013469597}
+>>>>>>> Stashed changes
 --- !u!1 &1452346760094399335
 GameObject:
   m_ObjectHideFlags: 0

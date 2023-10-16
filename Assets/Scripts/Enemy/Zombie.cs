@@ -1,29 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEngine.GraphicsBuffer;
 
-public class Zombie : Health
+public class Zombie : MonoBehaviour
 {
-    private const int MultiplyHealthDivider = 10;
+    [SerializeField] private ZombieMover _zombieMover;
+    [SerializeField] private ZombieAttacker _zombieAttacker;
+    [SerializeField] private Player _player;
 
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private Mover _mover;
+    private Transform _target;
+    private Obstacle _obstacle;
+    private Animator _animator;
+    private Vector3 _startPosition;
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
-        ChangeHealthMultiplier();
-        base.OnEnable();
-        _mover.SetStartSpeed();
+        _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
+    }
+    private void OnDisable()
+    {
+        _zombieAttacker.OnObstacleDestroyed -= OnOstacleDestroyed;
+
+    }
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+        _target=_player.transform;
+        _startPosition = transform.position;
     }
 
-    protected override void Die()
+    private void Update()
     {
-        _mover.SetNoSpeed();
-        base.Die();
+        if (_target.TryGetComponent(out Player player))
+        {
+            Vector3 attackDestination = new Vector3(_target.transform.position.x,_target.position.y,transform.position.z);
+            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, attackDestination));
+        }
+        if (_target.TryGetComponent(out Obstacle obstacle))
+        {
+            if ((transform.position.y-_startPosition.y)>0.5f)
+            {
+                Vector3 attackDestination = new Vector3(_target.transform.position.x, _target.position.y, transform.position.z);
+                _animator.SetFloat("attackDistance",1);
+
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out RageArea rageArea))
+        {
+            SetObstacle(rageArea.Obstacle);
+            _animator.SetTrigger("MoveTo");
+        }
+        if (other.TryGetComponent(out JumpTrigger jumpTrigger))
+        {
+            _animator.SetTrigger("Jump");
+        }
+        if (other.TryGetComponent(out Kangaroo kangaroo))
+        {
+            _animator.SetTrigger("Kangaroo");
+        }
+    }
+    private void OnOstacleDestroyed()
+    {
+        _target = _player.transform;
+    }
+    public void SetObstacle(Obstacle obstacle)
+    {
+        _obstacle = obstacle;
     }
 
-    private void ChangeHealthMultiplier()
+    public Transform GetTarget()
     {
-        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / MultiplyHealthDivider;
+        if (_obstacle!=null&&_obstacle.IsDestroyed==false)
+        {
+            _target = _obstacle.transform;
+            return _target;
+        }
+        else
+        {
+            _target = _player.transform;
+            return _target;
+        }
     }
 }

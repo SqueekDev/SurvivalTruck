@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Health health))
+        if (other.TryGetComponent(out ZombieHealth health))
         {
             health.TakeDamage(_damage);
             //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);

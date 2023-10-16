@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private VariableJoystick _joystick;
 
     private PlayerMover _mover;
     private Shooter _shooter;

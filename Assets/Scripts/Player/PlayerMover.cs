@@ -6,16 +6,18 @@ public class PlayerMover : Mover
 {
     [SerializeField] private UpgradesPanel _upgradesPanel;
 
+    private Shooter _shooter;
     private Rigidbody _rigidbody;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _shooter = GetComponent<Shooter>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Shop shop))
+        if (other.TryGetComponent(out Shop shop)&&_shooter.IsShooting==false)
         {
             _upgradesPanel.gameObject.SetActive(true);
         }

@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _additionalHealth;
     [SerializeField] private AudioSource _audioSource;
 
-    private int _currentHealth;
+   [SerializeField] private int _currentHealth;
     private int _maxHealth;
     private Animator _animator;
     private Coroutine _dying;

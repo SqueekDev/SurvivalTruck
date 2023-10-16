@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _pooledObjects;
+    [SerializeField] private List<ZombieAttacker> _pooledObjects;
 
-    public bool TryGetObject(out GameObject pooledObject)
+    public bool TryGetObject(out ZombieAttacker pooledObject)
     {
-        pooledObject = _pooledObjects.FirstOrDefault(p=>p.activeSelf==false);
+        pooledObject = _pooledObjects.FirstOrDefault(p=>p.gameObject.activeSelf==false);
         return pooledObject != null;
     }
 }

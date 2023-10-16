@@ -13,7 +13,7 @@ public class PlayerStateChanger : MonoBehaviour
     [SerializeField] private Shooter _shooter;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerMover _playerMover;
-    [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private VariableJoystick _joystick;
 
     private Rigidbody _rigidbody;
     private Player _player;

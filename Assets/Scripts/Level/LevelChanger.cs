@@ -26,11 +26,15 @@ public class LevelChanger : MonoBehaviour
     public event UnityAction BossLevelStarted;
     public event UnityAction BossLevelEnded;
 
-    private void Awake()
+    /*private void Awake()
     {
         _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(LevelNumberKey, 1);
+<<<<<<< Updated upstream
         _currentScene = SceneManager.GetActiveScene();
     }
+=======
+    }*/
+>>>>>>> Stashed changes
 
     private void OnEnable()
     {

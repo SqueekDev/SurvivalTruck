@@ -67,7 +67,7 @@ public class WaveController : MonoBehaviour
         WaveEnded?.Invoke();
     }
 
-    private void OnZombieAttacked(Zombie zombie)
+    private void OnZombieAttacked(ZombieHealth zombie)
     {
         zombie.Died += OnZombieDied;
         _ragedZombieCount++;
