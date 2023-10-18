@@ -11,10 +11,10 @@ public class Shooter : MonoBehaviour
 
     private Coroutine _shooting;
     private bool _isShooting = false;
-    private Zombie _currentTarget;
+    private ZombieHealth _currentTarget;
     private Player _selfHealth;
 
-    public Zombie Target => _currentTarget;
+    public ZombieHealth Target => _currentTarget;
 
     public bool IsShooting => _isShooting;
 
@@ -30,7 +30,7 @@ public class Shooter : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
             foreach (var collider in colliders)
             {
-                if (collider.gameObject.TryGetComponent(out Zombie zombie))
+                if (collider.gameObject.TryGetComponent(out ZombieHealth zombie))
                 {
                     if (zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
                     {
@@ -43,7 +43,7 @@ public class Shooter : MonoBehaviour
 
     }
 
-    private void Shoot(Zombie target)
+    private void Shoot(ZombieHealth target)
     {
         _currentTarget = target;
         _isShooting = true;
@@ -63,7 +63,7 @@ public class Shooter : MonoBehaviour
 
     }
 
-    private IEnumerator Shooting(Zombie zombie)
+    private IEnumerator Shooting(ZombieHealth zombie)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
         while (_currentTarget.IsDead == false && _currentTarget != null
