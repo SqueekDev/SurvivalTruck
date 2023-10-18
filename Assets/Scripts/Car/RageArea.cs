@@ -9,11 +9,11 @@ public class RageArea : MonoBehaviour
 
     public Obstacle Obstacle => _obstacle;
 
-    public event UnityAction<Zombie> ZombieAttacked;
+    public event UnityAction<ZombieHealth> ZombieAttacked;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Zombie zombieHealth))
+        if (other.TryGetComponent(out ZombieHealth zombieHealth))
             ZombieAttacked?.Invoke(zombieHealth);
     }
 }

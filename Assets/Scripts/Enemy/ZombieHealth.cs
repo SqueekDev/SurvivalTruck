@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Health
+public class ZombieHealth : Health
 {
     private const int MultiplyHealthDivider = 10;
 
