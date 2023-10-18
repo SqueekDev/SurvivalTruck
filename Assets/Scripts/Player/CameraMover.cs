@@ -6,7 +6,7 @@ public class CameraMover : MonoBehaviour
 {
     private const float MaxInputValue = 1f;
 
-    [SerializeField] private FloatingJoystick _floatingJoystick;
+    [SerializeField] private VariableJoystick _floatingJoystick;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private float _speed = 600f;
     [SerializeField] private float _verticalBorded = 20f;
