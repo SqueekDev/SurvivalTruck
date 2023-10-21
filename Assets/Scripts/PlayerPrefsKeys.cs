@@ -4,4 +4,6 @@ using System.Collections.Generic;
 public static class PlayerPrefsKeys
 {
     public const string LevelNumberName = "Level";
+    public const string CurrentCointName = "CurrentCoins";
+    public const string TotalCoinEarnedName = "TotalEarnedCoins";
 }
