@@ -9,6 +9,8 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private int _maxHealth;
     [SerializeField] private List<WoodBlock> _blocks;
     [SerializeField] private RepairZone _repairZone;
+    [SerializeField] private LevelChanger _levelChanger;
+    [SerializeField] private WaveController _waveController;
 
     private int _currentHealth;
     private bool _upperBlockEnabled;
@@ -27,11 +29,15 @@ public class Obstacle : MonoBehaviour
     private void OnEnable()
     {
         _repairZone.Repaired += OnRepaired;
+        _levelChanger.Changed += OnLevelChanged;
+        _waveController.WaveEnded += OnWaveEnded;
     }
 
     private void OnDisable()
     {
         _repairZone.Repaired -= OnRepaired;        
+        _levelChanger.Changed -= OnLevelChanged;
+        _waveController.WaveEnded -= OnWaveEnded;
     }
 
     public void ApplyDamade(int damage)
@@ -72,6 +78,16 @@ public class Obstacle : MonoBehaviour
         }
     }
 
+    private void OnLevelChanged(int level)
+    {
+        _repairZone.gameObject.SetActive(false);
+    }
+
+    private void OnWaveEnded()
+    {
+        _repairZone.gameObject.SetActive(true);
+    }
+
     private void OnRepaired()
     {
         foreach (var block in _blocks)
@@ -81,5 +97,6 @@ public class Obstacle : MonoBehaviour
         IsDestroyed = false;
         _upperBlockEnabled = true;
         _middleBlockEnabled = true;
+        _repairZone.gameObject.SetActive(false);
     }
 }

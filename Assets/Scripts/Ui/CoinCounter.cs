@@ -6,25 +6,38 @@ using UnityEngine;
 public class CoinCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private List<RageArea> _rageAreas;
+    [SerializeField] private Boss _boss;
 
     private int _count;
-    private int _earnedCoins;
+    private int _totalEarnedCoins;
+    private int _currentZombieReward;
+    private int _earnModifier;
 
     public int Count => _count;
-    public int EarnedCoins => _earnedCoins;
+    public int TotalEarnedCoins => _totalEarnedCoins;
+
+    private void OnEnable()
+    {
+        _boss.Died += OnBossDied;
+
+        foreach (var rageArea in _rageAreas)
+            rageArea.ZombieAttacked += OnZombieAttacked;
+    }
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("CoinsCount"))
-        {
-            AddCoins(PlayerPrefs.GetInt("CoinsCount"));
-        }
+        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalCoinEarnedName, 0);
+        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCointName, 0);
+        AddCoins(currentCoins);
     }
 
-    public void AddCoins(int count)
+    private void OnDisable()
     {
-        _count += count;
-        ShowCount();
+        _boss.Died -= OnBossDied;
+
+        foreach (var rageArea in _rageAreas)
+            rageArea.ZombieAttacked -= OnZombieAttacked;
     }
 
     public void AddCoinslsForAd(int count)
@@ -38,6 +51,32 @@ public class CoinCounter : MonoBehaviour
         _count -= count;
         PlayerPrefs.SetInt("CoinsCount", _count);
         ShowCount();
+    }
+
+    private void AddCoins(int count)
+    {
+        _count += count;
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCointName, _count);
+        _totalEarnedCoins += count;
+        PlayerPrefs.SetInt(PlayerPrefsKeys.TotalCoinEarnedName, _totalEarnedCoins);
+        ShowCount();
+    }
+
+    private void OnZombieAttacked(ZombieHealth zombie)
+    {
+        zombie.Died += OnZombieDied;
+        _currentZombieReward = zombie.Reward;
+    }
+
+    private void OnZombieDied(Health zombie)
+    {
+        zombie.Died -= OnZombieDied;
+        AddCoins(_currentZombieReward + _earnModifier);
+    }
+
+    private void OnBossDied(Health boss)
+    {
+        AddCoins(_boss.Reward + _earnModifier);
     }
 
     private void ShowCount()
@@ -59,6 +98,5 @@ public class CoinCounter : MonoBehaviour
         {
             _text.text = _count.ToString();
         }
-
     }
 }

@@ -8,6 +8,9 @@ public class ZombieHealth : Health
 
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private Mover _mover;
+    [SerializeField] private int _reward;
+
+    public int Reward => _reward;
 
     protected override void OnEnable()
     {
