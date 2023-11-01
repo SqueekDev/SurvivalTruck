@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Mover : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _startSpeed;
+    [SerializeField] protected float _startSpeed;
 
-    protected float Speed;
+   [SerializeField] protected float Speed;
 
     public void Rotate(Vector3 destination)
     {

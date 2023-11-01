@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
@@ -13,6 +14,7 @@ public class Shooter : MonoBehaviour
     private bool _isShooting = false;
     private ZombieHealth _currentTarget;
     private Player _selfHealth;
+
 
     public ZombieHealth Target => _currentTarget;
 
@@ -28,17 +30,28 @@ public class Shooter : MonoBehaviour
         if (_isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
-            foreach (var collider in colliders)
+            if (colliders.Length>1)
             {
-                if (collider.gameObject.TryGetComponent(out ZombieHealth zombie))
+                Collider nearestZombie = colliders[0];
+
+                foreach (var collider in colliders)
                 {
-                    if (zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
+                    if (Vector3.Distance(transform.position, collider.transform.position) <
+                        Vector3.Distance(transform.position, nearestZombie.transform.position))
+                    {
+                        nearestZombie = collider;
+                    }
+                }
+                if (nearestZombie.gameObject.TryGetComponent(out ZombieHealth zombie))
+                {
+                    if (zombie.IsDead == false && nearestZombie.gameObject != gameObject && _shooting == null)
                     {
                         Shoot(zombie);
                         return;
                     }
                 }
             }
+
         }
 
     }

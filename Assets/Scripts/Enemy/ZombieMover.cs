@@ -13,6 +13,9 @@ public class ZombieMover : Mover
     [SerializeField] private float _jumpHeight;
     [SerializeField] private float _jumpOffset;
     [SerializeField] private float _throwAwaySpeed;
+    [SerializeField] private float _backMoveForce;
+    [SerializeField] private Vector2 _throwAwayOffsetX;
+    [SerializeField] private Vector2 _throwAwayOffsetZ;
 
     private Camera _camera;
     private Coroutine _jumping;
@@ -30,10 +33,12 @@ public class ZombieMover : Mover
         if (transform.position.z<_camera.transform.position.z-_zLimits.x)
         {
             transform.eulerAngles = new Vector3(0,0,0);
-
+            if (Speed==_startSpeed)
+                Speed *= _backMoveForce;
         }
         if (transform.position.z>_camera.transform.position.z+_zLimits.y)
         {
+            Speed = _startSpeed;
             transform.eulerAngles = new Vector3(0,180,0);
             float randomX = Random.Range(_xLimits.x, _xLimits.y);
             Vector3 newPosition = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
@@ -64,8 +69,8 @@ public class ZombieMover : Mover
 
     private IEnumerator ThrowingAway(Transform targetFrom)
     {
-        float randomX = Random.Range(5, 10);
-        float randomZ = Random.Range(7, 10);
+        float randomX = Random.Range(_throwAwayOffsetX.x, _throwAwayOffsetX.y);
+        float randomZ = Random.Range(_throwAwayOffsetZ.x, _throwAwayOffsetZ.y);
         float newPositionX, newPositionY, newPositionZ;
         if (transform.position.x > targetFrom.position.x)
         {
@@ -93,7 +98,7 @@ public class ZombieMover : Mover
         float offset = Random.Range(-1.5f,1.5f);
         Vector3 newDirection = new Vector3(target.position.x+offset, transform.position.y, target.position.z+offset);
         Rotate(newDirection);
-        if (target.TryGetComponent(out Player player))
+        if (target.TryGetComponent(out Player player)&&Vector3.Distance(transform.position,player.transform.position)<5f)
         {
             transform.Translate(Vector3.forward * Speed*0.5f * Time.deltaTime);
 
@@ -128,22 +133,14 @@ public class ZombieMover : Mover
         float newPositionY =_jumpHeight;
         float newPositionX=0;
         float newPositionZ;
-        if (target.gameObject.TryGetComponent(out Obstacle obstacle))
-        {
+
             if (transform.position.x > target.position.x)
                 newPositionX = target.position.x + _jumpOffset;
             else if (transform.position.x < target.position.x)
                 newPositionX = target.position.x - _jumpOffset;
 
-        }
-        if (target.gameObject.TryGetComponent(out Player player))
-        {
-            if (transform.position.x > target.position.x)
-                newPositionX = transform.position.x - _jumpOffset*10;
-            else if (transform.position.x < target.position.x)
-                newPositionX = transform.position.x + _jumpOffset*10;
+        
 
-        }
         newPositionZ = transform.position.z+_jumpHeight;       
         Vector3 newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
         

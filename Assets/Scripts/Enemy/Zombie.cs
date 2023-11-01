@@ -33,20 +33,9 @@ public class Zombie : MonoBehaviour
 
     private void Update()
     {
-        if (_target.TryGetComponent(out Player player))
-        {
             Vector3 attackDestination = new Vector3(_target.transform.position.x,_target.position.y,transform.position.z);
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, attackDestination));
-        }
-        if (_target.TryGetComponent(out Obstacle obstacle))
-        {
-            if ((transform.position.y-_startPosition.y)>0.5f)
-            {
-                Vector3 attackDestination = new Vector3(_target.transform.position.x, _target.position.y, transform.position.z);
-                _animator.SetFloat("attackDistance",1);
 
-            }
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -59,7 +48,12 @@ public class Zombie : MonoBehaviour
         {
             _animator.SetTrigger("Jump");
         }
-        if (other.TryGetComponent(out Kangaroo kangaroo))
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Kangaroo kangaroo))
         {
             _animator.SetTrigger("Kangaroo");
         }

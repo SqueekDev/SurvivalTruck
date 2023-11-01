@@ -1058,8 +1058,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!136 &695133219085025006
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenAttacks: 1
-  _damage: 10
+  _damage: 5
 --- !u!114 &4815710542013469597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,12 +1120,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
   _startSpeed: 4
+  Speed: 0
   _zLimits: {x: 10, y: 80}
-  _xLimits: {x: 0, y: 0}
+  _xLimits: {x: -35, y: 30}
   _jumpForce: 20
   _jumpHeight: 2
-  _jumpOffset: 0.5
-  _throwAwaySpeed: 2
+  _jumpOffset: 1.16
+  _throwAwaySpeed: 3
+  _backMoveForce: 1.5
+  _throwAwayOffsetX: {x: 10, y: 15}
+  _throwAwayOffsetZ: {x: 10, y: 15}
 --- !u!114 &-551708208428178138
 MonoBehaviour:
   m_ObjectHideFlags: 0

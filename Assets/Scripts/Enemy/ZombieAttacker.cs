@@ -25,7 +25,6 @@ public class ZombieAttacker : MonoBehaviour
     {
         if (_attacking == null)
         {
-
             _attacking = StartCoroutine(Attacking(player));
         }
     }
@@ -46,13 +45,8 @@ public class ZombieAttacker : MonoBehaviour
     private IEnumerator Attacking(Health playerHealth)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
-
-
-            playerHealth.TakeDamage(_damage);
-            Debug.Log("za");
-
-            yield return waitForSeconds;
-        
+        playerHealth.TakeDamage(_damage);
+        yield return waitForSeconds;       
         _attacking = null;
     }
 }

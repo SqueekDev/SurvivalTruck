@@ -25,8 +25,11 @@ public class ZombieSpawner : MonoBehaviour
             float randomX = Random.Range(_xLimits.x, _xLimits.y);
             if (_zombiePooler.TryGetObject(out GameObject zombie))
             {
-                Vector3 spawnPosition = new Vector3(randomX,zombie.transform.position.y, _car.transform.position.z + _carZOffset);
+                float startY = 0.5f;
+                Vector3 spawnPosition = new Vector3(randomX,startY, _car.transform.position.z + _carZOffset);
                 zombie.transform.position = spawnPosition;
+                zombie.transform.SetParent(null);
+                zombie.transform.rotation = Quaternion.identity;
                 zombie.SetActive(true);
             }
 
