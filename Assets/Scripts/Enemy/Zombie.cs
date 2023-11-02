@@ -46,6 +46,7 @@ public class Zombie : MonoBehaviour
         }
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
+            _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
             _animator.SetTrigger("Jump");
         }
 

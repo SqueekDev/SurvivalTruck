@@ -23,6 +23,10 @@ public class Weapon : MonoBehaviour
         //_audioSource.Play();
         Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.transform.position, Quaternion.identity);
         bullet.SetSpeed(_bulletSpeed);
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.PlayerDamage))
+        {
+            _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerDamage);
+        }
         bullet.SetDamage(_damage);
         bullet.MoveTo(target.transform);
     }

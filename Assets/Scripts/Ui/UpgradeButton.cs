@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
@@ -9,26 +10,28 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private int _upgradeValue;
     [SerializeField] private int _price;
     [SerializeField] private int _startValue;
-    [SerializeField] private string _savingName;
     [SerializeField] private string _savingPrice;
     [SerializeField] private CoinCounter _counter;
     [SerializeField] private TextMeshProUGUI _coinsPriceText;
+    [SerializeField] private Savings _savings;
 
     private string _startDescription;
     private string _startPriceText;
+
 
     private void Start()
     {
         _startDescription = _descriptionText.text;
         _startPriceText = _coinsPriceText.text;
+        Renew();
     }
 
     public void Renew()
     {
         int savingName;
-        if (PlayerPrefs.HasKey(_savingName))
+        if (PlayerPrefs.HasKey(_savings.ToString()))
         {
-            savingName = PlayerPrefs.GetInt(_savingName);
+            savingName = PlayerPrefs.GetInt(_savings.ToString());
         }
         else
         {
@@ -48,27 +51,27 @@ public class UpgradeButton : MonoBehaviour
                 PlayerPrefs.SetInt(_savingPrice, number);
             }
         }
-
-
-
         _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + savingName.ToString();
+        _coinsPriceText.text= _startPriceText+_price.ToString();
+
+
     }
 
     public void BuyUpgrade()
     {
         if (_counter.Count >= _price)
         {
-            if (PlayerPrefs.HasKey(_savingName))
+            if (PlayerPrefs.HasKey(_savings.ToString()))
             {
-                PlayerPrefs.SetInt(_savingName, PlayerPrefs.GetInt(_savingName) + _upgradeValue);
+                PlayerPrefs.SetInt(_savings.ToString(), PlayerPrefs.GetInt(_savings.ToString()) + _upgradeValue);
             }
             else
             {
-                PlayerPrefs.SetInt(_savingName, _startValue + _upgradeValue);
+                PlayerPrefs.SetInt(_savings.ToString(), _startValue + _upgradeValue);
             }
 
             _counter.RemoveCoins(_price);
-            _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + PlayerPrefs.GetInt(_savingName).ToString();
+            _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + PlayerPrefs.GetInt(_savings.ToString());
             _price += (int)((float)_price * 0.1f);
             int number;
             if (int.TryParse(_startPriceText,out number))

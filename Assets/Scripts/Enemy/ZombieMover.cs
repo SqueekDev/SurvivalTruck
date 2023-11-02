@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEngine.GraphicsBuffer;
@@ -10,10 +11,10 @@ public class ZombieMover : Mover
     [SerializeField] private Vector2 _xLimits;
 
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _jumpHeight;
     [SerializeField] private float _jumpOffset;
     [SerializeField] private float _throwAwaySpeed;
     [SerializeField] private float _backMoveForce;
+    [SerializeField] private Vector2 _jumpLimits;
     [SerializeField] private Vector2 _throwAwayOffsetX;
     [SerializeField] private Vector2 _throwAwayOffsetZ;
 
@@ -21,6 +22,7 @@ public class ZombieMover : Mover
     private Coroutine _jumping;
     private Coroutine _throwingAway;
     private Rigidbody _rigidbody;
+    private Transform _jumpPoint;
 
     private void Start()
     {
@@ -94,7 +96,6 @@ public class ZombieMover : Mover
     
     public void MoveTo(Transform target)
     {
-
         float offset = Random.Range(-1.5f,1.5f);
         Vector3 newDirection = new Vector3(target.position.x+offset, transform.position.y, target.position.z+offset);
         Rotate(newDirection);
@@ -111,13 +112,17 @@ public class ZombieMover : Mover
     }
 
 
-    public void Jump(Transform target)
+    public void Jump()
     {
 
         if (_jumping == null)
         {
-            transform.SetParent(target.parent);
-            _jumping = StartCoroutine(Jumping(target));
+            _jumping = StartCoroutine(Jumping());
+        }
+        else
+        {
+            StopJump();
+            _jumping = StartCoroutine(Jumping());
         }
     }
 
@@ -128,28 +133,23 @@ public class ZombieMover : Mover
             StopCoroutine(_jumping);
         }
     }
-    private IEnumerator Jumping(Transform target)
+    private IEnumerator Jumping()
     {
-        float newPositionY =_jumpHeight;
-        float newPositionX=0;
-        float newPositionZ;
+        float randomZ = Random.Range(_jumpLimits.x,_jumpLimits.y);
+        Vector3 newPosition = new Vector3(_jumpPoint.position.x,_jumpPoint.position.y,randomZ+_jumpPoint.position.z);
 
-            if (transform.position.x > target.position.x)
-                newPositionX = target.position.x + _jumpOffset;
-            else if (transform.position.x < target.position.x)
-                newPositionX = target.position.x - _jumpOffset;
-
-        
-
-        newPositionZ = transform.position.z+_jumpHeight;       
-        Vector3 newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
-        
-        while (true)
+        while (transform.position!=newPosition)
         {
-
+            newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
             transform.position = Vector3.MoveTowards(transform.position, newPosition, _jumpForce * Time.deltaTime);
             yield return null;
         }
+        transform.SetParent(_jumpPoint.parent.parent);
+        _jumping = null;
+    }
 
+    public void SetJumpPoint(Transform jumpPoint)
+    {
+        _jumpPoint = jumpPoint;
     }
 }

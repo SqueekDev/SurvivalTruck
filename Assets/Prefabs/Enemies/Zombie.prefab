@@ -1124,10 +1124,10 @@ MonoBehaviour:
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: -35, y: 30}
   _jumpForce: 20
-  _jumpHeight: 2
   _jumpOffset: 1.16
   _throwAwaySpeed: 3
   _backMoveForce: 1.5
+  _jumpLimits: {x: -1, y: 3}
   _throwAwayOffsetX: {x: 10, y: 15}
   _throwAwayOffsetZ: {x: 10, y: 15}
 --- !u!114 &-551708208428178138
