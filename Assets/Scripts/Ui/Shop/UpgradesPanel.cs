@@ -9,8 +9,6 @@ public class UpgradesPanel : MonoBehaviour
 
     private int _currentGroupIndex;
 
-
-
     private void OnEnable()
     {
         Time.timeScale = 0f;
@@ -20,8 +18,8 @@ public class UpgradesPanel : MonoBehaviour
     private void OnDisable()
     {
         Time.timeScale = 1f;
-
     }
+
     public void ShowNextButtons()
     {
         if (_currentGroupIndex == _buttonGroups.Length-1)
@@ -37,6 +35,7 @@ public class UpgradesPanel : MonoBehaviour
             _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
         }
     }
+
     public void ShowPreviousButtons()
     {
         if (_currentGroupIndex == 0)

@@ -27,8 +27,8 @@ public class CoinCounter : MonoBehaviour
 
     private void Start()
     {
-        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoinsName, 0);
-        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCountName, 0);
+        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
+        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
         AddCoins(currentCoins);
     }
 
@@ -48,16 +48,16 @@ public class CoinCounter : MonoBehaviour
     public void RemoveCoins(int count)
     {
         _count -= count;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCountName, _count);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         ShowCount();
     }
 
     private void AddCoins(int count)
     {
         _count += count;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCountName, _count);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         _totalEarnedCoins += count;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoinsName, _totalEarnedCoins);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
         ShowCount();
     }
 

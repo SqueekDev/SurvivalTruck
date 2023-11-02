@@ -11,7 +11,7 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private int _price;
     [SerializeField] private int _startValue;
     [SerializeField] private string _savingPrice;
-    [SerializeField] private CoinCounter _counter;
+    [SerializeField] private CoinCounter _coins;
     [SerializeField] private TextMeshProUGUI _coinsPriceText;
     [SerializeField] private Savings _savings;
 
@@ -28,15 +28,17 @@ public class UpgradeButton : MonoBehaviour
 
     public void Renew()
     {
-        int savingName;
+        int currentValue;
+
         if (PlayerPrefs.HasKey(_savings.ToString()))
         {
-            savingName = PlayerPrefs.GetInt(_savings.ToString());
+            currentValue = PlayerPrefs.GetInt(_savings.ToString());
         }
         else
         {
-            savingName = _startValue;
+            currentValue = _startValue;
         }
+
         if (PlayerPrefs.HasKey(_savingPrice))
         {
             _price = PlayerPrefs.GetInt(_savingPrice);
@@ -44,22 +46,22 @@ public class UpgradeButton : MonoBehaviour
         else
         {
             int number;
+
             if (int.TryParse(_coinsPriceText.text,out number))
             {
                 number += _price;
-                _coinsPriceText.text =number.ToString();
+                _coinsPriceText.text = number.ToString();
                 PlayerPrefs.SetInt(_savingPrice, number);
             }
         }
-        _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + savingName.ToString();
-        _coinsPriceText.text= _startPriceText+_price.ToString();
 
-
+        _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + currentValue.ToString();
+        _coinsPriceText.text= _startPriceText + _price.ToString();
     }
 
     public void BuyUpgrade()
     {
-        if (_counter.Count >= _price)
+        if (_coins.Count >= _price)
         {
             if (PlayerPrefs.HasKey(_savings.ToString()))
             {
@@ -70,10 +72,11 @@ public class UpgradeButton : MonoBehaviour
                 PlayerPrefs.SetInt(_savings.ToString(), _startValue + _upgradeValue);
             }
 
-            _counter.RemoveCoins(_price);
+            _coins.RemoveCoins(_price);
             _descriptionText.text = "+" + _upgradeValue.ToString() + " " + _startDescription + PlayerPrefs.GetInt(_savings.ToString());
             _price += (int)((float)_price * 0.1f);
             int number;
+
             if (int.TryParse(_startPriceText,out number))
             {
                 _coinsPriceText.text =(number +_price).ToString();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChangeLevelArea : MonoBehaviour
 {
-    [SerializeField] private NextLevelButton _nextLevelButton;
+    [SerializeField] private GameButton _nextLevelButton;
 
     private void OnDisable()
     {
