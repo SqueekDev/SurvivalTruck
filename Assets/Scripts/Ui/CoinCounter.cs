@@ -8,6 +8,8 @@ public class CoinCounter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private Boss _boss;
+    [SerializeField] private float _timeBetweenCount;
+    [SerializeField] private Animation _animationClip;
 
     private int _count;
     private int _totalEarnedCoins;
@@ -54,13 +56,22 @@ public class CoinCounter : MonoBehaviour
 
     private void AddCoins(int count)
     {
-        _count += count;
+        _animationClip.Play();
+        StartCoroutine(AddingCoins(count));
+
+    }
+    private IEnumerator AddingCoins(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            _count++;
+            ShowCount();
+            yield return new WaitForSeconds(_timeBetweenCount);
+        }
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCountName, _count);
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoinsName, _totalEarnedCoins);
-        ShowCount();
     }
-
     private void OnZombieAttacked(ZombieHealth zombie)
     {
         zombie.Died += OnZombieDied;
@@ -80,6 +91,7 @@ public class CoinCounter : MonoBehaviour
 
     private void ShowCount()
     {
+
         if (_count > 999)
         {
             int count = _count / 1000;
