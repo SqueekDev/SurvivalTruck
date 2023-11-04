@@ -682,7 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9123046694955914511, guid: 2d42b259bdb3f3543b2530aa70c0c477, type: 3}
   _shootPoint: {fileID: 3685216000324835387}
-  _bulletSpeed: 100
+  _bulletSpeed: 50
   _damage: 10
   _timeBetweenShoot: 1
 --- !u!1 &3685215998949849973
@@ -3813,10 +3813,6 @@ PrefabInstance:
     - target: {fileID: 8279466994935725083, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8478884081682764586, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
-      propertyPath: _bulletSpeed
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671f987b1560af1419b167d20471d2ef, type: 3}

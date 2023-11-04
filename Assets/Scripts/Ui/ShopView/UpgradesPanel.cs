@@ -1,27 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UpgradesPanel : MonoBehaviour
 {
     [SerializeField] private GameObject[] _buttonGroups;
+    [SerializeField] private UpgradeButton[] _buttons;
 
     private int _currentGroupIndex;
 
-
+    public event UnityAction PurchaseSuccsessed;
 
     private void OnEnable()
     {
+        foreach (var button in _buttons)
+            button.SkillUpgraded += OnSkillUpgraded;
+
         Time.timeScale = 0f;
         ShowFirstButtons();
     }
 
     private void OnDisable()
     {
-        Time.timeScale = 1f;
+        foreach (var button in _buttons)
+            button.SkillUpgraded -= OnSkillUpgraded;
 
+        foreach (var buttonGroup in _buttonGroups)
+            buttonGroup.gameObject.SetActive(false);
+
+        Time.timeScale = 1f;
     }
+
     public void ShowNextButtons()
     {
         if (_currentGroupIndex == _buttonGroups.Length-1)
@@ -37,6 +48,7 @@ public class UpgradesPanel : MonoBehaviour
             _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
         }
     }
+
     public void ShowPreviousButtons()
     {
         if (_currentGroupIndex == 0)
@@ -62,5 +74,10 @@ public class UpgradesPanel : MonoBehaviour
     {
         _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
         _buttonGroups[_buttonGroups.Length-1].gameObject.SetActive(true);
+    }
+
+    private void OnSkillUpgraded()
+    {
+        PurchaseSuccsessed?.Invoke();
     }
 }

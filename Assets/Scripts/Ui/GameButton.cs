@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class NextLevelButton : MonoBehaviour
+public class GameButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
 
