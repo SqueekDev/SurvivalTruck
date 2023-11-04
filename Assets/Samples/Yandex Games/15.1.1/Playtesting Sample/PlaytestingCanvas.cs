@@ -18,6 +18,9 @@ namespace Agava.YandexGames.Samples
         private Text _personalProfileDataPermissionStatusText;
 
         [SerializeField]
+        private Text _isRunningOnYandexStatusText;
+
+        [SerializeField]
         private InputField _cloudSaveDataInputField;
 
         private void Awake()
@@ -37,6 +40,8 @@ namespace Agava.YandexGames.Samples
 
             if (PlayerAccount.IsAuthorized == false)
                 PlayerAccount.StartAuthorizationPolling(1500);
+
+            _isRunningOnYandexStatusText.color = YandexGamesSdk.IsRunningOnYandex ? Color.green : Color.red;
 
             while (true)
             {
@@ -141,6 +146,31 @@ namespace Agava.YandexGames.Samples
         public void OnGetEnvironmentButtonClick()
         {
             Debug.Log($"Environment = {JsonUtility.ToJson(YandexGamesSdk.Environment)}");
+        }
+
+        public void OnCallGameReadyButtonClick()
+        {
+            YandexGamesSdk.GameReady();
+        }
+
+        public void OnSuggestShortcutButtonClick()
+        {
+            Shortcut.Suggest();
+        }
+
+        public void OnRequestReviewButtonClick()
+        {
+            ReviewPopup.Open();
+        }
+
+        public void OnCanSuggestShortcutButtonClick()
+        {
+            Shortcut.CanSuggest(result => { });
+        }
+
+        public void OnCanRequestReviewButtonClick()
+        {
+            ReviewPopup.CanOpen((result, reason) => { });
         }
 
         private void OnAuthorizedInBackground()
