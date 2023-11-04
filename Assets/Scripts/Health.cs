@@ -10,7 +10,6 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
 
     private int _currentHealth;
-    private int _maxHealth;
     private Animator _animator;
     private Coroutine _dying;
 
@@ -18,12 +17,14 @@ public class Health : MonoBehaviour
     protected int AddHealthMultiplier = 0;
 
     public bool IsDead { get; private set; } = false;
+    public int MaxHealth { get; protected set; }
 
     public event UnityAction<float> HealthChanged;
     public event UnityAction<Health> Died;
 
     protected virtual void OnEnable()
     {
+        MaxHealth = _startHealth;
         ChangeMaxHealth();
 
         if (IsDead)
@@ -58,27 +59,26 @@ public class Health : MonoBehaviour
             _dying = StartCoroutine(Dying());
         }
     }
-    protected void ChangeMaxHealth()
+
+    protected virtual void ChangeMaxHealth()
     {
-        _maxHealth = _startHealth + (_additionalHealth * AddHealthMultiplier);
-        Heal(_maxHealth);
+        MaxHealth = _startHealth + (_additionalHealth * AddHealthMultiplier);
+        Heal(MaxHealth);
     }
 
-    private void Heal(int count)
+    protected void Heal(int count)
     {
         _currentHealth += count;
 
-        if (_currentHealth >= _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
+        if (_currentHealth >= MaxHealth)
+            _currentHealth = MaxHealth;
 
         ChangeHealthStatus();
     }
 
     private void ChangeHealthStatus()
     {
-        float currentHealthByMaxHealth = (float)_currentHealth / _maxHealth;
+        float currentHealthByMaxHealth = (float)_currentHealth / MaxHealth;
         HealthChanged?.Invoke(currentHealthByMaxHealth);
     }
 

@@ -11,19 +11,19 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private RepairZone _repairZone;
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private WaveController _waveController;
+    [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
 
     private int _currentHealth;
     private bool _upperBlockEnabled;
     private bool _middleBlockEnabled;
 
+    public int MaxHealth => _maxHealth;
+
     public bool IsDestroyed { get; private set; }
 
     private void Awake()
     {
-        _currentHealth = _maxHealth;
-        IsDestroyed = false;
-        _upperBlockEnabled = true;
-        _middleBlockEnabled = true;
+        OnHealthUpgraded();
     }
 
     private void OnEnable()
@@ -31,6 +31,7 @@ public class Obstacle : MonoBehaviour
         _repairZone.Repaired += OnRepaired;
         _levelChanger.Changed += OnLevelChanged;
         _waveController.WaveEnded += OnWaveEnded;
+        _obstacleHealthUpgradeButton.HealthUpgraded += OnHealthUpgraded;
     }
 
     private void OnDisable()
@@ -38,6 +39,7 @@ public class Obstacle : MonoBehaviour
         _repairZone.Repaired -= OnRepaired;        
         _levelChanger.Changed -= OnLevelChanged;
         _waveController.WaveEnded -= OnWaveEnded;
+        _obstacleHealthUpgradeButton.HealthUpgraded -= OnHealthUpgraded;
     }
 
     public void ApplyDamade(int damage)
@@ -98,5 +100,11 @@ public class Obstacle : MonoBehaviour
         _upperBlockEnabled = true;
         _middleBlockEnabled = true;
         _repairZone.gameObject.SetActive(false);
+    }
+
+    private void OnHealthUpgraded()
+    {
+        _maxHealth = PlayerPrefs.GetInt(PlayerPrefsKeys.ObstacleHealth, _maxHealth);
+        OnRepaired();
     }
 }

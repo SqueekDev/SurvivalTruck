@@ -21,17 +21,3 @@ public static class PlayerPrefsKeys
     public const string TotalEarnedCoins = "TotalEarnedCoins";
 
 }
-public enum Savings
-{
-    [Description(PlayerPrefsKeys.LevelNumber)]
-    LevelNumber,
-
-    [Description(PlayerPrefsKeys.WeaponDamage)]
-    WeaponDamage,
-
-    [Description(PlayerPrefsKeys.CurrentCoinsCount)]
-    CurrentCoinsCount,
-
-    [Description(PlayerPrefsKeys.TotalEarnedCoins)]
-    TotalEarnedCoins
-}

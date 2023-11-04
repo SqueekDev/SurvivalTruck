@@ -6,7 +6,7 @@ public class Player : Health
 {
     [SerializeField] private Mover _mover;
     [SerializeField] private CameraLowerPoint _cameraLowerPoint;
-    [SerializeField] private string _savingName;
+    [SerializeField] private PlayerHealthUpgradeButton _playerHealthUpgradeButton;
 
     private Car _car;
 
@@ -17,11 +17,14 @@ public class Player : Health
 
     protected override void OnEnable()
     {
-        if (_savingName != null)
-            AddHealthMultiplier = PlayerPrefs.GetInt(_savingName, 0);
-
         base.OnEnable();
         _mover.SetStartSpeed();
+        _playerHealthUpgradeButton.HealthUpgraded += ChangeMaxHealth;
+    }
+
+    private void OnDisable()
+    {
+        _playerHealthUpgradeButton.HealthUpgraded -= ChangeMaxHealth;        
     }
 
     protected override void Die()
@@ -33,10 +36,9 @@ public class Player : Health
         base.Die();
     }
 
-    private void UpgradeHealth()
+    protected override void ChangeMaxHealth()
     {
-        AddHealthMultiplier++;
-        PlayerPrefs.SetInt(_savingName, AddHealthMultiplier);
-        ChangeMaxHealth();
+        MaxHealth = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerHealth, MaxHealth);
+        Heal(MaxHealth);
     }
 }

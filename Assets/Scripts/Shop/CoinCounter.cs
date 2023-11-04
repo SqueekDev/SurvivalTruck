@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CoinCounter : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _text;
+    private const int _bossEarnModifier = 10;
+
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private Boss _boss;
+    [SerializeField] private CoinsModifierUpgradeButton _coinsModifierUpgradeButton;
 
     private int _count;
     private int _totalEarnedCoins;
     private int _currentZombieReward;
-    private int _earnModifier;
 
     public int Count => _count;
     public int TotalEarnedCoins => _totalEarnedCoins;
 
+    public int EarnModifier { get; private set; }
+
+    public event UnityAction<int> CoinsAmountChanged;
+
     private void OnEnable()
     {
         _boss.Died += OnBossDied;
+        _coinsModifierUpgradeButton.CoinsModifierUpgraded += OnCoinsModifierUpgraded;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked += OnZombieAttacked;
@@ -27,14 +34,22 @@ public class CoinCounter : MonoBehaviour
 
     private void Start()
     {
+        OnCoinsModifierUpgraded();
         _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
         int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
         AddCoins(currentCoins);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            AddCoins(150);
+    }
+
     private void OnDisable()
     {
         _boss.Died -= OnBossDied;
+        _coinsModifierUpgradeButton.CoinsModifierUpgraded -= OnCoinsModifierUpgraded;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked -= OnZombieAttacked;
@@ -49,7 +64,7 @@ public class CoinCounter : MonoBehaviour
     {
         _count -= count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
-        ShowCount();
+        CoinsAmountChanged?.Invoke(_count);
     }
 
     private void AddCoins(int count)
@@ -58,7 +73,7 @@ public class CoinCounter : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
-        ShowCount();
+        CoinsAmountChanged?.Invoke(_count);
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)
@@ -70,32 +85,16 @@ public class CoinCounter : MonoBehaviour
     private void OnZombieDied(Health zombie)
     {
         zombie.Died -= OnZombieDied;
-        AddCoins(_currentZombieReward + _earnModifier);
+        AddCoins(_currentZombieReward + EarnModifier);
     }
 
     private void OnBossDied(Health boss)
     {
-        AddCoins(_boss.Reward + _earnModifier);
+        AddCoins(_boss.Reward + EarnModifier * _bossEarnModifier);
     }
 
-    private void ShowCount()
+    private void OnCoinsModifierUpgraded()
     {
-        if (_count > 999)
-        {
-            int count = _count / 1000;
-            int reminder = (_count - (1000 * count)) / 10;
-            if (reminder == 0)
-            {
-                _text.text = count.ToString() + "K";
-            }
-            else
-            {
-                _text.text = count.ToString() + "." + reminder + "K";
-            }
-        }
-        else
-        {
-            _text.text = _count.ToString();
-        }
+        EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, 0);
     }
 }

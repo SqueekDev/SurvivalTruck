@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class RepairZone : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private float _timeToRepair;
 
     private Coroutine _repairCorutine;

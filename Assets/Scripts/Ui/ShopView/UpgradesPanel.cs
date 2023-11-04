@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UpgradesPanel : MonoBehaviour
 {
     [SerializeField] private GameObject[] _buttonGroups;
+    [SerializeField] private UpgradeButton[] _buttons;
 
     private int _currentGroupIndex;
 
+    public event UnityAction<string, int> PurchaseSuccsessed;
+
     private void OnEnable()
     {
+        foreach (var button in _buttons)
+            button.Upgraded += OnUpgraded;
+
         Time.timeScale = 0f;
         ShowFirstButtons();
     }
 
     private void OnDisable()
     {
+        foreach (var button in _buttons)
+            button.Upgraded -= OnUpgraded;
+
+        foreach (var buttonGroup in _buttonGroups)
+            buttonGroup.gameObject.SetActive(false);
+
         Time.timeScale = 1f;
     }
 
@@ -61,5 +74,10 @@ public class UpgradesPanel : MonoBehaviour
     {
         _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
         _buttonGroups[_buttonGroups.Length-1].gameObject.SetActive(true);
+    }
+
+    private void OnUpgraded(string playerPrefsCurrentValue, int defaultValue)
+    {
+        PurchaseSuccsessed?.Invoke(playerPrefsCurrentValue, defaultValue);
     }
 }

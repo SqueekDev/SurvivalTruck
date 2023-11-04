@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    private const float StartDelay = 1;
+    private const float Divider = 10;
+
+    [SerializeField] WeaponDamageUpgradeButton _weaponDamageUpgradeButton;
+    [SerializeField] WeaponShootDelayUpgradeButton _weaponShootDelayUpgradeButton;
     [SerializeField] protected Bullet _bulletPrefab;
     [SerializeField] private WeaponShootPoint _shootPoint;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private int _damage;
-    [SerializeField] private float _timeBetweenShoot;
+    [SerializeField] private int _delayModifier;
     //[SerializeField] protected ParticleSystem _particle;
     //[SerializeField] protected AudioSource _audioSource;
     //[SerializeField] protected string _savingName;
 
     public float BulletSpeed => _bulletSpeed;
     public int Damage => _damage;
-    public float TimeBetweenShoot => _timeBetweenShoot;
+    public float TimeBetweenShoot => (StartDelay - _delayModifier/ Divider);
+
+    private void OnEnable()
+    {
+        _weaponDamageUpgradeButton.DamageUpgraded += OnDamageUpgraded;
+        _weaponShootDelayUpgradeButton.ShootDelayUpgraded += OnShootDelayUpdated;
+    }
+
+    private void Start()
+    {
+        OnDamageUpgraded();
+        OnShootDelayUpdated();
+    }
+
+    private void OnDisable()
+    {
+        _weaponDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;        
+        _weaponShootDelayUpgradeButton.ShootDelayUpgraded -= OnShootDelayUpdated;
+    }
 
     public void Shoot(Transform target)
     {
@@ -23,11 +46,17 @@ public class Weapon : MonoBehaviour
         //_audioSource.Play();
         Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.transform.position, Quaternion.identity);
         bullet.SetSpeed(_bulletSpeed);
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.WeaponDamage))
-        {
-            _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.WeaponDamage);
-        }
         bullet.SetDamage(_damage);
         bullet.MoveTo(target.transform);
+    }
+
+    private void OnDamageUpgraded()
+    {
+        _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.WeaponDamage, _damage);
+    }
+
+    private void OnShootDelayUpdated()
+    {
+        _delayModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.WeaponShootDelay, _delayModifier);
     }
 }
