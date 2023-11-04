@@ -40,12 +40,6 @@ public class CoinCounter : MonoBehaviour
         AddCoins(currentCoins);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            AddCoins(150);
-    }
-
     private void OnDisable()
     {
         _boss.Died -= OnBossDied;

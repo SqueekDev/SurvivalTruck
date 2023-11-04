@@ -11,6 +11,12 @@ public class KangarooDamageUpgradeButton : UpgradeButton
 
     public event UnityAction DamageUpgraded;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
+    }
+
     private void Start()
     {
         _startDamage = _kangaroo.Damage;
@@ -21,5 +27,10 @@ public class KangarooDamageUpgradeButton : UpgradeButton
     {
         BuyUpgrade(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
         DamageUpgraded?.Invoke();
+    }
+
+    protected override void OnPurchaseSuccsessed()
+    {
+        UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
     }
 }

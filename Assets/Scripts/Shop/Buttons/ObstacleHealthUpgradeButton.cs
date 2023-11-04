@@ -11,6 +11,12 @@ public class ObstacleHealthUpgradeButton : UpgradeButton
 
     public event UnityAction HealthUpgraded;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpgradeabilityCheck(PlayerPrefsKeys.ObstacleHealth, _startHealth);
+    }
+
     private void Start()
     {
         _startHealth = _obstacle.MaxHealth;
@@ -21,5 +27,10 @@ public class ObstacleHealthUpgradeButton : UpgradeButton
     {
         BuyUpgrade(PlayerPrefsKeys.ObstacleHealth, _startHealth, PlayerPrefsKeys.UpgradeObstacleHealthPrice);
         HealthUpgraded?.Invoke();
+    }
+
+    protected override void OnPurchaseSuccsessed()
+    {
+        UpgradeabilityCheck(PlayerPrefsKeys.ObstacleHealth, _startHealth);
     }
 }

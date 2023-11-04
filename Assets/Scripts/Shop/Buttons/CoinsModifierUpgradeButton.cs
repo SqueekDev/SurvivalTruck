@@ -9,6 +9,12 @@ public class CoinsModifierUpgradeButton : UpgradeButton
 
     public event UnityAction CoinsModifierUpgraded;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpgradeabilityCheck(PlayerPrefsKeys.CoinsModifier, _startValue);
+    }
+
     private void Start()
     {
         _startValue = CoinCounter.EarnModifier;
@@ -19,5 +25,10 @@ public class CoinsModifierUpgradeButton : UpgradeButton
     {
         BuyUpgrade(PlayerPrefsKeys.CoinsModifier, _startValue, PlayerPrefsKeys.UpgradeCoinsModifierPrice);
         CoinsModifierUpgraded?.Invoke();
+    }
+
+    protected override void OnPurchaseSuccsessed()
+    {
+        UpgradeabilityCheck(PlayerPrefsKeys.CoinsModifier, _startValue);
     }
 }

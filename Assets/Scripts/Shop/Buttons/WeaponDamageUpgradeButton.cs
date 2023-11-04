@@ -11,6 +11,12 @@ public class WeaponDamageUpgradeButton : UpgradeButton
 
     public event UnityAction DamageUpgraded;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
+    }
+
     private void Start()
     {
         _startDamage = _weapon.Damage;
@@ -21,5 +27,10 @@ public class WeaponDamageUpgradeButton : UpgradeButton
     {
         BuyUpgrade(PlayerPrefsKeys.WeaponDamage, _startDamage, PlayerPrefsKeys.UpgradeWeaponDamagePrice);
         DamageUpgraded?.Invoke();
+    }
+
+    protected override void OnPurchaseSuccsessed()
+    {
+        UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
     }
 }

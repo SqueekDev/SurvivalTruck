@@ -11,12 +11,12 @@ public class UpgradesPanel : MonoBehaviour
 
     private int _currentGroupIndex;
 
-    public event UnityAction<string, int> PurchaseSuccsessed;
+    public event UnityAction PurchaseSuccsessed;
 
     private void OnEnable()
     {
         foreach (var button in _buttons)
-            button.Upgraded += OnUpgraded;
+            button.SkillUpgraded += OnSkillUpgraded;
 
         Time.timeScale = 0f;
         ShowFirstButtons();
@@ -25,7 +25,7 @@ public class UpgradesPanel : MonoBehaviour
     private void OnDisable()
     {
         foreach (var button in _buttons)
-            button.Upgraded -= OnUpgraded;
+            button.SkillUpgraded -= OnSkillUpgraded;
 
         foreach (var buttonGroup in _buttonGroups)
             buttonGroup.gameObject.SetActive(false);
@@ -76,8 +76,8 @@ public class UpgradesPanel : MonoBehaviour
         _buttonGroups[_buttonGroups.Length-1].gameObject.SetActive(true);
     }
 
-    private void OnUpgraded(string playerPrefsCurrentValue, int defaultValue)
+    private void OnSkillUpgraded()
     {
-        PurchaseSuccsessed?.Invoke(playerPrefsCurrentValue, defaultValue);
+        PurchaseSuccsessed?.Invoke();
     }
 }
