@@ -37,7 +37,7 @@ public class CoinCounter : MonoBehaviour
         OnCoinsModifierUpgraded();
         _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
         int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
-        AddCoins(currentCoins);
+        _count = currentCoins;
     }
 
     private void OnDisable()
@@ -58,7 +58,7 @@ public class CoinCounter : MonoBehaviour
     {
         _count -= count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
-        CoinsAmountChanged?.Invoke(_count);
+        CoinsAmountChanged?.Invoke(count);
     }
 
     private void AddCoins(int count)
@@ -67,7 +67,7 @@ public class CoinCounter : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
-        CoinsAmountChanged?.Invoke(_count);
+        CoinsAmountChanged?.Invoke(count);
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)

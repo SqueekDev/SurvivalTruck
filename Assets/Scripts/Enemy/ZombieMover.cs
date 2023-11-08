@@ -9,7 +9,8 @@ public class ZombieMover : Mover
     [SerializeField] private Vector2 _xLimits;
 
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _jumpOffset;
+    [SerializeField] private float _toPlayerSpeed;
+    [SerializeField] private float _toPlayerSlowingDistance;
     [SerializeField] private float _throwAwaySpeed;
     [SerializeField] private float _backMoveForce;
     [SerializeField] private Vector2 _jumpLimits;
@@ -24,6 +25,7 @@ public class ZombieMover : Mover
 
     private void Start()
     {
+        transform.eulerAngles = new Vector3(0, 180, 0);
         _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -44,6 +46,7 @@ public class ZombieMover : Mover
             Vector3 newPosition = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
             transform.position = newPosition;
         }
+
         transform.Translate(Vector3.forward*Speed*Time.deltaTime);
 
     }
@@ -97,9 +100,10 @@ public class ZombieMover : Mover
         float offset = Random.Range(-1.5f,1.5f);
         Vector3 newDirection = new Vector3(target.position.x+offset, transform.position.y, target.position.z+offset);
         Rotate(newDirection);
-        if (target.TryGetComponent(out Player player)&&Vector3.Distance(transform.position,player.transform.position)<5f)
+        if (target.TryGetComponent(out Player player)&&Vector3.Distance(transform.position,player.transform.position)
+            <_toPlayerSlowingDistance)
         {
-            transform.Translate(Vector3.forward * Speed*0.5f * Time.deltaTime);
+            transform.Translate(Vector3.forward * _toPlayerSpeed * Time.deltaTime);
 
         }
         else

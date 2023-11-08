@@ -113,6 +113,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9150028078573007039}
     m_Modifications:
+    - target: {fileID: 1353705384042984754, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 1353705384042984754, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
+    - target: {fileID: 2755651525022298711, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 2755651525022298711, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
+    - target: {fileID: 3127610432787035998, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 3127610432787035998, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
     - target: {fileID: 5834973028411150184, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
       propertyPath: _counter
       value: 
@@ -149,6 +173,14 @@ PrefabInstance:
       propertyPath: _counter
       value: 
       objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 6619976134676915849, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 6619976134676915849, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
     - target: {fileID: 7055611823457652662, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
       propertyPath: _buttonGroups.Array.size
       value: 2
@@ -241,13 +273,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradesPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7055611824010457063, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794756281546023390, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 7794756281546023390, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
+    - target: {fileID: 7868577192198410645, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _coins
+      value: 
+      objectReference: {fileID: 9150028078204519639}
+    - target: {fileID: 7868577192198410645, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+      propertyPath: _upgradesPanel
+      value: 
+      objectReference: {fileID: 9150028077419321833}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+--- !u!114 &8224473251056355274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7868577192198410645, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+  m_PrefabInstance: {fileID: 2238851537630697055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb8fea23a834f54f9ba198b32f7d288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9150028077419321829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7055611823457652666, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
   m_PrefabInstance: {fileID: 2238851537630697055}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9150028077419321833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7055611823457652662, guid: b9fefcaa838b2864586aaa2f67ebcbfc, type: 3}
+  m_PrefabInstance: {fileID: 2238851537630697055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e07d7d96308884e84aaed9286a7445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2275916737007835619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -374,6 +448,10 @@ PrefabInstance:
       propertyPath: _rageAreas.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5665732832869489086, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
+      propertyPath: _coinsModifierUpgradeButton
+      value: 
+      objectReference: {fileID: 8224473251056355274}
     - target: {fileID: 5665732832869489087, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -458,8 +536,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7805231938353111278, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
+      propertyPath: _animationClip
+      value: 
+      objectReference: {fileID: 1889996761}
+    - target: {fileID: 7805231938353111278, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
+      propertyPath: _timeBetweenShowingCount
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
+--- !u!1 &9150028078204519633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5665732832869489080, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
+  m_PrefabInstance: {fileID: 3484616166139174249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1889996761
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9150028078204519633}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8ac9a3d2161f65e4290a21fa903b8903, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8ac9a3d2161f65e4290a21fa903b8903, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!224 &9150028078204519638 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5665732832869489087, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
@@ -470,7 +577,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5665732832869489086, guid: 5c10971489280e843a09573b5f4af1b3, type: 3}
   m_PrefabInstance: {fileID: 3484616166139174249}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 9150028078204519633}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c1cb38d1cce39a44819776849934bef, type: 3}
