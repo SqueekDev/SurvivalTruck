@@ -7,7 +7,7 @@ public abstract class Mover : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     [SerializeField] protected float _startSpeed;
 
-   [SerializeField] protected float Speed;
+    [SerializeField] protected float Speed;
 
     public void Rotate(Vector3 destination)
     {

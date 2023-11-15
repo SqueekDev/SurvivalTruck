@@ -8,15 +8,15 @@ public class PlayerInput : MonoBehaviour
 
     private PlayerMover _mover;
     private Shooter _shooter;
-    private Vector3 _currentRotation;
     private Animator _animator;
+
+    private const string Run = "Run";
 
     private void Start()
     {
         _mover = GetComponent<PlayerMover>();
         _shooter = GetComponent<Shooter>();
         _animator = GetComponent<Animator>();
-        _currentRotation = Vector3.zero;
     }
 
     private void Update()
@@ -28,16 +28,16 @@ public class PlayerInput : MonoBehaviour
         if (_joystick.Horizontal != 0 && _joystick.Vertical != 0)
         {
             _mover.Move(newDirection);
-            if (_animator.GetBool("Run") == false)
+            if (_animator.GetBool(Run) == false)
             {
-                _animator.SetBool("Run", true);
+                _animator.SetBool(Run, true);
             }
         }
         else
         {
-            if (_animator.GetBool("Run"))
+            if (_animator.GetBool(Run))
             {
-                _animator.SetBool("Run", false);
+                _animator.SetBool(Run, false);
             }
         }
         if (_shooter.IsShooting == false)
@@ -47,7 +47,6 @@ public class PlayerInput : MonoBehaviour
                 _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y + newDirection.y,
                     transform.position.z + newDirection.z));
             }
-
         }
         else
         {

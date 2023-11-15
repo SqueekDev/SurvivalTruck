@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    //[SerializeField] private ParticleSystem _shootParticalPrefab;
-
     private int _damage;
     private float _speed;
 
@@ -14,25 +11,23 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent(out Health health))
         {
             health.TakeDamage(_damage);
-            //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator Moving(Transform target)
+    {
+        while (target.gameObject.activeSelf || transform.position != target.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     public void MoveTo(Transform target)
     {
         StartCoroutine(Moving(target));
-    }
-
-    private IEnumerator Moving(Transform target)
-    {
-        while (target.gameObject.activeSelf||transform.position!=target.position)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
-            yield return null;
-        }
-        //Instantiate(_shootParticalPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
     }
 
     public void SetSpeed(float speed)

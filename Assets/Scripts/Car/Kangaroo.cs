@@ -6,6 +6,7 @@ public class Kangaroo : Cabine
 {
     [SerializeField] private int _damage;
     [SerializeField] private KangarooDamageUpgradeButton _kangarooDamageUpgradeButton;
+    [SerializeField] private float _applyingDamageDelay=0.5f;
 
     public int Damage => _damage;
 
@@ -21,7 +22,7 @@ public class Kangaroo : Cabine
 
     private void OnDisable()
     {
-        _kangarooDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;        
+        _kangarooDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,7 +33,7 @@ public class Kangaroo : Cabine
 
     private IEnumerator ApplyingDamage(Health health)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(_applyingDamageDelay);
         health.TakeDamage(_damage);
     }
 

@@ -11,42 +11,41 @@ public class ZombieAttacker : MonoBehaviour
     private Coroutine _obstacleAttacking;
     private Coroutine _attacking;
 
-
     public event UnityAction OnObstacleDestroyed;
+
+    private IEnumerator Attacking(Obstacle obstacle)
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
+        obstacle.ApplyDamade(_damage);
+        yield return waitForSeconds;
+        if (obstacle.IsDestroyed)
+        {
+            OnObstacleDestroyed?.Invoke();
+        }
+        _obstacleAttacking = null;
+    }
+
+    private IEnumerator Attacking(Health playerHealth)
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
+        playerHealth.TakeDamage(_damage);
+        yield return waitForSeconds;
+        _attacking = null;
+    }
 
     public void Attack(Obstacle obstacle)
     {
-        if (_obstacleAttacking==null)
+        if (_obstacleAttacking == null)
         {
-            _obstacleAttacking=StartCoroutine(Attacking(obstacle));
+            _obstacleAttacking = StartCoroutine(Attacking(obstacle));
         }
     }
+
     public void Attack(Player player)
     {
         if (_attacking == null)
         {
             _attacking = StartCoroutine(Attacking(player));
         }
-    }
-
-    private IEnumerator Attacking(Obstacle obstacle)
-    {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
-
-            obstacle.ApplyDamade(_damage);
-            yield return waitForSeconds;
-        if (obstacle.IsDestroyed)
-        {
-            OnObstacleDestroyed?.Invoke();
-        }
-        _obstacleAttacking = null;
-
-    }
-    private IEnumerator Attacking(Health playerHealth)
-    {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
-        playerHealth.TakeDamage(_damage);
-        yield return waitForSeconds;       
-        _attacking = null;
     }
 }

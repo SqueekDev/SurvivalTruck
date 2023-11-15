@@ -6,14 +6,12 @@ public class Attack : StateMachineBehaviour
 {
     private Zombie _zombie;
     private ZombieAttacker _zombieAttacker;
-
     private Transform _target;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _zombie = animator.gameObject.GetComponent<Zombie>();
-        _zombieAttacker=animator.gameObject.GetComponent<ZombieAttacker>();
-
+        _zombieAttacker = animator.gameObject.GetComponent<ZombieAttacker>();
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

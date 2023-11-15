@@ -7,17 +7,18 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int _startHealth;
     [SerializeField] private int _additionalHealth;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private int _dyingDelay=2;
 
     private int _currentHealth;
     private Animator _animator;
     private Coroutine _dying;
 
-    //protected HealthBar _healthBar;
     protected int AddHealthMultiplier = 0;
 
     public bool IsDead { get; private set; } = false;
     public int MaxHealth { get; protected set; }
+
+    public const string DieTrigger = "Die";
 
     public event UnityAction<float> HealthChanged;
     public event UnityAction<Health> Died;
@@ -84,8 +85,8 @@ public class Health : MonoBehaviour
 
     private IEnumerator Dying()
     {
-        _animator.SetTrigger("Die");
-        yield return new WaitForSeconds(2);
+        _animator.SetTrigger(DieTrigger);
+        yield return new WaitForSeconds(_dyingDelay);
         _dying = null;
         Died?.Invoke(this);
         gameObject.SetActive(false);
