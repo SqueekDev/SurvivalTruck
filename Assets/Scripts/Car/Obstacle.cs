@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Obstacle : MonoBehaviour
 {
@@ -14,17 +15,18 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
 
     private int _currentHealth;
-    private bool _upperBlockEnabled;
-    private bool _middleBlockEnabled;
+    private bool _upperBlockDestroyed;
+    private bool _middleBlockDestroyed;
+    private bool _lowerBlockDestroyed;
 
     public int MaxHealth => _maxHealth;
 
     public bool IsDestroyed { get; private set; }
 
-    private void Awake()
-    {
-        OnHealthUpgraded();
-    }
+    public event UnityAction UpperBlockDestroyed;
+    public event UnityAction MiddleBlockDestroyed;
+    public event UnityAction LowerBlockDestroyed;
+    public event UnityAction BlocksRepaired;
 
     private void OnEnable()
     {
@@ -32,6 +34,11 @@ public class Obstacle : MonoBehaviour
         _levelChanger.Changed += OnLevelChanged;
         _waveController.WaveEnded += OnWaveEnded;
         _obstacleHealthUpgradeButton.HealthUpgraded += OnHealthUpgraded;
+    }
+
+    private void Start()
+    {
+        OnHealthUpgraded();
     }
 
     private void OnDisable()
@@ -46,38 +53,25 @@ public class Obstacle : MonoBehaviour
     {
         _currentHealth -= damage;
 
-        if (_currentHealth < _maxHealth / _blocks.Count * Doubler && _upperBlockEnabled)
+        if (_currentHealth < _maxHealth / _blocks.Count * Doubler && _upperBlockDestroyed == false)
         {
-            DisactiveBlock();
-            _upperBlockEnabled = false;
+            UpperBlockDestroyed?.Invoke();
+            _upperBlockDestroyed = true;
         }    
 
-        if (_currentHealth < _maxHealth / _blocks.Count && _middleBlockEnabled)
+        if (_currentHealth < _maxHealth / _blocks.Count && _middleBlockDestroyed == false)
         {
-            DisactiveBlock();
-            _middleBlockEnabled = false;
+            MiddleBlockDestroyed?.Invoke();
+            _middleBlockDestroyed = true;
         }    
 
-        if (_currentHealth <= 0)
+        if (_currentHealth <= 0 && _lowerBlockDestroyed == false)
         {
-            foreach (var block in _blocks)
-                block.gameObject.SetActive(false);
-
+            LowerBlockDestroyed?.Invoke();
             _currentHealth = 0;
+            _lowerBlockDestroyed = true;
             IsDestroyed = true;
         }    
-    }
-
-    private void DisactiveBlock()
-    {
-        foreach (var block in _blocks)
-        {
-            if (block.gameObject.activeInHierarchy)
-            {
-                block.gameObject.SetActive(false);
-                break;
-            }
-        }
     }
 
     private void OnLevelChanged(int level)
@@ -92,13 +86,12 @@ public class Obstacle : MonoBehaviour
 
     private void OnRepaired()
     {
-        foreach (var block in _blocks)
-            block.gameObject.SetActive(true);
-
+        BlocksRepaired?.Invoke();
         _currentHealth = _maxHealth;
         IsDestroyed = false;
-        _upperBlockEnabled = true;
-        _middleBlockEnabled = true;
+        _upperBlockDestroyed = false;
+        _middleBlockDestroyed = false;
+        _lowerBlockDestroyed = false;
         _repairZone.gameObject.SetActive(false);
     }
 

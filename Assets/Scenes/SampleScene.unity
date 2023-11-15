@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -261,6 +261,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &747748197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_PrefabInstance: {fileID: 3685216000199233681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703f784aa146b264789e19f1cb394a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &963194227 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3685216000612974050, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
@@ -392,6 +403,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e07d7d96308884e84aaed9286a7445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1676486134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2953945726364727799, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_PrefabInstance: {fileID: 3685216000199233681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966544bc72a3d82478cfa9e2502565b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1784399960 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5415308921702759668, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
@@ -403,15 +425,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42844a4fccbd54746b90cade4ff70f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1860603526 stripped
+--- !u!114 &1803767975 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685215999145025584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6227607160451786680, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
   m_PrefabInstance: {fileID: 3685216000199233681}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703f784aa146b264789e19f1cb394a96, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f69478a5bad81b43895a0430ccdf74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1946997704 stripped
@@ -434,17 +456,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24bed55124b698c42a3e0e358e968dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1998510837 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685215999376280164, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-  m_PrefabInstance: {fileID: 3685216000199233681}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f512a2fff9a2c34bb500455b79a881b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2034889571
@@ -1615,6 +1626,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1947999690, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.48
+      objectReference: {fileID: 0}
     - target: {fileID: 2012537276855655584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _joystick
       value: 
@@ -1639,10 +1654,6 @@ PrefabInstance:
       propertyPath: _weaponShootDelayUpgradeButton
       value: 
       objectReference: {fileID: 1194952742}
-    - target: {fileID: 3685215998968308921, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 8141956493425255387}
     - target: {fileID: 3685215999145025584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _weaponDamageUpgradeButton
       value: 
@@ -1651,10 +1662,6 @@ PrefabInstance:
       propertyPath: _weaponShootDelayUpgradeButton
       value: 
       objectReference: {fileID: 1194952742}
-    - target: {fileID: 3685215999222792743, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 8141956493425255387}
     - target: {fileID: 3685215999338625894, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -1679,6 +1686,10 @@ PrefabInstance:
       propertyPath: _obstacleHealthUpgradeButton
       value: 
       objectReference: {fileID: 1573164090}
+    - target: {fileID: 3685216000134154130, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3685216000173371887, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _nextLevelButton
       value: 
@@ -1731,18 +1742,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
-    - target: {fileID: 3685216000517531317, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 8141956493425255387}
     - target: {fileID: 3685216000547206264, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
       value: 
       objectReference: {fileID: 1031018728}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3685216000612974052, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}
+    - target: {fileID: 3685216000642696798, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776579546714366279, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _playerHealthUpgradeButton
       value: 
@@ -1760,6 +1811,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1593400594}
     - target: {fileID: 4889376646357463887, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 747748197}
+    - target: {fileID: 4889376646357463887, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _floatingJoystick
       value: 
       objectReference: {fileID: 1784399960}
@@ -1767,6 +1822,14 @@ PrefabInstance:
       propertyPath: _upgradesPanel
       value: 
       objectReference: {fileID: 1607555019}
+    - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _weaponDamageUpgradeButton
+      value: 
+      objectReference: {fileID: 1946997704}
+    - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _weaponShootDelayUpgradeButton
+      value: 
+      objectReference: {fileID: 1194952742}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
 --- !u!1001 &3741213319255109424
@@ -2086,7 +2149,7 @@ PrefabInstance:
     - target: {fileID: 2054707104933572193, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 1998510837}
+      objectReference: {fileID: 1803767975}
     - target: {fileID: 2054707104933572194, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _car
       value: 
@@ -2098,7 +2161,7 @@ PrefabInstance:
     - target: {fileID: 2054707104933572195, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 1998510837}
+      objectReference: {fileID: 1803767975}
     - target: {fileID: 2054707104933572214, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _player
       value: 
@@ -2142,7 +2205,7 @@ PrefabInstance:
     - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _woodBlock
       value: 
-      objectReference: {fileID: 1998510837}
+      objectReference: {fileID: 1676486134}
     - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -2229,7 +2292,7 @@ PrefabInstance:
     - target: {fileID: 997736723091481453, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _weapon
       value: 
-      objectReference: {fileID: 1860603526}
+      objectReference: {fileID: 747748197}
     - target: {fileID: 3780348036841152769, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _obstacle
       value: 
@@ -2245,7 +2308,11 @@ PrefabInstance:
     - target: {fileID: 8303923127572445057, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _weapon
       value: 
-      objectReference: {fileID: 1860603526}
+      objectReference: {fileID: 747748197}
+    - target: {fileID: 9150028077419321828, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9150028078204519639, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _boss
       value: 
