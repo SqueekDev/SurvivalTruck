@@ -14,9 +14,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private int _damage;
     [SerializeField] private int _delayModifier;
-    //[SerializeField] protected ParticleSystem _particle;
-    //[SerializeField] protected AudioSource _audioSource;
-    //[SerializeField] protected string _savingName;
 
     public float BulletSpeed => _bulletSpeed;
     public int Damage => _damage;
@@ -42,8 +39,6 @@ public class Weapon : MonoBehaviour
 
     public void Shoot(Transform target)
     {
-        //_particle.Play();
-        //_audioSource.Play();
         Bullet bullet = Instantiate(_bulletPrefab, _shootPoint.transform.position, Quaternion.identity);
         bullet.SetSpeed(_bulletSpeed);
         bullet.SetDamage(_damage);

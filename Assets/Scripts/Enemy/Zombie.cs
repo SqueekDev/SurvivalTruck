@@ -11,30 +11,29 @@ public class Zombie : MonoBehaviour
     private Transform _target;
     private Obstacle _obstacle;
     private Animator _animator;
-    private Vector3 _startPosition;
 
     private void OnEnable()
     {
         _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
     }
+
     private void OnDisable()
     {
         _zombieAttacker.OnObstacleDestroyed -= OnOstacleDestroyed;
-
     }
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _target=_player.transform;
-        _startPosition = transform.position;
+        _target = _player.transform;
     }
 
     private void Update()
     {
-            Vector3 attackDestination = new Vector3(_target.transform.position.x,_target.position.y,transform.position.z);
-            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, attackDestination));
-
+        Vector3 attackDestination = new Vector3(_target.transform.position.x, _target.position.y, transform.position.z);
+        _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, attackDestination));
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out RageArea rageArea))
@@ -47,7 +46,6 @@ public class Zombie : MonoBehaviour
             _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
             _animator.SetTrigger("Jump");
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,10 +55,12 @@ public class Zombie : MonoBehaviour
             _animator.SetTrigger("Kangaroo");
         }
     }
+
     private void OnOstacleDestroyed()
     {
         _target = _player.transform;
     }
+
     public void SetObstacle(Obstacle obstacle)
     {
         _obstacle = obstacle;
@@ -68,15 +68,14 @@ public class Zombie : MonoBehaviour
 
     public Transform GetTarget()
     {
-        if (_obstacle!=null&&_obstacle.IsDestroyed==false)
+        if (_obstacle != null && _obstacle.IsDestroyed == false)
         {
             _target = _obstacle.transform;
-            return _target;
         }
         else
         {
             _target = _player.transform;
-            return _target;
         }
+        return _target;
     }
 }

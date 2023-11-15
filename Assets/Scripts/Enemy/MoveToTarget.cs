@@ -17,9 +17,4 @@ public class MoveToTarget : StateMachineBehaviour
     {
         _zombieMover.MoveTo(_zombie.GetTarget());
     }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
 }

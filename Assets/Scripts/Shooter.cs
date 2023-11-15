@@ -13,24 +13,17 @@ public class Shooter : MonoBehaviour
     private Coroutine _shooting;
     private bool _isShooting = false;
     private ZombieHealth _currentTarget;
-    private Player _selfHealth;
-
 
     public ZombieHealth Target => _currentTarget;
 
     public bool IsShooting => _isShooting;
-
-    private void Start()
-    {
-        _selfHealth = GetComponent<Player>();
-    }
 
     private void Update()
     {
         if (_isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
-            if (colliders.Length>1)
+            if (colliders.Length > 1)
             {
                 Collider nearestZombie = colliders[0];
 
@@ -51,9 +44,7 @@ public class Shooter : MonoBehaviour
                     }
                 }
             }
-
         }
-
     }
 
     private void Shoot(ZombieHealth target)
@@ -61,19 +52,6 @@ public class Shooter : MonoBehaviour
         _currentTarget = target;
         _isShooting = true;
         _shooting = StartCoroutine(Shooting(_currentTarget));
-
-    }
-
-    private void StopShoot()
-    {
-        if (_shooting != null)
-        {
-            StopCoroutine(_shooting);
-            _shooting = null;
-            _currentTarget = null;
-            _isShooting = false;
-        }
-
     }
 
     private IEnumerator Shooting(ZombieHealth zombie)

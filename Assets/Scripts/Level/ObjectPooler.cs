@@ -9,7 +9,7 @@ public class ObjectPooler : MonoBehaviour
 
     public bool TryGetObject(out GameObject pooledObject)
     {
-        pooledObject = _pooledObjects.FirstOrDefault(p=>p.activeSelf==false);
+        pooledObject = _pooledObjects.FirstOrDefault(p => p.activeSelf == false);
         return pooledObject != null;
     }
 }

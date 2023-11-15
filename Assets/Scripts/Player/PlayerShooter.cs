@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerShooter : Shooter
 {
     [SerializeField] private UpgradesPanel _upgradesPanel;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Shop shop) && IsShooting == false)

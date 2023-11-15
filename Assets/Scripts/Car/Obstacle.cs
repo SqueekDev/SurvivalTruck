@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnDisable()
     {
-        _repairZone.Repaired -= OnRepaired;        
+        _repairZone.Repaired -= OnRepaired;
         _levelChanger.Changed -= OnLevelChanged;
         _waveController.WaveEnded -= OnWaveEnded;
         _obstacleHealthUpgradeButton.HealthUpgraded -= OnHealthUpgraded;
@@ -50,13 +50,13 @@ public class Obstacle : MonoBehaviour
         {
             DisactiveBlock();
             _upperBlockEnabled = false;
-        }    
+        }
 
         if (_currentHealth < _maxHealth / _blocks.Count && _middleBlockEnabled)
         {
             DisactiveBlock();
             _middleBlockEnabled = false;
-        }    
+        }
 
         if (_currentHealth <= 0)
         {
@@ -65,7 +65,7 @@ public class Obstacle : MonoBehaviour
 
             _currentHealth = 0;
             IsDestroyed = true;
-        }    
+        }
     }
 
     private void DisactiveBlock()

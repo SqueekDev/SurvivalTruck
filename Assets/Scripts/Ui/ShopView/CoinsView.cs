@@ -38,9 +38,7 @@ public class CoinsView : MonoBehaviour
     private void StartShowing(int coinsCount)
     {
         _animationClip.Play();
-
         _showing = StartCoroutine(ShowingCount(coinsCount));
-
     }
 
     private void ShowCount(int coinsCount)
@@ -63,7 +61,6 @@ public class CoinsView : MonoBehaviour
 
     private IEnumerator ShowingCount(int coinsCount)
     {
-
         for (int i = 0; i < coinsCount; i++)
         {
             _currentCount++;
