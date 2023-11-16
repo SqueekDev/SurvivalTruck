@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620051317088645633}
-  m_LocalRotation: {x: 0.32708725, y: -0.6691075, z: 0.51342416, w: 0.42626846}
+  m_LocalRotation: {x: 0.64085644, y: -0.29883623, z: 0.29883623, w: 0.64085644}
   m_LocalPosition: {x: 0.037, y: 0.053, z: 0.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 8478884081373818954}
   m_Father: {fileID: 5285041854409666838}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 75, y: -115, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -50, z: 0}
 --- !u!33 &4620051317087743489
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 384220406333063254}
   - component: {fileID: 384220406333063255}
   m_Layer: 6
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 500
   _additionalHealth: 0
-  _audioSource: {fileID: 0}
+  _dyingDelay: 2
   _mover: {fileID: 6633510373078483397}
   _cameraLowerPoint: {fileID: 8478884080972885638}
   _playerHealthUpgradeButton: {fileID: 0}

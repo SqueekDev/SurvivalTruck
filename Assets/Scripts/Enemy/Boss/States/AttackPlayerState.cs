@@ -8,7 +8,6 @@ public class AttackPlayerState : AttackState
 
     protected override void Attack()
     {
-        base.Attack();
         _player.TakeDamage(Stats.Damage);
     }
 }

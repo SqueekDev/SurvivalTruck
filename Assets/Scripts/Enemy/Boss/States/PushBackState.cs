@@ -5,7 +5,19 @@ using UnityEngine.Events;
 
 public class PushBackState : JumpingOnCarState
 {
+    private const string FallingBoolName = "Fall";
+
     public event UnityAction Fell;
+
+    protected override void OnEnable()
+    {
+        BossAnimator.SetBool(FallingBoolName, true);
+    }
+
+    protected override void OnDisable()
+    {
+        BossAnimator.SetBool(FallingBoolName, false);
+    }
 
     private void Update()
     {

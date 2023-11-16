@@ -15,7 +15,6 @@ public class AttackObstacleState : AttackState
 
     protected override void Attack()
     {
-        base.Attack();
         _obstacle.ApplyDamade(Stats.Damage);
     }
 }

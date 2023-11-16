@@ -26,6 +26,7 @@ public class AttackState : BossState
         _offset = _car.transform.position - transform.position;
         StopAttackCorutine();
         _attackCorutine = StartCoroutine(StartAttack());
+        _animator.SetBool(AttackAnimationName, true);
     }
 
     private void FixedUpdate()
@@ -36,12 +37,10 @@ public class AttackState : BossState
     private void OnDisable()
     {
         StopAttackCorutine();
+        _animator.SetBool(AttackAnimationName, false);
     }
 
-    protected virtual void Attack()
-    {
-        //_animator.SetTrigger(AttackAnimationName);
-    }
+    protected virtual void Attack() {}
 
     private IEnumerator StartAttack()
     {

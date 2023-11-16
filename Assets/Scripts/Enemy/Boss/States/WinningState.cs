@@ -20,12 +20,7 @@ public class WinningState : BossState
     private void OnEnable()
     {
         _offset = _car.transform.position - transform.position;
-        //_animator.SetBool(WinAnimationName, true);
-    }
-
-    private void OnDisable()
-    {
-        //_animator.SetBool(WinAnimationName, false);
+        _animator.SetTrigger(WinAnimationName);
     }
 
     private void FixedUpdate()
