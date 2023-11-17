@@ -51,7 +51,7 @@ public class ZombieMover : Mover
         Vector3 direction = newPosition - transform.position;
         while (true)
         {
-            _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed, transform.position, ForceMode.Impulse);
+            _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed*Time.deltaTime, transform.position, ForceMode.Impulse);
             yield return null;
         }
     }

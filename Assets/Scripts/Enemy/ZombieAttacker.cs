@@ -35,6 +35,14 @@ public class ZombieAttacker : MonoBehaviour
 
     public void Attack(Obstacle obstacle)
     {
+        if (obstacle.transform.parent.position.x>transform.position.x)
+        {
+            transform.localEulerAngles = new Vector3(0,90,0);
+        }
+        if (obstacle.transform.parent.position.x < transform.position.x)
+        {
+            transform.localEulerAngles = new Vector3(0, -90, 0);
+        }
         if (_obstacleAttacking == null)
         {
             _obstacleAttacking = StartCoroutine(Attacking(obstacle));
@@ -43,6 +51,7 @@ public class ZombieAttacker : MonoBehaviour
 
     public void Attack(Player player)
     {
+        transform.LookAt(player.transform);
         if (_attacking == null)
         {
             _attacking = StartCoroutine(Attacking(player));

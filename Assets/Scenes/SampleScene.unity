@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1830,9 +1830,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298429074, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947999690, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1947999690, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2012537276855655584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _joystick
@@ -1858,6 +1866,10 @@ PrefabInstance:
       propertyPath: _weaponShootDelayUpgradeButton
       value: 
       objectReference: {fileID: 1194952742}
+    - target: {fileID: 3685215998968308918, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3685215999145025584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _weaponDamageUpgradeButton
       value: 
@@ -1976,7 +1988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.58
+      value: 7.32
       objectReference: {fileID: 0}
     - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1997,6 +2009,22 @@ PrefabInstance:
     - target: {fileID: 3685216000547206265, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206267, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206267, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Size.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206267, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Center.x
+      value: -0.19429165
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685216000547206267, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Center.z
+      value: 0.1533713
       objectReference: {fileID: 0}
     - target: {fileID: 3685216000612974052, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
@@ -2527,7 +2555,7 @@ PrefabInstance:
       objectReference: {fileID: 404730989}
     - target: {fileID: 5415308921702759671, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.400055
+      value: -2.4001465
       objectReference: {fileID: 0}
     - target: {fileID: 8303923127572445057, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _weapon

@@ -139,11 +139,11 @@ MonoBehaviour:
   _jumpForce: 20
   _toPlayerSpeed: 2
   _toPlayerSlowingDistance: 6
-  _throwAwaySpeed: 3
+  _throwAwaySpeed: 300
   _backMoveForce: 1.5
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: -35, y: 30}
-  _jumpLimits: {x: -1, y: 3}
+  _jumpLimits: {x: -1, y: 2}
   _throwAwayOffsetX: {x: 10, y: 15}
   _throwAwayOffsetZ: {x: 10, y: 15}
   _movingOffset: {x: 0, y: 0}
