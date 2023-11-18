@@ -11,7 +11,7 @@ public class ChasingCarState : BossState
     private float _speed;
     private float _startXPosition;
     private float _xPositionLimit = 2f;
-    private float _xDirectionSpread = 1f;
+    private float _xDirectionSpread = 0.5f;
     private float _zDirection = 1f;
     private Vector3 _direction;
 

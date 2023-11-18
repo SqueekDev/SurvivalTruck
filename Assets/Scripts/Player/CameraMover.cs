@@ -14,7 +14,7 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float _rightBorder = 210f;
 
     private Camera _camera;
-    private float _yRotation = 0f;
+    private float _yCameraRotation = 0f;
     private float _xInput;
     private float _yInput;
 
@@ -31,10 +31,10 @@ public class CameraMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _yRotation -= _yInput;
-        _yRotation = Mathf.Clamp(_yRotation, -_verticalBorded, _verticalBorded);
-        _camera.transform.localRotation = Quaternion.Euler(_yRotation, 0, 0);
-        _weapon.transform.localRotation = _camera.transform.localRotation;
+        _yCameraRotation -= _yInput;
+        _yCameraRotation = Mathf.Clamp(_yCameraRotation, -_verticalBorded, _verticalBorded);
+        _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, 0, 0);
+        _weapon.transform.localRotation = Quaternion.Euler(-_yCameraRotation, 0, 0);
 
         if (transform.localRotation.eulerAngles.y < _rightBorder && _xInput > 0 || transform.localRotation.eulerAngles.y > _leftBorder && _xInput < 0)
             transform.Rotate(Vector3.up * _xInput);
