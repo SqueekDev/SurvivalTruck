@@ -7,14 +7,13 @@ public class PlayerShooter : Shooter
     [SerializeField] private UpgradesPanel _upgradesPanel;
     [SerializeField] private Shop _shop;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.TryGetComponent(out Shop shop) && IsShooting == false)
+        if (collision.gameObject.TryGetComponent(out Shop shop) && IsShooting == false)
         {
             StartCoroutine(CoverOpening());
         }
     }
-
     private IEnumerator CoverOpening()
     {
         _shop.Open();
