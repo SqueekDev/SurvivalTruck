@@ -6,6 +6,7 @@ public class Kangaroo : Cabine
 {
     [SerializeField] private int _damage;
     [SerializeField] private KangarooDamageUpgradeButton _kangarooDamageUpgradeButton;
+    [SerializeField] private ParticleSystem _poofKangarooPartical;
     [SerializeField] private float _applyingDamageDelay=0.5f;
 
     public int Damage => _damage;
@@ -27,12 +28,16 @@ public class Kangaroo : Cabine
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.TryGetComponent(out Health health))
             StartCoroutine(ApplyingDamage(health));
+        _poofKangarooPartical.transform.position = health.transform.position;
+        _poofKangarooPartical.Play();
     }
 
     private IEnumerator ApplyingDamage(Health health)
     {
+
         yield return new WaitForSeconds(_applyingDamageDelay);
         health.TakeDamage(_damage);
     }
