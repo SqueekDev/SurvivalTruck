@@ -9,7 +9,7 @@ public class StoneSpawner : MonoBehaviour
     [SerializeField] private int _rotationModifier;
     [SerializeField] private Transform _startPoint;
     [SerializeField] private Transform _endPoint;
-    [SerializeField] private List<Stone> _templates;
+    [SerializeField] private List<EnviromentElements> _templates;
 
     private void Awake()
     {
@@ -23,9 +23,9 @@ public class StoneSpawner : MonoBehaviour
         while (spawnPosition.z < _endPoint.position.z)
         {
             float spread = Random.Range(-_spawnSpread, _spawnSpread);
-            Stone template = _templates[Random.Range(0, _templates.Count)];
+            EnviromentElements template = _templates[Random.Range(0, _templates.Count)];
             spawnPosition.x += spread;
-            Stone stone = Instantiate(template, spawnPosition, Quaternion.identity, transform);
+            EnviromentElements stone = Instantiate(template, spawnPosition, Quaternion.identity, transform);
             spawnPosition.x -= spread;
             int startRotation = 90;
             float rotationY = startRotation * Random.Range(0, _rotationModifier);
