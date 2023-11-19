@@ -8,7 +8,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private Player _player;
 
-    private Transform _target;
+    [SerializeField]private Transform _target;
     private Obstacle _obstacle;
     private Animator _animator;
 

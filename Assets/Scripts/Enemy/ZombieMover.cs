@@ -60,7 +60,7 @@ public class ZombieMover : Mover
     {
         float randomZ = Random.Range(_jumpLimits.x, _jumpLimits.y);
         Vector3 newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
-        while (transform.position != newPosition)
+        while (transform.position.x != newPosition.x|| transform.position.z != newPosition.z)
         {
             newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
             transform.position = Vector3.MoveTowards(transform.position, newPosition, _jumpForce * Time.deltaTime);
