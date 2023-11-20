@@ -1245,6 +1245,9 @@ MonoBehaviour:
   _startHealth: 200
   _additionalHealth: 20
   _dyingDelay: 2
+  _damageColor: {r: 0.8679245, g: 0.24973297, b: 0.24973297, a: 1}
+  _deathColor: {r: 0.6415094, g: 0.63243145, b: 0.63243145, a: 1}
+  _renderer: {fileID: 764121342498561804}
   _levelChanger: {fileID: 0}
   _reward: 100
   _damage: 10
@@ -1608,6 +1611,9 @@ MonoBehaviour:
   _startHealth: 50
   _additionalHealth: 0
   _dyingDelay: 2
+  _damageColor: {r: 0, g: 0, b: 0, a: 0}
+  _deathColor: {r: 0, g: 0, b: 0, a: 0}
+  _renderer: {fileID: 0}
 --- !u!95 &5215313770002531823
 Animator:
   serializedVersion: 4

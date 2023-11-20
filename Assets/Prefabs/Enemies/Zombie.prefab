@@ -104,6 +104,9 @@ MonoBehaviour:
   _startHealth: 40
   _additionalHealth: 10
   _dyingDelay: 2
+  _damageColor: {r: 0.662662, g: 0.9150943, b: 0.46186364, a: 1}
+  _deathColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  _renderer: {fileID: 6008923683492922678}
   _levelChanger: {fileID: 0}
   _mover: {fileID: 4815710542013469597}
   _reward: 5

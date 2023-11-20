@@ -11,7 +11,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
 
     private Coroutine _shooting;
-    private bool _isShooting = false;
+    [SerializeField]private bool _isShooting = false;
     private ZombieHealth _currentTarget;
 
     public ZombieHealth Target => _currentTarget;
@@ -23,25 +23,19 @@ public class Shooter : MonoBehaviour
         if (_isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
-            if (colliders.Length > 1)
+            if (colliders.Length > 0)
             {
-                Collider nearestZombie = colliders[0];
-
                 foreach (var collider in colliders)
                 {
-                    if (Vector3.Distance(transform.position, collider.transform.position) <
-                        Vector3.Distance(transform.position, nearestZombie.transform.position))
+                    if (collider.gameObject.TryGetComponent(out ZombieHealth zombie))
                     {
-                        nearestZombie = collider;
+                        if (zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
+                        {
+                            Shoot(zombie);
+                            return;
+                        }
                     }
-                }
-                if (nearestZombie.gameObject.TryGetComponent(out ZombieHealth zombie))
-                {
-                    if (zombie.IsDead == false && nearestZombie.gameObject != gameObject && _shooting == null)
-                    {
-                        Shoot(zombie);
-                        return;
-                    }
+
                 }
             }
         }
@@ -57,7 +51,7 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shooting(ZombieHealth zombie)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
-        while (_currentTarget.IsDead == false && _currentTarget != null
+        while (zombie.IsDead == false && _currentTarget != null
              && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {
             _weapon.Shoot(_currentTarget.transform);
