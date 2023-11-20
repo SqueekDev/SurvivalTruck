@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1452346760094399331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.512351, y: 0.5, z: -6.8974223}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6008923683506099258}
@@ -162,6 +162,7 @@ MonoBehaviour:
   _zombieMover: {fileID: 4815710542013469597}
   _zombieAttacker: {fileID: 7154820901196419258}
   _player: {fileID: 0}
+  _target: {fileID: 0}
 --- !u!1 &6008923683506587682
 GameObject:
   m_ObjectHideFlags: 0
