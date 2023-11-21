@@ -98,9 +98,9 @@ public class Health : MonoBehaviour
     {
         _animator.SetTrigger(DieTrigger);
         ChangeColorDeath();
+        Died?.Invoke(this);
         yield return new WaitForSeconds(_dyingDelay);
         _dying = null;
-        Died?.Invoke(this);
         gameObject.SetActive(false);
         ChangeColorNormal();
     }
