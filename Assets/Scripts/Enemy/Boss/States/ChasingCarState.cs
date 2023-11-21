@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ChasingCarState : BossState
 {
+    private const int Correction = 1;
+    private const float MultiplierDivider = 20;
+
+    [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private float _extraSpeed;
     [SerializeField] private Car _car;
 
@@ -11,7 +15,8 @@ public class ChasingCarState : BossState
     private float _speed;
     private float _startXPosition;
     private float _xPositionLimit = 2f;
-    private float _xDirectionSpread = 0.5f;
+    private float _startXDirectionSpread = 0.5f;
+    private float _additionalXDirectionSpread;
     private float _zDirection = 1f;
     private Vector3 _direction;
 
@@ -26,6 +31,7 @@ public class ChasingCarState : BossState
         if (_changeDirectionCorutine != null)
             StopCoroutine(_changeDirectionCorutine);
 
+        ChangeRunningSpread();
         _changeDirectionCorutine = StartCoroutine(ChangeDirection());
     }
 
@@ -38,10 +44,11 @@ public class ChasingCarState : BossState
     {
         float delayTime = 1f;
         WaitForSeconds delayToChangeDirection = new WaitForSeconds(delayTime);
+        float xDirectionSpread = _startXDirectionSpread + _additionalXDirectionSpread;
 
         while (enabled)
         {
-            float xDirection = Random.Range(-_xDirectionSpread, _xDirectionSpread);
+            float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
 
             if (transform.position.x > _startXPosition + _xPositionLimit && xDirection > 0 || transform.position.x < _startXPosition - _xPositionLimit && xDirection < 0)
                 xDirection = -xDirection;
@@ -49,5 +56,11 @@ public class ChasingCarState : BossState
             _direction = new Vector3(xDirection, 0, _zDirection);
             yield return delayToChangeDirection;
         }
+    }
+
+    private void ChangeRunningSpread()
+    {
+        int currentSpreadMultiplier = _levelChanger.CurrentLevelNumber / (_levelChanger.BossLevelNumber + Correction);
+        _additionalXDirectionSpread = currentSpreadMultiplier / MultiplierDivider;
     }
 }

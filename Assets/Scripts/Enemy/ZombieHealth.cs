@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ZombieHealth : Health
 {
-    private const int MultiplyHealthDivider = 10;
-
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private Mover _mover;
     [SerializeField] private int _reward;
@@ -27,6 +25,6 @@ public class ZombieHealth : Health
 
     private void ChangeHealthMultiplier()
     {
-        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / MultiplyHealthDivider;
+        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
     }
 }

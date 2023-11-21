@@ -4,7 +4,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private int _damage;
-    private float _speed;
+
+    protected float Speed { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,13 +16,14 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private IEnumerator Moving(Transform target)
+    protected virtual IEnumerator Moving(Transform target)
     {
         while (target.gameObject.activeSelf || transform.position != target.position)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
             yield return null;
         }
+
         Destroy(gameObject);
     }
 
@@ -32,7 +34,7 @@ public class Bullet : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        _speed = speed;
+        Speed = speed;
     }
 
     public void SetDamage(int damage)

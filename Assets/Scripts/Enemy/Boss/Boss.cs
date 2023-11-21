@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : Health
 {
-    private const int MultiplyHealthDivider = 10;
+    private const int Correction = 1;
 
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private int _reward;
@@ -23,6 +23,6 @@ public class Boss : Health
 
     private void ChangeHealthMultiplier()
     {
-        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / MultiplyHealthDivider;
+        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / (_levelChanger.BossLevelNumber + Correction);
     }
 }
