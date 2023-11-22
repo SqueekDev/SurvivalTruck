@@ -1319,6 +1319,8 @@ MonoBehaviour:
   _car: {fileID: 0}
   _obstacle: {fileID: 0}
   _head: {fileID: 5215313770002531816}
+  _headHealthBar: {fileID: 0}
+  _bossCollider: {fileID: 3597398177912842079}
 --- !u!114 &3597398177912842073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,6 +1339,8 @@ MonoBehaviour:
   _speed: 15
   _yOffset: 1.75
   _zOffset: 15
+  _headHealthBar: {fileID: 0}
+  _bossCollider: {fileID: 3597398177912842079}
 --- !u!114 &3597398177912842054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1357,9 @@ MonoBehaviour:
   - {fileID: 3597398177912842049}
   _target: {fileID: 0}
   _speed: 5
+  _head: {fileID: 5215313770002531816}
+  _headHealhBar: {fileID: 0}
+  _collider: {fileID: 3597398177912842079}
 --- !u!114 &3597398177912842055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1440,7 +1447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 3597398177912842054}
   _obstacle: {fileID: 0}
-  _head: {fileID: 5215313770002531816}
 --- !u!114 &3597398177912842049
 MonoBehaviour:
   m_ObjectHideFlags: 0
