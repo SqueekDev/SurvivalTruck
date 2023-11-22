@@ -23,7 +23,10 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(new Vector3(transform.position.x, _camera.transform.position.y, _camera.transform.position.z));
+        Vector3 forward = transform.position - _camera.transform.position;
+        forward.Normalize();
+        Vector3 up = Vector3.Cross(forward, _camera.transform.right);
+        transform.rotation = Quaternion.LookRotation(forward, up);
     }
 
     private void OnDisable()
