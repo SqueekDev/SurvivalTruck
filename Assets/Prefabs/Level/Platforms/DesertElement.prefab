@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 43149815112231973}
   - component: {fileID: 5300486419456434833}
+  - component: {fileID: 2860185230103611968}
+  - component: {fileID: 5053069805718289359}
   m_Layer: 0
   m_Name: DesertElement
   m_TagString: Untagged
@@ -46,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _templates:
   - {fileID: 175704, guid: fb9f189dcf5d2ad4aad003a8a44b136d, type: 3}
-  - {fileID: 127060, guid: f149d460950e2ce478841483a0926f2a, type: 3}
   - {fileID: 185962, guid: 9739a89a5ec460c4b94bb52719a0931c, type: 3}
   - {fileID: 110776, guid: 63ff2386a1262d64f99de6e3e1183874, type: 3}
   - {fileID: 110776, guid: 63ff2386a1262d64f99de6e3e1183874, type: 3}
@@ -54,3 +55,32 @@ MonoBehaviour:
   - {fileID: 4179301713549260965, guid: 4a661a9b83693b248a4bcd0188c4cbec, type: 3}
   - {fileID: 110776, guid: 63ff2386a1262d64f99de6e3e1183874, type: 3}
   - {fileID: 110776, guid: 63ff2386a1262d64f99de6e3e1183874, type: 3}
+--- !u!65 &2860185230103611968
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282511633039211724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!54 &5053069805718289359
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282511633039211724}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
