@@ -8,43 +8,38 @@ public class LevelWaveView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _levelNumberText;
     [SerializeField] private Slider _slider;
-    [SerializeField] private ObjectPooler _zombiePooler;
+    [SerializeField] private WaveController _waveController;
 
     private void OnEnable()
     {
-        foreach (var zombie in _zombiePooler.PooledObjects)
-        {
-            if (zombie.TryGetComponent(out ZombieHealth zombieHealth))
-            {
-                zombieHealth.Died += OnZombieDied;
-            }
-        }
+        _waveController.ZombieCountChanged += OnZombieCountChanged;
+        _waveController.ZombieAttacked += OnZombieAttacked;
     }
 
     private void OnDisable()
     {
-        foreach (var zombie in _zombiePooler.PooledObjects)
-        {
-            if (zombie.TryGetComponent(out ZombieHealth zombieHealth))
-            {
-                zombieHealth.Died -= OnZombieDied;
-            }
-        }
+        _waveController.ZombieCountChanged -= OnZombieCountChanged;
+        _waveController.ZombieAttacked -= OnZombieAttacked;
     }
 
-    public void SetLevelNumber(int levelNumber)
+    private void OnZombieCountChanged(int levelNumber, int zombiesInWave)
     {
         _levelNumberText.text = levelNumber.ToString();
-        _slider.maxValue = levelNumber;
+        _slider.maxValue = zombiesInWave;
         _slider.value = 0;
+    }
+
+    private void OnZombieAttacked(ZombieHealth zombie)
+    {
+        zombie.Died += OnZombieDied;
     }
 
     private void OnZombieDied(Health zombie)
     {
         _slider.value++;
+        zombie.Died -= OnZombieDied;
+
         if (_slider.value==_slider.maxValue)
-        {
             gameObject.SetActive(false);
-        }
     }
 }

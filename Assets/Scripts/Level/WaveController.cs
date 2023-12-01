@@ -18,6 +18,8 @@ public class WaveController : MonoBehaviour
     private bool _isBossLevel;
 
     public event UnityAction WaveEnded;
+    public event UnityAction<int, int> ZombieCountChanged;
+    public event UnityAction<ZombieHealth> ZombieAttacked;
 
     private void Awake()
     {
@@ -54,7 +56,7 @@ public class WaveController : MonoBehaviour
             foreach (var rageArea in _rageAreas)
                 rageArea.gameObject.SetActive(true);
             _levelWaveView.gameObject.SetActive(true);
-            _levelWaveView.SetLevelNumber(_zombiesInWaveCount);
+            ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
         }
     }
 
@@ -79,6 +81,7 @@ public class WaveController : MonoBehaviour
     {
         zombie.Died += OnZombieDied;
         _ragedZombieCount++;
+        ZombieAttacked?.Invoke(zombie);
 
         if (_ragedZombieCount >= _zombiesInWaveCount)
             foreach (var rageArea in _rageAreas)
