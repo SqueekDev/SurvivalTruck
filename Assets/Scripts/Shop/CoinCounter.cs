@@ -22,6 +22,15 @@ public class CoinCounter : MonoBehaviour
     public int EarnModifier { get; private set; }
 
     public event UnityAction<int> CoinsAmountChanged;
+    public event UnityAction TotalCoinsAmountChanged;
+
+    private void Awake()
+    {
+        OnCoinsModifierUpgraded();
+        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
+        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
+        _count = currentCoins;
+    }
 
     private void OnEnable()
     {
@@ -30,14 +39,6 @@ public class CoinCounter : MonoBehaviour
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked += OnZombieAttacked;
-    }
-
-    private void Start()
-    {
-        OnCoinsModifierUpgraded();
-        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
-        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
-        _count = currentCoins;
     }
 
     private void OnDisable()
@@ -68,6 +69,7 @@ public class CoinCounter : MonoBehaviour
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
         CoinsAmountChanged?.Invoke(count);
+        TotalCoinsAmountChanged?.Invoke();
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)

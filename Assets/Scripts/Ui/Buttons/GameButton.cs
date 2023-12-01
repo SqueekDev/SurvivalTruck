@@ -20,7 +20,7 @@ public class GameButton : MonoBehaviour
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
-    private void OnButtonClick()
+    protected virtual void OnButtonClick()
     {
         Clicked?.Invoke();
     }
