@@ -6,9 +6,11 @@ public class Zombie : MonoBehaviour
 {
     [SerializeField] private ZombieMover _zombieMover;
     [SerializeField] private ZombieAttacker _zombieAttacker;
+    [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private Player _player;
+    [SerializeField] private LayerMask _layerMask;
 
-    [SerializeField]private Transform _target;
+    private Transform _target;
     private Obstacle _obstacle;
     private Animator _animator;
 
@@ -30,8 +32,19 @@ public class Zombie : MonoBehaviour
 
     private void Update()
     {
-        Vector3 attackDestination = new Vector3(_target.transform.position.x, _target.position.y, transform.position.z);
-        _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, attackDestination));
+        _target = GetTarget();
+        if (_target.TryGetComponent(out Obstacle obstacle))
+        {
+            Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y,transform.position.z);
+            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, newPosition));
+
+        }
+        else
+        {
+            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
+
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +53,7 @@ public class Zombie : MonoBehaviour
         {
             SetObstacle(rageArea.Obstacle);
             _animator.SetTrigger("MoveTo");
+            _zombieHealth.SetAngry();
         }
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
@@ -65,6 +79,8 @@ public class Zombie : MonoBehaviour
     {
         _obstacle = obstacle;
     }
+
+
 
     public Transform GetTarget()
     {

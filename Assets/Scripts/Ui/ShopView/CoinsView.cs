@@ -15,13 +15,15 @@ public class CoinsView : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter.CoinsAmountChanged += OnCoinsAmountChanged;
+        _counter.CoinsAmountIncrease += OnCoinsAmountIncrease;
+        _counter.CoinsAmountDecrease += OnCoinsAmountDecrease;
 
     }
 
     private void OnDisable()
     {
-        _counter.CoinsAmountChanged -= OnCoinsAmountChanged;
+        _counter.CoinsAmountIncrease -= OnCoinsAmountIncrease;
+        _counter.CoinsAmountDecrease -= OnCoinsAmountDecrease;
     }
 
     private void Start()
@@ -30,15 +32,25 @@ public class CoinsView : MonoBehaviour
         ShowCount(_currentCount);
     }
 
-    private void OnCoinsAmountChanged(int coinsCount)
+    private void OnCoinsAmountIncrease(int coinsCount)
     {
-        StartShowing(coinsCount);
+        StartShowingIncrease(coinsCount);
+    }
+    private void OnCoinsAmountDecrease(int coinsCount)
+    {
+        StartShowingDecrease(coinsCount);
     }
 
-    private void StartShowing(int coinsCount)
+    private void StartShowingIncrease(int coinsCount)
     {
         _animationClip.Play();
-        _showing = StartCoroutine(ShowingCount(coinsCount));
+        _showing = StartCoroutine(ShowingIncreseCount(coinsCount));
+    }
+    
+    private void StartShowingDecrease(int coinsCount)
+    {
+        _animationClip.Play();
+        _showing = StartCoroutine(ShowingDecreseCount(coinsCount));
     }
 
     private void ShowCount(int coinsCount)
@@ -46,7 +58,7 @@ public class CoinsView : MonoBehaviour
         if (coinsCount > 999)
         {
             int count = coinsCount / 1000;
-            int reminder = (coinsCount - (1000 * count)) / 10;
+            int reminder = (coinsCount - (1000 * count));
 
             if (reminder == 0)
                 _text.text = count.ToString() + "K";
@@ -59,11 +71,21 @@ public class CoinsView : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowingCount(int coinsCount)
+    private IEnumerator ShowingIncreseCount(int coinsCount)
     {
         for (int i = 0; i < coinsCount; i++)
         {
             _currentCount++;
+            ShowCount(_currentCount);
+            yield return new WaitForSeconds(_timeBetweenShowingCount);
+        }
+    }
+    
+    private IEnumerator ShowingDecreseCount(int coinsCount)
+    {
+        for (int i = 0; i < coinsCount; i++)
+        {
+            _currentCount--;
             ShowCount(_currentCount);
             yield return new WaitForSeconds(_timeBetweenShowingCount);
         }

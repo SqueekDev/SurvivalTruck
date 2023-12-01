@@ -21,7 +21,8 @@ public class CoinCounter : MonoBehaviour
 
     public int EarnModifier { get; private set; }
 
-    public event UnityAction<int> CoinsAmountChanged;
+    public event UnityAction<int> CoinsAmountIncrease;
+    public event UnityAction<int> CoinsAmountDecrease;
     public event UnityAction TotalCoinsAmountChanged;
 
     private void Awake()
@@ -59,7 +60,7 @@ public class CoinCounter : MonoBehaviour
     {
         _count -= count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
-        CoinsAmountChanged?.Invoke(count);
+        CoinsAmountDecrease?.Invoke(count);
     }
 
     private void AddCoins(int count)
@@ -68,7 +69,7 @@ public class CoinCounter : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
-        CoinsAmountChanged?.Invoke(count);
+        CoinsAmountIncrease?.Invoke(count);
         TotalCoinsAmountChanged?.Invoke();
     }
 

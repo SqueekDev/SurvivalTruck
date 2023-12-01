@@ -29,7 +29,7 @@ public class Shooter : MonoBehaviour
                 {
                     if (collider.gameObject.TryGetComponent(out ZombieHealth zombie))
                     {
-                        if (zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
+                        if (zombie.IsAngry&&zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
                         {
                             Shoot(zombie);
                             return;

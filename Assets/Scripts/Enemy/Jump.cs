@@ -11,4 +11,9 @@ public class Jump : StateMachineBehaviour
         _zombieMover = animator.gameObject.GetComponent<ZombieMover>();
         _zombieMover.Jump();
     }
+    
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _zombieMover.StopJump();
+    }
 }

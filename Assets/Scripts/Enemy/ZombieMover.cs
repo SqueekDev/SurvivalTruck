@@ -140,6 +140,8 @@ public class ZombieMover : Mover
         if (_jumping != null)
         {
             StopCoroutine(_jumping);
+            transform.SetParent(_jumpPoint.parent.parent);
+            _jumping = null;
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : StateMachineBehaviour
 {
+    [SerializeField] private float _attackDistance;
     private Zombie _zombie;
     private ZombieAttacker _zombieAttacker;
     private Transform _target;
@@ -16,13 +17,17 @@ public class Attack : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _target = _zombie.GetTarget();
-        if (_target.TryGetComponent(out Obstacle obstacle))
+        if (Vector3.Distance(_zombie.transform.position,_target.position)<_attackDistance)
         {
-            _zombieAttacker.Attack(obstacle);
+            if (_target.TryGetComponent(out Obstacle obstacle))
+            {
+                _zombieAttacker.Attack(obstacle);
+            }
+            if (_target.TryGetComponent(out Player player))
+            {
+                _zombieAttacker.Attack(player);
+            }
         }
-        if (_target.TryGetComponent(out Player player))
-        {
-            _zombieAttacker.Attack(player);
-        }
+
     }
 }

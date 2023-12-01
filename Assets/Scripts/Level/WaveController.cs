@@ -9,6 +9,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private BossSpawner _bossSpawner;
     [SerializeField] private int _startZombieinWaveCount;
+    [SerializeField] private LevelWaveView _levelWaveView;
 
     private int _attackingZombiesCount = 0;
     private int _ragedZombieCount = 0;
@@ -52,6 +53,8 @@ public class WaveController : MonoBehaviour
 
             foreach (var rageArea in _rageAreas)
                 rageArea.gameObject.SetActive(true);
+            _levelWaveView.gameObject.SetActive(true);
+            _levelWaveView.SetLevelNumber(_zombiesInWaveCount);
         }
     }
 

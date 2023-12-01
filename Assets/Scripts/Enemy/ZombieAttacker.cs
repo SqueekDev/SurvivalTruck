@@ -52,6 +52,7 @@ public class ZombieAttacker : MonoBehaviour
     public void Attack(Player player)
     {
         transform.LookAt(player.transform);
+
         if (_attacking == null)
         {
             _attacking = StartCoroutine(Attacking(player));
