@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3009,10 +3009,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 532231791, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
-      propertyPath: _zombiePooler
-      value: 
-      objectReference: {fileID: 1514613842}
-    - target: {fileID: 532231791, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _waveController
       value: 
       objectReference: {fileID: 1972587204}
@@ -3076,10 +3072,6 @@ PrefabInstance:
       propertyPath: _counter
       value: 
       objectReference: {fileID: 8653259143751937566}
-    - target: {fileID: 8700417403342560343, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9150028077498401215, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

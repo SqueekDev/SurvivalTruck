@@ -10,12 +10,10 @@ public class UpgradeButtonView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinsPriceText;
 
     private string _startDescription;
-    private string _startPriceText;
 
     private void Awake()
     {
         _startDescription = _descriptionText.text;
-        _startPriceText = _coinsPriceText.text;
     }
 
     private void OnEnable()
@@ -31,6 +29,6 @@ public class UpgradeButtonView : MonoBehaviour
     protected virtual void OnValuesChanged(int upgradeValue, int currentValue, int price)
     {
         _descriptionText.text = "+" + upgradeValue.ToString() + " " + _startDescription + currentValue.ToString();
-        _coinsPriceText.text = _startPriceText + price.ToString();
+        _coinsPriceText.text = price.ToString();
     }
 }

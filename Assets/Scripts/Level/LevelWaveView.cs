@@ -38,7 +38,6 @@ public class LevelWaveView : MonoBehaviour
     {
         _slider.value++;
         zombie.Died -= OnZombieDied;
-
         if (_slider.value==_slider.maxValue)
             gameObject.SetActive(false);
     }
