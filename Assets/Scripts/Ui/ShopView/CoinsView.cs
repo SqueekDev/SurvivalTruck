@@ -8,7 +8,6 @@ public class CoinsView : MonoBehaviour
     [SerializeField] private CoinCounter _counter;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private float _timeBetweenShowingCount;
-    [SerializeField] private Animation _animationClip;
 
     private Coroutine _showing;
     private int _currentCount;
@@ -43,13 +42,11 @@ public class CoinsView : MonoBehaviour
 
     private void StartShowingIncrease(int coinsCount)
     {
-        _animationClip.Play();
         _showing = StartCoroutine(ShowingIncreseCount(coinsCount));
     }
     
     private void StartShowingDecrease(int coinsCount)
     {
-        _animationClip.Play();
         _showing = StartCoroutine(ShowingDecreseCount(coinsCount));
     }
 

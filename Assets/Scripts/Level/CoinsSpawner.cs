@@ -8,6 +8,7 @@ public class CoinsSpawner : MonoBehaviour
     [SerializeField] private ObjectPooler _zombiePooler;
     [SerializeField] private Player _player;
     [SerializeField] private int _maxCoinsCount=5;
+    [SerializeField] private AudioSource _coinsSound;
 
     private void OnEnable()
     {
@@ -34,6 +35,7 @@ public class CoinsSpawner : MonoBehaviour
                 coin.transform.position=spawnPoint.transform.position;
                 pooledObject.SetActive(true);
                 coin.MoveTarget(_player.transform);
+                _coinsSound.Play();
             }
         }
 

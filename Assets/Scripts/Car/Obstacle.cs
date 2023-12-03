@@ -14,6 +14,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private WaveController _waveController;
     [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
     [SerializeField] private ParticleSystem _poofParticle;
+    [SerializeField] private AudioSource _destroyFenceSound;
 
     private int _currentHealth;
     private bool _upperBlockDestroyed;
@@ -57,6 +58,7 @@ public class Obstacle : MonoBehaviour
         if (_currentHealth < _maxHealth / _blocks.Count * Doubler && _upperBlockDestroyed == false)
         {
             _poofParticle.Play();
+            _destroyFenceSound.Play();
             UpperBlockDestroyed?.Invoke();
             _upperBlockDestroyed = true;
         }
@@ -64,6 +66,7 @@ public class Obstacle : MonoBehaviour
         if (_currentHealth < _maxHealth / _blocks.Count && _middleBlockDestroyed == false)
         {
             _poofParticle.Play();
+            _destroyFenceSound.Play();
             MiddleBlockDestroyed?.Invoke();
             _middleBlockDestroyed = true;
         }    
@@ -71,6 +74,7 @@ public class Obstacle : MonoBehaviour
         if (_currentHealth <= 0 && _lowerBlockDestroyed == false)
         {
             _poofParticle.Play();
+            _destroyFenceSound.Play();
             LowerBlockDestroyed?.Invoke();
             _currentHealth = 0;
             _lowerBlockDestroyed = true;

@@ -10,6 +10,8 @@ public class WaveController : MonoBehaviour
     [SerializeField] private BossSpawner _bossSpawner;
     [SerializeField] private int _startZombieinWaveCount;
     [SerializeField] private LevelWaveView _levelWaveView;
+    [SerializeField] private AudioSource _backLevelSound;
+    [SerializeField] private AudioSource _backBossSound;
 
     private int _attackingZombiesCount = 0;
     private int _ragedZombieCount = 0;
@@ -57,6 +59,25 @@ public class WaveController : MonoBehaviour
                 rageArea.gameObject.SetActive(true);
             _levelWaveView.gameObject.SetActive(true);
             ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
+            if (_backLevelSound.isPlaying==false)
+            {
+                if (_backBossSound.isPlaying)
+                {
+                    _backBossSound.Stop();
+                }
+                _backLevelSound.Play();
+            }
+        }
+        else
+        {
+            if (_backBossSound.isPlaying == false)
+            {
+                if (_backLevelSound.isPlaying)
+                {
+                    _backLevelSound.Stop();
+                }
+                _backBossSound.Play();
+            }
         }
     }
 

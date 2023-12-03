@@ -9,6 +9,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private Player _player;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private AudioSource _kangarooCollision;
 
     private Transform _target;
     private Obstacle _obstacle;
@@ -67,6 +68,7 @@ public class Zombie : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Kangaroo kangaroo))
         {
             _animator.SetTrigger("Kangaroo");
+            _kangarooCollision.Play();
         }
     }
 

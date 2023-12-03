@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private int _damage;
     [SerializeField] private int _delayModifier;
+    [SerializeField] private AudioSource _bulletSound;
 
     private Bullet _currentBulletTemplate;
 
@@ -56,6 +57,7 @@ public class Weapon : MonoBehaviour
         bullet.SetSpeed(_bulletSpeed);
         bullet.SetDamage(_damage);
         bullet.MoveTo(target.transform);
+        _bulletSound.Play();
     }
 
     private void OnDamageUpgraded()

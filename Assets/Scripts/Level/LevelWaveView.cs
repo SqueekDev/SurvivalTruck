@@ -9,6 +9,7 @@ public class LevelWaveView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelNumberText;
     [SerializeField] private Slider _slider;
     [SerializeField] private WaveController _waveController;
+    [SerializeField] private Animation _waveViewAnimation;
 
     private void OnEnable()
     {
@@ -36,6 +37,7 @@ public class LevelWaveView : MonoBehaviour
 
     private void OnZombieDied(Health zombie)
     {
+        _waveViewAnimation.Play();
         _slider.value++;
         zombie.Died -= OnZombieDied;
         if (_slider.value==_slider.maxValue)
