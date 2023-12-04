@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenAttacks: 1
-  _damage: 5
+  _startDamage: 0
+  _levelChanger: {fileID: 0}
   _isAttacking: 0
 --- !u!114 &4815710542013469597
 MonoBehaviour:
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _startSpeed: 5
+  _startSpeed: 7
   Speed: 0
   _jumpForce: 20
   _toPlayerSpeed: 2

@@ -38,6 +38,5 @@ public class PlayerHealthBar : MonoBehaviour
     {
         _filledHealthBar.fillAmount = healthPercentage;
         _filledHealthBar.color = _gradient.Evaluate(healthPercentage);
-
     }
 }

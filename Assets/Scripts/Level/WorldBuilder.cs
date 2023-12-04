@@ -54,23 +54,17 @@ public class WorldBuilder : MonoBehaviour
         newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
         Vector3 startPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].StartPoint.transform.position;
         Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position;
-        if (_startFog==null)
-        {
-            _startFog = Instantiate(_fogPrefab, startPosition, Quaternion.identity);
-        }
-        else
-        {
-            _startFog.transform.position = startPosition;
-        }
-        if (_endFog==null)
-        {
-            _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
 
-        }
+        if (_startFog==null)
+            _startFog = Instantiate(_fogPrefab, startPosition, Quaternion.identity);
         else
-        {
+            _startFog.transform.position = startPosition;
+
+        if (_endFog==null)
+            _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
+        else
             _endFog.transform.position = endPosition;
-        }
+
         _spawnedPlatforms.Add(newPlatform);
     }
 

@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradeValue: 1
   _price: 50
-  _maxValue: 20
+  _maxValue: 1000
   _coins: {fileID: 0}
   _button: {fileID: 722572332897130807}
   _gameButton: {fileID: 7910886904798015073}

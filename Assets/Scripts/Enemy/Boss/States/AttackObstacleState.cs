@@ -6,7 +6,7 @@ public class AttackObstacleState : AttackState
 {
     [SerializeField] private Obstacle _obstacle;
     [SerializeField] private Health _head;
-    [SerializeField] private BossHealthBar _headHealthBar;
+    [SerializeField] private HealthBar _headHealthBar;
     [SerializeField] private Collider _bossCollider;
 
     protected override void OnEnable()

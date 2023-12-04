@@ -1250,8 +1250,8 @@ MonoBehaviour:
   _renderer: {fileID: 764121342498561804}
   _levelChanger: {fileID: 0}
   _reward: 100
-  _damage: 10
-  _attackDelayTime: 1
+  _damage: 20
+  _attackDelayTime: 2
 --- !u!114 &3597398177912842077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   _transitions:
   - {fileID: 3597398177912842051}
   _target: {fileID: 0}
-  _speed: 10
+  _speed: 15
   _yOffset: 0.25
   _zOffset: 1.5
 --- !u!114 &3597398177912842072
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   _transitions:
   - {fileID: 3597398177912842049}
   _target: {fileID: 0}
-  _speed: 5
+  _speed: 7
   _head: {fileID: 5215313770002531816}
   _headHealhBar: {fileID: 0}
   _collider: {fileID: 3597398177912842079}
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 3597398177912842055}
   _target: {fileID: 0}
-  _transitionRange: 4
+  _transitionRange: 5
 --- !u!114 &3597398177912842062
 MonoBehaviour:
   m_ObjectHideFlags: 0

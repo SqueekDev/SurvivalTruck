@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Obstacle : MonoBehaviour
 {
-    private const int Doubler = 2;
+    private const int HalfHPDivider = 2;
 
     [SerializeField] private int _maxHealth;
     [SerializeField] private List<WoodBlock> _blocks;
@@ -55,7 +55,7 @@ public class Obstacle : MonoBehaviour
     {
         _currentHealth -= damage;
 
-        if (_currentHealth < _maxHealth / _blocks.Count * Doubler && _upperBlockDestroyed == false)
+        if (_currentHealth < _maxHealth && _upperBlockDestroyed == false)
         {
             _poofParticle.Play();
             _destroyFenceSound.Play();
@@ -63,7 +63,7 @@ public class Obstacle : MonoBehaviour
             _upperBlockDestroyed = true;
         }
 
-        if (_currentHealth < _maxHealth / _blocks.Count && _middleBlockDestroyed == false)
+        if (_currentHealth < _maxHealth / HalfHPDivider && _middleBlockDestroyed == false)
         {
             _poofParticle.Play();
             _destroyFenceSound.Play();
@@ -89,7 +89,8 @@ public class Obstacle : MonoBehaviour
 
     private void OnWaveEnded()
     {
-        _repairZone.gameObject.SetActive(true);
+        if(_currentHealth < _maxHealth)
+            _repairZone.gameObject.SetActive(true);
     }
 
     private void OnRepaired()

@@ -8,7 +8,7 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private WoodBlock _woodBlock;
     [SerializeField] private Boss _boss;
     [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private BossHealthBar _healthBar;
+    [SerializeField] private HealthBar _healthBar;
     [SerializeField] private float _zSpawnOffset;
     [SerializeField] private float _ySpawnOffset;
     [SerializeField] private int _delayBeforeSpawn;

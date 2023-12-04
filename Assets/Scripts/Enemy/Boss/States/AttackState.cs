@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Boss))]
 public class AttackState : BossState
 {
+    private const int DelayDivider = 2;
     private const string AttackAnimationName = "Attack";
 
     [SerializeField] private Car _car;
@@ -44,12 +45,13 @@ public class AttackState : BossState
 
     private IEnumerator StartAttack()
     {
-        WaitForSeconds delay = new WaitForSeconds(Stats.AttackDelayTime);
+        WaitForSeconds delay = new WaitForSeconds(Stats.AttackDelayTime/DelayDivider);
 
         while (enabled)
         {
             yield return delay;
             Attack();
+            yield return delay;
         }
     }
 

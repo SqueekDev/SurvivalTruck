@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class RepairZone : MonoBehaviour
 {
     [SerializeField] private float _timeToRepair;
+    [SerializeField] private ParticleSystem _repairParticles;
+    [SerializeField] private Instruments _flyingInstruments;
+    [SerializeField] private Instruments _repairInstruments;
 
     private Coroutine _repairCorutine;
     private float _currentTime;
@@ -14,7 +17,10 @@ public class RepairZone : MonoBehaviour
 
     private IEnumerator Repair()
     {
+        _flyingInstruments.gameObject.SetActive(false);
+        _repairInstruments.gameObject.SetActive(true);
         _currentTime = 0;
+        _repairParticles.Play();
 
         while (_currentTime < _timeToRepair)
         {
@@ -22,13 +28,18 @@ public class RepairZone : MonoBehaviour
             yield return null;
         }
 
+        _repairParticles.Play();
         Repaired?.Invoke();
+        _repairInstruments.gameObject.SetActive(false);
     }
 
     private void StopRepair()
     {
         if (_repairCorutine != null)
             StopCoroutine(_repairCorutine);
+
+        _repairInstruments.gameObject.SetActive(false);
+        _flyingInstruments.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PushBackState : JumpingOnCarState
 {
-    [SerializeField] private BossHealthBar _headHealthBar;
+    [SerializeField] private HealthBar _headHealthBar;
     [SerializeField] private Collider _bossCollider;
 
     private const string FallingBoolName = "Fall";

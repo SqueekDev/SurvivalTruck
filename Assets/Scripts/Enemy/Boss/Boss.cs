@@ -9,7 +9,7 @@ public class Boss : Health
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private int _reward;
     [SerializeField] private int _damage;
-    [SerializeField] private int _attackDelayTime;
+    [SerializeField] private float _attackDelayTime;
 
     public int Reward => _reward;
     public int Damage => _damage;

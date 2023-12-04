@@ -7,7 +7,7 @@ public class MoveToPlayerState : BossState
     [SerializeField] private Player _target;
     [SerializeField] private float _speed;
     [SerializeField] private Health _head;
-    [SerializeField] private BossHealthBar _headHealhBar;
+    [SerializeField] private HealthBar _headHealhBar;
     [SerializeField] private Collider _collider;
 
     private void OnEnable()

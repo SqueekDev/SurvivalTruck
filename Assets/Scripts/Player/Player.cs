@@ -7,6 +7,9 @@ public class Player : Health
     [SerializeField] private Mover _mover;
     [SerializeField] private CameraLowerPoint _cameraLowerPoint;
     [SerializeField] private PlayerHealthUpgradeButton _playerHealthUpgradeButton;
+    [SerializeField] private LevelChanger _levelChanger;
+    [SerializeField] private HealthBar _bossLevelHealthBar;
+    [SerializeField] private PlayerHealthBar _normalLevelHealthBar;
 
     private Car _car;
 
@@ -20,11 +23,17 @@ public class Player : Health
         base.OnEnable();
         _mover.SetStartSpeed();
         _playerHealthUpgradeButton.HealthUpgraded += ChangeMaxHealth;
+        _levelChanger.Changed += OnLevelChanged;
+        _levelChanger.BossLevelStarted += OnBossLevelStarted;
+        _levelChanger.BossLevelEnded += OnBossLevelEnded;
     }
 
     private void OnDisable()
     {
         _playerHealthUpgradeButton.HealthUpgraded -= ChangeMaxHealth;        
+        _levelChanger.Changed -= OnLevelChanged;
+        _levelChanger.BossLevelStarted -= OnBossLevelStarted;
+        _levelChanger.BossLevelEnded -= OnBossLevelEnded;
     }
 
     public override void Die()
@@ -40,5 +49,22 @@ public class Player : Health
     {
         MaxHealth = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerHealth, MaxHealth);
         Heal(MaxHealth);
+    }
+
+    private void OnLevelChanged(int level)
+    {
+        ChangeMaxHealth();
+    }
+
+    private void OnBossLevelStarted()
+    {
+        _normalLevelHealthBar.gameObject.SetActive(false);
+        _bossLevelHealthBar.gameObject.SetActive(true);
+    }
+
+    private void OnBossLevelEnded()
+    {
+        _bossLevelHealthBar.gameObject.SetActive(false);
+        _normalLevelHealthBar.gameObject.SetActive(true);
     }
 }

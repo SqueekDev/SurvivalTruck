@@ -57,8 +57,10 @@ public class WaveController : MonoBehaviour
 
             foreach (var rageArea in _rageAreas)
                 rageArea.gameObject.SetActive(true);
+
             _levelWaveView.gameObject.SetActive(true);
             ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
+
             if (_backLevelSound.isPlaying==false)
             {
                 if (_backBossSound.isPlaying)
@@ -76,6 +78,7 @@ public class WaveController : MonoBehaviour
                 {
                     _backLevelSound.Stop();
                 }
+
                 _backBossSound.Play();
             }
         }

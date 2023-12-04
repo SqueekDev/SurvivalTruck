@@ -208,6 +208,7 @@ MonoBehaviour:
   _bulletSpeed: 50
   _damage: 10
   _delayModifier: 0
+  _bulletSound: {fileID: 0}
 --- !u!1 &5285041854410091812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,6 +1682,9 @@ MonoBehaviour:
   _mover: {fileID: 6633510373078483397}
   _cameraLowerPoint: {fileID: 8478884080972885638}
   _playerHealthUpgradeButton: {fileID: 0}
+  _levelChanger: {fileID: 0}
+  _bossLevelHealthBar: {fileID: 0}
+  _normalLevelHealthBar: {fileID: 4075435365176823541}
 --- !u!114 &384220406333063275
 MonoBehaviour:
   m_ObjectHideFlags: 0
