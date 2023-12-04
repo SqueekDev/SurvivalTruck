@@ -10,7 +10,7 @@ public class ZombieAttacker : MonoBehaviour
 
     private Coroutine _obstacleAttacking;
     private Coroutine _attacking;
-    private bool _isAttacking;
+    [SerializeField]private bool _isAttacking;
 
     public bool IsAttacking=>_isAttacking;
 

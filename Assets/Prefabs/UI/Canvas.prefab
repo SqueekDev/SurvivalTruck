@@ -5464,6 +5464,10 @@ PrefabInstance:
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 451900958094247419, guid: e6fad4cefc10b43039747a6b2deeb501, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 451900958094247419, guid: e6fad4cefc10b43039747a6b2deeb501, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}

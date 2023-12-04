@@ -10,7 +10,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private Player _player;
-    [SerializeField] private float _maximumDistanceToTarget=50;
+    [SerializeField] private float _maximumDistanceToTarget;
     [SerializeField] private AudioSource _kangarooCollision;
 
     private Transform _target;
@@ -47,8 +47,7 @@ public class Zombie : MonoBehaviour
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
 
         }
-        if (transform.position.y < 0 ||(_zombieAttacker.IsAttacking &&
-            Vector3.Distance(transform.position, GetTarget().position) > _maximumDistanceToTarget))
+        if (transform.position.y < 0)
         {
             _zombieHealth.Die();
         }
@@ -66,6 +65,7 @@ public class Zombie : MonoBehaviour
         {
             _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
             _animator.SetTrigger("Jump");
+            Debug.Log("j");
         }
     }
 

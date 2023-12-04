@@ -2367,6 +2367,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5263502733032369210}
     - target: {fileID: 3741213318934547601, guid: 83717cb905302a4459040db723841a13, type: 3}
+      propertyPath: _fogPrefab
+      value: 
+      objectReference: {fileID: 4681701800152751146, guid: 4a46573e6da7cb245930c334223dcc9b, type: 3}
+    - target: {fileID: 3741213318934547601, guid: 83717cb905302a4459040db723841a13, type: 3}
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}

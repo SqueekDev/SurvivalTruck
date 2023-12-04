@@ -27,6 +27,7 @@ public class LevelWaveView : MonoBehaviour
     {
         _levelNumberText.text = levelNumber.ToString();
         _slider.maxValue = zombiesInWave;
+        Debug.Log(zombiesInWave);
         _slider.value = 0;
     }
 

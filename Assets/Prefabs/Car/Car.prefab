@@ -253,7 +253,7 @@ MonoBehaviour:
   _waveController: {fileID: 0}
   _obstacleHealthUpgradeButton: {fileID: 0}
   _poofParticle: {fileID: 6721198895976013978}
-  _destroyFenceSound: {fileID: 0}
+  _destroyFenceSound: {fileID: 8216281670726021725}
 --- !u!82 &8216281670726021725
 AudioSource:
   m_ObjectHideFlags: 0

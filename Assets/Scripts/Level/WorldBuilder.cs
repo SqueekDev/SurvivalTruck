@@ -9,9 +9,12 @@ public class WorldBuilder : MonoBehaviour
     [SerializeField] private int _platformLimit;
     [SerializeField] private Car _car;
     [SerializeField] private List<Platform> _platformTemplates;
+    [SerializeField] private Fog _fogPrefab;
 
     private int _changePlatformLevelNumberDivider;
     private Platform _currentPlatformTemplate;
+    private Fog _startFog;
+    private Fog _endFog;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
 
     private void Awake()
@@ -49,6 +52,25 @@ public class WorldBuilder : MonoBehaviour
     {
         Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
         newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
+        Vector3 startPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].StartPoint.transform.position;
+        Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position;
+        if (_startFog==null)
+        {
+            _startFog = Instantiate(_fogPrefab, startPosition, Quaternion.identity);
+        }
+        else
+        {
+            _startFog.transform.position = startPosition;
+        }
+        if (_endFog==null)
+        {
+            _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
+
+        }
+        else
+        {
+            _endFog.transform.position = endPosition;
+        }
         _spawnedPlatforms.Add(newPlatform);
     }
 
