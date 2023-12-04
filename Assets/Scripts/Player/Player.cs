@@ -27,7 +27,7 @@ public class Player : Health
         _playerHealthUpgradeButton.HealthUpgraded -= ChangeMaxHealth;        
     }
 
-    protected override void Die()
+    public override void Die()
     {
         Vector3 cameraLowerPointRotation = _cameraLowerPoint.transform.rotation.eulerAngles;
         _cameraLowerPoint.transform.parent = _car.transform;

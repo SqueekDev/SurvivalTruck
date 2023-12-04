@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Zombie : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private Player _player;
-    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _maximumDistanceToTarget=50;
     [SerializeField] private AudioSource _kangarooCollision;
 
     private Transform _target;
@@ -45,7 +47,11 @@ public class Zombie : MonoBehaviour
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
 
         }
-
+        if (transform.position.y < 0 ||(_zombieAttacker.IsAttacking &&
+            Vector3.Distance(transform.position, GetTarget().position) > _maximumDistanceToTarget))
+        {
+            _zombieHealth.Die();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -21,7 +21,7 @@ public class ZombieHealth : Health
         _isAngry = false;
     }
 
-    protected override void Die()
+    public override void Die()
     {
         _mover.SetNoSpeed();
         base.Die();

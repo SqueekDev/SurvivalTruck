@@ -31,13 +31,6 @@ public class ZombieMover : Mover
         _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
     }
-    private void Update()
-    {
-        if (transform.position.y<0)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 
     private IEnumerator ThrowingAway(Transform targetFrom)
     {
@@ -127,6 +120,7 @@ public class ZombieMover : Mover
         {
             transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
+
     }
 
     public void Jump()

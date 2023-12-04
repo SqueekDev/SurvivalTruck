@@ -10,11 +10,20 @@ public class ZombieAttacker : MonoBehaviour
 
     private Coroutine _obstacleAttacking;
     private Coroutine _attacking;
+    private bool _isAttacking;
+
+    public bool IsAttacking=>_isAttacking;
 
     public event UnityAction OnObstacleDestroyed;
 
+    private void OnEnable()
+    {
+        _isAttacking = false;
+    }
+
     private IEnumerator Attacking(Obstacle obstacle)
     {
+        _isAttacking = true;
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
         obstacle.ApplyDamade(_damage);
         yield return waitForSeconds;
@@ -23,14 +32,17 @@ public class ZombieAttacker : MonoBehaviour
             OnObstacleDestroyed?.Invoke();
         }
         _obstacleAttacking = null;
+        _isAttacking = false;
     }
 
     private IEnumerator Attacking(Health playerHealth)
     {
+        _isAttacking = true;
         WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
         playerHealth.TakeDamage(_damage);
         yield return waitForSeconds;
         _attacking = null;
+        _isAttacking = false;
     }
 
     public void Attack(Obstacle obstacle)

@@ -1898,6 +1898,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 8141956493425255387}
+    - target: {fileID: 8703429405657607089, guid: 6dfcdbef340dd4e41836de4b88591b1a, type: 3}
+      propertyPath: _maximumDistanceToTarget
+      value: 30.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8703429405691127145, guid: 6dfcdbef340dd4e41836de4b88591b1a, type: 3}
       propertyPath: _player
       value: 

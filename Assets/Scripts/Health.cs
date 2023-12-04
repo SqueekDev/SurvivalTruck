@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         if (_dying == null)
         {
