@@ -9,14 +9,14 @@ public class SoundButton : MonoBehaviour
     public void SoundOn()
     {
         AudioListener.volume = 1.0f;
-        _soundOnButton.SetActive(false);
-        _soundOffButton.SetActive(true);
+        _soundOffButton.SetActive(false);
+        _soundOnButton.SetActive(true);
     }
     
     public void SoundOff()
     {
         AudioListener.volume = 0f;
-        _soundOffButton.SetActive(false);
-        _soundOnButton.SetActive(true);
+        _soundOnButton.SetActive(false);
+        _soundOffButton.SetActive(true);
     }
 }

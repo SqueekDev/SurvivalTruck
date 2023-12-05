@@ -47,10 +47,7 @@ public class Zombie : MonoBehaviour
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
 
         }
-        if (transform.position.y < 0)
-        {
-            _zombieHealth.Die();
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)

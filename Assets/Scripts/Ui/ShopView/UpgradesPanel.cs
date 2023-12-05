@@ -17,7 +17,7 @@ public class UpgradesPanel : MonoBehaviour
     {
         foreach (var button in _buttons)
             button.SkillUpgraded += OnSkillUpgraded;
-
+        Time.timeScale = 0f;
         ShowFirstButtons();
     }
 
@@ -25,7 +25,7 @@ public class UpgradesPanel : MonoBehaviour
     {
         foreach (var button in _buttons)
             button.SkillUpgraded -= OnSkillUpgraded;
-
+        Time.timeScale = 1f;
         foreach (var buttonGroup in _buttonGroups)
             buttonGroup.gameObject.SetActive(false);
 

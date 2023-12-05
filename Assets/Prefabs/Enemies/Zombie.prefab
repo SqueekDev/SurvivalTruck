@@ -145,7 +145,7 @@ MonoBehaviour:
   _jumpForce: 20
   _toPlayerSpeed: 2
   _toPlayerSlowingDistance: 6
-  _throwAwaySpeed: 500
+  _throwAwaySpeed: 300
   _backMoveForce: 1.5
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: -35, y: 30}

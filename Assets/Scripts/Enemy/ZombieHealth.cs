@@ -20,7 +20,13 @@ public class ZombieHealth : Health
         _mover.SetStartSpeed();
         _isAngry = false;
     }
-
+    private void Update()
+    {
+        if (transform.position.y < 0&&IsDead==false)
+        {
+            Die();
+        }
+    }
     public override void Die()
     {
         _mover.SetNoSpeed();

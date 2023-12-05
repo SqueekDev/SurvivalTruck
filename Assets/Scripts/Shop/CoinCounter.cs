@@ -58,9 +58,7 @@ public class CoinCounter : MonoBehaviour
 
     public void RemoveCoins(int count)
     {
-        _count -= count;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
-        CoinsAmountDecrease?.Invoke(count);
+        StartCoroutine(RemovingCoins(count));
     }
 
     private void AddCoins(int count)
@@ -71,6 +69,14 @@ public class CoinCounter : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
         CoinsAmountIncrease?.Invoke(count);
         TotalCoinsAmountChanged?.Invoke();
+    }
+
+    private IEnumerator RemovingCoins(int count)
+    {
+        _count -= count;
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
+        yield return new WaitForSeconds(0.1f);
+        CoinsAmountDecrease?.Invoke(count);
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)
