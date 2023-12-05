@@ -30,6 +30,7 @@ public class WaveController : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerPrefs.DeleteAll();
         _levelChanger.Changed += OnlevelChanged;
         _levelChanger.BossLevelStarted += OnBossLevelStarted;
         _bossSpawner.BossSpawned += OnBossSpawned;

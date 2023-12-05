@@ -11,9 +11,9 @@ public class RageArea : MonoBehaviour
 
     public event UnityAction<ZombieHealth> ZombieAttacked;
 
-    private void OnTriggerEnter(Collider other)
+    public void Attacked(ZombieHealth zombie)
     {
-        if (other.TryGetComponent(out ZombieHealth zombieHealth))
-            ZombieAttacked?.Invoke(zombieHealth);
+        ZombieAttacked?.Invoke(zombie);
+        Debug.Log("tr");
     }
 }

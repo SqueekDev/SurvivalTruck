@@ -57,6 +57,7 @@ public class Zombie : MonoBehaviour
             SetObstacle(rageArea.Obstacle);
             _animator.SetTrigger("MoveTo");
             _zombieHealth.SetAngry();
+            rageArea.Attacked(_zombieHealth);
         }
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
@@ -75,6 +76,10 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    public void OnRageAreaCollision()
+    {
+
+    }
     private void OnOstacleDestroyed()
     {
         _target = _player.transform;
