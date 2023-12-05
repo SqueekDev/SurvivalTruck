@@ -22,9 +22,9 @@ public class ZombieHealth : Health
     }
     private void Update()
     {
-        if (transform.position.y < 0&&IsDead==false)
+        if (transform.position.y < 0)
         {
-            Die();
+            gameObject.SetActive(false);
         }
     }
     public override void Die()

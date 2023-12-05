@@ -16,10 +16,12 @@ public class Zombie : MonoBehaviour
     private Transform _target;
     private Obstacle _obstacle;
     private Animator _animator;
+    private bool _firstRageAreaCollision=true;
 
     private void OnEnable()
     {
         _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
+        _firstRageAreaCollision = true;
     }
 
     private void OnDisable()
@@ -52,8 +54,9 @@ public class Zombie : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out RageArea rageArea))
+        if (_firstRageAreaCollision&&other.TryGetComponent(out RageArea rageArea))
         {
+            _firstRageAreaCollision = false;
             SetObstacle(rageArea.Obstacle);
             _animator.SetTrigger("MoveTo");
             _zombieHealth.SetAngry();
@@ -63,7 +66,6 @@ public class Zombie : MonoBehaviour
         {
             _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
             _animator.SetTrigger("Jump");
-            Debug.Log("j");
         }
     }
 
