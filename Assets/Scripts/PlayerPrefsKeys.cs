@@ -19,5 +19,5 @@ public static class PlayerPrefsKeys
     public const string UpgradeCoinsModifierPrice = "CoinsModifierPrice";
     public const string CurrentCoinsCount = "CurrentCoins";
     public const string TotalEarnedCoins = "TotalEarnedCoins";
-
+    public const string Sound = "Sound";
 }

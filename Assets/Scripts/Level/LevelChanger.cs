@@ -13,6 +13,7 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private LostPanel _lostPanel;
     [SerializeField] private GameButton _nextLevelButton;
     [SerializeField] private GameButton _restartLevelButton;
+    [SerializeField] private GameButton _settingsRestartLevelButton;
     [SerializeField] private int _bossLevelNubmerDivider;
 
     private int _playerPrefsSavedLevelNumber = 1;
@@ -28,7 +29,6 @@ public class LevelChanger : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
         _currentScene = SceneManager.GetActiveScene();
         _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber, 1);
         SyncLevelNumber();
@@ -41,6 +41,7 @@ public class LevelChanger : MonoBehaviour
         _boss.Died += OnBossDied;
         _nextLevelButton.Clicked += OnNextLevelButtonClick;
         _restartLevelButton.Clicked += OnRestartLevelButtonClick;
+        _settingsRestartLevelButton.Clicked += OnRestartLevelButtonClick;
     }
 
     private void OnDisable()
@@ -50,6 +51,7 @@ public class LevelChanger : MonoBehaviour
         _boss.Died -= OnBossDied;
         _nextLevelButton.Clicked -= OnNextLevelButtonClick;
         _restartLevelButton.Clicked -= OnRestartLevelButtonClick;
+        _settingsRestartLevelButton.Clicked -= OnRestartLevelButtonClick;
     }
 
     private void Start()

@@ -8,6 +8,8 @@ public class GameButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
 
+    protected Button Button => _button;
+
     public event UnityAction Clicked;
 
     private void OnEnable()
@@ -22,6 +24,7 @@ public class GameButton : MonoBehaviour
 
     protected virtual void OnButtonClick()
     {
+        Debug.Log("Clicked + " + gameObject);
         Clicked?.Invoke();
     }
 }

@@ -116,7 +116,6 @@ public class WaveController : MonoBehaviour
     {
         zombie.Died -= OnZombieDied;
         _attackingZombiesCount--;
-        Debug.Log(_attackingZombiesCount);
         if (_attackingZombiesCount <= 0)
         {
             _ragedZombieCount = 0;

@@ -618,6 +618,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bd3349861373d45a8c6b5175b7ada2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1447474691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 504070447151728759, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+  m_PrefabInstance: {fileID: 9150028078246563362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2446dc3a557074ab088426f01560f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1514613842 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 44818981021109494, guid: 6dfcdbef340dd4e41836de4b88591b1a, type: 3}
@@ -3255,6 +3266,10 @@ PrefabInstance:
       propertyPath: _restartLevelButton
       value: 
       objectReference: {fileID: 9150028078246563363}
+    - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
+      propertyPath: _settingsRestartLevelButton
+      value: 
+      objectReference: {fileID: 1447474691}
     - target: {fileID: 4419399616893923866, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
       propertyPath: m_Name
       value: LevelChanger
@@ -3719,6 +3734,10 @@ PrefabInstance:
       propertyPath: _counter
       value: 
       objectReference: {fileID: 8653259143751937566}
+    - target: {fileID: 9150028077159079559, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.155998
+      objectReference: {fileID: 0}
     - target: {fileID: 9150028077498401215, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

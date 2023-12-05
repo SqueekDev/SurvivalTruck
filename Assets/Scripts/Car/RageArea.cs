@@ -14,6 +14,5 @@ public class RageArea : MonoBehaviour
     public void Attacked(ZombieHealth zombie)
     {
         ZombieAttacked?.Invoke(zombie);
-        Debug.Log("tr");
     }
 }

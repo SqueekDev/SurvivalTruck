@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseButton : GameButton
+public class RestartButton : GameButton
 {
-    [SerializeField] private GamePanel _panelToClose;
+    [SerializeField] private SettingsPanel _settingsPanel;
 
     protected override void OnButtonClick()
     {
         base.OnButtonClick();
-        _panelToClose.gameObject.SetActive(false);
+        _settingsPanel.gameObject.SetActive(false);
     }
 }

@@ -31,8 +31,6 @@ public class ZombieHealth : Health
     {
         _mover.SetNoSpeed();
         base.Die();
-        Debug.Log("died");
-
     }
 
     private void ChangeHealthMultiplier()
