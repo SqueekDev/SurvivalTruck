@@ -1338,7 +1338,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _speed: 15
   _yOffset: 3
-  _zOffset: 15
+  _zOffset: 20
   _headHealthBar: {fileID: 0}
   _bossCollider: {fileID: 3597398177912842079}
 --- !u!114 &3597398177912842054

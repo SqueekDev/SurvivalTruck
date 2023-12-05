@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelChanger: {fileID: 0}
-  _spawnPlatformCorrection: 100
+  _spawnPlatformCorrection: 50
   _platformLimit: 8
   _car: {fileID: 0}
   _platformTemplates:
   - {fileID: 4589265983506898267, guid: 899e5a1db40695f49bafa38b4eb6f425, type: 3}
   - {fileID: 7689617106701749164, guid: d2eb6c3bfb348084e81dabbb930a1ecb, type: 3}
   - {fileID: 6663972462610879357, guid: 01743b1098eb9294e93c0a72ce9db13d, type: 3}
+  _fogPrefab: {fileID: 0}

@@ -15,6 +15,11 @@ public class RepairZone : MonoBehaviour
 
     public event UnityAction Repaired;
 
+    private void OnEnable()
+    {
+        _flyingInstruments.gameObject.SetActive(true);
+    }
+
     private IEnumerator Repair()
     {
         _flyingInstruments.gameObject.SetActive(false);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WorldBuilder : MonoBehaviour
 {
+    private const int ListIndexCorrection = 1;
+
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private int _spawnPlatformCorrection;
     [SerializeField] private int _platformLimit;
@@ -11,7 +13,9 @@ public class WorldBuilder : MonoBehaviour
     [SerializeField] private List<Platform> _platformTemplates;
     [SerializeField] private Fog _fogPrefab;
 
+    private bool _needToAddFog = false;
     private int _changePlatformLevelNumberDivider;
+    private int _previousPlatformIndex = 0;
     private Platform _currentPlatformTemplate;
     private Fog _startFog;
     private Fog _endFog;
@@ -36,7 +40,7 @@ public class WorldBuilder : MonoBehaviour
 
     private void Update()
     {
-        if (_car.transform.position.z > (_spawnedPlatforms[_spawnedPlatforms.Count - 1].transform.position.z - _spawnPlatformCorrection))
+        if (_car.transform.position.z > (_spawnedPlatforms[_spawnedPlatforms.Count - ListIndexCorrection].transform.position.z - _spawnPlatformCorrection))
             SpawnPlatform();
 
         if (_spawnedPlatforms.Count >= _platformLimit)
@@ -51,19 +55,19 @@ public class WorldBuilder : MonoBehaviour
     private void SpawnPlatform()
     {
         Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
-        newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
-        Vector3 startPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].StartPoint.transform.position;
-        Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position;
+        newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - ListIndexCorrection].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
+        Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - ListIndexCorrection].EndPoint.transform.position;
 
-        if (_startFog==null)
-            _startFog = Instantiate(_fogPrefab, startPosition, Quaternion.identity);
-        else
-            _startFog.transform.position = startPosition;
+        if (_needToAddFog)
+        {
+            if (_endFog == null)
+                _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
+            else
+                _endFog.transform.position = endPosition;
 
-        if (_endFog==null)
-            _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
-        else
-            _endFog.transform.position = endPosition;
+            _needToAddFog = false;
+        }
+
 
         _spawnedPlatforms.Add(newPlatform);
     }
@@ -76,12 +80,15 @@ public class WorldBuilder : MonoBehaviour
 
     private void OnLevelChanged(int levelNumber)
     {
-        int listIndexCorrection = 1;
-        int platformIndex = (levelNumber - listIndexCorrection) / _changePlatformLevelNumberDivider;
+        int platformIndex = levelNumber / _changePlatformLevelNumberDivider;
 
-        while (platformIndex > _platformTemplates.Count - listIndexCorrection)
+        while (platformIndex > _platformTemplates.Count - ListIndexCorrection)
             platformIndex -= _platformTemplates.Count;
 
+        if (_previousPlatformIndex != platformIndex)
+            _needToAddFog = true;
+
+        _previousPlatformIndex = platformIndex;
         _currentPlatformTemplate = _platformTemplates[platformIndex];
     }
 }

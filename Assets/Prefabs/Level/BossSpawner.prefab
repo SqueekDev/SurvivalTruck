@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _woodBlock: {fileID: 0}
-  _template: {fileID: 2054707104933572215}
+  _boss: {fileID: 0}
   _levelChanger: {fileID: 0}
-  _zSpawnOffset: 20
+  _healthBar: {fileID: 0}
+  _zSpawnOffset: 25
   _ySpawnOffset: 1.75
   _delayBeforeSpawn: 1
 --- !u!1001 &3273923058521901370
@@ -168,17 +169,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 487ee6b07d0b80f4b81c87acd8349993, type: 3}
---- !u!114 &2054707104933572215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3597398177912842061, guid: 487ee6b07d0b80f4b81c87acd8349993, type: 3}
-  m_PrefabInstance: {fileID: 3273923058521901370}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2f40d76645efb409c0da2b4bbe477f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2054707104943407158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3597398177922615564, guid: 487ee6b07d0b80f4b81c87acd8349993, type: 3}
