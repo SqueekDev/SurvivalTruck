@@ -8,16 +8,23 @@ public class UpgradesPanel : MonoBehaviour
 {
     [SerializeField] private GameObject[] _buttonGroups;
     [SerializeField] private UpgradeButton[] _buttons;
+    [SerializeField] private GameButton _nextButton;
+    [SerializeField] private GameButton _previousButton;
 
     private int _currentGroupIndex;
 
     public event UnityAction PurchaseSuccsessed;
+    public event UnityAction Closed;
 
     private void OnEnable()
     {
         foreach (var button in _buttons)
             button.SkillUpgraded += OnSkillUpgraded;
+
+        _nextButton.Clicked += ShowNextButtons;
+        _previousButton.Clicked += ShowPreviousButtons;
         Time.timeScale = 0f;
+
         ShowFirstButtons();
     }
 
@@ -25,13 +32,18 @@ public class UpgradesPanel : MonoBehaviour
     {
         foreach (var button in _buttons)
             button.SkillUpgraded -= OnSkillUpgraded;
+
+        _nextButton.Clicked -= ShowNextButtons;
+        _previousButton.Clicked -= ShowPreviousButtons;
         Time.timeScale = 1f;
+
         foreach (var buttonGroup in _buttonGroups)
             buttonGroup.gameObject.SetActive(false);
 
+        Closed?.Invoke();
     }
 
-    public void ShowNextButtons()
+    private void ShowNextButtons()
     {
         if (_currentGroupIndex == _buttonGroups.Length-1)
         {
@@ -47,7 +59,7 @@ public class UpgradesPanel : MonoBehaviour
         }
     }
 
-    public void ShowPreviousButtons()
+    private void ShowPreviousButtons()
     {
         if (_currentGroupIndex == 0)
         {

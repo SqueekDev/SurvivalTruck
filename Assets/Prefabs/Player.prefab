@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 2339591092849784467}
   - component: {fileID: 384220406333063252}
   - component: {fileID: 384220406333063248}
-  - component: {fileID: 384220406333063275}
+  - component: {fileID: 6540487954674569172}
   - component: {fileID: 6633510373078483397}
   - component: {fileID: 6729081215824752570}
   - component: {fileID: 384220406333063253}
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   _moverToShootPlace: {fileID: 384220406333063255}
   _bossShooter: {fileID: 384220406333063254}
   _cameraMover: {fileID: 384220406333063253}
-  _shooter: {fileID: 384220406333063275}
+  _shooter: {fileID: 6540487954674569172}
   _playerInput: {fileID: 6729081215824752570}
   _playerMover: {fileID: 6633510373078483397}
   _joystick: {fileID: 0}
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   _levelChanger: {fileID: 0}
   _bossLevelHealthBar: {fileID: 0}
   _normalLevelHealthBar: {fileID: 4075435365176823541}
---- !u!114 &384220406333063275
+--- !u!114 &6540487954674569172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8279466994935357563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28d5a3c9fe7be846a1f9090c1275a57, type: 3}
+  m_Script: {fileID: 11500000, guid: 8afe0cc5ec5e3a94da69393483af7041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 803228061831392328}
@@ -1704,8 +1704,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _isShooting: 0
-  _upgradesPanel: {fileID: 0}
-  _shop: {fileID: 0}
 --- !u!114 &6633510373078483397
 MonoBehaviour:
   m_ObjectHideFlags: 0
