@@ -23,7 +23,6 @@ public class UpgradesPanel : MonoBehaviour
 
         _nextButton.Clicked += ShowNextButtons;
         _previousButton.Clicked += ShowPreviousButtons;
-        Time.timeScale = 0f;
 
         ShowFirstButtons();
     }
@@ -35,7 +34,6 @@ public class UpgradesPanel : MonoBehaviour
 
         _nextButton.Clicked -= ShowNextButtons;
         _previousButton.Clicked -= ShowPreviousButtons;
-        Time.timeScale = 1f;
 
         foreach (var buttonGroup in _buttonGroups)
             buttonGroup.gameObject.SetActive(false);

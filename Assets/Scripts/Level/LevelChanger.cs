@@ -17,9 +17,11 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private int _bossLevelNubmerDivider;
 
     private int _playerPrefsSavedLevelNumber = 1;
+    private bool _isWave = false;
     private Scene _currentScene;
 
     public int BossLevelNumber => _bossLevelNubmerDivider;
+    public bool IsWave => _isWave;
 
     public int CurrentLevelNumber { get; private set; } = 1;
 
@@ -81,6 +83,7 @@ public class LevelChanger : MonoBehaviour
 
     private void OnWaveEnded()
     {
+        _isWave=false;
         _changeLevelArea.gameObject.SetActive(true);
     }
 
@@ -99,6 +102,7 @@ public class LevelChanger : MonoBehaviour
     private void OnNextLevelButtonClick()
     {
         CurrentLevelNumber++;
+        _isWave = true;
         _changeLevelArea.gameObject.SetActive(false);
 
         if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)

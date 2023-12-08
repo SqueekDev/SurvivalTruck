@@ -10,6 +10,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private AudioSource _coverOpeningSound;
     [SerializeField] private AudioSource _coverClosingSound;
     [SerializeField] private UpgradesPanel _upgradesPanel;
+    [SerializeField] private LevelChanger _levelChanger;
 
     private void OnEnable()
     {
@@ -23,7 +24,7 @@ public class Shop : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out Shooter player) && player.IsShooting == false)
+        if (collision.gameObject.TryGetComponent(out Shooter player) && _levelChanger.IsWave == false)
             StartCoroutine(CoverOpening());
     }
 

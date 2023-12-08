@@ -1787,6 +1787,8 @@ MonoBehaviour:
   _coverOpeningAnimator: {fileID: 415241519}
   _coverOpeningSound: {fileID: 1300058243}
   _coverClosingSound: {fileID: 1300058244}
+  _upgradesPanel: {fileID: 0}
+  _levelChanger: {fileID: 0}
 --- !u!82 &1300058243
 AudioSource:
   m_ObjectHideFlags: 0
