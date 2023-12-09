@@ -11,20 +11,15 @@ public class LeaderboardView : MonoBehaviour
 
     private List<LeaderboardPlayerView> _leaderboardPlayerViews = new List<LeaderboardPlayerView>();
 
-    public event UnityAction Opened;
-    public event UnityAction Closed;
-
     private void OnEnable()
     {
         _leaderboardDataChanger.Created += OnCreated;
         _loginPanel.gameObject.SetActive(false);
-        Opened?.Invoke();
     }
 
     private void OnDisable()
     {
         _leaderboardDataChanger.Created -= OnCreated;
-        Closed?.Invoke();
     }
 
     private void OnCreated(List<LeaderboardPlayer> leaderboardPlayers)
