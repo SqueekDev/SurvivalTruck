@@ -9,17 +9,18 @@ public class Shop : MonoBehaviour
     [SerializeField] private Animator _coverOpeningAnimator;
     [SerializeField] private AudioSource _coverOpeningSound;
     [SerializeField] private AudioSource _coverClosingSound;
-    [SerializeField] private UpgradesPanel _upgradesPanel;
+    [SerializeField] private GamePanel _upgradePanel;
+    [SerializeField] private ShopView _shopView;
     [SerializeField] private LevelChanger _levelChanger;
 
     private void OnEnable()
     {
-        _upgradesPanel.Closed += Close;
+        _shopView.Closed += Close;
     }
 
     private void OnDisable()
     {
-        _upgradesPanel.Closed -= Close;        
+        _shopView.Closed -= Close;        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +44,6 @@ public class Shop : MonoBehaviour
     {
         Open();
         yield return new WaitForSeconds(OpenDelay);
-        _upgradesPanel.gameObject.SetActive(true);
+        _upgradePanel.gameObject.SetActive(true);
     }
 }

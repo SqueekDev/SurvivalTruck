@@ -17,7 +17,6 @@ public class WorldBuilder : MonoBehaviour
     private int _changePlatformLevelNumberDivider;
     private int _previousPlatformIndex = 0;
     private Platform _currentPlatformTemplate;
-    private Fog _startFog;
     private Fog _endFog;
     private List<Platform> _spawnedPlatforms = new List<Platform>();
 

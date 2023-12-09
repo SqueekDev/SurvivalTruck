@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 7055611823457652662}
   - component: {fileID: 6704986439192541446}
   m_Layer: 5
-  m_Name: UpgradesPanel
+  m_Name: ShopView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7055611823457652667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e07d7d96308884e84aaed9286a7445, type: 3}
+  m_Script: {fileID: 11500000, guid: a81cd7b821a56534a895b35f9374deb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonGroups:

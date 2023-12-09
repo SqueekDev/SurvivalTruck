@@ -12,7 +12,7 @@ public class GameButton : MonoBehaviour
 
     public event UnityAction Clicked;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _button.onClick.AddListener(OnButtonClick);
     }
@@ -24,7 +24,6 @@ public class GameButton : MonoBehaviour
 
     protected virtual void OnButtonClick()
     {
-        Debug.Log("Clicked + " + gameObject);
         Clicked?.Invoke();
     }
 }

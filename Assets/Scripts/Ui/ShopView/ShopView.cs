@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UpgradesPanel : MonoBehaviour
+public class ShopView : MonoBehaviour
 {
     [SerializeField] private GameObject[] _buttonGroups;
     [SerializeField] private UpgradeButton[] _buttons;

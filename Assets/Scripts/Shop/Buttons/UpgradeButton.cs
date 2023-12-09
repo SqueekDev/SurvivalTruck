@@ -15,7 +15,7 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private CoinCounter _coins;
     [SerializeField] private Button _button;
     [SerializeField] private GameButton _gameButton;
-    [SerializeField] private UpgradesPanel _upgradesPanel;
+    [SerializeField] private ShopView _upgradesPanel;
 
     protected CoinCounter CoinCounter => _coins;
 

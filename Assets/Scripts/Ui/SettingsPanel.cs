@@ -6,13 +6,15 @@ public class SettingsPanel : GamePanel
 {
     [SerializeField] private SettingButton _settingsButton;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         _settingsButton.gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         _settingsButton.gameObject.SetActive(true);
     }
 }

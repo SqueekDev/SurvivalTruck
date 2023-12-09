@@ -6,11 +6,15 @@ using UnityEngine.Events;
 
 public class CoinCounter : MonoBehaviour
 {
-    private const int _bossEarnModifier = 10;
+    private const int BossEarnModifier = 10;
+    private const int AdReward = 100;
 
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private Boss _boss;
     [SerializeField] private CoinsModifierUpgradeButton _coinsModifierUpgradeButton;
+    [SerializeField] private AdShower _adShower;
+    [SerializeField] private GameButton _addCoinsButton;
+    [SerializeField] private GamePanel _addCoinsPanel;
 
     private int _count;
     private int _totalEarnedCoins;
@@ -37,6 +41,8 @@ public class CoinCounter : MonoBehaviour
     {
         _boss.Died += OnBossDied;
         _coinsModifierUpgradeButton.CoinsModifierUpgraded += OnCoinsModifierUpgraded;
+        _adShower.VideoAdShowed += OnVideoAdShowed;
+        _addCoinsButton.Clicked += OnAddCoinsButtonClicked;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked += OnZombieAttacked;
@@ -46,19 +52,27 @@ public class CoinCounter : MonoBehaviour
     {
         _boss.Died -= OnBossDied;
         _coinsModifierUpgradeButton.CoinsModifierUpgraded -= OnCoinsModifierUpgraded;
+        _adShower.VideoAdShowed -= OnVideoAdShowed;
+        _addCoinsButton.Clicked -= OnAddCoinsButtonClicked;
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked -= OnZombieAttacked;
     }
 
-    public void AddCoinslsForAd(int count)
-    {
-        AddCoins(count);
-    }
-
     public void RemoveCoins(int count)
     {
         StartCoroutine(RemovingCoins(count));
+    }
+
+    private void OnAddCoinsButtonClicked()
+    {
+        _addCoinsPanel.gameObject.SetActive(true);
+    }
+
+    private void OnVideoAdShowed()
+    {
+        AddCoins(AdReward);
+        _addCoinsPanel.gameObject.SetActive(false);
     }
 
     private void AddCoins(int count)
@@ -93,7 +107,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnBossDied(Health boss)
     {
-        AddCoins(_boss.Reward + EarnModifier * _bossEarnModifier);
+        AddCoins(_boss.Reward + EarnModifier * BossEarnModifier);
     }
 
     private void OnCoinsModifierUpgraded()

@@ -10,7 +10,7 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Boss _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
-    [SerializeField] private LostPanel _lostPanel;
+    [SerializeField] private GamePanel _lostPanel;
     [SerializeField] private GameButton _nextLevelButton;
     [SerializeField] private GameButton _restartLevelButton;
     [SerializeField] private GameButton _settingsRestartLevelButton;
@@ -26,6 +26,7 @@ public class LevelChanger : MonoBehaviour
     public int CurrentLevelNumber { get; private set; } = 1;
 
     public event UnityAction<int> Changed;
+    public event UnityAction LevelFinished;
     public event UnityAction BossLevelStarted;
     public event UnityAction BossLevelEnded;
 
@@ -58,7 +59,7 @@ public class LevelChanger : MonoBehaviour
 
     private void Start()
     {
-        ChangeLevel();
+        _changeLevelArea.gameObject.SetActive(true);
     }
 
     private void SyncLevelNumber()
@@ -78,6 +79,7 @@ public class LevelChanger : MonoBehaviour
         if (CurrentLevelNumber % _bossLevelNubmerDivider == 0)
             BossLevelStarted?.Invoke();
 
+        _isWave = true;
         Changed?.Invoke(CurrentLevelNumber);
     }
 
@@ -85,6 +87,12 @@ public class LevelChanger : MonoBehaviour
     {
         _isWave=false;
         _changeLevelArea.gameObject.SetActive(true);
+        CurrentLevelNumber++;
+
+        if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
+            SyncLevelNumber();
+
+        LevelFinished?.Invoke();
     }
 
     private void OnBossDied(Health boss)
@@ -95,25 +103,17 @@ public class LevelChanger : MonoBehaviour
 
     private void OnPlayerDied(Health player)
     {
-        Time.timeScale = 0;
         _lostPanel.gameObject.SetActive(true);
     }
 
     private void OnNextLevelButtonClick()
     {
-        CurrentLevelNumber++;
-        _isWave = true;
         _changeLevelArea.gameObject.SetActive(false);
-
-        if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
-            SyncLevelNumber();
-
         ChangeLevel();
     }
 
     private void OnRestartLevelButtonClick()
     {
-        Time.timeScale = 1;
         _lostPanel.gameObject.SetActive(false);
         SceneManager.LoadScene(_currentScene.name);
     }
