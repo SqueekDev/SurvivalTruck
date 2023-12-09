@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,9 +14,9 @@ public class ZombieAttacker : MonoBehaviour
     private int _damageModifier;
     private int _midDamageModifierValue = 2;
     private int _maxDamageModifierValue = 6;
-    [SerializeField]private bool _isAttacking;
+    private bool _isAttacking = false;
 
-    public bool IsAttacking=>_isAttacking;
+    public bool IsAttacking => _isAttacking;
 
     public event UnityAction OnObstacleDestroyed;
 
@@ -35,36 +34,9 @@ public class ZombieAttacker : MonoBehaviour
 
     private void OnDisable()
     {
-        _levelChanger.Changed -= OnLevelChanged;        
+        _levelChanger.Changed -= OnLevelChanged;
     }
 
-    public void Attack(Obstacle obstacle)
-    {
-        if (obstacle.transform.parent.position.x>transform.position.x)
-        {
-            transform.localEulerAngles = new Vector3(0,90,0);
-        }
-
-        if (obstacle.transform.parent.position.x < transform.position.x)
-        {
-            transform.localEulerAngles = new Vector3(0, -90, 0);
-        }
-
-        if (_obstacleAttacking == null)
-        {
-            _obstacleAttacking = StartCoroutine(Attacking(obstacle));
-        }
-    }
-
-    public void Attack(Player player)
-    {
-        transform.LookAt(player.transform);
-
-        if (_attacking == null)
-        {
-            _attacking = StartCoroutine(Attacking(player));
-        }
-    }
 
     private void OnLevelChanged(int levelNumber)
     {
@@ -95,5 +67,33 @@ public class ZombieAttacker : MonoBehaviour
         yield return waitForSeconds;
         _attacking = null;
         _isAttacking = false;
+    }
+
+    public void Attack(Obstacle obstacle)
+    {
+        if (obstacle.transform.parent.position.x > transform.position.x)
+        {
+            transform.localEulerAngles = new Vector3(0, 90, 0);
+        }
+
+        if (obstacle.transform.parent.position.x < transform.position.x)
+        {
+            transform.localEulerAngles = new Vector3(0, -90, 0);
+        }
+
+        if (_obstacleAttacking == null)
+        {
+            _obstacleAttacking = StartCoroutine(Attacking(obstacle));
+        }
+    }
+
+    public void Attack(Player player)
+    {
+        transform.LookAt(player.transform);
+
+        if (_attacking == null)
+        {
+            _attacking = StartCoroutine(Attacking(player));
+        }
     }
 }

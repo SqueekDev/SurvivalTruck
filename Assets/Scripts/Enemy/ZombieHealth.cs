@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieHealth : Health
@@ -20,22 +18,22 @@ public class ZombieHealth : Health
         _mover.SetStartSpeed();
         _isAngry = false;
     }
+
     private void Update()
     {
         if (transform.position.y < 0)
-        {
             gameObject.SetActive(false);
-        }
-    }
-    public override void Die()
-    {
-        _mover.SetNoSpeed();
-        base.Die();
     }
 
     private void ChangeHealthMultiplier()
     {
         AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
+    }
+
+    public override void Die()
+    {
+        _mover.SetNoSpeed();
+        base.Die();
     }
 
     public void SetAngry()

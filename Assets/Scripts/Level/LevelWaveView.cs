@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -40,7 +38,8 @@ public class LevelWaveView : MonoBehaviour
         _slider.value++;
         zombie.Died -= OnZombieDied;
         _waveViewAnimation.Play();
-        if (_slider.value==_slider.maxValue)
+
+        if (_slider.value == _slider.maxValue)
             gameObject.SetActive(false);
     }
 }

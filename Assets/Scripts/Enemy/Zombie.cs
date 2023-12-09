@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Zombie : MonoBehaviour
 {
@@ -10,13 +6,12 @@ public class Zombie : MonoBehaviour
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private Player _player;
-    [SerializeField] private float _maximumDistanceToTarget;
     [SerializeField] private AudioSource _kangarooCollision;
 
     private Transform _target;
     private Obstacle _obstacle;
     private Animator _animator;
-    private bool _firstRageAreaCollision=true;
+    private bool _firstRageAreaCollision = true;
 
     private void OnEnable()
     {
@@ -38,29 +33,28 @@ public class Zombie : MonoBehaviour
     private void Update()
     {
         _target = GetTarget();
+
         if (_target.TryGetComponent(out Obstacle obstacle))
         {
-            Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y,transform.position.z);
+            Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, newPosition));
-
         }
         else
         {
             _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
-
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_firstRageAreaCollision&&other.TryGetComponent(out RageArea rageArea))
+        if (_firstRageAreaCollision && other.TryGetComponent(out RageArea rageArea))
         {
             _firstRageAreaCollision = false;
             SetObstacle(rageArea.Obstacle);
             _animator.SetTrigger("MoveTo");
             _zombieHealth.SetAngry();
             rageArea.Attacked(_zombieHealth);
+            transform.SetParent(rageArea.transform.parent);
         }
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
@@ -78,10 +72,6 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    public void OnRageAreaCollision()
-    {
-
-    }
     private void OnOstacleDestroyed()
     {
         _target = _player.transform;
@@ -91,8 +81,6 @@ public class Zombie : MonoBehaviour
     {
         _obstacle = obstacle;
     }
-
-
 
     public Transform GetTarget()
     {

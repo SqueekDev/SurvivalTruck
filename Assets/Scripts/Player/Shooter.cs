@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
@@ -11,7 +9,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
 
     private Coroutine _shooting;
-    [SerializeField]private bool _isShooting = false;
+    private bool _isShooting = false;
     private ZombieHealth _currentTarget;
 
     public ZombieHealth Target => _currentTarget;
@@ -23,19 +21,19 @@ public class Shooter : MonoBehaviour
         if (_isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
+
             if (colliders.Length > 0)
             {
                 foreach (var collider in colliders)
                 {
                     if (collider.gameObject.TryGetComponent(out ZombieHealth zombie))
                     {
-                        if (zombie.IsAngry&&zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
+                        if (zombie.IsAngry && zombie.IsDead == false && zombie.gameObject != gameObject && _shooting == null)
                         {
                             Shoot(zombie);
                             return;
                         }
                     }
-
                 }
             }
         }
@@ -51,13 +49,16 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shooting(ZombieHealth zombie)
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
+
         while (zombie.IsDead == false && _currentTarget != null
              && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
+
         {
             _weapon.Shoot(_currentTarget.transform);
             yield return null;
             yield return waitForSeconds;
         }
+
         _isShooting = false;
         _shooting = null;
         _currentTarget = null;

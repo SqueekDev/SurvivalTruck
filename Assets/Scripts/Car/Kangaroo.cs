@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Kangaroo : Cabine
@@ -37,7 +36,6 @@ public class Kangaroo : Cabine
 
     private IEnumerator ApplyingDamage(Health health)
     {
-
         yield return new WaitForSeconds(_applyingDamageDelay);
         health.TakeDamage(_damage);
     }

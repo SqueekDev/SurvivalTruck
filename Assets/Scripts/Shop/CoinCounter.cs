@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,7 +21,6 @@ public class CoinCounter : MonoBehaviour
 
     public int Count => _count;
     public int TotalEarnedCoins => _totalEarnedCoins;
-
     public int EarnModifier { get; private set; }
 
     public event UnityAction<int> CoinsAmountIncrease;
@@ -57,11 +55,6 @@ public class CoinCounter : MonoBehaviour
 
         foreach (var rageArea in _rageAreas)
             rageArea.ZombieAttacked -= OnZombieAttacked;
-    }
-
-    public void RemoveCoins(int count)
-    {
-        StartCoroutine(RemovingCoins(count));
     }
 
     private void OnAddCoinsButtonClicked()
@@ -113,5 +106,9 @@ public class CoinCounter : MonoBehaviour
     private void OnCoinsModifierUpgraded()
     {
         EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, 0);
+    }
+    public void RemoveCoins(int count)
+    {
+        StartCoroutine(RemovingCoins(count));
     }
 }

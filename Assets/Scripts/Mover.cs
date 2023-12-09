@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Mover : MonoBehaviour
@@ -13,6 +11,7 @@ public abstract class Mover : MonoBehaviour
     {
         Vector3 direction = new Vector3(destination.x, transform.position.y, destination.z) - transform.position;
         Quaternion newDirection = transform.rotation;
+
         if (direction != Vector3.zero)
         {
             newDirection = Quaternion.LookRotation(direction);

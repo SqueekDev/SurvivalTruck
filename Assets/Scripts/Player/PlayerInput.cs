@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -40,6 +38,7 @@ public class PlayerInput : MonoBehaviour
                 _animator.SetBool(Run, false);
             }
         }
+
         if (_shooter.IsShooting == false)
         {
             if (_joystick.Horizontal != 0 && _joystick.Vertical != 0)

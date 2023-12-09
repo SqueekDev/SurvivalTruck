@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -18,9 +17,11 @@ public class ZombieSpawner : MonoBehaviour
     private IEnumerator SpawnZombies()
     {
         WaitForSeconds delay = new WaitForSeconds(_delayBetweenSpawn);
+
         while (true)
         {
             float randomX = Random.Range(_xLimits.x, _xLimits.y);
+
             if (_zombiePooler.TryGetObject(out GameObject zombie))
             {
                 float startY = 0.5f;
@@ -30,6 +31,7 @@ public class ZombieSpawner : MonoBehaviour
                 zombie.transform.rotation = Quaternion.identity;
                 zombie.SetActive(true);
             }
+
             yield return null;
             yield return delay;
         }

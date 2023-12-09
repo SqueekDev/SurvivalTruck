@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -22,7 +20,6 @@ public class LevelChanger : MonoBehaviour
 
     public int BossLevelNumber => _bossLevelNubmerDivider;
     public bool IsWave => _isWave;
-
     public int CurrentLevelNumber { get; private set; } = 1;
 
     public event UnityAction<int> Changed;
@@ -85,7 +82,7 @@ public class LevelChanger : MonoBehaviour
 
     private void OnWaveEnded()
     {
-        _isWave=false;
+        _isWave = false;
         _changeLevelArea.gameObject.SetActive(true);
         CurrentLevelNumber++;
 

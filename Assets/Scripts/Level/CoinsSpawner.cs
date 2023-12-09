@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinsSpawner : MonoBehaviour
@@ -27,6 +25,7 @@ public class CoinsSpawner : MonoBehaviour
     public void CreateCoin(Health spawnPoint)
     {
         int randomCoinsCount = Random.Range(0,_maxCoinsCount);
+
         for (int i = 0; i < randomCoinsCount; i++)
         {
             if (_coinsPooler.TryGetObject(out GameObject pooledObject)&&
@@ -38,6 +37,5 @@ public class CoinsSpawner : MonoBehaviour
                 _coinsSound.Play();
             }
         }
-
     }
 }

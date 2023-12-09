@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : StateMachineBehaviour
 {
     [SerializeField] private float _attackDistance;
+
     private Zombie _zombie;
     private ZombieAttacker _zombieAttacker;
     private Transform _target;
@@ -17,7 +16,8 @@ public class Attack : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _target = _zombie.GetTarget();
-        if (Vector3.Distance(_zombie.transform.position,_target.position)<_attackDistance)
+
+        if (Vector3.Distance(_zombie.transform.position, _target.position) < _attackDistance)
         {
             if (_target.TryGetComponent(out Obstacle obstacle))
             {
@@ -28,6 +28,5 @@ public class Attack : StateMachineBehaviour
                 _zombieAttacker.Attack(player);
             }
         }
-
     }
 }
