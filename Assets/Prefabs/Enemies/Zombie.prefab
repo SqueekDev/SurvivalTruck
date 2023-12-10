@@ -83,13 +83,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452346760094399331}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 511ca197f7c63a74c8e33a97ce033ea6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.27
-  m_Height: 1.71
+  m_Radius: 0.2
+  m_Height: 1.5378447
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.7139224, z: 0}
 --- !u!114 &4191716626977275584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,6 @@ MonoBehaviour:
   _timeBetweenAttacks: 1
   _startDamage: 0
   _levelChanger: {fileID: 0}
-  _isAttacking: 0
 --- !u!114 &4815710542013469597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +168,6 @@ MonoBehaviour:
   _zombieAttacker: {fileID: 7154820901196419258}
   _zombieHealth: {fileID: 4191716626977275584}
   _player: {fileID: 0}
-  _maximumDistanceToTarget: 300
   _kangarooCollision: {fileID: 7618092376629469359}
 --- !u!82 &7618092376629469359
 AudioSource:
