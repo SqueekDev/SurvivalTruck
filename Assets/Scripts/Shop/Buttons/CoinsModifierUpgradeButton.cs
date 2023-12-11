@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
 public class CoinsModifierUpgradeButton : UpgradeButton
@@ -13,12 +10,12 @@ public class CoinsModifierUpgradeButton : UpgradeButton
     {
         base.OnEnable();
         UpgradeabilityCheck(PlayerPrefsKeys.CoinsModifier, _startValue);
+        _startValue = CoinCounter.EarnModifier;
+        Renew(PlayerPrefsKeys.CoinsModifier, _startValue, PlayerPrefsKeys.UpgradeCoinsModifierPrice);
     }
 
     private void Start()
     {
-        _startValue = CoinCounter.EarnModifier;
-        Renew(PlayerPrefsKeys.CoinsModifier, _startValue, PlayerPrefsKeys.UpgradeCoinsModifierPrice);
     }
 
     protected override void OnUpgradeButtonClick()

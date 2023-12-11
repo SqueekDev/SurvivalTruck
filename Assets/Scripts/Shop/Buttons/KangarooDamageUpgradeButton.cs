@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,10 +13,6 @@ public class KangarooDamageUpgradeButton : UpgradeButton
     {
         base.OnEnable();
         UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
-    }
-
-    private void Start()
-    {
         _startDamage = _kangaroo.Damage;
         Renew(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
     }

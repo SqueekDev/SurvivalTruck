@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 392685225049792127}
   - component: {fileID: 392685225049792126}
   - component: {fileID: 392685225049792121}
-  - component: {fileID: 392685225049792120}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -122,16 +121,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &392685225049792120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392685225049792123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb7ae5c1ea1898a469f1d3845b1ca425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 392685225049792121}

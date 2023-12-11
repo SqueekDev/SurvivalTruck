@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,10 +13,6 @@ public class PlayerHealthUpgradeButton : UpgradeButton
     {
         base.OnEnable();
         UpgradeabilityCheck(PlayerPrefsKeys.PlayerHealth, _startHealth);
-    }
-
-    private void Start()
-    {
         _startHealth = _player.MaxHealth;
         Renew(PlayerPrefsKeys.PlayerHealth, _startHealth, PlayerPrefsKeys.UpgradePlayerHealthPrice);
     }

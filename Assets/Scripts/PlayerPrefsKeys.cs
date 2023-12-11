@@ -16,4 +16,5 @@ public static class PlayerPrefsKeys
     public const string CurrentCoinsCount = "CurrentCoins";
     public const string TotalEarnedCoins = "TotalEarnedCoins";
     public const string Sound = "Sound";
+    public const string Language = "Language";
 }

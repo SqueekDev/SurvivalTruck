@@ -1,31 +1,18 @@
 using TMPro;
 using UnityEngine;
+using Lean.Localization;
 
 public class UpgradeButtonView : MonoBehaviour
 {
-    [SerializeField] private UpgradeButton _upgradeButton;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _coinsPriceText;
+    [SerializeField] private LeanPhrase _phrase;
 
     private string _startDescription;
 
-    private void Awake()
+    public virtual void ChangeValues(int upgradeValue, int currentValue, int price)
     {
-        _startDescription = _descriptionText.text;
-    }
-
-    private void OnEnable()
-    {
-        _upgradeButton.ValuesChanged += OnValuesChanged;
-    }
-
-    private void OnDisable()
-    {
-        _upgradeButton.ValuesChanged -= OnValuesChanged;        
-    }
-
-    protected virtual void OnValuesChanged(int upgradeValue, int currentValue, int price)
-    {
+        _startDescription = LeanLocalization.GetTranslationText(_phrase.name);
         _descriptionText.text = "+" + upgradeValue.ToString() + " " + _startDescription + currentValue.ToString();
         _coinsPriceText.text = price.ToString();
     }

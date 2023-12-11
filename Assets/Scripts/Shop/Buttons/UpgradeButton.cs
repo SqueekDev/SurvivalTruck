@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,13 +13,14 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private GameButton _gameButton;
     [SerializeField] private ShopView _upgradesPanel;
+    [SerializeField] private UpgradeButtonView _upgradeButtonView;
 
     protected CoinCounter CoinCounter => _coins;
 
     public int MaxValue => _maxValue;
 
-    public event UnityAction<int, int, int> ValuesChanged;
     public event UnityAction SkillUpgraded;
+    public event UnityAction<int, int, int> ValuesUpgraded;
 
     protected virtual void OnEnable()
     {
@@ -43,7 +41,7 @@ public class UpgradeButton : MonoBehaviour
         int currentValue = PlayerPrefs.GetInt(playerPrefsCurrentValue, defaultValue);
         _price = PlayerPrefs.GetInt(playerPrefsPrice, _price);
         UpgradeabilityCheck(playerPrefsCurrentValue, defaultValue);
-        ValuesChanged?.Invoke(_upgradeValue, currentValue, _price);
+        _upgradeButtonView.ChangeValues(_upgradeValue, currentValue, _price);
     }
 
     protected void BuyUpgrade(string playerPrefsCurrentValue, int defaultValue, string playerPrefsPrice)
@@ -59,7 +57,7 @@ public class UpgradeButton : MonoBehaviour
             _price += (int)((float)_price * PriceIncreace);
             PlayerPrefs.SetInt(playerPrefsPrice, _price);
             SkillUpgraded?.Invoke();
-            ValuesChanged?.Invoke(_upgradeValue, PlayerPrefs.GetInt(playerPrefsCurrentValue), _price);
+            _upgradeButtonView.ChangeValues(_upgradeValue, PlayerPrefs.GetInt(playerPrefsCurrentValue), _price);
         }
     }
 
