@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Kangaroo : Cabine
 {
@@ -9,6 +10,8 @@ public class Kangaroo : Cabine
     [SerializeField] private float _applyingDamageDelay=0.5f;
 
     public int Damage => _damage;
+
+    public event UnityAction<ZombieHealth> ZombieHited;
 
     private void Awake()
     {
@@ -27,11 +30,13 @@ public class Kangaroo : Cabine
 
     private void OnCollisionEnter(Collision collision)
     {
-
-        if (collision.gameObject.TryGetComponent(out Health health))
-            StartCoroutine(ApplyingDamage(health));
-        _poofKangarooPartical.transform.position = health.transform.position;
-        _poofKangarooPartical.Play();
+        if (collision.gameObject.TryGetComponent(out ZombieHealth zombie))
+        {
+            ZombieHited?.Invoke(zombie);
+            StartCoroutine(ApplyingDamage(zombie));
+            _poofKangarooPartical.transform.position = zombie.transform.position;
+            _poofKangarooPartical.Play();
+        }
     }
 
     private IEnumerator ApplyingDamage(Health health)

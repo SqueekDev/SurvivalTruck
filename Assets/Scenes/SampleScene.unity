@@ -168,7 +168,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
@@ -3933,6 +3933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1664274067, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2284538344701291525, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: m_Name
       value: CoinSpawner
@@ -3941,6 +3945,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 8141956493425255387}
+    - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: _coinsPooler
       value: 
@@ -4116,6 +4124,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1863301648, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 473494215648510235, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2012537276855655584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _joystick
       value: 
@@ -4232,6 +4248,10 @@ PrefabInstance:
       propertyPath: _upgradePanel
       value: 
       objectReference: {fileID: 110423820}
+    - target: {fileID: 3776579546707071841, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4263,6 +4283,14 @@ PrefabInstance:
     - target: {fileID: 5263502733032369212, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: m_Volume
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263502733032369212, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
@@ -5611,6 +5639,14 @@ PrefabInstance:
       propertyPath: _adShower
       value: 
       objectReference: {fileID: 387104255}
+    - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
+      propertyPath: _kangaroo
+      value: 
+      objectReference: {fileID: 404730989}
+    - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
       propertyPath: _addCoinsPanel
       value: 

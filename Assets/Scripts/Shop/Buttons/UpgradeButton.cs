@@ -20,7 +20,6 @@ public class UpgradeButton : MonoBehaviour
     public int MaxValue => _maxValue;
 
     public event UnityAction SkillUpgraded;
-    public event UnityAction<int, int, int> ValuesUpgraded;
 
     protected virtual void OnEnable()
     {

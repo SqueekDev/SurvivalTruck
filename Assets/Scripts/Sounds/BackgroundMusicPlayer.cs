@@ -10,8 +10,6 @@ public class BackgroundMusicPlayer : MonoBehaviour
     [SerializeField] private AudioClip _normalLevelMusic;
     [SerializeField] private AudioClip _bossLevelMusic;
 
-    private bool _isBossLevel = false;
-
     private void Awake()
     {
         ChangeMusic(_normalLevelMusic, NormalLevelVolume);
@@ -37,7 +35,6 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     private void OnBossLevelStarted()
     {
-        _isBossLevel = true;
         _audioSource.Stop();
         ChangeMusic(_bossLevelMusic, BossLevelVolume);
         _audioSource.Play();
@@ -45,7 +42,6 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     private void OnBossLevelEnded()
     {
-        _isBossLevel = false;
         _audioSource.Stop();
         ChangeMusic(_normalLevelMusic, NormalLevelVolume);
         _audioSource.Play();

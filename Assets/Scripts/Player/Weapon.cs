@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private int _delayModifier;
     [SerializeField] private AudioSource _bulletSound;
+    [SerializeField] private ParticleSystem _shootEffect;
 
     private Bullet _currentBulletTemplate;
 
@@ -49,6 +50,16 @@ public class Weapon : MonoBehaviour
         _levelChanger.BossLevelEnded -= ChangeToStartBullet;
     }
 
+    public void Shoot(Transform target)
+    {
+        Bullet bullet = Instantiate(_currentBulletTemplate, _shootPoint.transform.position, Quaternion.identity);
+        bullet.SetSpeed(_bulletSpeed);
+        bullet.SetDamage(_damage);
+        bullet.MoveTo(target.transform);
+        _bulletSound.Play();
+        _shootEffect.Play();
+    }
+
     private void OnDamageUpgraded()
     {
         _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.WeaponDamage, _damage);
@@ -67,13 +78,5 @@ public class Weapon : MonoBehaviour
     private void ChangeToStartBullet()
     {
         _currentBulletTemplate = _standartBulletTemplate;
-    }
-    public void Shoot(Transform target)
-    {
-        Bullet bullet = Instantiate(_currentBulletTemplate, _shootPoint.transform.position, Quaternion.identity);
-        bullet.SetSpeed(_bulletSpeed);
-        bullet.SetDamage(_damage);
-        bullet.MoveTo(target.transform);
-        _bulletSound.Play();
     }
 }

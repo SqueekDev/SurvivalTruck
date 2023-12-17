@@ -11,6 +11,7 @@ public class CoinCounter : MonoBehaviour
     private const int LevelModifierCorrection = 1;
 
     [SerializeField] private List<RageArea> _rageAreas;
+    [SerializeField] private Kangaroo _kangaroo;
     [SerializeField] private Boss _boss;
     [SerializeField] private CoinsModifierUpgradeButton _coinsModifierUpgradeButton;
     [SerializeField] private AdShower _adShower;
@@ -44,9 +45,12 @@ public class CoinCounter : MonoBehaviour
         _coinsModifierUpgradeButton.CoinsModifierUpgraded += OnCoinsModifierUpgraded;
         _adShower.VideoAdShowed += OnVideoAdShowed;
         _addCoinsButton.Clicked += OnAddCoinsButtonClicked;
+        _kangaroo.ZombieHited += OnZombieAttacked;
 
         foreach (var rageArea in _rageAreas)
+        {
             rageArea.ZombieAttacked += OnZombieAttacked;
+        }
     }
 
     private void OnDisable()
@@ -55,9 +59,12 @@ public class CoinCounter : MonoBehaviour
         _coinsModifierUpgradeButton.CoinsModifierUpgraded -= OnCoinsModifierUpgraded;
         _adShower.VideoAdShowed -= OnVideoAdShowed;
         _addCoinsButton.Clicked -= OnAddCoinsButtonClicked;
+        _kangaroo.ZombieHited -= OnZombieAttacked;
 
         foreach (var rageArea in _rageAreas)
+        {
             rageArea.ZombieAttacked -= OnZombieAttacked;
+        }
     }
 
     private void OnAddCoinsButtonClicked()
@@ -92,6 +99,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnZombieAttacked(ZombieHealth zombie)
     {
+        zombie.Died -= OnZombieDied;
         zombie.Died += OnZombieDied;
         _currentZombieReward = zombie.Reward;
     }
