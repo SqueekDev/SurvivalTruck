@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Agava.YandexGames;
+using Lean.Localization;
 
 public class LeaderboardDataChanger : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class LeaderboardDataChanger : MonoBehaviour
     [SerializeField] private LeaderboardButton _leaderboardButton;
     [SerializeField] private CoinCounter _coinCounter;
     [SerializeField] private GameButton _loginAcceptButton;
+    [SerializeField] private LeanPhrase _anonymousText;
 
 
     private List<LeaderboardPlayer> _leaderboardPlayers = new List<LeaderboardPlayer>();
@@ -85,7 +86,9 @@ public class LeaderboardDataChanger : MonoBehaviour
                 string playerName = result.entries[i].player.publicName;
 
                 if (string.IsNullOrEmpty(playerName))
-                    playerName = "Anonymous";
+                {
+                    playerName = LeanLocalization.GetTranslationText(_anonymousText.name);
+                }
 
                 _leaderboardPlayers.Add(new LeaderboardPlayer(number, playerName, level));
             }

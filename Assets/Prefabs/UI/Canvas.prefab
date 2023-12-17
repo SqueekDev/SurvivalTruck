@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 174882319}
   - component: {fileID: 5171478112951004930}
   m_Layer: 5
-  m_Name: CloseButton
+  m_Name: CloseSettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 8779269278545146284}
   - component: {fileID: 5451852648060606116}
   m_Layer: 5
-  m_Name: CloseButton
+  m_Name: CloseLeaderboardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9685,7 +9685,7 @@ GameObject:
   - component: {fileID: 2829731176773962170}
   - component: {fileID: 3778326968796418072}
   m_Layer: 5
-  m_Name: CloseButton
+  m_Name: CloseCoinsAddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10657,7 +10657,7 @@ GameObject:
   - component: {fileID: 5918182747055184064}
   - component: {fileID: 8773158001749788788}
   m_Layer: 5
-  m_Name: CloseButton
+  m_Name: CloseLoginPanelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13737,7 +13737,7 @@ GameObject:
   - component: {fileID: 9150028077498401215}
   - component: {fileID: 328617109327674105}
   m_Layer: 5
-  m_Name: CloseButton
+  m_Name: CloseShopButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14796,7 +14796,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 57c6ed33b281ffd4b924747d471883d6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aa9f316c9aaa8034982ab6df1af36dad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

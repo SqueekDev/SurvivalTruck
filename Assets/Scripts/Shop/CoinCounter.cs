@@ -7,6 +7,8 @@ public class CoinCounter : MonoBehaviour
 {
     private const int BossEarnModifier = 10;
     private const int AdReward = 100;
+    private const int AdRewardLevelModifier = 10;
+    private const int LevelModifierCorrection = 1;
 
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private Boss _boss;
@@ -14,6 +16,7 @@ public class CoinCounter : MonoBehaviour
     [SerializeField] private AdShower _adShower;
     [SerializeField] private GameButton _addCoinsButton;
     [SerializeField] private GamePanel _addCoinsPanel;
+    [SerializeField] private LevelChanger _levelChanger;
 
     private int _count;
     private int _totalEarnedCoins;
@@ -64,6 +67,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnVideoAdShowed()
     {
+        int reward = AdReward + AdRewardLevelModifier * (_levelChanger.CurrentLevelNumber - LevelModifierCorrection);
         AddCoins(AdReward);
         _addCoinsPanel.gameObject.SetActive(false);
     }

@@ -8,6 +8,7 @@ public class RepairZone : MonoBehaviour
     [SerializeField] private ParticleSystem _repairParticles;
     [SerializeField] private Instruments _flyingInstruments;
     [SerializeField] private Instruments _repairInstruments;
+    [SerializeField] private AudioSource _audioSource;
 
     private Coroutine _repairCorutine;
     private float _currentTime;
@@ -21,6 +22,7 @@ public class RepairZone : MonoBehaviour
 
     private IEnumerator Repair()
     {
+        _audioSource.Play();
         _flyingInstruments.gameObject.SetActive(false);
         _repairInstruments.gameObject.SetActive(true);
         _currentTime = 0;
@@ -33,6 +35,7 @@ public class RepairZone : MonoBehaviour
         }
 
         _repairParticles.Play();
+        _audioSource.Stop();
         Repaired?.Invoke();
         _repairInstruments.gameObject.SetActive(false);
     }
@@ -40,7 +43,10 @@ public class RepairZone : MonoBehaviour
     private void StopRepair()
     {
         if (_repairCorutine != null)
+        {
+            _audioSource.Stop();
             StopCoroutine(_repairCorutine);
+        }
 
         _repairInstruments.gameObject.SetActive(false);
         _flyingInstruments.gameObject.SetActive(true);

@@ -29,6 +29,7 @@ public class LevelChanger : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         _currentScene = SceneManager.GetActiveScene();
         _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber, 1);
         SyncLevelNumber();
@@ -95,7 +96,6 @@ public class LevelChanger : MonoBehaviour
     private void OnBossDied(Health boss)
     {
         BossLevelEnded?.Invoke();
-        OnWaveEnded();
     }
 
     private void OnPlayerDied(Health player)

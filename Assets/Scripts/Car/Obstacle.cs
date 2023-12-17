@@ -13,7 +13,9 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private WaveController _waveController;
     [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
     [SerializeField] private ParticleSystem _poofParticle;
-    [SerializeField] private AudioSource _destroyFenceSound;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _woodHitSound;
+    [SerializeField] private AudioClip _destroyWoodSound;
 
     private int _currentHealth;
     private bool _upperBlockDestroyed;
@@ -50,6 +52,41 @@ public class Obstacle : MonoBehaviour
         _obstacleHealthUpgradeButton.HealthUpgraded -= OnHealthUpgraded;
     }
 
+    public void ApplyDamade(int damage)
+    {
+        _currentHealth -= damage;
+        _audioSource.PlayOneShot(_woodHitSound);
+
+        if (_currentHealth < _maxHealth && _upperBlockDestroyed == false)
+        {
+            PlayDestroyEffects();
+            UpperBlockDestroyed?.Invoke();
+            _upperBlockDestroyed = true;
+        }
+
+        if (_currentHealth < _maxHealth / HalfHPDivider && _middleBlockDestroyed == false)
+        {
+            PlayDestroyEffects();
+            MiddleBlockDestroyed?.Invoke();
+            _middleBlockDestroyed = true;
+        }
+
+        if (_currentHealth <= 0 && _lowerBlockDestroyed == false)
+        {
+            PlayDestroyEffects();
+            LowerBlockDestroyed?.Invoke();
+            _currentHealth = 0;
+            _lowerBlockDestroyed = true;
+            IsDestroyed = true;
+        }
+    }
+
+    private void PlayDestroyEffects()
+    {
+        _poofParticle.Play();
+        _audioSource.PlayOneShot(_destroyWoodSound);
+    }
+
     private void OnLevelChanged(int level)
     {
         _repairZone.gameObject.SetActive(false);
@@ -76,36 +113,5 @@ public class Obstacle : MonoBehaviour
     {
         _maxHealth = PlayerPrefs.GetInt(PlayerPrefsKeys.ObstacleHealth, _maxHealth);
         OnRepaired();
-    }
-
-    public void ApplyDamade(int damage)
-    {
-        _currentHealth -= damage;
-
-        if (_currentHealth < _maxHealth && _upperBlockDestroyed == false)
-        {
-            _poofParticle.Play();
-            _destroyFenceSound.Play();
-            UpperBlockDestroyed?.Invoke();
-            _upperBlockDestroyed = true;
-        }
-
-        if (_currentHealth < _maxHealth / HalfHPDivider && _middleBlockDestroyed == false)
-        {
-            _poofParticle.Play();
-            _destroyFenceSound.Play();
-            MiddleBlockDestroyed?.Invoke();
-            _middleBlockDestroyed = true;
-        }
-
-        if (_currentHealth <= 0 && _lowerBlockDestroyed == false)
-        {
-            _poofParticle.Play();
-            _destroyFenceSound.Play();
-            LowerBlockDestroyed?.Invoke();
-            _currentHealth = 0;
-            _lowerBlockDestroyed = true;
-            IsDestroyed = true;
-        }
-    }
+    }    
 }

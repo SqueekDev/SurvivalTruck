@@ -67,8 +67,6 @@ public class Localization : MonoBehaviour
 #endif
             if (_systemLanguage != null)
             {
-                Debug.Log("NOT NULL");
-
                 if (_systemLanguage == EnglishCode)
                     SetLanguage(English, EnglishNumber);
                 else if (_systemLanguage == RussianCode)
@@ -80,7 +78,6 @@ public class Localization : MonoBehaviour
             }
             else
             {
-                Debug.Log("NULL");
                 SetLanguage(English, EnglishNumber);
             }
         }
