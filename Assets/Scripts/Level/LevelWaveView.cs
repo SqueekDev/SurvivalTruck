@@ -25,7 +25,7 @@ public class LevelWaveView : MonoBehaviour
     {
         _levelNumberText.text = levelNumber.ToString();
         _slider.maxValue = zombiesInWave;
-        _slider.value = 0;
+        _slider.value = GlobalValues.Zero;
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)
@@ -40,6 +40,8 @@ public class LevelWaveView : MonoBehaviour
         _waveViewAnimation.Play();
 
         if (_slider.value == _slider.maxValue)
+        {
             gameObject.SetActive(false);
+        }
     }
 }

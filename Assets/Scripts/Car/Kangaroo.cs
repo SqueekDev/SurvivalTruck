@@ -1,17 +1,17 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Kangaroo : Cabine
 {
     [SerializeField] private int _damage;
     [SerializeField] private KangarooDamageUpgradeButton _kangarooDamageUpgradeButton;
     [SerializeField] private ParticleSystem _poofKangarooPartical;
-    [SerializeField] private float _applyingDamageDelay=0.5f;
+    [SerializeField] private float _applyingDamageDelay = 0.5f;
+
+    public event Action<ZombieHealth> ZombieHited;
 
     public int Damage => _damage;
-
-    public event UnityAction<ZombieHealth> ZombieHited;
 
     private void Awake()
     {

@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerHealthUpgradeButton : UpgradeButton
 {
@@ -7,7 +7,7 @@ public class PlayerHealthUpgradeButton : UpgradeButton
 
     private int _startHealth;
 
-    public event UnityAction HealthUpgraded;
+    public event Action HealthUpgraded;
 
     protected override void OnEnable()
     {

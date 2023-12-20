@@ -24,10 +24,7 @@ public class StartMenuSoundMuter : MonoBehaviour
 
     protected virtual void OnInBackgroundChange(bool inBackground)
     {
-        if (inBackground)
-            AudioListener.pause = inBackground;
-        else
-            AudioListener.pause = inBackground;
+        AudioListener.pause = inBackground;
     }
 
     private void OnMuted(bool isMuted)

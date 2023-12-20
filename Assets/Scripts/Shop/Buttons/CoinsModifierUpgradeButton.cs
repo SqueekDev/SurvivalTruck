@@ -1,10 +1,10 @@
-using UnityEngine.Events;
+using System;
 
 public class CoinsModifierUpgradeButton : UpgradeButton
 {
     private int _startValue;
 
-    public event UnityAction CoinsModifierUpgraded;
+    public event Action CoinsModifierUpgraded;
 
     protected override void OnEnable()
     {

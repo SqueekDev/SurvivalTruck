@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GamePanel : MonoBehaviour
 {
-    public event UnityAction Opened;
-    public event UnityAction Closed;
+    public event Action Opened;
+    public event Action Closed;
 
     protected virtual void OnEnable()
     {

@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WeaponShootDelayUpgradeButton : UpgradeButton
 {
@@ -7,7 +7,7 @@ public class WeaponShootDelayUpgradeButton : UpgradeButton
 
     private int _startShootDelay;
 
-    public event UnityAction ShootDelayUpgraded;
+    public event Action ShootDelayUpgraded;
 
     protected override void OnEnable()
     {

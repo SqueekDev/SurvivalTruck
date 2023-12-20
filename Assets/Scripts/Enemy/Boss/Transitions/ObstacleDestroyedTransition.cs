@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleDestroyedTransition : BossTransition
@@ -9,6 +7,8 @@ public class ObstacleDestroyedTransition : BossTransition
     private void Update()
     {
         if (_obstacle.IsDestroyed)
+        {
             NeedTransit = true;
+        }
     }
 }

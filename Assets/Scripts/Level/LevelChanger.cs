@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
@@ -18,19 +18,19 @@ public class LevelChanger : MonoBehaviour
     private bool _isWave = false;
     private Scene _currentScene;
 
+    public event Action<int> Changed;
+    public event Action LevelFinished;
+    public event Action BossLevelStarted;
+    public event Action BossLevelEnded;
+
     public int BossLevelNumber => _bossLevelNubmerDivider;
     public bool IsWave => _isWave;
     public int CurrentLevelNumber { get; private set; } = 1;
 
-    public event UnityAction<int> Changed;
-    public event UnityAction LevelFinished;
-    public event UnityAction BossLevelStarted;
-    public event UnityAction BossLevelEnded;
-
     private void Awake()
     {
         _currentScene = SceneManager.GetActiveScene();
-        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber, 1);
+        _playerPrefsSavedLevelNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber, CurrentLevelNumber);
         SyncLevelNumber();
     }
 
@@ -62,7 +62,9 @@ public class LevelChanger : MonoBehaviour
     private void SyncLevelNumber()
     {
         if (_playerPrefsSavedLevelNumber > CurrentLevelNumber)
+        {
             CurrentLevelNumber = _playerPrefsSavedLevelNumber;
+        }
         else
         {
             _playerPrefsSavedLevelNumber = CurrentLevelNumber;
@@ -73,8 +75,10 @@ public class LevelChanger : MonoBehaviour
 
     private void ChangeLevel()
     {
-        if (CurrentLevelNumber % _bossLevelNubmerDivider == 0)
+        if (CurrentLevelNumber % _bossLevelNubmerDivider == GlobalValues.Zero)
+        {
             BossLevelStarted?.Invoke();
+        }
 
         _isWave = true;
         Changed?.Invoke(CurrentLevelNumber);
@@ -87,7 +91,9 @@ public class LevelChanger : MonoBehaviour
         CurrentLevelNumber++;
 
         if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
+        {
             SyncLevelNumber();
+        }
 
         LevelFinished?.Invoke();
     }

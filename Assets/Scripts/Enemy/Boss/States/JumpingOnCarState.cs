@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpingOnCarState : BossState
@@ -13,7 +11,6 @@ public class JumpingOnCarState : BossState
 
     protected WoodBlock Target => _target;
     protected float ZOffset => _zOffset;
-
     protected Animator BossAnimator { get; private set; }
 
     private void Awake()

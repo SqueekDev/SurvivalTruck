@@ -20,6 +20,16 @@ public class LeaderboardView : MonoBehaviour
         _leaderboardDataChanger.Created -= OnCreated;
     }
 
+    private void Clear()
+    {
+        foreach (var playerView in _leaderboardPlayerViews)
+        {
+            Destroy(playerView.gameObject);
+        }
+
+        _leaderboardPlayerViews.Clear();
+    }
+
     private void OnCreated(List<LeaderboardPlayer> leaderboardPlayers)
     {
         Clear();
@@ -30,13 +40,5 @@ public class LeaderboardView : MonoBehaviour
             leaderboardPlayerView.Init(player.Number, player.Name, player.Score);
             _leaderboardPlayerViews.Add(leaderboardPlayerView);
         }
-    }
-
-    private void Clear()
-    {
-        foreach (var playerView in _leaderboardPlayerViews)
-            Destroy(playerView.gameObject);
-
-        _leaderboardPlayerViews.Clear();
     }
 }

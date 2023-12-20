@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Boss))]
@@ -58,6 +57,8 @@ public class AttackState : BossState
     private void StopAttackCorutine()
     {
         if (_attackCorutine != null)
+        {
             StopCoroutine(StartAttack());
+        }
     }
 }

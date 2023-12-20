@@ -22,13 +22,13 @@ public class StoneSpawner : MonoBehaviour
         while (spawnPosition.z < _endPoint.position.z)
         {
             float spread = Random.Range(-_spawnSpread, _spawnSpread);
-            EnviromentElements template = _templates[Random.Range(0, _templates.Count)];
+            EnviromentElements template = _templates[Random.Range(GlobalValues.Zero, _templates.Count)];
             spawnPosition.x += spread;
             EnviromentElements stone = Instantiate(template, spawnPosition, Quaternion.identity, transform);
             spawnPosition.x -= spread;
             int startRotation = 90;
-            float rotationY = startRotation * Random.Range(0, _rotationModifier);
-            stone.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+            float rotationY = startRotation * Random.Range(GlobalValues.Zero, _rotationModifier);
+            stone.transform.rotation = Quaternion.Euler(GlobalValues.Zero, rotationY, GlobalValues.Zero);
             spawnPosition.z += _spawnPositionOffset;
         }
     }

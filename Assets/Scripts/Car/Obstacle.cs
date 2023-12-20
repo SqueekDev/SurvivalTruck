@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Obstacle : MonoBehaviour
 {
@@ -22,14 +22,13 @@ public class Obstacle : MonoBehaviour
     private bool _middleBlockDestroyed;
     private bool _lowerBlockDestroyed;
 
+    public event Action UpperBlockDestroyed;
+    public event Action MiddleBlockDestroyed;
+    public event Action LowerBlockDestroyed;
+    public event Action BlocksRepaired;
+
     public int MaxHealth => _maxHealth;
-
     public bool IsDestroyed { get; private set; }
-
-    public event UnityAction UpperBlockDestroyed;
-    public event UnityAction MiddleBlockDestroyed;
-    public event UnityAction LowerBlockDestroyed;
-    public event UnityAction BlocksRepaired;
 
     private void OnEnable()
     {
@@ -95,7 +94,9 @@ public class Obstacle : MonoBehaviour
     private void OnWaveEnded()
     {
         if (_currentHealth < _maxHealth)
+        {
             _repairZone.gameObject.SetActive(true);
+        }
     }
 
     private void OnRepaired()

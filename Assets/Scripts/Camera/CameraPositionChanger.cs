@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraPositionChanger : MonoBehaviour
 {
@@ -11,9 +11,9 @@ public class CameraPositionChanger : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
 
     private Coroutine _moveCoroutine;
-
-    public event UnityAction Descended;
-    public event UnityAction Climbed;
+    
+    public event Action Descended;
+    public event Action Climbed;
 
     private void OnEnable()
     {
@@ -27,24 +27,10 @@ public class CameraPositionChanger : MonoBehaviour
         _levelChanger.BossLevelEnded -= OnBossLevelEnded;
     }
 
-    private void OnBossLevelStarted()
+    private IEnumerator MoveToTarget(Action action)
     {
-        transform.parent = _lowerPoint.transform;
-        CheckCorutine(_moveCoroutine);
-        _moveCoroutine = StartCoroutine(MoveToTarget(Descended));
-    }
-
-    private void OnBossLevelEnded()
-    {
-        transform.parent = _upperPoint.transform;
-        CheckCorutine(_moveCoroutine);
-        _moveCoroutine = StartCoroutine(MoveToTarget(Climbed));
-    }
-
-    private IEnumerator MoveToTarget(UnityAction action)
-    {
-        Vector3 newPosition = new Vector3(0, 0, 0);
-        Quaternion newAngle = Quaternion.Euler(0, 0, 0);
+        Vector3 newPosition = new Vector3(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
+        Quaternion newAngle = Quaternion.Euler(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
 
         while (transform.localPosition != newPosition)
         {
@@ -61,6 +47,22 @@ public class CameraPositionChanger : MonoBehaviour
     private void CheckCorutine(Coroutine coroutine)
     {
         if (coroutine != null)
+        {
             StopCoroutine(coroutine);
+        }
+    }
+
+    private void OnBossLevelStarted()
+    {
+        transform.parent = _lowerPoint.transform;
+        CheckCorutine(_moveCoroutine);
+        _moveCoroutine = StartCoroutine(MoveToTarget(Descended));
+    }
+
+    private void OnBossLevelEnded()
+    {
+        transform.parent = _upperPoint.transform;
+        CheckCorutine(_moveCoroutine);
+        _moveCoroutine = StartCoroutine(MoveToTarget(Climbed));
     }
 }

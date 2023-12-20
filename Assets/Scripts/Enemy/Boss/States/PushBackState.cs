@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PushBackState : JumpingOnCarState
 {
+    private const string FallingBoolName = "Fall";
+
     [SerializeField] private HealthBar _headHealthBar;
     [SerializeField] private Collider _bossCollider;
 
-    private const string FallingBoolName = "Fall";
-
-    public event UnityAction Fell;
+    public event Action Fell;
 
     protected override void OnEnable()
     {
@@ -27,6 +25,8 @@ public class PushBackState : JumpingOnCarState
     private void Update()
     {
         if (Target.transform.position.z - transform.position.z > ZOffset)
+        {
             Fell?.Invoke();
+        }
     }
 }

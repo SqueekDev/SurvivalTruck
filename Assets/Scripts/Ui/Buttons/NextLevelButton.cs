@@ -11,7 +11,7 @@ public class NextLevelButton : GameButton
     {
         base.OnEnable();
 
-        if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == 0)
+        if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == GlobalValues.Zero)
         {
             _nextLevelText.gameObject.SetActive(false);
             _bossLevelText.gameObject.SetActive(true);

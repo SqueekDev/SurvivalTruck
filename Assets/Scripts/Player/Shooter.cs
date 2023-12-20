@@ -9,11 +9,10 @@ public class Shooter : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
 
     private Coroutine _shooting;
-    private bool _isShooting = false;
     private ZombieHealth _currentTarget;
+    private bool _isShooting = false;
 
     public ZombieHealth Target => _currentTarget;
-
     public bool IsShooting => _isShooting;
 
     private void Update()
@@ -22,7 +21,7 @@ public class Shooter : MonoBehaviour
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
 
-            if (colliders.Length > 0)
+            if (colliders.Length > GlobalValues.Zero)
             {
                 foreach (var collider in colliders)
                 {
@@ -50,9 +49,7 @@ public class Shooter : MonoBehaviour
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
 
-        while (zombie.IsDead == false && _currentTarget != null
-             && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
-
+        while (zombie.IsDead == false && _currentTarget != null && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
         {
             _weapon.Shoot(_currentTarget.transform);
             yield return null;

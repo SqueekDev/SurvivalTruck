@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using System.Collections;
 using UnityEngine;
 
@@ -22,55 +21,16 @@ public class ZombieMover : Mover
     private Rigidbody _rigidbody;
     private Transform _jumpPoint;
     private Vector3 _startRotationAngle;
+    private float _startYRotation = 180f;
+    private float _startXRotation = 0f;
+    private float _startZRotation = 0f;
 
     private void Start()
     {
-        _startRotationAngle = new Vector3(0, 180, 0);
+        _startRotationAngle = new Vector3(_startXRotation, _startYRotation, _startZRotation);
         transform.eulerAngles = _startRotationAngle;
         _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    private IEnumerator ThrowingAway(Transform targetFrom)
-    {
-        float randomX = Random.Range(_throwAwayOffsetX.x, _throwAwayOffsetX.y);
-        float randomZ = Random.Range(_throwAwayOffsetZ.x, _throwAwayOffsetZ.y);
-        float newPositionX, newPositionY, newPositionZ;
-
-        if (transform.position.x > targetFrom.position.x)
-        {
-            newPositionX = transform.position.x + randomX;
-        }
-        else
-        {
-            newPositionX = transform.position.x - randomX;
-        }
-
-        newPositionY = transform.position.y;
-        newPositionZ = transform.position.z + randomZ;
-        Vector3 newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
-        Vector3 direction = newPosition - transform.position;
-
-        while (true)
-        {
-            _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
-            yield return null;
-        }
-    }
-
-    private IEnumerator Jumping()
-    {
-        float randomZ = Random.Range(_jumpLimits.x, _jumpLimits.y);
-        Vector3 newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
-
-        while (transform.position.x != newPosition.x || transform.position.z != newPosition.z)
-        {
-            newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, _jumpForce * Time.deltaTime);
-            yield return null;
-        }
-
-        _jumping = null;
     }
 
     public void MoveForward()
@@ -78,8 +38,11 @@ public class ZombieMover : Mover
         if (transform.position.z < _camera.transform.position.z - _zLimits.x)
         {
             transform.eulerAngles = Vector3.zero;
+
             if (Speed == _startSpeed)
+            {
                 Speed *= _backMoveForce;
+            }
         }
 
         if (transform.position.z > _camera.transform.position.z + _zLimits.y)
@@ -126,7 +89,6 @@ public class ZombieMover : Mover
         {
             transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
-
     }
 
     public void Jump()
@@ -155,5 +117,47 @@ public class ZombieMover : Mover
     public void SetJumpPoint(Transform jumpPoint)
     {
         _jumpPoint = jumpPoint;
+    }
+
+    private IEnumerator ThrowingAway(Transform targetFrom)
+    {
+        float randomX = Random.Range(_throwAwayOffsetX.x, _throwAwayOffsetX.y);
+        float randomZ = Random.Range(_throwAwayOffsetZ.x, _throwAwayOffsetZ.y);
+        float newPositionX, newPositionY, newPositionZ;
+
+        if (transform.position.x > targetFrom.position.x)
+        {
+            newPositionX = transform.position.x + randomX;
+        }
+        else
+        {
+            newPositionX = transform.position.x - randomX;
+        }
+
+        newPositionY = transform.position.y;
+        newPositionZ = transform.position.z + randomZ;
+        Vector3 newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
+        Vector3 direction = newPosition - transform.position;
+
+        while (true)
+        {
+            _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
+            yield return null;
+        }
+    }
+
+    private IEnumerator Jumping()
+    {
+        float randomZ = Random.Range(_jumpLimits.x, _jumpLimits.y);
+        Vector3 newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
+
+        while (transform.position.x != newPosition.x || transform.position.z != newPosition.z)
+        {
+            newPosition = new Vector3(_jumpPoint.position.x, _jumpPoint.position.y, randomZ + _jumpPoint.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, newPosition, _jumpForce * Time.deltaTime);
+            yield return null;
+        }
+
+        _jumping = null;
     }
 }

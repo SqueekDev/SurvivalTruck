@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ZombieAttacker : MonoBehaviour
 {
-    [SerializeField] private float _timeBetweenAttacks;
+    private const float TimeBetweenAttacks = 1f;
+
     [SerializeField] private int _startDamage;
     [SerializeField] private LevelChanger _levelChanger;
 
@@ -14,15 +15,19 @@ public class ZombieAttacker : MonoBehaviour
     private int _damageModifier;
     private int _midDamageModifierValue = 2;
     private int _maxDamageModifierValue = 6;
+    private float _rotationAngleX = 0f;
+    private float _rotationAngleY = 90f;
+    private float _rotationAngleZ = 0f;
     private bool _isAttacking = false;
+    private WaitForSeconds _delayBetweenAttacks = new WaitForSeconds(TimeBetweenAttacks);
+
+    public event Action OnObstacleDestroyed;
 
     public bool IsAttacking => _isAttacking;
 
-    public event UnityAction OnObstacleDestroyed;
-
     private void Awake()
     {
-        _damageModifier = Random.Range(_midDamageModifierValue, _maxDamageModifierValue);
+        _damageModifier = UnityEngine.Random.Range(_midDamageModifierValue, _maxDamageModifierValue);
     }
 
     private void OnEnable()
@@ -37,48 +42,16 @@ public class ZombieAttacker : MonoBehaviour
         _levelChanger.Changed -= OnLevelChanged;
     }
 
-
-    private void OnLevelChanged(int levelNumber)
-    {
-        _currentDamage = _startDamage + (levelNumber / _damageModifier);
-    }
-
-    private IEnumerator Attacking(Obstacle obstacle)
-    {
-        _isAttacking = true;
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
-        obstacle.ApplyDamade(_currentDamage);
-        yield return waitForSeconds;
-
-        if (obstacle.IsDestroyed)
-        {
-            OnObstacleDestroyed?.Invoke();
-        }
-
-        _obstacleAttacking = null;
-        _isAttacking = false;
-    }
-
-    private IEnumerator Attacking(Health playerHealth)
-    {
-        _isAttacking = true;
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeBetweenAttacks);
-        playerHealth.TakeDamage(_currentDamage);
-        yield return waitForSeconds;
-        _attacking = null;
-        _isAttacking = false;
-    }
-
     public void Attack(Obstacle obstacle)
     {
         if (obstacle.transform.parent.position.x > transform.position.x)
         {
-            transform.localEulerAngles = new Vector3(0, 90, 0);
+            transform.localEulerAngles = new Vector3(_rotationAngleX, _rotationAngleY, _rotationAngleZ);
         }
 
         if (obstacle.transform.parent.position.x < transform.position.x)
         {
-            transform.localEulerAngles = new Vector3(0, -90, 0);
+            transform.localEulerAngles = new Vector3(_rotationAngleX, -_rotationAngleY, _rotationAngleZ);
         }
 
         if (_obstacleAttacking == null)
@@ -95,5 +68,34 @@ public class ZombieAttacker : MonoBehaviour
         {
             _attacking = StartCoroutine(Attacking(player));
         }
+    }
+
+    private IEnumerator Attacking(Obstacle obstacle)
+    {
+        _isAttacking = true;
+        obstacle.ApplyDamade(_currentDamage);
+        yield return _delayBetweenAttacks;
+
+        if (obstacle.IsDestroyed)
+        {
+            OnObstacleDestroyed?.Invoke();
+        }
+
+        _obstacleAttacking = null;
+        _isAttacking = false;
+    }
+
+    private IEnumerator Attacking(Health playerHealth)
+    {
+        _isAttacking = true;
+        playerHealth.TakeDamage(_currentDamage);
+        yield return _delayBetweenAttacks;
+        _attacking = null;
+        _isAttacking = false;
+    }
+
+    private void OnLevelChanged(int levelNumber)
+    {
+        _currentDamage = _startDamage + (levelNumber / _damageModifier);
     }
 }

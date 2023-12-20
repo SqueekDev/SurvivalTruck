@@ -17,6 +17,6 @@ public class InitSDK : MonoBehaviour
 
     private void OnInitialized()
     {
-        SceneManager.LoadScene(SceneNumbers.MainMenuSceneNumber);
+        SceneManager.LoadScene(GlobalValues.MainMenuSceneNumber);
     }
 }

@@ -12,6 +12,8 @@ public class Shop : MonoBehaviour
     [SerializeField] private ShopView _shopView;
     [SerializeField] private LevelChanger _levelChanger;
 
+    private WaitForSeconds _delayBetweenOpening = new WaitForSeconds(OpenDelay);
+
     private void OnEnable()
     {
         _shopView.Closed += Close;
@@ -25,7 +27,9 @@ public class Shop : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out Shooter player) && _levelChanger.IsWave == false)
+        {
             StartCoroutine(CoverOpening());
+        }
     }
 
     private void Open()
@@ -42,7 +46,7 @@ public class Shop : MonoBehaviour
     private IEnumerator CoverOpening()
     {
         Open();
-        yield return new WaitForSeconds(OpenDelay);
+        yield return _delayBetweenOpening;
         _upgradePanel.gameObject.SetActive(true);
     }
 }

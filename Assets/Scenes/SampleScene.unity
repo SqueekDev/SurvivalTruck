@@ -5871,6 +5871,10 @@ PrefabInstance:
       propertyPath: _weapon
       value: 
       objectReference: {fileID: 747748197}
+    - target: {fileID: 8722512235123580182, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8931753863240528794, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _levelChanger
       value: 

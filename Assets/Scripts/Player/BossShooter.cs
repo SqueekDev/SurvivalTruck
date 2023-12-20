@@ -49,6 +49,8 @@ public class BossShooter : MonoBehaviour
     private void CheckCorutine()
     {
         if (_shootCorutine != null)
+        {
             StopCoroutine(_shootCorutine);
+        }
     }
 }

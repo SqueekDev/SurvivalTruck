@@ -22,22 +22,24 @@ public class ZombieHealth : Health
     private void Update()
     {
         if (transform.position.y < 0)
+        {
             gameObject.SetActive(false);
-    }
-
-    private void ChangeHealthMultiplier()
-    {
-        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
-    }
-
-    public override void Die()
-    {
-        _mover.SetNoSpeed();
-        base.Die();
+        }
     }
 
     public void SetAngry()
     {
         _isAngry = true;
+    }
+
+    protected override void Die()
+    {
+        _mover.SetNoSpeed();
+        base.Die();
+    }
+
+    private void ChangeHealthMultiplier()
+    {
+        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
     }
 }

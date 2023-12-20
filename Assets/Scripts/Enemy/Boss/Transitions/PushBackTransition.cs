@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PushBackTransition : BossTransition
@@ -14,6 +12,8 @@ public class PushBackTransition : BossTransition
     private void Update()
     {
         if (_head.IsDead)
+        {
             NeedTransit = true;
+        }
     }
 }

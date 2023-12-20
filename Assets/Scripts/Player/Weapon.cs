@@ -25,15 +25,15 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        ChangeToStartBullet();
+        OnBossLevelEnded();
     }
 
     private void OnEnable()
     {
         _weaponDamageUpgradeButton.DamageUpgraded += OnDamageUpgraded;
         _weaponShootDelayUpgradeButton.ShootDelayUpgraded += OnShootDelayUpdated;
-        _levelChanger.BossLevelStarted += ChangeToBossBullet;
-        _levelChanger.BossLevelEnded += ChangeToStartBullet;
+        _levelChanger.BossLevelStarted += OnBossLevelStarted;
+        _levelChanger.BossLevelEnded += OnBossLevelEnded;
     }
 
     private void Start()
@@ -46,8 +46,8 @@ public class Weapon : MonoBehaviour
     {
         _weaponDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;        
         _weaponShootDelayUpgradeButton.ShootDelayUpgraded -= OnShootDelayUpdated;
-        _levelChanger.BossLevelStarted -= ChangeToBossBullet;
-        _levelChanger.BossLevelEnded -= ChangeToStartBullet;
+        _levelChanger.BossLevelStarted -= OnBossLevelStarted;
+        _levelChanger.BossLevelEnded -= OnBossLevelEnded;
     }
 
     public void Shoot(Transform target)
@@ -70,12 +70,12 @@ public class Weapon : MonoBehaviour
         _delayModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.WeaponShootDelay, _delayModifier);
     }
 
-    private void ChangeToBossBullet()
+    private void OnBossLevelStarted()
     {
         _currentBulletTemplate = _bossBulletTemplate;
     }
 
-    private void ChangeToStartBullet()
+    private void OnBossLevelEnded()
     {
         _currentBulletTemplate = _standartBulletTemplate;
     }

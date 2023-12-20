@@ -1,14 +1,14 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
 
-    protected Button Button => _button;
+    public event Action Clicked;
 
-    public event UnityAction Clicked;
+    protected Button Button => _button;
 
     protected virtual void OnEnable()
     {

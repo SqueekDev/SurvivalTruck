@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChasingCarState : BossState
 {
     private const int Correction = 1;
     private const float MultiplierDivider = 20;
+    private const float TimeToChangeDirection = 1;
 
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private float _extraSpeed;
@@ -19,6 +19,7 @@ public class ChasingCarState : BossState
     private float _additionalXDirectionSpread;
     private float _zDirection = 1f;
     private Vector3 _direction;
+    private WaitForSeconds _delayToChangeDirection = new WaitForSeconds(TimeToChangeDirection);
 
     private void Awake()
     {
@@ -29,7 +30,9 @@ public class ChasingCarState : BossState
     private void OnEnable()
     {
         if (_changeDirectionCorutine != null)
+        {
             StopCoroutine(_changeDirectionCorutine);
+        }
 
         ChangeRunningSpread();
         _changeDirectionCorutine = StartCoroutine(ChangeDirection());
@@ -42,19 +45,19 @@ public class ChasingCarState : BossState
 
     private IEnumerator ChangeDirection()
     {
-        float delayTime = 1f;
-        WaitForSeconds delayToChangeDirection = new WaitForSeconds(delayTime);
         float xDirectionSpread = _startXDirectionSpread + _additionalXDirectionSpread;
 
         while (enabled)
         {
             float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
 
-            if (transform.position.x > _startXPosition + _xPositionLimit && xDirection > 0 || transform.position.x < _startXPosition - _xPositionLimit && xDirection < 0)
+            if (transform.position.x > _startXPosition + _xPositionLimit && xDirection > GlobalValues.Zero || transform.position.x < _startXPosition - _xPositionLimit && xDirection < GlobalValues.Zero)
+            {
                 xDirection = -xDirection;
+            }
 
-            _direction = new Vector3(xDirection, 0, _zDirection);
-            yield return delayToChangeDirection;
+            _direction = new Vector3(xDirection, GlobalValues.Zero, _zDirection);
+            yield return _delayToChangeDirection;
         }
     }
 

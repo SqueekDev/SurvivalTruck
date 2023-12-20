@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private float _delayBetweenSpawn;
+    private const float TimeBetweenSpawn = 1f;
+
     [SerializeField] private Vector2 _xLimits;
     [SerializeField] private ObjectPooler _zombiePooler;
     [SerializeField] private Car _car;
     [SerializeField] private float _carZOffset;
+
+    private WaitForSeconds DelayBetweenSpawn = new WaitForSeconds(TimeBetweenSpawn);
 
     private void Start()
     {
@@ -16,8 +19,6 @@ public class ZombieSpawner : MonoBehaviour
 
     private IEnumerator SpawnZombies()
     {
-        WaitForSeconds delay = new WaitForSeconds(_delayBetweenSpawn);
-
         while (true)
         {
             float randomX = Random.Range(_xLimits.x, _xLimits.y);
@@ -33,7 +34,7 @@ public class ZombieSpawner : MonoBehaviour
             }
 
             yield return null;
-            yield return delay;
+            yield return DelayBetweenSpawn;
         }
     }
 }

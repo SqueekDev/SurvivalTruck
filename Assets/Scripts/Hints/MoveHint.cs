@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MoveHint : Hint
 {
     private void Start()

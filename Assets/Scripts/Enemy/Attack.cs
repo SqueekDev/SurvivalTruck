@@ -8,7 +8,7 @@ public class Attack : StateMachineBehaviour
     private ZombieAttacker _zombieAttacker;
     private Transform _target;
 
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _zombie = animator.gameObject.GetComponent<Zombie>();
         _zombieAttacker = animator.gameObject.GetComponent<ZombieAttacker>();
@@ -23,6 +23,7 @@ public class Attack : StateMachineBehaviour
             {
                 _zombieAttacker.Attack(obstacle);
             }
+
             if (_target.TryGetComponent(out Player player))
             {
                 _zombieAttacker.Attack(player);

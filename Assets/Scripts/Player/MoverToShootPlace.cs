@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoverToShootPlace : MonoBehaviour
@@ -23,7 +21,9 @@ public class MoverToShootPlace : MonoBehaviour
     private void Update()
     {
         if (_achievedTarget && _rotatedToTarget)
+        {
             enabled = false;
+        }
     }
 
     private void FixedUpdate()
@@ -40,19 +40,21 @@ public class MoverToShootPlace : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ShootPlace shootPlace))
+        {
             _achievedTarget = true;
+        }
     }
 
     private void RotateToTarget()
     {
         if (transform.eulerAngles.y >= _targetRotation - _rotateInaccuracy && transform.eulerAngles.y <= _targetRotation + _rotateInaccuracy)
         {
-            transform.localRotation = Quaternion.Euler(0, _targetRotation, 0);
+            transform.localRotation = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
             _rotatedToTarget = true;
         }
         else
         {
-            Quaternion direcrion = Quaternion.Euler(0, _targetRotation, 0);
+            Quaternion direcrion = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, direcrion, _rotationSpeed * Time.deltaTime);
         }
     }

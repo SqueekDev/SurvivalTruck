@@ -16,17 +16,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator Moving(Transform target)
-    {
-        while (target.gameObject.activeSelf || transform.position != target.position)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
-
     public void MoveTo(Transform target)
     {
         StartCoroutine(Moving(target));
@@ -40,5 +29,16 @@ public class Bullet : MonoBehaviour
     public void SetDamage(int damage)
     {
         _damage = damage;
+    }
+
+    protected virtual IEnumerator Moving(Transform target)
+    {
+        while (target.gameObject.activeSelf || transform.position != target.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

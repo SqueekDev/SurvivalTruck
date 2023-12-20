@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +29,9 @@ public class WoodBlock : MonoBehaviour
     private void OnBlocksRepaired()
     {
         foreach (var brokenBrick in _brokenBricks)
+        {
             brokenBrick.gameObject.SetActive(false);
+        }
 
         _brick.gameObject.SetActive(true);
     }

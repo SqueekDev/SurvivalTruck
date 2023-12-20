@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CoinCounter : MonoBehaviour
 {
+    private const float RemovingDelayTime = 0.1f;
     private const int BossEarnModifier = 10;
     private const int AdReward = 100;
     private const int AdRewardLevelModifier = 10;
@@ -22,20 +23,21 @@ public class CoinCounter : MonoBehaviour
     private int _count;
     private int _totalEarnedCoins;
     private int _currentZombieReward;
+    private WaitForSeconds _removingDelay = new WaitForSeconds(RemovingDelayTime);
+
+    public event Action<int> CoinsAmountIncrease;
+    public event Action<int> CoinsAmountDecrease;
+    public event Action TotalCoinsAmountChanged;
 
     public int Count => _count;
     public int TotalEarnedCoins => _totalEarnedCoins;
     public int EarnModifier { get; private set; }
 
-    public event UnityAction<int> CoinsAmountIncrease;
-    public event UnityAction<int> CoinsAmountDecrease;
-    public event UnityAction TotalCoinsAmountChanged;
-
     private void Awake()
     {
         OnCoinsModifierUpgraded();
-        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
-        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
+        _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, GlobalValues.Zero);
+        int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
         _count = currentCoins;
     }
 
@@ -67,16 +69,9 @@ public class CoinCounter : MonoBehaviour
         }
     }
 
-    private void OnAddCoinsButtonClicked()
+    public void RemoveCoins(int count)
     {
-        _addCoinsPanel.gameObject.SetActive(true);
-    }
-
-    private void OnVideoAdShowed()
-    {
-        int reward = AdReward + AdRewardLevelModifier * (_levelChanger.CurrentLevelNumber - LevelModifierCorrection);
-        AddCoins(AdReward);
-        _addCoinsPanel.gameObject.SetActive(false);
+        StartCoroutine(RemovingCoins(count));
     }
 
     private void AddCoins(int count)
@@ -93,8 +88,20 @@ public class CoinCounter : MonoBehaviour
     {
         _count -= count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
-        yield return new WaitForSeconds(0.1f);
+        yield return _removingDelay;
         CoinsAmountDecrease?.Invoke(count);
+    }
+
+    private void OnAddCoinsButtonClicked()
+    {
+        _addCoinsPanel.gameObject.SetActive(true);
+    }
+
+    private void OnVideoAdShowed()
+    {
+        int reward = AdReward + AdRewardLevelModifier * (_levelChanger.CurrentLevelNumber - LevelModifierCorrection);
+        AddCoins(AdReward);
+        _addCoinsPanel.gameObject.SetActive(false);
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)
@@ -117,10 +124,6 @@ public class CoinCounter : MonoBehaviour
 
     private void OnCoinsModifierUpgraded()
     {
-        EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, 0);
-    }
-    public void RemoveCoins(int count)
-    {
-        StartCoroutine(RemovingCoins(count));
+        EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, GlobalValues.Zero);
     }
 }

@@ -4,12 +4,18 @@ using TMPro;
 
 public class CoinsView : MonoBehaviour
 {
+    private const float TimeBetweenShowingCount = 0.05f;
+    private const int NumberToConvert = 999;
+    private const int ThousandDivider = 1000;
+    private const string ThousandDisplay = "K";
+    private const string Dot = ".";
+
     [SerializeField] private CoinCounter _counter;
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private float _timeBetweenShowingCount;
 
     private Coroutine _showing;
     private int _currentCount;
+    private WaitForSeconds _showingDelay = new WaitForSeconds(TimeBetweenShowingCount);
 
     private void OnEnable()
     {
@@ -26,17 +32,8 @@ public class CoinsView : MonoBehaviour
 
     private void Start()
     {
-        _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
+        _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
         ShowCount(_currentCount);
-    }
-
-    private void OnCoinsAmountIncrease(int coinsCount)
-    {
-        StartShowingIncrease(coinsCount);
-    }
-    private void OnCoinsAmountDecrease(int coinsCount)
-    {
-        StartShowingDecrease(coinsCount);
     }
 
     private void StartShowingIncrease(int coinsCount)
@@ -51,15 +48,19 @@ public class CoinsView : MonoBehaviour
 
     private void ShowCount(int coinsCount)
     {
-        if (coinsCount > 999)
+        if (coinsCount > NumberToConvert)
         {
-            int count = coinsCount / 1000;
-            int reminder = (coinsCount - (1000 * count));
+            int count = coinsCount / ThousandDivider;
+            int remainder = (coinsCount - (ThousandDivider * count));
 
-            if (reminder == 0)
-                _text.text = count.ToString() + "K";
+            if (remainder == GlobalValues.Zero)
+            {
+                _text.text = count.ToString() + ThousandDisplay;
+            }
             else
-                _text.text = count.ToString() + "." + reminder + "K";
+            {
+                _text.text = count.ToString() + Dot + remainder + ThousandDisplay;
+            }
         }
         else
         {
@@ -73,7 +74,7 @@ public class CoinsView : MonoBehaviour
         {
             _currentCount++;
             ShowCount(_currentCount);
-            yield return new WaitForSeconds(_timeBetweenShowingCount);
+            yield return _showingDelay;
         }
     }
     
@@ -83,7 +84,17 @@ public class CoinsView : MonoBehaviour
         {
             _currentCount--;
             ShowCount(_currentCount);
-            yield return new WaitForSeconds(_timeBetweenShowingCount);
+            yield return _showingDelay;
         }
+    }
+
+    private void OnCoinsAmountIncrease(int coinsCount)
+    {
+        StartShowingIncrease(coinsCount);
+    }
+
+    private void OnCoinsAmountDecrease(int coinsCount)
+    {
+        StartShowingDecrease(coinsCount);
     }
 }

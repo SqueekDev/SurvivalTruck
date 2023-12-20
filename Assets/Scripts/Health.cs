@@ -1,31 +1,34 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    public const string DieTrigger = "Die";
+    private const float DyingDelayTime = 2f;
+    private const float ChangeColorDelayTime = 0.2f;
+
     [SerializeField] private int _startHealth;
     [SerializeField] private int _additionalHealth;
-    [SerializeField] private int _dyingDelay = 2;
     [SerializeField] private Color _damageColor;
     [SerializeField] private Color _deathColor;
     [SerializeField] private Renderer _renderer;
+    
+    protected int AddHealthMultiplier = 0;
 
     private int _currentHealth;
     private Animator _animator;
     private Coroutine _dying;
     private Coroutine _changingColor;
     private Color _startColor;
+    private WaitForSeconds _dyingDelay = new WaitForSeconds(DyingDelayTime);
+    private WaitForSeconds _changeColorDelay = new WaitForSeconds(ChangeColorDelayTime);
 
-    protected int AddHealthMultiplier = 0;
+    public event Action<float> HealthChanged;
+    public event Action<Health> Died;
 
     public bool IsDead { get; private set; } = false;
     public int MaxHealth { get; protected set; }
-
-    public const string DieTrigger = "Die";
-
-    public event UnityAction<float> HealthChanged;
-    public event UnityAction<Health> Died;
 
     protected virtual void OnEnable()
     {
@@ -33,7 +36,9 @@ public class Health : MonoBehaviour
         ChangeMaxHealth();
 
         if (IsDead)
+        {
             IsDead = false;
+        }
     }
 
     private void Start()
@@ -41,43 +46,36 @@ public class Health : MonoBehaviour
         _animator = GetComponent<Animator>();
         _startColor = _renderer.material.color;
     }
-    private void ChangeHealthStatus()
-    {
-        float currentHealthByMaxHealth = (float)_currentHealth / MaxHealth;
-        HealthChanged?.Invoke(currentHealthByMaxHealth);
-    }
 
-    private IEnumerator Dying()
+    public void TakeDamage(int count)
     {
-        _animator.SetTrigger(DieTrigger);
-        ChangeColorDeath();
-        Died?.Invoke(this);
-        yield return new WaitForSeconds(_dyingDelay);
-        _dying = null;
-        gameObject.SetActive(false);
-        ChangeColorNormal();
-    }
-
-    private IEnumerator ChangingColorDamage()
-    {
-        _renderer.sharedMaterial.color = _damageColor;
-        yield return new WaitForSeconds(0.2f);
-        _renderer.sharedMaterial.color = _startColor;
-        _changingColor = null;
-    }
-
-    private void ChangeColorDeath()
-    {
-        if (_changingColor != null)
+        if (IsDead == false)
         {
-            StopCoroutine(_changingColor);
+            _currentHealth -= count;
+            ChangeHealthStatus();
+
+            if (_currentHealth <= GlobalValues.Zero)
+            {
+                _currentHealth = GlobalValues.Zero;
+                Die();
+            }
+            else
+            {
+                if (_changingColor == null)
+                {
+                    _changingColor = StartCoroutine(ChangingColorDamage());
+                }
+            }
         }
-        _renderer.sharedMaterial.color = _deathColor;
     }
 
-    private void ChangeColorNormal()
+    protected virtual void Die()
     {
-        _renderer.sharedMaterial.color = _startColor;
+        if (_dying == null)
+        {
+            IsDead = true;
+            _dying = StartCoroutine(Dying());
+        }
     }
 
     protected virtual void ChangeMaxHealth()
@@ -91,37 +89,50 @@ public class Health : MonoBehaviour
         _currentHealth += count;
 
         if (_currentHealth >= MaxHealth)
+        {
             _currentHealth = MaxHealth;
+        }
 
         ChangeHealthStatus();
     }
-    public void TakeDamage(int count)
+
+    private void ChangeHealthStatus()
     {
-        if (IsDead == false)
-        {
-            _currentHealth -= count;
-            ChangeHealthStatus();
-            if (_currentHealth <= 0)
-            {
-                _currentHealth = 0;
-                Die();
-            }
-            else
-            {
-                if (_changingColor == null)
-                {
-                    _changingColor = StartCoroutine(ChangingColorDamage());
-                }
-            }
-        }
+        float currentHealthByMaxHealth = (float)_currentHealth / MaxHealth;
+        HealthChanged?.Invoke(currentHealthByMaxHealth);
     }
 
-    public virtual void Die()
+    private IEnumerator Dying()
     {
-        if (_dying == null)
+        _animator.SetTrigger(DieTrigger);
+        ChangeColorDeath();
+        Died?.Invoke(this);
+        yield return _dyingDelay;
+        _dying = null;
+        gameObject.SetActive(false);
+        ChangeColorNormal();
+    }
+
+    private IEnumerator ChangingColorDamage()
+    {
+        _renderer.sharedMaterial.color = _damageColor;
+        yield return _changeColorDelay;
+        _renderer.sharedMaterial.color = _startColor;
+        _changingColor = null;
+    }
+
+    private void ChangeColorDeath()
+    {
+        if (_changingColor != null)
         {
-            IsDead = true;
-            _dying = StartCoroutine(Dying());
+            StopCoroutine(_changingColor);
         }
+
+        _renderer.sharedMaterial.color = _deathColor;
+    }
+
+    private void ChangeColorNormal()
+    {
+        _renderer.sharedMaterial.color = _startColor;
     }
 }

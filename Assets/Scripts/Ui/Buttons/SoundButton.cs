@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SoundButton : GameButton
@@ -12,12 +12,19 @@ public class SoundButton : GameButton
 
     private bool _isMuted;
 
-    public event UnityAction<bool> Muted;
+    public event Action<bool> Muted;
 
     private void Awake()
     {
         _isMuted = PlayerPrefs.GetInt(PlayerPrefsKeys.Sound, FalseValue) == TrueValue;
         Button.image.sprite = _isMuted ? _soundOffIcon : _soundOnIcon;
+    }
+
+    private void SaveData(bool isMuted)
+    {
+        int value = isMuted ? TrueValue : FalseValue;
+        PlayerPrefs.SetInt(PlayerPrefsKeys.Sound, value);
+        PlayerPrefs.Save();
     }
 
     protected override void OnButtonClick()
@@ -37,12 +44,5 @@ public class SoundButton : GameButton
 
         SaveData(_isMuted);
         Muted?.Invoke(_isMuted);
-    }
-
-    private void SaveData(bool isMuted)
-    {
-        int value = isMuted ? TrueValue : FalseValue;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.Sound, value);
-        PlayerPrefs.Save();
     }
 }

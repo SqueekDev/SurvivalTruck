@@ -34,7 +34,7 @@ public class Player : Health
         _levelChanger.BossLevelEnded -= OnBossLevelEnded;
     }
 
-    public override void Die()
+    protected override void Die()
     {
         Vector3 cameraLowerPointRotation = _cameraLowerPoint.transform.rotation.eulerAngles;
         _cameraLowerPoint.transform.parent = _car.transform;

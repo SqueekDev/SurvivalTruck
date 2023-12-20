@@ -17,12 +17,13 @@ public abstract class Mover : MonoBehaviour
             newDirection = Quaternion.LookRotation(direction);
 
         }
+
         transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
     }
 
     public void SetNoSpeed()
     {
-        Speed = 0;
+        Speed = GlobalValues.Zero;
     }
 
     public void SetStartSpeed()

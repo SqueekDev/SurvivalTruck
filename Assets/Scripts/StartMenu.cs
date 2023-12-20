@@ -23,6 +23,6 @@ public class StartMenu : MonoBehaviour
 
     private void StartLevel()
     {
-        SceneManager.LoadScene(SceneNumbers.GameSceneNumber);
+        SceneManager.LoadScene(GlobalValues.GameSceneNumber);
     }
 }

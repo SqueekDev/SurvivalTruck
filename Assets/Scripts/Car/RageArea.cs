@@ -1,13 +1,13 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class RageArea : MonoBehaviour
 {
     [SerializeField] private Obstacle _obstacle;
 
-    public Obstacle Obstacle => _obstacle;
+    public event Action<ZombieHealth> ZombieAttacked;
 
-    public event UnityAction<ZombieHealth> ZombieAttacked;
+    public Obstacle Obstacle => _obstacle;
 
     public void Attacked(ZombieHealth zombie)
     {

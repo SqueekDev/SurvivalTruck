@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using Agava.YandexGames;
 
 public class AdShower : MonoBehaviour
@@ -11,8 +11,8 @@ public class AdShower : MonoBehaviour
 
     private int _counter;
 
-    public event UnityAction<bool> AdShowing;
-    public event UnityAction VideoAdShowed;
+    public event Action<bool> AdShowing;
+    public event Action VideoAdShowed;
 
     private void OnEnable()
     {

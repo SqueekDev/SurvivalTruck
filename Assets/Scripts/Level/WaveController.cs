@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WaveController : MonoBehaviour
 {
@@ -17,9 +16,9 @@ public class WaveController : MonoBehaviour
     private int _zombiesInWaveCount;
     private bool _isBossLevel;
 
-    public event UnityAction WaveEnded;
-    public event UnityAction<int, int> ZombieCountChanged;
-    public event UnityAction<ZombieHealth> ZombieAttacked;
+    public event Action WaveEnded;
+    public event Action<int, int> ZombieCountChanged;
+    public event Action<ZombieHealth> ZombieAttacked;
 
     private void Awake()
     {
@@ -33,7 +32,9 @@ public class WaveController : MonoBehaviour
         _bossSpawner.BossSpawned += OnBossSpawned;
 
         foreach (var rageArea in _rageAreas)
+        {
             rageArea.ZombieAttacked += OnZombieAttacked;
+        }
     }
 
     private void OnDisable()
@@ -43,7 +44,14 @@ public class WaveController : MonoBehaviour
         _bossSpawner.BossSpawned -= OnBossSpawned;
 
         foreach (var rageArea in _rageAreas)
+        {
             rageArea.ZombieAttacked -= OnZombieAttacked;
+        }
+    }
+
+    private void ChangeZombiesCount(int levelNumber)
+    {
+        _zombiesInWaveCount = _startZombieinWaveCount + levelNumber / _levelToAddedZombieMultiplier;
     }
 
     private void OnlevelChanged(int levelNumber)
@@ -54,7 +62,9 @@ public class WaveController : MonoBehaviour
             _attackingZombiesCount = _zombiesInWaveCount;
 
             foreach (var rageArea in _rageAreas)
+            {
                 rageArea.gameObject.SetActive(true);
+            }
 
             _levelWaveView.gameObject.SetActive(true);
             ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
@@ -85,23 +95,23 @@ public class WaveController : MonoBehaviour
         ZombieAttacked?.Invoke(zombie);
 
         if (_ragedZombieCount >= _zombiesInWaveCount)
+        {
             foreach (var rageArea in _rageAreas)
+            {
                 rageArea.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void OnZombieDied(Health zombie)
     {
         zombie.Died -= OnZombieDied;
         _attackingZombiesCount--;
-        if (_attackingZombiesCount <= 0)
+
+        if (_attackingZombiesCount <= GlobalValues.Zero)
         {
-            _ragedZombieCount = 0;
+            _ragedZombieCount = GlobalValues.Zero;
             WaveEnded?.Invoke();
         }
-    }
-
-    private void ChangeZombiesCount(int levelNumber)
-    {
-        _zombiesInWaveCount = _startZombieinWaveCount + levelNumber / _levelToAddedZombieMultiplier;
     }
 }

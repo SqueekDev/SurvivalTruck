@@ -56,6 +56,7 @@ public class Zombie : MonoBehaviour
             rageArea.Attacked(_zombieHealth);
             transform.SetParent(rageArea.transform.parent);
         }
+
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
             _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
@@ -70,11 +71,6 @@ public class Zombie : MonoBehaviour
             _animator.SetTrigger("Kangaroo");
             _kangarooCollision.Play();
         }
-    }
-
-    private void OnOstacleDestroyed()
-    {
-        _target = _player.transform;
     }
 
     public void SetObstacle(Obstacle obstacle)
@@ -92,6 +88,12 @@ public class Zombie : MonoBehaviour
         {
             _target = _player.transform;
         }
+
         return _target;
+    }
+
+    private void OnOstacleDestroyed()
+    {
+        _target = _player.transform;
     }
 }

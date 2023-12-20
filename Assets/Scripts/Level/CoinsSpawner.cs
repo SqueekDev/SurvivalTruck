@@ -28,8 +28,7 @@ public class CoinsSpawner : MonoBehaviour
 
         for (int i = 0; i < randomCoinsCount; i++)
         {
-            if (_coinsPooler.TryGetObject(out GameObject pooledObject)&&
-                pooledObject.TryGetComponent(out Coin coin))
+            if (_coinsPooler.TryGetObject(out GameObject pooledObject) && pooledObject.TryGetComponent(out Coin coin))
             {
                 coin.transform.position=spawnPoint.transform.position;
                 pooledObject.SetActive(true);

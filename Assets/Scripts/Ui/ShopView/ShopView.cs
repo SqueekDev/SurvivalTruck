@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ShopView : MonoBehaviour
 {
@@ -10,64 +10,37 @@ public class ShopView : MonoBehaviour
 
     private int _currentGroupIndex;
 
-    public event UnityAction PurchaseSuccsessed;
-    public event UnityAction Closed;
+    public event Action PurchaseSuccsessed;
+    public event Action Closed;
 
     private void OnEnable()
     {
         foreach (var button in _buttons)
+        {
             button.SkillUpgraded += OnSkillUpgraded;
+        }
 
-        _nextButton.Clicked += ShowNextButtons;
-        _previousButton.Clicked += ShowPreviousButtons;
-
+        _nextButton.Clicked += OnNextButtonClicked;
+        _previousButton.Clicked += OnPreviousButtonClicked;
         ShowFirstButtons();
     }
 
     private void OnDisable()
     {
         foreach (var button in _buttons)
+        {
             button.SkillUpgraded -= OnSkillUpgraded;
+        }
 
-        _nextButton.Clicked -= ShowNextButtons;
-        _previousButton.Clicked -= ShowPreviousButtons;
+        _nextButton.Clicked -= OnNextButtonClicked;
+        _previousButton.Clicked -= OnPreviousButtonClicked;
 
         foreach (var buttonGroup in _buttonGroups)
+        {
             buttonGroup.gameObject.SetActive(false);
+        }
 
         Closed?.Invoke();
-    }
-
-    private void ShowNextButtons()
-    {
-        if (_currentGroupIndex == _buttonGroups.Length-1)
-        {
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
-            ShowFirstButtons();
-            _currentGroupIndex = 0;
-        }
-        else 
-        {
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
-            _currentGroupIndex++;
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
-        }
-    }
-
-    private void ShowPreviousButtons()
-    {
-        if (_currentGroupIndex == 0)
-        {
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
-            ShowLastButtons();
-            _currentGroupIndex = _buttonGroups.Length - 1;
-        }
-        else
-        {
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
-            _currentGroupIndex--;
-            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
-        }
     }
 
     private void ShowFirstButtons()
@@ -79,6 +52,38 @@ public class ShopView : MonoBehaviour
     {
         _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
         _buttonGroups[_buttonGroups.Length-1].gameObject.SetActive(true);
+    }
+
+    private void OnNextButtonClicked()
+    {
+        if (_currentGroupIndex == _buttonGroups.Length - GlobalValues.ListIndexCorrection)
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            ShowFirstButtons();
+            _currentGroupIndex = GlobalValues.Zero;
+        }
+        else 
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            _currentGroupIndex++;
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
+        }
+    }
+
+    private void OnPreviousButtonClicked()
+    {
+        if (_currentGroupIndex == GlobalValues.Zero)
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            ShowLastButtons();
+            _currentGroupIndex = _buttonGroups.Length - GlobalValues.ListIndexCorrection;
+        }
+        else
+        {
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
+            _currentGroupIndex--;
+            _buttonGroups[_currentGroupIndex].gameObject.SetActive(true);
+        }
     }
 
     private void OnSkillUpgraded()

@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class BrokenBrick : MonoBehaviour
 {
+    private const float TimeToDecreace = 0.5f;
+
     [SerializeField] private List<WoodPiece> _woodPieces;
     [SerializeField] private Transform _explosionPoint;
 
     private int _explosionForce = 100;
     private float _explosionRadius = 5;
-    private float _timeToDecreace = 0.5f;
     private float _decreacingSpeed = 1.2f;
     private float _decreacingTime = 1f;
     private Coroutine _brokeCorutine;
+    private WaitForSeconds _delayToDecreace = new WaitForSeconds(TimeToDecreace);
 
     private void OnEnable()
     {
         if (_brokeCorutine != null)
+        {
             StopCoroutine(_brokeCorutine);
+        }
 
         _brokeCorutine = StartCoroutine(BrokeBrick());
     }
@@ -32,14 +36,16 @@ public class BrokenBrick : MonoBehaviour
             woodPiece.Rigidbody.AddExplosionForce(_explosionForce, _explosionPoint.position, _explosionRadius);
         }
 
-        yield return new WaitForSeconds(_timeToDecreace);
-        Vector3 targetScale = new Vector3(0, 0, 0);
+        yield return _delayToDecreace;
+        Vector3 targetScale = new Vector3(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
         float timer = 0;
 
         while (timer < _decreacingTime)
         {
             foreach (var woodPiece in _woodPieces)
+            {
                 woodPiece.transform.localScale = Vector3.Lerp(woodPiece.transform.localScale, targetScale, timer * _decreacingSpeed * Time.deltaTime);
+            }
 
             timer += Time.deltaTime;
             yield return null;

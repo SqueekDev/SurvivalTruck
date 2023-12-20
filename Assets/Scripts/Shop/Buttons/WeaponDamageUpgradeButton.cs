@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WeaponDamageUpgradeButton : UpgradeButton
 {
@@ -7,7 +7,7 @@ public class WeaponDamageUpgradeButton : UpgradeButton
 
     private int _startDamage;
 
-    public event UnityAction DamageUpgraded;
+    public event Action DamageUpgraded;
 
     protected override void OnEnable()
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSoundMuter : StartMenuSoundMuter
@@ -23,9 +21,13 @@ public class GameSoundMuter : StartMenuSoundMuter
     protected override void OnInBackgroundChange(bool inBackground)
     {
         if (inBackground)
+        {
             AudioListener.pause = inBackground;
+        }
         else if (_adShowing == false)
+        {
             AudioListener.pause = inBackground;
+        }
     }
 
     private void OnAdShowed(bool showing)

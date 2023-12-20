@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
@@ -15,11 +15,11 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private ShopView _upgradesPanel;
     [SerializeField] private UpgradeButtonView _upgradeButtonView;
 
-    protected CoinCounter CoinCounter => _coins;
+    public event Action SkillUpgraded;
 
     public int MaxValue => _maxValue;
+    protected CoinCounter CoinCounter => _coins;
 
-    public event UnityAction SkillUpgraded;
 
     protected virtual void OnEnable()
     {
@@ -48,9 +48,13 @@ public class UpgradeButton : MonoBehaviour
         if (_coins.Count >= _price)
         {
             if (PlayerPrefs.HasKey(playerPrefsCurrentValue))
+            {
                 PlayerPrefs.SetInt(playerPrefsCurrentValue, PlayerPrefs.GetInt(playerPrefsCurrentValue) + _upgradeValue);
+            }
             else
+            {
                 PlayerPrefs.SetInt(playerPrefsCurrentValue, defaultValue + _upgradeValue);
+            }
 
             _coins.RemoveCoins(_price);
             _price += (int)((float)_price * PriceIncreace);
@@ -65,9 +69,13 @@ public class UpgradeButton : MonoBehaviour
         int currentValue = PlayerPrefs.GetInt(playerPrefsCurrentValue, defaultValue);
 
         if (_coins.Count >= _price && currentValue < _maxValue)
+        {
             _button.interactable = true;
+        }
         else
+        {
             _button.interactable = false;
+        }
     }
 
     protected virtual void OnPurchaseSuccsessed() {}

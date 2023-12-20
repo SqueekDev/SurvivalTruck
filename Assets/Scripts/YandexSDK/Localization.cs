@@ -33,18 +33,6 @@ public class Localization : MonoBehaviour
         _languageButton.LanguageChanged -= OnLanguageChanged;
     }
 
-    private void OnLanguageChanged(int currentLanguageNumber)
-    {
-        if (currentLanguageNumber == EnglishNumber)
-            SetLanguage(English, currentLanguageNumber);
-        else if (currentLanguageNumber == RussianNumber)
-            SetLanguage(Russian, currentLanguageNumber);
-        else if (currentLanguageNumber == TurkishNumber)
-            SetLanguage(Turkish, currentLanguageNumber);
-
-        LeanLocalization.UpdateTranslations();
-    }
-
     private void ChangeLanguage()
     {
         if (UnityEngine.PlayerPrefs.HasKey(PlayerPrefsKeys.Language))
@@ -52,13 +40,21 @@ public class Localization : MonoBehaviour
             int languageNumber = UnityEngine.PlayerPrefs.GetInt(PlayerPrefsKeys.Language);
 
             if (languageNumber == EnglishNumber)
+            {
                 LeanLocalization.SetCurrentLanguageAll(English);
+            }
             else if (languageNumber == RussianNumber)
+            {
                 LeanLocalization.SetCurrentLanguageAll(Russian);
+            }
             else if (languageNumber == TurkishNumber)
+            {
                 LeanLocalization.SetCurrentLanguageAll(Turkish);
+            }
             else
+            {
                 LeanLocalization.SetCurrentLanguageAll(English);
+            }
         }
         else
         {
@@ -68,13 +64,21 @@ public class Localization : MonoBehaviour
             if (_systemLanguage != null)
             {
                 if (_systemLanguage == EnglishCode)
+                {
                     SetLanguage(English, EnglishNumber);
+                }
                 else if (_systemLanguage == RussianCode)
+                {
                     SetLanguage(Russian, RussianNumber);
+                }
                 else if (_systemLanguage == TurkishCode)
+                {
                     SetLanguage(Turkish, TurkishNumber);
+                }
                 else
+                {
                     SetLanguage(English, EnglishNumber);
+                }
             }
             else
             {
@@ -95,5 +99,23 @@ public class Localization : MonoBehaviour
     {
         UnityEngine.PlayerPrefs.SetInt(PlayerPrefsKeys.Language, number);
         UnityEngine.PlayerPrefs.Save();
+    }
+
+    private void OnLanguageChanged(int currentLanguageNumber)
+    {
+        if (currentLanguageNumber == EnglishNumber)
+        {
+            SetLanguage(English, currentLanguageNumber);
+        }
+        else if (currentLanguageNumber == RussianNumber)
+        {
+            SetLanguage(Russian, currentLanguageNumber);
+        }
+        else if (currentLanguageNumber == TurkishNumber)
+        {
+            SetLanguage(Turkish, currentLanguageNumber);
+        }
+
+        LeanLocalization.UpdateTranslations();
     }
 }

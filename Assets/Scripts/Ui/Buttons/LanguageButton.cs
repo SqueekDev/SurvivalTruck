@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LanguageButton : GameButton
@@ -11,27 +11,23 @@ public class LanguageButton : GameButton
 
     [SerializeField] private List<Sprite> _icons;
 
-    public event UnityAction<int> LanguageChanged;
+    public event Action<int> LanguageChanged;
 
     private void Start()
     {
-        int languageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, 0);
+        int languageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
         SetLanguageSprite(languageNumber);
-    }
-
-    protected override void OnButtonClick()
-    {
-        base.OnButtonClick();
-        SwitchLanguage();
     }
 
     private void SwitchLanguage()
     {
-        int currentLanguageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, 0);
+        int currentLanguageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
         currentLanguageNumber++;
 
-        if (currentLanguageNumber > _icons.Count - 1)
+        if (currentLanguageNumber > _icons.Count - GlobalValues.ListIndexCorrection)
+        {
             currentLanguageNumber -= _icons.Count;
+        }
 
         SetLanguageSprite(currentLanguageNumber);
         LanguageChanged?.Invoke(currentLanguageNumber);
@@ -40,10 +36,22 @@ public class LanguageButton : GameButton
     private void SetLanguageSprite(int languageNumber)
     {
         if (languageNumber == EnglishNumber)
+        {
             Button.image.sprite = _icons[EnglishNumber];
+        }
         else if (languageNumber == RussianNumber)
+        {
             Button.image.sprite = _icons[RussianNumber];
+        }
         else if (languageNumber == TurkishNumber)
+        {
             Button.image.sprite = _icons[TurkishNumber];
+        }
+    }
+
+    protected override void OnButtonClick()
+    {
+        base.OnButtonClick();
+        SwitchLanguage();
     }
 }

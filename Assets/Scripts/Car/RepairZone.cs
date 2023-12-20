@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class RepairZone : MonoBehaviour
 {
@@ -13,11 +13,28 @@ public class RepairZone : MonoBehaviour
     private Coroutine _repairCorutine;
     private float _currentTime;
 
-    public event UnityAction Repaired;
+    public event Action Repaired;
 
     private void OnEnable()
     {
         _flyingInstruments.gameObject.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Player player))
+        {
+            StopRepair();
+            _repairCorutine = StartCoroutine(Repair());
+        }            
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out Player player))
+        {
+            StopRepair();
+        }
     }
 
     private IEnumerator Repair()
@@ -50,20 +67,5 @@ public class RepairZone : MonoBehaviour
 
         _repairInstruments.gameObject.SetActive(false);
         _flyingInstruments.gameObject.SetActive(true);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
-        {
-            StopRepair();
-            _repairCorutine = StartCoroutine(Repair());
-        }            
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
-            StopRepair();
     }
 }
