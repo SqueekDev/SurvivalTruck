@@ -12,15 +12,20 @@ public class CoinsSpawner : MonoBehaviour
     {
         foreach (var zombie in _zombiePooler.PooledObjects)
         {
-            zombie.GetComponent<Health>().Died += CreateCoin;
+            zombie.GetComponent<Health>().Died += OnZombieDied;
         }
     }
     private void OnDisable()
     {
         foreach (var zombie in _zombiePooler.PooledObjects)
         {
-            zombie.GetComponent<Health>().Died -= CreateCoin;
+            zombie.GetComponent<Health>().Died -= OnZombieDied;
         }
+    }
+
+    public void OnZombieDied(Health spawnPoint)
+    {
+        CreateCoin(spawnPoint);
     }
     public void CreateCoin(Health spawnPoint)
     {

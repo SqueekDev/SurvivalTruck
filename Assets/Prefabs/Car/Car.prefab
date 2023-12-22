@@ -32112,8 +32112,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6633510373078483397, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633510373078483397, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
       propertyPath: _startSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6729081215824752570, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
       propertyPath: _joystick

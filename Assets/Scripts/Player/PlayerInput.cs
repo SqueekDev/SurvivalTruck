@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 newDirection = Vector3.zero;
         newDirection = new Vector3(_joystick.Horizontal,0,_joystick.Vertical);
