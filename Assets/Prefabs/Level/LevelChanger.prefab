@@ -51,4 +51,5 @@ MonoBehaviour:
   _lostPanel: {fileID: 0}
   _nextLevelButton: {fileID: 0}
   _restartLevelButton: {fileID: 0}
-  _bossLevelNubmerDivider: 3
+  _settingsRestartLevelButton: {fileID: 0}
+  _bossLevelNumber: 5

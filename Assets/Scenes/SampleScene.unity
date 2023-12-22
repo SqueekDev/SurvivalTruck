@@ -4677,6 +4677,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9150028078246563363}
     - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
+      propertyPath: _bossLevelNubmerDivider
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
       propertyPath: _settingsRestartLevelButton
       value: 
       objectReference: {fileID: 1447474691}

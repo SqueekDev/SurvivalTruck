@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
+    private const int _levelToAddedZombieMultiplier = 3;
+    private const int MaxZombiesInWaveCount = 14;
+
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private List<RageArea> _rageAreas;
     [SerializeField] private BossSpawner _bossSpawner;
@@ -12,18 +15,13 @@ public class WaveController : MonoBehaviour
 
     private int _attackingZombiesCount = 0;
     private int _ragedZombieCount = 0;
-    private int _levelToAddedZombieMultiplier;
     private int _zombiesInWaveCount;
     private bool _isBossLevel;
+    private bool _isMaxZombieCount = false;
 
     public event Action WaveEnded;
     public event Action<int, int> ZombieCountChanged;
     public event Action<ZombieHealth> ZombieAttacked;
-
-    private void Awake()
-    {
-        _levelToAddedZombieMultiplier = _levelChanger.BossLevelNumber;
-    }
 
     private void OnEnable()
     {
@@ -52,13 +50,23 @@ public class WaveController : MonoBehaviour
     private void ChangeZombiesCount(int levelNumber)
     {
         _zombiesInWaveCount = _startZombieinWaveCount + levelNumber / _levelToAddedZombieMultiplier;
+
+        if (_zombiesInWaveCount >= MaxZombiesInWaveCount)
+        {
+            _zombiesInWaveCount = MaxZombiesInWaveCount;
+            _isMaxZombieCount = true;
+        }
     }
 
     private void OnlevelChanged(int levelNumber)
     {
         if (_isBossLevel == false)
         {
-            ChangeZombiesCount(levelNumber);
+            if (_isMaxZombieCount == false)
+            {
+                ChangeZombiesCount(levelNumber);
+            }
+
             _attackingZombiesCount = _zombiesInWaveCount;
 
             foreach (var rageArea in _rageAreas)

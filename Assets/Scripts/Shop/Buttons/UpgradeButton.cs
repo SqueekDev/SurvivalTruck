@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
-    private const float PriceIncreace = 0.1f;
+    private const float PriceIncreace = 0.15f;
 
     [SerializeField] private int _upgradeValue;
     [SerializeField] private int _price;

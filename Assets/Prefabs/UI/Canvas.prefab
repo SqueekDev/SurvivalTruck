@@ -2267,7 +2267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 50
-  _price: 50
+  _price: 25
   _maxValue: 5000
   _coins: {fileID: 0}
   _button: {fileID: 519401668983362799}
@@ -7753,7 +7753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 20
-  _price: 50
+  _price: 25
   _maxValue: 5000
   _coins: {fileID: 0}
   _button: {fileID: 2036317051987276734}
@@ -8195,7 +8195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 1
-  _price: 50
+  _price: 25
   _maxValue: 1000
   _coins: {fileID: 0}
   _button: {fileID: 2135871809421185131}
@@ -10779,7 +10779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 5
-  _price: 50
+  _price: 25
   _maxValue: 1000
   _coins: {fileID: 0}
   _button: {fileID: 6076579096502096198}
@@ -11257,7 +11257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counter: {fileID: 0}
   _text: {fileID: 1401725071567840936}
-  _timeBetweenShowingCount: 0.05
 --- !u!1 &6880181541672893552
 GameObject:
   m_ObjectHideFlags: 0
@@ -11926,7 +11925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 1
-  _price: 50
+  _price: 25
   _maxValue: 1000
   _coins: {fileID: 0}
   _button: {fileID: 7155499271678622034}
@@ -13387,7 +13386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 1
-  _price: 200
+  _price: 100
   _maxValue: 8
   _coins: {fileID: 0}
   _button: {fileID: 8697820338145564800}

@@ -12,7 +12,7 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private GameButton _nextLevelButton;
     [SerializeField] private GameButton _restartLevelButton;
     [SerializeField] private GameButton _settingsRestartLevelButton;
-    [SerializeField] private int _bossLevelNubmerDivider;
+    [SerializeField] private int _bossLevelNumber;
 
     private int _playerPrefsSavedLevelNumber = 1;
     private bool _isWave = false;
@@ -23,7 +23,7 @@ public class LevelChanger : MonoBehaviour
     public event Action BossLevelStarted;
     public event Action BossLevelEnded;
 
-    public int BossLevelNumber => _bossLevelNubmerDivider;
+    public int BossLevelNumber => _bossLevelNumber;
     public bool IsWave => _isWave;
     public int CurrentLevelNumber { get; private set; } = 1;
 
@@ -75,7 +75,7 @@ public class LevelChanger : MonoBehaviour
 
     private void ChangeLevel()
     {
-        if (CurrentLevelNumber % _bossLevelNubmerDivider == GlobalValues.Zero)
+        if (CurrentLevelNumber % _bossLevelNumber == GlobalValues.Zero)
         {
             BossLevelStarted?.Invoke();
         }
