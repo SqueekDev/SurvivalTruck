@@ -4619,6 +4619,7 @@ GameObject:
   - component: {fileID: 3685216000195483176}
   - component: {fileID: 8804312646343408811}
   - component: {fileID: 5263502733032369212}
+  - component: {fileID: 5263502733032369213}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -4766,6 +4767,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5263502733032369213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3685216000195483177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d303b11e83f03044adbd64e880be3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hintViewer: {fileID: 0}
 --- !u!1 &3685216000517531314
 GameObject:
   m_ObjectHideFlags: 0
@@ -32089,6 +32103,18 @@ PrefabInstance:
       propertyPath: _shootEffect
       value: 
       objectReference: {fileID: 8536625796272345290}
+    - target: {fileID: 2339591092849784467, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 2339591092849784467, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633510373078483397, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: _startSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6729081215824752570, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
       propertyPath: _joystick
       value: 

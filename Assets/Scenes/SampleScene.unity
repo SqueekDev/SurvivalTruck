@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -681,11 +681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f469c60d7d4a338419adadee2bf83f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &597465769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3685216000195483177, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-  m_PrefabInstance: {fileID: 3685216000199233681}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &630585260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7505215089837334778, guid: 273bef1aa4cd4a84caa7c08e000617e4, type: 3}
@@ -4124,14 +4119,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1863301648, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 473494215648510235, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2012537276855655584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _joystick
       value: 
@@ -4224,10 +4211,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
-    - target: {fileID: 3685216000195483177, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3685216000547206264, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
       value: 
@@ -4248,10 +4231,6 @@ PrefabInstance:
       propertyPath: _upgradePanel
       value: 
       objectReference: {fileID: 110423820}
-    - target: {fileID: 3776579546707071841, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4280,18 +4259,10 @@ PrefabInstance:
       propertyPath: _floatingJoystick
       value: 
       objectReference: {fileID: 308994112}
-    - target: {fileID: 5263502733032369212, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_Volume
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263502733032369212, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 5263502733032369213, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _hintViewer
+      value: 
+      objectReference: {fileID: 1581703135}
     - target: {fileID: 5596333734524591954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4866,25 +4837,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8804312646343408811, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
   m_PrefabInstance: {fileID: 3685216000199233681}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597465769}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d67291097922ff4eae633e34e794cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5263502733032369213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597465769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d303b11e83f03044adbd64e880be3fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hintViewer: {fileID: 1581703135}
 --- !u!1001 &5376138667886925097
 PrefabInstance:
   m_ObjectHideFlags: 0

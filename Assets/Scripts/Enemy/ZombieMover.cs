@@ -18,7 +18,6 @@ public class ZombieMover : Mover
     private Camera _camera;
     private Coroutine _jumping;
     private Coroutine _throwingAway;
-    private Rigidbody _rigidbody;
     private Transform _jumpPoint;
     private Vector3 _startRotationAngle;
     private float _startYRotation = 180f;
@@ -30,7 +29,6 @@ public class ZombieMover : Mover
         _startRotationAngle = new Vector3(_startXRotation, _startYRotation, _startZRotation);
         transform.eulerAngles = _startRotationAngle;
         _camera = Camera.main;
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public void MoveForward()
@@ -54,7 +52,7 @@ public class ZombieMover : Mover
             transform.position = newPosition;
         }
 
-        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+        Rigidbody.AddForce(transform.forward * Speed,ForceMode.Impulse);
     }
 
     public void ThrowAway(Transform targetFrom)
@@ -70,7 +68,7 @@ public class ZombieMover : Mover
         if (_throwingAway != null)
         {
             StopCoroutine(_throwingAway);
-            _rigidbody.velocity = Vector3.zero;
+            Rigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -83,11 +81,11 @@ public class ZombieMover : Mover
         if (target.TryGetComponent(out Player player) && Vector3.Distance(transform.position, player.transform.position)
             < _toPlayerSlowingDistance)
         {
-            transform.Translate(Vector3.forward * _toPlayerSpeed * Time.deltaTime);
+            Rigidbody.AddForce(transform.forward * _toPlayerSpeed,ForceMode.Impulse);
         }
         else
         {
-            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            Rigidbody.AddForce(transform.forward * Speed, ForceMode.Impulse);
         }
     }
 
@@ -141,7 +139,7 @@ public class ZombieMover : Mover
 
         while (true)
         {
-            _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
+            Rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
             yield return null;
         }
     }

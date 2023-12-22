@@ -20,8 +20,7 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         Vector3 newDirection = Vector3.zero;
-        newDirection = new Vector3(_joystick.Horizontal,
-           transform.position.y, _joystick.Vertical);
+        newDirection = new Vector3(_joystick.Horizontal,0,_joystick.Vertical);
 
         if (_joystick.Horizontal != GlobalValues.Zero && _joystick.Vertical != GlobalValues.Zero)
         {
@@ -44,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         {
             if (_joystick.Horizontal != GlobalValues.Zero && _joystick.Vertical != GlobalValues.Zero)
             {
-                _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y + newDirection.y,
+                _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y,
                     transform.position.z + newDirection.z));
             }
         }
