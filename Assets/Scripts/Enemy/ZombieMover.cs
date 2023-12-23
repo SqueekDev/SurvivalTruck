@@ -39,7 +39,8 @@ public class ZombieMover : Mover
 
             if (Speed == _startSpeed)
             {
-                Speed *= _backMoveForce;
+                _currentSpeed = Speed * _backMoveForce;
+                Speed =_currentSpeed ;
             }
         }
 
@@ -52,7 +53,7 @@ public class ZombieMover : Mover
             transform.position = newPosition;
         }
 
-        Rigidbody.AddForce(transform.forward * Speed,ForceMode.Impulse);
+        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
     }
 
     public void ThrowAway(Transform targetFrom)
@@ -81,11 +82,11 @@ public class ZombieMover : Mover
         if (target.TryGetComponent(out Player player) && Vector3.Distance(transform.position, player.transform.position)
             < _toPlayerSlowingDistance)
         {
-            Rigidbody.AddForce(transform.forward * _toPlayerSpeed,ForceMode.Impulse);
+            transform.Translate(Vector3.forward * _toPlayerSpeed*Time.deltaTime);
         }
         else
         {
-            Rigidbody.AddForce(transform.forward * Speed, ForceMode.Impulse);
+            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
     }
 
