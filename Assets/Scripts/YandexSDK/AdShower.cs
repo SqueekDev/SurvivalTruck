@@ -16,13 +16,13 @@ public class AdShower : MonoBehaviour
 
     private void OnEnable()
     {
-        _levelChanger.LevelFinished += OnLevelFinished;
+        _levelChanger.Finished += OnLevelFinished;
         _videoButton.Clicked += OnVideoButtonClick;
     }
 
     private void OnDisable()
     {
-        _levelChanger.LevelFinished -= OnLevelFinished;
+        _levelChanger.Finished -= OnLevelFinished;
         _videoButton.Clicked -= OnVideoButtonClick;
     }
 

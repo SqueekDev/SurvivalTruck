@@ -15,6 +15,7 @@ public class LeaderboardDataChanger : MonoBehaviour
     [SerializeField] private CoinCounter _coinCounter;
     [SerializeField] private GameButton _loginAcceptButton;
     [SerializeField] private LeanPhrase _anonymousText;
+    [SerializeField] private LevelChanger _levelChanger;
 
     private List<LeaderboardPlayer> _leaderboardPlayers = new List<LeaderboardPlayer>();
 
@@ -22,18 +23,16 @@ public class LeaderboardDataChanger : MonoBehaviour
 
     private void OnEnable()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        _coinCounter.TotalCoinsAmountChanged += OnTotalCoinsChanged;
-#endif
+        _levelChanger.Finished += OnScoreChanged;
+        _coinCounter.VideoBonusAdded += OnScoreChanged;
         _leaderboardButton.AutorizationCompleted += OnLeaderboardButtonClicked;
         _loginAcceptButton.Clicked += OnLeaderboardButtonClicked;
     }
 
     private void OnDisable()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        _coinCounter.TotalCoinsAmountChanged -= OnTotalCoinsChanged;
-#endif
+        _levelChanger.Finished -= OnScoreChanged;
+        _coinCounter.VideoBonusAdded -= OnScoreChanged;
         _leaderboardButton.AutorizationCompleted -= OnLeaderboardButtonClicked;
         _loginAcceptButton.Clicked -= OnLeaderboardButtonClicked;
     }
@@ -87,9 +86,9 @@ public class LeaderboardDataChanger : MonoBehaviour
         FillTable();
     }
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-    private void OnTotalCoinsChanged()
+    private void OnScoreChanged()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         if (PlayerAccount.IsAuthorized == false)
         {
             return;
@@ -103,6 +102,6 @@ public class LeaderboardDataChanger : MonoBehaviour
                 Leaderboard.SetScore(LeaderboardName, totalCoins);
             }
         });
-    }
 #endif
+    }
 }

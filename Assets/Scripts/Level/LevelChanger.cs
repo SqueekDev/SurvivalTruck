@@ -9,9 +9,11 @@ public class LevelChanger : MonoBehaviour
     [SerializeField] private Boss _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
     [SerializeField] private GamePanel _lostPanel;
+    [SerializeField] private GamePanel _finishLevelPanel;
     [SerializeField] private GameButton _nextLevelButton;
     [SerializeField] private GameButton _restartLevelButton;
     [SerializeField] private GameButton _settingsRestartLevelButton;
+    [SerializeField] private GameButton _finishLevelButton;
     [SerializeField] private int _bossLevelNumber;
 
     private int _playerPrefsSavedLevelNumber = 1;
@@ -19,7 +21,7 @@ public class LevelChanger : MonoBehaviour
     private Scene _currentScene;
 
     public event Action<int> Changed;
-    public event Action LevelFinished;
+    public event Action Finished;
     public event Action BossLevelStarted;
     public event Action BossLevelEnded;
 
@@ -42,6 +44,7 @@ public class LevelChanger : MonoBehaviour
         _nextLevelButton.Clicked += OnNextLevelButtonClick;
         _restartLevelButton.Clicked += OnRestartLevelButtonClick;
         _settingsRestartLevelButton.Clicked += OnRestartLevelButtonClick;
+        _finishLevelButton.Clicked += OnFinishLevelButtonClick;
     }
 
     private void OnDisable()
@@ -52,6 +55,7 @@ public class LevelChanger : MonoBehaviour
         _nextLevelButton.Clicked -= OnNextLevelButtonClick;
         _restartLevelButton.Clicked -= OnRestartLevelButtonClick;
         _settingsRestartLevelButton.Clicked -= OnRestartLevelButtonClick;
+        _finishLevelButton.Clicked -= OnFinishLevelButtonClick;
     }
 
     private void Start()
@@ -86,16 +90,7 @@ public class LevelChanger : MonoBehaviour
 
     private void OnWaveEnded()
     {
-        _isWave = false;
-        _changeLevelArea.gameObject.SetActive(true);
-        CurrentLevelNumber++;
-
-        if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
-        {
-            SyncLevelNumber();
-        }
-
-        LevelFinished?.Invoke();
+        _finishLevelPanel.gameObject.SetActive(true);
     }
 
     private void OnBossDied(Health boss)
@@ -118,5 +113,19 @@ public class LevelChanger : MonoBehaviour
     {
         _lostPanel.gameObject.SetActive(false);
         SceneManager.LoadScene(_currentScene.name);
+    }
+
+    private void OnFinishLevelButtonClick()
+    {
+        _isWave = false;
+        _changeLevelArea.gameObject.SetActive(true);
+        CurrentLevelNumber++;
+
+        if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)
+        {
+            SyncLevelNumber();
+        }
+
+        Finished?.Invoke();
     }
 }

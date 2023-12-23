@@ -27,7 +27,7 @@ public class CoinCounter : MonoBehaviour
 
     public event Action<int> CoinsAmountIncrease;
     public event Action<int> CoinsAmountDecrease;
-    public event Action TotalCoinsAmountChanged;
+    public event Action VideoBonusAdded;
 
     public int Count => _count;
     public int TotalEarnedCoins => _totalEarnedCoins;
@@ -81,7 +81,6 @@ public class CoinCounter : MonoBehaviour
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
         CoinsAmountIncrease?.Invoke(count);
-        TotalCoinsAmountChanged?.Invoke();
     }
 
     private IEnumerator RemovingCoins(int count)
@@ -100,7 +99,8 @@ public class CoinCounter : MonoBehaviour
     private void OnVideoAdShowed()
     {
         int reward = AdReward + AdRewardLevelModifier * (_levelChanger.CurrentLevelNumber - LevelModifierCorrection);
-        AddCoins(AdReward);
+        AddCoins(reward);
+        VideoBonusAdded?.Invoke();
         _addCoinsPanel.gameObject.SetActive(false);
     }
 
