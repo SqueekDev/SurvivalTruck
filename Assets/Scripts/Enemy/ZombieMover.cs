@@ -39,8 +39,7 @@ public class ZombieMover : Mover
 
             if (Speed == _startSpeed)
             {
-                _currentSpeed = Speed * _backMoveForce;
-                Speed =_currentSpeed ;
+                Speed *= _backMoveForce;
             }
         }
 
