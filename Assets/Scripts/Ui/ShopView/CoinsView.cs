@@ -7,6 +7,7 @@ public class CoinsView : MonoBehaviour
     private const float TimeBetweenShowingCount = 0.05f;
     private const int NumberToConvert = 999;
     private const int ThousandDivider = 1000;
+    private const int TenDivider = 10;
     private const string Dot = ".";
 
     [SerializeField] private CoinCounter _counter;
@@ -58,7 +59,14 @@ public class CoinsView : MonoBehaviour
             }
             else
             {
-                _text.text = count.ToString() + Dot + remainder;
+                if (remainder<TenDivider)
+                {
+                    _text.text = count.ToString() + Dot + "0" + remainder;
+                }
+                else
+                {
+                    _text.text = count.ToString() + Dot + remainder;
+                }
             }
         }
         else

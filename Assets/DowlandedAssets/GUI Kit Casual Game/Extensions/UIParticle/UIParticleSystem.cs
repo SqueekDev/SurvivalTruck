@@ -17,6 +17,7 @@ namespace UnityEngine.UI.Extensions
         public bool use3dRotation = false;
 
         private Transform _transform;
+        private int _count;
         private ParticleSystem pSystem;
         private ParticleSystem.Particle[] particles;
         private UIVertex[] _quad = new UIVertex[4];
@@ -160,9 +161,13 @@ namespace UnityEngine.UI.Extensions
             Vector2 corner1 = Vector2.zero;
             Vector2 corner2 = Vector2.zero;
             // iterate through current particles
-            int count = pSystem.GetParticles(particles);
+            if (particles!=null)
+            {
+                int _count = pSystem.GetParticles(particles);
 
-            for (int i = 0; i < count; ++i)
+            }
+
+            for (int i = 0; i < _count; ++i)
             {
                 ParticleSystem.Particle particle = particles[i];
 

@@ -83,7 +83,7 @@ public class PlayerStateChanger : MonoBehaviour
     {
         _bossShooter.enabled = false;
         _cameraMover.enabled = false;
-        _joystick.gameObject.SetActive(false);
+        //_joystick.gameObject.SetActive(false);
         _rigidbody.isKinematic = false;
     }
 
