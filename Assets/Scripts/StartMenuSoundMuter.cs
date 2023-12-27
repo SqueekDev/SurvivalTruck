@@ -3,32 +3,51 @@ using Agava.WebUtility;
 
 public class StartMenuSoundMuter : MonoBehaviour
 {
-    protected const int SoundOff = 0;
-    protected const int SoundOn = 1;
+    protected const int DisabledValue = 0;
+    protected const int EnabledValue = 1;
 
     [SerializeField] private SoundButton _soundButton;
 
     protected virtual void OnEnable()
     {
         _soundButton.Muted += OnMuted;
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
-        bool isMuted = PlayerPrefs.GetInt(PlayerPrefsKeys.Sound, SoundOff) == SoundOn;
+        Application.focusChanged += OnInBackgroundChangeApp;
+        WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
+        bool isMuted = PlayerPrefs.GetInt(PlayerPrefsKeys.Sound, DisabledValue) == EnabledValue;
         OnMuted(isMuted);
     }
 
     protected virtual void OnDisable()
     {
         _soundButton.Muted -= OnMuted;        
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+        Application.focusChanged -= OnInBackgroundChangeApp;
+        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeWeb;
     }
 
-    protected virtual void OnInBackgroundChange(bool inBackground)
+    protected void PauseGame(bool isPaused)
     {
-        AudioListener.pause = inBackground;
+        Time.timeScale = isPaused ? DisabledValue : EnabledValue;
+    }
+    
+    protected void PauseSound(bool isPaused)
+    {
+        AudioListener.pause = isPaused;
+    }
+
+    protected virtual void OnInBackgroundChangeApp(bool inApp)
+    {
+        PauseGame(!inApp);
+        PauseSound(!inApp);
+    }
+
+    protected virtual void OnInBackgroundChangeWeb(bool inBackground)
+    {
+        PauseGame(inBackground);
+        PauseSound(inBackground);
     }
 
     private void OnMuted(bool isMuted)
     {
-        AudioListener.volume = isMuted == true ? SoundOff : SoundOn;
+        AudioListener.volume = isMuted ? DisabledValue : EnabledValue;
     }
 }

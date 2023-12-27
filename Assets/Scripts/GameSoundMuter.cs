@@ -18,15 +18,31 @@ public class GameSoundMuter : StartMenuSoundMuter
         _adShower.AdShowing -= OnAdShowed;
     }
 
-    protected override void OnInBackgroundChange(bool inBackground)
+    protected override void OnInBackgroundChangeApp(bool inApp)
     {
-        if (inBackground)
+        if (inApp == false)
         {
-            AudioListener.pause = inBackground;
+            PauseGame(!inApp);
+            PauseSound(!inApp);
         }
         else if (_adShowing == false)
         {
-            AudioListener.pause = inBackground;
+            PauseGame(!inApp);
+            PauseSound(!inApp);
+        }
+    }
+
+    protected override void OnInBackgroundChangeWeb(bool inBackground)
+    {
+        if (inBackground)
+        {
+            PauseGame(inBackground);
+            PauseSound(inBackground);
+        }
+        else if (_adShowing == false)
+        {
+            PauseGame(inBackground);
+            PauseSound(inBackground);
         }
     }
 

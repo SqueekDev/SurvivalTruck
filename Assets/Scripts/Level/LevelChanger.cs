@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
+    private const float FinishLevelDelayTime = 1.5f;
+
     [SerializeField] private WaveController _waveController;
     [SerializeField] private Player _player;
     [SerializeField] private Boss _boss;
@@ -19,6 +22,8 @@ public class LevelChanger : MonoBehaviour
     private int _playerPrefsSavedLevelNumber = 1;
     private bool _isWave = false;
     private Scene _currentScene;
+    private Coroutine _finishCorutine;
+    private WaitForSeconds _finishLevelDelay = new WaitForSeconds(FinishLevelDelayTime);
 
     public event Action<int> Changed;
     public event Action Finished;
@@ -88,9 +93,20 @@ public class LevelChanger : MonoBehaviour
         Changed?.Invoke(CurrentLevelNumber);
     }
 
+    private IEnumerator FinishLevelCorutine()
+    {
+        yield return _finishLevelDelay;
+        _finishLevelPanel.gameObject.SetActive(true);
+    }
+
     private void OnWaveEnded()
     {
-        _finishLevelPanel.gameObject.SetActive(true);
+        if (_finishCorutine != null)
+        {
+            StopCoroutine(_finishCorutine);
+        }
+
+        _finishCorutine = StartCoroutine(FinishLevelCorutine());
     }
 
     private void OnBossDied(Health boss)
