@@ -2253,7 +2253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 519401667420941973}
   _coinsPriceText: {fileID: 6531178915525244816}
-  _phrase: {fileID: 3985863406770396999, guid: c8128ec6cd0527147b3094a880ef5488, type: 3}
+  _descriprionPhrase: {fileID: 3985863406770396999, guid: c8128ec6cd0527147b3094a880ef5488, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 4120782572876145672}
 --- !u!114 &4120782572876145672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7889,7 +7891,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 2036317050429032900}
   _coinsPriceText: {fileID: 291477848}
-  _phrase: {fileID: 971250826142413180, guid: 5983719a1a40f3c439b0431140d1ae4a, type: 3}
+  _descriprionPhrase: {fileID: 971250826142413180, guid: 5983719a1a40f3c439b0431140d1ae4a, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 3780348036841152769}
 --- !u!114 &3780348036841152769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8331,7 +8335,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 2135871810044127761}
   _coinsPriceText: {fileID: 1300858554087020673}
-  _phrase: {fileID: 5141884617430288104, guid: e755659c52c677c4fa9cbaf594501214, type: 3}
+  _descriprionPhrase: {fileID: 5141884617430288104, guid: e755659c52c677c4fa9cbaf594501214, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 8224473251056355274}
 --- !u!114 &8224473251056355274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10917,7 +10923,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 6076579096185482044}
   _coinsPriceText: {fileID: 621101211}
-  _phrase: {fileID: 7505215089837334779, guid: 273bef1aa4cd4a84caa7c08e000617e4, type: 3}
+  _descriprionPhrase: {fileID: 7505215089837334779, guid: 273bef1aa4cd4a84caa7c08e000617e4, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 4958215408334909654}
 --- !u!114 &4958215408334909654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12427,7 +12435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 7155499273371058984}
   _coinsPriceText: {fileID: 3940518932616936102}
-  _phrase: {fileID: 4801647212417632450, guid: 5478a7521e21ad545bec5e729f03abd8, type: 3}
+  _descriprionPhrase: {fileID: 4801647212417632450, guid: 5478a7521e21ad545bec5e729f03abd8, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 8303923127572445057}
 --- !u!114 &8303923127572445057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13979,7 +13989,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 6244741094533922549}
   _coinsPriceText: {fileID: 7169924923607981248}
-  _phrase: {fileID: 2613345515862416716, guid: 239ee6dec04a0814791bc01469fbcbd1, type: 3}
+  _descriprionPhrase: {fileID: 2613345515862416716, guid: 239ee6dec04a0814791bc01469fbcbd1, type: 3}
+  _pricePhrase: {fileID: 3534297880875248800, guid: 24fe6c5cd0281d44296afd0b2ab1e9ac, type: 3}
+  _stats: {fileID: 997736723091481453}
 --- !u!114 &997736723091481453
 MonoBehaviour:
   m_ObjectHideFlags: 0

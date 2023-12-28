@@ -13,8 +13,9 @@ public class CameraMover : MonoBehaviour
 
     private Camera _camera;
     private float _yCameraRotation = 0f;
-    private float _xInput;
-    private float _yInput;
+    private Vector3 _input;
+    private float _finalXInput;
+    private float _finalYInput;
 
     private void Awake()
     {
@@ -23,20 +24,21 @@ public class CameraMover : MonoBehaviour
 
     private void Update()
     {
-        _xInput = Mathf.Clamp(_floatingJoystick.Horizontal * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
-        _yInput = Mathf.Clamp(_floatingJoystick.Vertical * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _input = new Vector3(_floatingJoystick.Horizontal, _floatingJoystick.Vertical).normalized;
     }
 
     private void FixedUpdate()
     {
-        _yCameraRotation -= _yInput;
+        _finalXInput = Mathf.Clamp(_input.x * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _finalYInput = Mathf.Clamp(_input.y * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _yCameraRotation -= _finalYInput;
         _yCameraRotation = Mathf.Clamp(_yCameraRotation, -_verticalBorded, _verticalBorded);
         _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
         _weapon.transform.localRotation = Quaternion.Euler(-_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
 
-        if (transform.localRotation.eulerAngles.y < _rightBorder && _xInput > GlobalValues.Zero || transform.localRotation.eulerAngles.y > _leftBorder && _xInput < GlobalValues.Zero)
+        if (transform.localRotation.eulerAngles.y < _rightBorder && _finalXInput > GlobalValues.Zero || transform.localRotation.eulerAngles.y > _leftBorder && _finalXInput < GlobalValues.Zero)
         {
-            transform.Rotate(Vector3.up * _xInput);
+            transform.Rotate(Vector3.up * _finalXInput);
         }
     }
 }
