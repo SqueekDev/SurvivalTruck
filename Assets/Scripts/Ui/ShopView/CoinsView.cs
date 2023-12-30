@@ -4,7 +4,7 @@ using TMPro;
 
 public class CoinsView : MonoBehaviour
 {
-    private const float TimeBetweenShowingCount = 0.05f;
+    private const float TimeBetweenShowingCount = 0.001f;
     private const int NumberToConvert = 999;
     private const int ThousandDivider = 1000;
     private const int TenDivider = 10;
@@ -34,6 +34,7 @@ public class CoinsView : MonoBehaviour
     private void Start()
     {
         _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
+        _trueCount = _currentCount;
         ShowCount(_currentCount);
     }
 
@@ -63,7 +64,6 @@ public class CoinsView : MonoBehaviour
 
     private void OnCoinsAmountIncrease(int coinsCount)
     {
-        _trueCount = _currentCount;
         _trueCount += coinsCount;
         if (_showing == null)
         {
@@ -73,7 +73,6 @@ public class CoinsView : MonoBehaviour
 
     private void OnCoinsAmountDecrease(int coinsCount)
     {
-        _trueCount = _currentCount;
         _trueCount -= coinsCount;
         if (_showing == null)
         {
