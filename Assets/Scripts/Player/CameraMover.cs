@@ -6,7 +6,8 @@ public class CameraMover : MonoBehaviour
 
     [SerializeField] private VariableJoystick _floatingJoystick;
     [SerializeField] private Weapon _weapon;
-    [SerializeField] private float _speed = 600f;
+    [SerializeField] private float _speedXAxis;
+    [SerializeField] private float _speedYAxis;
     [SerializeField] private float _verticalBorded = 20f;
     [SerializeField] private float _leftBorder = 150f;
     [SerializeField] private float _rightBorder = 210f;
@@ -29,8 +30,8 @@ public class CameraMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _finalXInput = Mathf.Clamp(_input.x * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
-        _finalYInput = Mathf.Clamp(_input.y * _speed * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _finalXInput = Mathf.Clamp(_input.x * _speedXAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _finalYInput = Mathf.Clamp(_input.y * _speedYAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
         _yCameraRotation -= _finalYInput;
         _yCameraRotation = Mathf.Clamp(_yCameraRotation, -_verticalBorded, _verticalBorded);
         _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);

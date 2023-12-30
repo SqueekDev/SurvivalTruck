@@ -32081,6 +32081,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5596333734524591954}
     - target: {fileID: 384220406333063253, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: _speedXAxis
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 384220406333063253, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
+      propertyPath: _speedYAxis
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 384220406333063253, guid: 671f987b1560af1419b167d20471d2ef, type: 3}
       propertyPath: _floatingJoystick
       value: 
       objectReference: {fileID: 0}

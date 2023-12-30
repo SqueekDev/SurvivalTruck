@@ -1242,8 +1242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2f40d76645efb409c0da2b4bbe477f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 300
-  _additionalHealth: 30
+  _startHealth: 400
+  _additionalHealth: 60
   _damageColor: {r: 0.16103132, g: 0.5471698, b: 0.14711641, a: 1}
   _deathColor: {r: 0.6415094, g: 0.63243145, b: 0.63243145, a: 1}
   _renderer: {fileID: 764121342498561804}

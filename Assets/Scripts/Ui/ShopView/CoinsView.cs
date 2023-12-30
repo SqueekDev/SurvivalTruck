@@ -15,6 +15,7 @@ public class CoinsView : MonoBehaviour
 
     private Coroutine _showing;
     private int _currentCount;
+    private int _trueCount;
     private WaitForSeconds _showingDelay = new WaitForSeconds(TimeBetweenShowingCount);
 
     private void OnEnable()
@@ -36,72 +37,47 @@ public class CoinsView : MonoBehaviour
         ShowCount(_currentCount);
     }
 
-    private void StartShowingIncrease(int coinsCount)
-    {
-        _showing = StartCoroutine(ShowingIncreseCount(coinsCount));
-    }
-    
-    private void StartShowingDecrease(int coinsCount)
-    {
-        _showing = StartCoroutine(ShowingDecreseCount(coinsCount));
-    }
-
     private void ShowCount(int coinsCount)
     {
-        if (coinsCount > NumberToConvert)
-        {
-            int count = coinsCount / ThousandDivider;
-            int remainder = (coinsCount - (ThousandDivider * count));
-
-            if (remainder == GlobalValues.Zero)
-            {
-                _text.text = count.ToString();
-            }
-            else
-            {
-                if (remainder<TenDivider)
-                {
-                    _text.text = count.ToString() + Dot + "0" + remainder;
-                }
-                else
-                {
-                    _text.text = count.ToString() + Dot + remainder;
-                }
-            }
-        }
-        else
-        {
-            _text.text = coinsCount.ToString();
-        }
+        _text.text = coinsCount.ToString();
     }
 
-    private IEnumerator ShowingIncreseCount(int coinsCount)
+    private IEnumerator ShowingCount()
     {
-        for (int i = 0; i < coinsCount; i++)
+
+        while (_currentCount != _trueCount)
         {
-            _currentCount++;
+            if (_currentCount > _trueCount)
+            {
+                _currentCount--;
+            }
+            if (_currentCount < _trueCount)
+            {
+                _currentCount++;
+            }
             ShowCount(_currentCount);
             yield return _showingDelay;
         }
-    }
-    
-    private IEnumerator ShowingDecreseCount(int coinsCount)
-    {
-        for (int i = 0; i < coinsCount; i++)
-        {
-            _currentCount--;
-            ShowCount(_currentCount);
-            yield return _showingDelay;
-        }
+        _showing = null;
     }
 
     private void OnCoinsAmountIncrease(int coinsCount)
     {
-        StartShowingIncrease(coinsCount);
+        _trueCount = _currentCount;
+        _trueCount += coinsCount;
+        if (_showing == null)
+        {
+            _showing = StartCoroutine(ShowingCount());
+        }
     }
 
     private void OnCoinsAmountDecrease(int coinsCount)
     {
-        StartShowingDecrease(coinsCount);
+        _trueCount = _currentCount;
+        _trueCount -= coinsCount;
+        if (_showing == null)
+        {
+            _showing = StartCoroutine(ShowingCount());
+        }
     }
 }
