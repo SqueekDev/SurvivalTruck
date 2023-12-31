@@ -32,9 +32,11 @@ public class CoinCounter : MonoBehaviour
     public int Count => _count;
     public int TotalEarnedCoins => _totalEarnedCoins;
     public int EarnModifier { get; private set; }
+    public int CurrentAdReward { get; private set; }
 
     private void Awake()
     {
+        OnLevelChanged(_levelChanger.CurrentLevelNumber);
         OnCoinsModifierUpgraded();
         _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, GlobalValues.Zero);
         int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
@@ -43,6 +45,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnEnable()
     {
+        _levelChanger.Changed += OnLevelChanged;
         _boss.Died += OnBossDied;
         _coinsModifierUpgradeButton.CoinsModifierUpgraded += OnCoinsModifierUpgraded;
         _adShower.VideoAdShowed += OnVideoAdShowed;
@@ -57,6 +60,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnDisable()
     {
+        _levelChanger.Changed -= OnLevelChanged;
         _boss.Died -= OnBossDied;
         _coinsModifierUpgradeButton.CoinsModifierUpgraded -= OnCoinsModifierUpgraded;
         _adShower.VideoAdShowed -= OnVideoAdShowed;
@@ -91,6 +95,11 @@ public class CoinCounter : MonoBehaviour
         CoinsAmountDecrease?.Invoke(count);
     }
 
+    private void OnLevelChanged(int level)
+    {
+        CurrentAdReward = AdReward + AdRewardLevelModifier * (level - LevelModifierCorrection);
+    }
+
     private void OnAddCoinsButtonClicked()
     {
         _addCoinsPanel.gameObject.SetActive(true);
@@ -98,8 +107,7 @@ public class CoinCounter : MonoBehaviour
 
     private void OnVideoAdShowed()
     {
-        int reward = AdReward + AdRewardLevelModifier * (_levelChanger.CurrentLevelNumber - LevelModifierCorrection);
-        AddCoins(reward);
+        AddCoins(CurrentAdReward);
         VideoBonusAdded?.Invoke();
         _addCoinsPanel.gameObject.SetActive(false);
     }

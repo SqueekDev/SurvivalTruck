@@ -8,6 +8,7 @@ public class AdShower : MonoBehaviour
 
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private GameButton _videoButton;
+    [SerializeField] private GamePanel _finishLevelPanel;
 
     private int _counter;
 
@@ -31,11 +32,12 @@ public class AdShower : MonoBehaviour
         if (_counter < NumberToShowAd)
         {
             _counter++;
+            _finishLevelPanel.gameObject.SetActive(false);
         }
         else
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            InterstitialAd.Show(OnOpenCallBack, OnCloseCallBack);
+            InterstitialAd.Show(OnOpenCallBack, OnCloseCallBack, OnErrorCallBack);
 #endif
             _counter = 0;
         }
@@ -69,5 +71,11 @@ public class AdShower : MonoBehaviour
     {
         Time.timeScale = 1;
         AdShowing?.Invoke(false);
+        _finishLevelPanel.gameObject.SetActive(false);
+    }
+
+    private void OnErrorCallBack(string error)
+    {
+        _finishLevelPanel.gameObject.SetActive(false);
     }
 }

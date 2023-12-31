@@ -14,7 +14,6 @@ public class CameraMover : MonoBehaviour
 
     private Camera _camera;
     private float _yCameraRotation = 0f;
-    private Vector3 _input;
     private float _finalXInput;
     private float _finalYInput;
 
@@ -23,15 +22,10 @@ public class CameraMover : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void Update()
-    {
-        _input = new Vector3(_floatingJoystick.Horizontal, _floatingJoystick.Vertical).normalized;
-    }
-
     private void FixedUpdate()
     {
-        _finalXInput = Mathf.Clamp(_input.x * _speedXAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
-        _finalYInput = Mathf.Clamp(_input.y * _speedYAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _finalXInput = Mathf.Clamp(_floatingJoystick.Horizontal * _speedXAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
+        _finalYInput = Mathf.Clamp(_floatingJoystick.Vertical * _speedYAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
         _yCameraRotation -= _finalYInput;
         _yCameraRotation = Mathf.Clamp(_yCameraRotation, -_verticalBorded, _verticalBorded);
         _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);

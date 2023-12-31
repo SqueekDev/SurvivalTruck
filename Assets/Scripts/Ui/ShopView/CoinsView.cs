@@ -5,10 +5,6 @@ using TMPro;
 public class CoinsView : MonoBehaviour
 {
     private const float TimeBetweenShowingCount = 0.001f;
-    private const int NumberToConvert = 999;
-    private const int ThousandDivider = 1000;
-    private const int TenDivider = 10;
-    private const string Dot = ".";
 
     [SerializeField] private CoinCounter _counter;
     [SerializeField] private TextMeshProUGUI _text;
@@ -52,19 +48,23 @@ public class CoinsView : MonoBehaviour
             {
                 _currentCount--;
             }
+
             if (_currentCount < _trueCount)
             {
                 _currentCount++;
             }
+
             ShowCount(_currentCount);
             yield return _showingDelay;
         }
+
         _showing = null;
     }
 
     private void OnCoinsAmountIncrease(int coinsCount)
     {
         _trueCount += coinsCount;
+
         if (_showing == null)
         {
             _showing = StartCoroutine(ShowingCount());
@@ -74,6 +74,7 @@ public class CoinsView : MonoBehaviour
     private void OnCoinsAmountDecrease(int coinsCount)
     {
         _trueCount -= coinsCount;
+
         if (_showing == null)
         {
             _showing = StartCoroutine(ShowingCount());
