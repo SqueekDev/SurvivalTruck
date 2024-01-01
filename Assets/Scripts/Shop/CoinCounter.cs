@@ -109,7 +109,6 @@ public class CoinCounter : MonoBehaviour
     {
         AddCoins(CurrentAdReward);
         VideoBonusAdded?.Invoke();
-        _addCoinsPanel.gameObject.SetActive(false);
     }
 
     private void OnZombieAttacked(ZombieHealth zombie)

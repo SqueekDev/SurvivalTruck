@@ -9,6 +9,7 @@ public class AdShower : MonoBehaviour
     [SerializeField] private LevelChanger _levelChanger;
     [SerializeField] private GameButton _videoButton;
     [SerializeField] private GamePanel _finishLevelPanel;
+    [SerializeField] private GamePanel _addCoinsPanel;
 
     private int _counter;
 
@@ -65,6 +66,7 @@ public class AdShower : MonoBehaviour
     {
         Time.timeScale = 1;
         AdShowing?.Invoke(false);
+        _addCoinsPanel.gameObject.SetActive(false);
     }
 
     private void OnCloseCallBack(bool state)

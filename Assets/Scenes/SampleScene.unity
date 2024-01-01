@@ -652,6 +652,7 @@ MonoBehaviour:
   _levelChanger: {fileID: 1593400594}
   _videoButton: {fileID: 765757440}
   _finishLevelPanel: {fileID: 661399651}
+  _addCoinsPanel: {fileID: 1468239820}
 --- !u!4 &387104256
 Transform:
   m_ObjectHideFlags: 0
