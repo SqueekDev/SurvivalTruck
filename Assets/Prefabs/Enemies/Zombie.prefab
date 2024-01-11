@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4815710542013469597}
   - component: {fileID: -551708208428178138}
   - component: {fileID: 7618092376629469359}
+  - component: {fileID: -7023678176650204520}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Untagged
@@ -104,9 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 40
   _additionalHealth: 10
-  _damageColor: {r: 0.662662, g: 0.9150943, b: 0.46186364, a: 1}
-  _deathColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
-  _renderer: {fileID: 6008923683492922678}
+  _colorChanger: {fileID: -7023678176650204520}
   _levelChanger: {fileID: 0}
   _mover: {fileID: 4815710542013469597}
   _reward: 5
@@ -137,9 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _stopDistance: 0.5
   _startSpeed: 7
   Speed: 7
   _jumpForce: 20
@@ -266,6 +263,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7023678176650204520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638bb19a90bd2754fa1b19e66e060045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageColor: {r: 0.49746442, g: 0.6886792, b: 0.43204877, a: 1}
+  _deathColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  _renderer: {fileID: 6008923683492922678}
 --- !u!1 &6008923683506587682
 GameObject:
   m_ObjectHideFlags: 0

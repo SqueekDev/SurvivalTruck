@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealthUpgradeButton : UpgradeButton
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     private int _startHealth;
 

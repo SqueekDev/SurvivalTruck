@@ -34,7 +34,7 @@ public class ZombieHealth : Health
 
     protected override void Die()
     {
-        _mover.SetNoSpeed();
+        _mover.SetZeroSpeed();
         base.Die();
     }
 

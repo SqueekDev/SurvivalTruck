@@ -4,6 +4,8 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     private const float OpenDelay = 1f;
+    private const string OpenTrigger = "Open";
+    private const string CloseTrigger = "Close";
 
     [SerializeField] private Animator _coverOpeningAnimator;
     [SerializeField] private AudioSource _coverOpeningSound;
@@ -34,12 +36,12 @@ public class Shop : MonoBehaviour
 
     private void Open()
     {
-        _coverOpeningAnimator.SetTrigger("Open");
+        _coverOpeningAnimator.SetTrigger(OpenTrigger);
         _coverOpeningSound.Play();
     }
     private void Close()
     {
-        _coverOpeningAnimator.SetTrigger("Close");
+        _coverOpeningAnimator.SetTrigger(CloseTrigger);
         _coverClosingSound.Play();
     }
 

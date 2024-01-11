@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     private Vector3 _offset;
 

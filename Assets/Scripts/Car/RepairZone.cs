@@ -22,7 +22,7 @@ public class RepairZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerHealth player))
         {
             StopRepair();
             _repairCorutine = StartCoroutine(Repair());
@@ -31,7 +31,7 @@ public class RepairZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerHealth player))
         {
             StopRepair();
         }

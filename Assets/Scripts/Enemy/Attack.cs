@@ -24,7 +24,7 @@ public class Attack : StateMachineBehaviour
                 _zombieAttacker.Attack(obstacle);
             }
 
-            if (_target.TryGetComponent(out Player player))
+            if (_target.TryGetComponent(out PlayerHealth player))
             {
                 _zombieAttacker.Attack(player);
             }

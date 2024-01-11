@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    private const string AttackDistance = "attackDistance";
+    private const string MoveTo = "MoveTo";
+    private const string Jump = "Jump";
+    private const string Kangaroo = "Kangaroo";
+
     [SerializeField] private ZombieMover _zombieMover;
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private ZombieHealth _zombieHealth;
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
     [SerializeField] private AudioSource _kangarooCollision;
 
     private Transform _target;
@@ -37,11 +42,11 @@ public class Zombie : MonoBehaviour
         if (_target.TryGetComponent(out Obstacle obstacle))
         {
             Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
-            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, newPosition));
+            _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, newPosition));
         }
         else
         {
-            _animator.SetFloat("attackDistance", Vector3.Distance(transform.position, _target.position));
+            _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, _target.position));
         }
     }
 
@@ -51,7 +56,7 @@ public class Zombie : MonoBehaviour
         {
             _firstRageAreaCollision = false;
             SetObstacle(rageArea.Obstacle);
-            _animator.SetTrigger("MoveTo");
+            _animator.SetTrigger(MoveTo);
             _zombieHealth.SetAngry();
             rageArea.Attacked(_zombieHealth);
             transform.SetParent(rageArea.transform.parent);
@@ -60,7 +65,7 @@ public class Zombie : MonoBehaviour
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
             _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
-            _animator.SetTrigger("Jump");
+            _animator.SetTrigger(Jump);
         }
     }
 
@@ -68,7 +73,7 @@ public class Zombie : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Kangaroo kangaroo))
         {
-            _animator.SetTrigger("Kangaroo");
+            _animator.SetTrigger(Kangaroo);
             _kangarooCollision.Play();
         }
     }

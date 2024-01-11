@@ -40,9 +40,9 @@ namespace LayerLab
         {
             if (panels.Count <= 0 || !isReady) return;
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow))
                 Click_Prev();
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.RightArrow))
                 Click_Next();
         }
 

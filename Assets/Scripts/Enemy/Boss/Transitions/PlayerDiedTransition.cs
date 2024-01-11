@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDiedTransition : BossTransition
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     private void Update()
     {

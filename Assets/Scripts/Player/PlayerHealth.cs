@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : Health
+public class PlayerHealth : Health
 {
     [SerializeField] private Mover _mover;
     [SerializeField] private CameraLowerPoint _cameraLowerPoint;
@@ -39,7 +39,7 @@ public class Player : Health
         Vector3 cameraLowerPointRotation = _cameraLowerPoint.transform.rotation.eulerAngles;
         _cameraLowerPoint.transform.parent = _car.transform;
         _cameraLowerPoint.transform.rotation = Quaternion.Euler(cameraLowerPointRotation);
-        _mover.SetNoSpeed();
+        _mover.SetZeroSpeed();
         base.Die();
     }
 

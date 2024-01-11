@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(Player))]
+[RequireComponent(typeof(Rigidbody), typeof(PlayerHealth))]
 
 public class PlayerStateChanger : MonoBehaviour
 {
@@ -10,17 +10,17 @@ public class PlayerStateChanger : MonoBehaviour
     [SerializeField] private BossShooter _bossShooter;
     [SerializeField] private CameraMover _cameraMover;
     [SerializeField] private Shooter _shooter;
-    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Input _playerInput;
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private VariableJoystick _joystick;
 
     private Rigidbody _rigidbody;
-    private Player _player;
+    private PlayerHealth _player;
     private bool _actionsDisabled;
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
+        _player = GetComponent<PlayerHealth>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 

@@ -42,7 +42,7 @@ public class swipe : MonoBehaviour
             pos[i] = distance * i;
         }
 
-        if (Input.GetMouseButton(0))
+        if (UnityEngine.Input.GetMouseButton(0))
         {
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
         }

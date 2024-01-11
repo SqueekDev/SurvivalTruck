@@ -60,7 +60,7 @@ public class ZombieAttacker : MonoBehaviour
         }
     }
 
-    public void Attack(Player player)
+    public void Attack(PlayerHealth player)
     {
         transform.LookAt(player.transform);
 

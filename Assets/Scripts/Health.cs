@@ -6,23 +6,19 @@ public class Health : MonoBehaviour
 {
     public const string DieTrigger = "Die";
     private const float DyingDelayTime = 2f;
-    private const float ChangeColorDelayTime = 0.2f;
 
     [SerializeField] private int _startHealth;
     [SerializeField] private int _additionalHealth;
-    [SerializeField] private Color _damageColor;
-    [SerializeField] private Color _deathColor;
-    [SerializeField] private Renderer _renderer;
+    [SerializeField] private ColorChanger _colorChanger;
+
     
     protected int AddHealthMultiplier = 0;
 
     private int _currentHealth;
     private Animator _animator;
     private Coroutine _dying;
-    private Coroutine _changingColor;
-    private Color _startColor;
+
     private WaitForSeconds _dyingDelay = new WaitForSeconds(DyingDelayTime);
-    private WaitForSeconds _changeColorDelay = new WaitForSeconds(ChangeColorDelayTime);
 
     public event Action<float> HealthChanged;
     public event Action<Health> Died;
@@ -44,7 +40,6 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _startColor = _renderer.material.color;
     }
 
     public void TakeDamage(int count)
@@ -61,10 +56,7 @@ public class Health : MonoBehaviour
             }
             else
             {
-                if (_changingColor == null)
-                {
-                    _changingColor = StartCoroutine(ChangingColorDamage());
-                }
+                _colorChanger.ChangeToDamageColor();
             }
         }
     }
@@ -105,34 +97,13 @@ public class Health : MonoBehaviour
     private IEnumerator Dying()
     {
         _animator.SetTrigger(DieTrigger);
-        ChangeColorDeath();
+        _colorChanger.ChangeColorDeath();
         Died?.Invoke(this);
         yield return _dyingDelay;
         _dying = null;
         gameObject.SetActive(false);
-        ChangeColorNormal();
+        _colorChanger.ChangeColorNormal();
     }
 
-    private IEnumerator ChangingColorDamage()
-    {
-        _renderer.sharedMaterial.color = _damageColor;
-        yield return _changeColorDelay;
-        _renderer.sharedMaterial.color = _startColor;
-        _changingColor = null;
-    }
 
-    private void ChangeColorDeath()
-    {
-        if (_changingColor != null)
-        {
-            StopCoroutine(_changingColor);
-        }
-
-        _renderer.sharedMaterial.color = _deathColor;
-    }
-
-    private void ChangeColorNormal()
-    {
-        _renderer.sharedMaterial.color = _startColor;
-    }
 }

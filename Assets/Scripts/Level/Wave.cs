@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour
+public class Wave : MonoBehaviour
 {
-    private const int _levelToAddedZombieMultiplier = 3;
+    private const int LevelToAddedZombieMultiplier = 3;
     private const int MaxZombiesInWaveCount = 14;
 
     [SerializeField] private LevelChanger _levelChanger;
@@ -49,7 +49,7 @@ public class WaveController : MonoBehaviour
 
     private void ChangeZombiesCount(int levelNumber)
     {
-        _zombiesInWaveCount = _startZombieinWaveCount + levelNumber / _levelToAddedZombieMultiplier;
+        _zombiesInWaveCount = _startZombieinWaveCount + levelNumber / LevelToAddedZombieMultiplier;
 
         if (_zombiesInWaveCount >= MaxZombiesInWaveCount)
         {

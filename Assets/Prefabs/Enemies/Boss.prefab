@@ -1157,6 +1157,7 @@ GameObject:
   - component: {fileID: 3597398177912842062}
   - component: {fileID: 3597398177912842063}
   - component: {fileID: 3597398177912842060}
+  - component: {fileID: 6897996401742559079}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -1244,9 +1245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 200
   _additionalHealth: 60
-  _damageColor: {r: 0.16103132, g: 0.5471698, b: 0.14711641, a: 1}
-  _deathColor: {r: 0.6415094, g: 0.63243145, b: 0.63243145, a: 1}
-  _renderer: {fileID: 764121342498561804}
+  _colorChanger: {fileID: 6897996401742559079}
   _levelChanger: {fileID: 0}
   _reward: 100
   _damage: 20
@@ -1503,6 +1502,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 3597398177912842052}
   _player: {fileID: 0}
+--- !u!114 &6897996401742559079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3597398177922192748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638bb19a90bd2754fa1b19e66e060045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageColor: {r: 0.8867924, g: 0.3671672, b: 0.36391956, a: 1}
+  _deathColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  _renderer: {fileID: 764121342498561804}
 --- !u!1 &5215313770002531817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,9 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 50
   _additionalHealth: 0
-  _damageColor: {r: 1, g: 0.25, b: 0.25, a: 1}
-  _deathColor: {r: 0.015686275, g: 0.4509804, b: 0, a: 1}
-  _renderer: {fileID: 5215313770002531818}
+  _colorChanger: {fileID: 6897996401742559079}
 --- !u!95 &5215313770002531823
 Animator:
   serializedVersion: 4
@@ -1629,7 +1641,7 @@ Animator:
   m_GameObject: {fileID: 5215313770002531817}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fae19c21f3fd43749a96ad096738a2da, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

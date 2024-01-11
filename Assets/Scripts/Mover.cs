@@ -28,7 +28,7 @@ public abstract class Mover : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
     }
 
-    public void SetNoSpeed()
+    public void SetZeroSpeed()
     {
         Speed = GlobalValues.Zero;
     }

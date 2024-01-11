@@ -49,7 +49,9 @@ MonoBehaviour:
   _boss: {fileID: 0}
   _changeLevelArea: {fileID: 0}
   _lostPanel: {fileID: 0}
+  _finishLevelPanel: {fileID: 0}
   _nextLevelButton: {fileID: 0}
   _restartLevelButton: {fileID: 0}
   _settingsRestartLevelButton: {fileID: 0}
+  _finishLevelButton: {fileID: 0}
   _bossLevelNumber: 5

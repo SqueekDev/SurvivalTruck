@@ -4,7 +4,7 @@ public class AttackPlayerState : AttackState
 {
     private const int DamageMultiplier = 3;
 
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     protected override void Attack()
     {

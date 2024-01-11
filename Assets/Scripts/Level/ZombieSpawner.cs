@@ -14,12 +14,12 @@ public class ZombieSpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnZombies());
+        StartCoroutine(Creating());
     }
 
-    private IEnumerator SpawnZombies()
+    private IEnumerator Creating()
     {
-        while (true)
+        while (_car != null)
         {
             float randomX = Random.Range(_xLimits.x, _xLimits.y);
 

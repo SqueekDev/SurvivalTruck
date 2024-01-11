@@ -6,7 +6,7 @@ public class LevelWaveView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _levelNumberText;
     [SerializeField] private Slider _slider;
-    [SerializeField] private WaveController _waveController;
+    [SerializeField] private Wave _waveController;
     [SerializeField] private Animation _waveViewAnimation;
 
     private void OnEnable()

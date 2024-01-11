@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4004209828100690226}
-  - component: {fileID: 4004209828100690227}
+  - component: {fileID: 9018624723100345358}
   m_Layer: 0
   m_Name: WaveController
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4004209828100690227
+--- !u!114 &9018624723100345358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4004209828100690228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bed55124b698c42a3e0e358e968dde, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dbd677964efd2e4cafed9e5fb99790a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _levelChanger: {fileID: 0}

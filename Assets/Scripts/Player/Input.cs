@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class Input : MonoBehaviour
 {
     private const string Run = "Run";
 

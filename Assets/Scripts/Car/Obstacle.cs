@@ -10,7 +10,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private List<WoodBlock> _blocks;
     [SerializeField] private RepairZone _repairZone;
     [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private WaveController _waveController;
+    [SerializeField] private Wave _waveController;
     [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
     [SerializeField] private ParticleSystem _poofParticle;
     [SerializeField] private AudioSource _audioSource;

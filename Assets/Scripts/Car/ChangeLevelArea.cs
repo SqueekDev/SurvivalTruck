@@ -11,7 +11,7 @@ public class ChangeLevelArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent(out Player player))
+        if (collider.TryGetComponent(out PlayerHealth player))
         {
             ToggleButton(true);
         }
@@ -19,7 +19,7 @@ public class ChangeLevelArea : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.TryGetComponent(out Player player))
+        if (collider.TryGetComponent(out PlayerHealth player))
         {
             ToggleButton(false);
         }

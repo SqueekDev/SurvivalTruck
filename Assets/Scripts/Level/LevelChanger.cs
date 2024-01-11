@@ -7,8 +7,8 @@ public class LevelChanger : MonoBehaviour
 {
     private const float FinishLevelDelayTime = 1.5f;
 
-    [SerializeField] private WaveController _waveController;
-    [SerializeField] private Player _player;
+    [SerializeField] private Wave _waveController;
+    [SerializeField] private PlayerHealth _player;
     [SerializeField] private Boss _boss;
     [SerializeField] private ChangeLevelArea _changeLevelArea;
     [SerializeField] private GamePanel _lostPanel;
