@@ -27,6 +27,7 @@ public class CoinsSpawner : MonoBehaviour
     {
         CreateRandomCoinsNumber(spawnPoint);
     }
+
     public void CreateRandomCoinsNumber(Health spawnPoint)
     {
         int randomCoinsCount = Random.Range(0, _maxCoinsCount);

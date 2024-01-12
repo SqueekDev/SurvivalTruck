@@ -19,8 +19,7 @@ public class Input : MonoBehaviour
 
     private void Update()
     {
-        Vector3 newDirection = Vector3.zero;
-        newDirection = new Vector3(_joystick.Horizontal,transform.position.y,_joystick.Vertical);
+       Vector3 newDirection = new Vector3(_joystick.Horizontal,transform.position.y,_joystick.Vertical);
 
         if (_joystick.Horizontal != GlobalValues.Zero && _joystick.Vertical != GlobalValues.Zero)
         {

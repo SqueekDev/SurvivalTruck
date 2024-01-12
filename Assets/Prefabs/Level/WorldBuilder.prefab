@@ -52,4 +52,4 @@ MonoBehaviour:
   - {fileID: 4589265983506898267, guid: 899e5a1db40695f49bafa38b4eb6f425, type: 3}
   - {fileID: 7689617106701749164, guid: d2eb6c3bfb348084e81dabbb930a1ecb, type: 3}
   - {fileID: 6663972462610879357, guid: 01743b1098eb9294e93c0a72ce9db13d, type: 3}
-  _fogPrefab: {fileID: 0}
+  _fogPrefab: {fileID: 4681701800152751146, guid: 4a46573e6da7cb245930c334223dcc9b, type: 3}

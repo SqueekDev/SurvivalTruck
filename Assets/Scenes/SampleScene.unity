@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -668,15 +668,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &404730989 stripped
+--- !u!114 &404730993 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685216000547206264, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
   m_PrefabInstance: {fileID: 3685216000199233681}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f01d218503e1ef41805ae23f35a6eba, type: 3}
+  m_Script: {fileID: 11500000, guid: e2abd867ee8be5c42ba6c0b608045415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &454959184 stripped
@@ -1199,11 +1199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0f5897055a81644b7984b976a53ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!23 &1162344125 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7282262946382400720, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-  m_PrefabInstance: {fileID: 7282262947129118355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1162344128 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
@@ -1656,15 +1651,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d44ddd99a1812343982ac644f511082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1972587204 stripped
+--- !u!114 &1972587206 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
   m_PrefabInstance: {fileID: 4004209829534145527}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bed55124b698c42a3e0e358e968dde, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dbd677964efd2e4cafed9e5fb99790a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2034889571
@@ -3831,10 +3826,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1664274067, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2284538344701291525, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: m_Name
       value: CoinSpawner
@@ -3843,10 +3834,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 8141956493425255387}
-    - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: _coinsPooler
       value: 
@@ -4084,10 +4071,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2012537276855655584, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _joystick
+    - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _kangarooDamageUpgradeButton
       value: 
-      objectReference: {fileID: 308994112}
+      objectReference: {fileID: 1031018728}
     - target: {fileID: 3685215998898304141, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4095,7 +4082,7 @@ PrefabInstance:
     - target: {fileID: 3685215998898304141, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _waveController
       value: 
-      objectReference: {fileID: 1972587204}
+      objectReference: {fileID: 1972587206}
     - target: {fileID: 3685215998898304141, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _obstacleHealthUpgradeButton
       value: 
@@ -4107,7 +4094,7 @@ PrefabInstance:
     - target: {fileID: 3685215999338625894, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _waveController
       value: 
-      objectReference: {fileID: 1972587204}
+      objectReference: {fileID: 1972587206}
     - target: {fileID: 3685215999338625894, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _obstacleHealthUpgradeButton
       value: 
@@ -4119,7 +4106,7 @@ PrefabInstance:
     - target: {fileID: 3685215999799633178, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _waveController
       value: 
-      objectReference: {fileID: 1972587204}
+      objectReference: {fileID: 1972587206}
     - target: {fileID: 3685215999799633178, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _obstacleHealthUpgradeButton
       value: 
@@ -4176,10 +4163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
-    - target: {fileID: 3685216000547206264, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _kangarooDamageUpgradeButton
-      value: 
-      objectReference: {fileID: 1031018728}
     - target: {fileID: 3685216000612974052, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4240,6 +4223,10 @@ PrefabInstance:
       propertyPath: _weaponShootDelayUpgradeButton
       value: 
       objectReference: {fileID: 1194952742}
+    - target: {fileID: 6053431534899881711, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 308994112}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
 --- !u!1001 &3741213319255109424
@@ -4297,10 +4284,6 @@ PrefabInstance:
       propertyPath: _car
       value: 
       objectReference: {fileID: 5263502733032369210}
-    - target: {fileID: 3741213318934547601, guid: 83717cb905302a4459040db723841a13, type: 3}
-      propertyPath: _fogPrefab
-      value: 
-      objectReference: {fileID: 4681701800152751146, guid: 4a46573e6da7cb245930c334223dcc9b, type: 3}
     - target: {fileID: 3741213318934547601, guid: 83717cb905302a4459040db723841a13, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4573,30 +4556,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
-      propertyPath: _bossSpawner
-      value: 
-      objectReference: {fileID: 27061451}
-    - target: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
-      propertyPath: _levelChanger
-      value: 
-      objectReference: {fileID: 1593400594}
-    - target: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
-      propertyPath: _levelWaveView
-      value: 
-      objectReference: {fileID: 532231791}
-    - target: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
-      propertyPath: _rageAreas.Array.data[0]
-      value: 
-      objectReference: {fileID: 982701777}
-    - target: {fileID: 4004209828100690227, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
-      propertyPath: _rageAreas.Array.data[1]
-      value: 
-      objectReference: {fileID: 2068599679}
     - target: {fileID: 4004209828100690228, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
       propertyPath: m_Name
       value: WaveController
       objectReference: {fileID: 0}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _bossSpawner
+      value: 
+      objectReference: {fileID: 27061451}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _levelWaveView
+      value: 
+      objectReference: {fileID: 532231791}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _rageAreas.Array.data[0]
+      value: 
+      objectReference: {fileID: 982701777}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _rageAreas.Array.data[1]
+      value: 
+      objectReference: {fileID: 2068599679}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
 --- !u!1001 &4279921406963769172
@@ -4727,7 +4710,7 @@ PrefabInstance:
     - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
       propertyPath: _waveController
       value: 
-      objectReference: {fileID: 1972587204}
+      objectReference: {fileID: 1972587206}
     - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
       propertyPath: _changeLevelArea
       value: 
@@ -4748,10 +4731,6 @@ PrefabInstance:
       propertyPath: _restartLevelButton
       value: 
       objectReference: {fileID: 9150028078246563363}
-    - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
-      propertyPath: _bossLevelNubmerDivider
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4419399616893923865, guid: bbcbc4a0b553ddb47a81102141acd57d, type: 3}
       propertyPath: _settingsRestartLevelButton
       value: 
@@ -5237,10 +5216,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5263502733032369210}
     - target: {fileID: 6882228125696840655, guid: f522ec59abcd07d479e4c5649ab25291, type: 3}
-      propertyPath: _carZOffset
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882228125696840655, guid: f522ec59abcd07d479e4c5649ab25291, type: 3}
       propertyPath: _zombiePooler
       value: 
       objectReference: {fileID: 1514613842}
@@ -5285,10 +5260,6 @@ PrefabInstance:
       propertyPath: _headHealthBar
       value: 
       objectReference: {fileID: 9150028078246563364}
-    - target: {fileID: 2054707104933572208, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2054707104933572214, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _player
       value: 
@@ -5309,10 +5280,6 @@ PrefabInstance:
       propertyPath: _obstacle
       value: 
       objectReference: {fileID: 1386046492}
-    - target: {fileID: 2054707104933572218, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _headHealhBar
-      value: 
-      objectReference: {fileID: 9150028078246563364}
     - target: {fileID: 2054707104933572219, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _target
       value: 
@@ -5337,46 +5304,6 @@ PrefabInstance:
       propertyPath: _car
       value: 
       objectReference: {fileID: 5263502733032369210}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _renderer
-      value: 
-      objectReference: {fileID: 1162344125}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _deathColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _deathColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _deathColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _deathColor.r
-      value: 0.17425227
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _damageColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _damageColor.b
-      value: 0.514151
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _damageColor.g
-      value: 0.514151
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262946382400722, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _damageColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _boss
-      value: 
-      objectReference: {fileID: 8758378300194660580}
     - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _healthBar
       value: 
@@ -5389,10 +5316,6 @@ PrefabInstance:
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}
-    - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
-      propertyPath: _ySpawnOffset
-      value: 3.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7282262947135627865, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: m_Name
       value: BossSpawner
@@ -5767,7 +5690,7 @@ PrefabInstance:
     - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
       propertyPath: _kangaroo
       value: 
-      objectReference: {fileID: 404730989}
+      objectReference: {fileID: 404730993}
     - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -5931,7 +5854,7 @@ PrefabInstance:
     - target: {fileID: 532231791, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _waveController
       value: 
-      objectReference: {fileID: 1972587204}
+      objectReference: {fileID: 1972587206}
     - target: {fileID: 817523998676146188, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _health
       value: 
@@ -5984,14 +5907,6 @@ PrefabInstance:
       propertyPath: _coins
       value: 
       objectReference: {fileID: 8653259143751937566}
-    - target: {fileID: 4958215408334909654, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
-      propertyPath: _kangaroo
-      value: 
-      objectReference: {fileID: 404730989}
-    - target: {fileID: 6796566701720284988, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8224473251056355274, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _coins
       value: 

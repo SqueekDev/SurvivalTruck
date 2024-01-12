@@ -12,7 +12,7 @@ public class CoinCounter : MonoBehaviour
     private const int LevelModifierCorrection = 1;
 
     [SerializeField] private List<RageArea> _rageAreas;
-    [SerializeField] private Kangaroo _kangaroo;
+    [SerializeField] private CarShield _kangaroo;
     [SerializeField] private Boss _boss;
     [SerializeField] private CoinsModifierUpgradeButton _coinsModifierUpgradeButton;
     [SerializeField] private AdShower _adShower;

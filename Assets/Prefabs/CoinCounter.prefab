@@ -47,5 +47,10 @@ MonoBehaviour:
   _rageAreas:
   - {fileID: 0}
   - {fileID: 0}
+  _kangaroo: {fileID: 0}
   _boss: {fileID: 0}
   _coinsModifierUpgradeButton: {fileID: 0}
+  _adShower: {fileID: 0}
+  _addCoinsButton: {fileID: 0}
+  _addCoinsPanel: {fileID: 0}
+  _levelChanger: {fileID: 0}

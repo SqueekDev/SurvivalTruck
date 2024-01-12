@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Kangaroo : Cabine
+public class CarShield : MonoBehaviour
 {
     [SerializeField] private int _damage;
     [SerializeField] private KangarooDamageUpgradeButton _kangarooDamageUpgradeButton;

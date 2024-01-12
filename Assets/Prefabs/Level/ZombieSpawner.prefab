@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d65acb9be81f704b93ad6001754403c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBetweenSpawn: 1
   _xLimits: {x: -40, y: 30}
   _zombiePooler: {fileID: 0}
   _car: {fileID: 0}

@@ -81,7 +81,7 @@ public class ZombieMover : Mover
         if (target.TryGetComponent(out PlayerHealth player) && Vector3.Distance(transform.position, player.transform.position)
             < _toPlayerSlowingDistance)
         {
-            transform.Translate(Vector3.forward * _toPlayerSpeed*Time.deltaTime);
+            transform.Translate(Vector3.forward * _toPlayerSpeed * Time.deltaTime);
         }
         else
         {
@@ -137,7 +137,7 @@ public class ZombieMover : Mover
         Vector3 newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
         Vector3 direction = newPosition - transform.position;
 
-        while (transform.position.x!=newPosition.x)
+        while (transform.position.x != newPosition.x)
         {
             Rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
             yield return null;

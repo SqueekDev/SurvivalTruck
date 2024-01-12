@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KangarooDamageUpgradeButton : UpgradeButton
 {
-    [SerializeField] private Kangaroo _kangaroo;
+    [SerializeField] private CarShield _kangaroo;
 
     private int _startDamage;
 

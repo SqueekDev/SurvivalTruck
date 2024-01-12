@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class Mover : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _stopDistance=0.5f;
     [SerializeField] protected float _startSpeed;
     [SerializeField] protected float Speed;
 

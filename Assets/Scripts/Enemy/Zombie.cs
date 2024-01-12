@@ -71,7 +71,7 @@ public class Zombie : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out Kangaroo kangaroo))
+        if (collision.gameObject.TryGetComponent(out CarShield kangaroo))
         {
             _animator.SetTrigger(Kangaroo);
             _kangarooCollision.Play();

@@ -104,6 +104,4 @@ public class Health : MonoBehaviour
         gameObject.SetActive(false);
         _colorChanger.ChangeColorNormal();
     }
-
-
 }
