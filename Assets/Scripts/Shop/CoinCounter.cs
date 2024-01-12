@@ -25,8 +25,7 @@ public class CoinCounter : MonoBehaviour
     private int _currentZombieReward;
     private WaitForSeconds _removingDelay = new WaitForSeconds(RemovingDelayTime);
 
-    public event Action<int> CoinsAmountIncrease;
-    public event Action<int> CoinsAmountDecrease;
+    public event Action<int> CoinsAmountChanged;
     public event Action VideoBonusAdded;
 
     public int Count => _count;
@@ -84,7 +83,7 @@ public class CoinCounter : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         _totalEarnedCoins += count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.TotalEarnedCoins, _totalEarnedCoins);
-        CoinsAmountIncrease?.Invoke(count);
+        CoinsAmountChanged?.Invoke(count);
     }
 
     private IEnumerator RemovingCoins(int count)
@@ -92,7 +91,7 @@ public class CoinCounter : MonoBehaviour
         _count -= count;
         PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentCoinsCount, _count);
         yield return _removingDelay;
-        CoinsAmountDecrease?.Invoke(count);
+        CoinsAmountChanged?.Invoke(-count);
     }
 
     private void OnLevelChanged(int level)

@@ -16,15 +16,12 @@ public class CoinsView : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter.CoinsAmountIncrease += OnCoinsAmountIncrease;
-        _counter.CoinsAmountDecrease += OnCoinsAmountDecrease;
-
+        _counter.CoinsAmountChanged += OnCoinsAmountChanged;
     }
 
     private void OnDisable()
     {
-        _counter.CoinsAmountIncrease -= OnCoinsAmountIncrease;
-        _counter.CoinsAmountDecrease -= OnCoinsAmountDecrease;
+        _counter.CoinsAmountChanged -= OnCoinsAmountChanged;
     }
 
     private void Start()
@@ -61,19 +58,9 @@ public class CoinsView : MonoBehaviour
         _showing = null;
     }
 
-    private void OnCoinsAmountIncrease(int coinsCount)
+    private void OnCoinsAmountChanged(int coinsCount)
     {
         _trueCount += coinsCount;
-
-        if (_showing == null)
-        {
-            _showing = StartCoroutine(ShowingCount());
-        }
-    }
-
-    private void OnCoinsAmountDecrease(int coinsCount)
-    {
-        _trueCount -= coinsCount;
 
         if (_showing == null)
         {

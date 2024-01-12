@@ -32,7 +32,7 @@ public class Zombie : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _target = _player.transform;
+        SetTarget(_player.transform);
     }
 
     private void Update()
@@ -87,11 +87,11 @@ public class Zombie : MonoBehaviour
     {
         if (_obstacle != null && _obstacle.IsDestroyed == false)
         {
-            _target = _obstacle.transform;
+            SetTarget(_obstacle.transform);
         }
         else
         {
-            _target = _player.transform;
+            SetTarget(_player.transform);
         }
 
         return _target;
@@ -99,6 +99,11 @@ public class Zombie : MonoBehaviour
 
     private void OnOstacleDestroyed()
     {
-        _target = _player.transform;
+        SetTarget(_player.transform);
+    }
+
+    private void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }
