@@ -7,7 +7,7 @@ public class Zombie : MonoBehaviour
     private const string Jump = "Jump";
     private const string Kangaroo = "Kangaroo";
 
-    [SerializeField] private ZombieMover _zombieMover;
+    [SerializeField] private ZombieJumper _zombieJumper;
     [SerializeField] private ZombieAttacker _zombieAttacker;
     [SerializeField] private ZombieHealth _zombieHealth;
     [SerializeField] private PlayerHealth _player;
@@ -64,7 +64,7 @@ public class Zombie : MonoBehaviour
 
         if (other.TryGetComponent(out JumpTrigger jumpTrigger))
         {
-            _zombieMover.SetJumpPoint(jumpTrigger.JumpPoint);
+            _zombieJumper.SetJumpPoint(jumpTrigger.JumpPoint);
             _animator.SetTrigger(Jump);
         }
     }

@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -551708208428178138}
   - component: {fileID: 7618092376629469359}
   - component: {fileID: -7023678176650204520}
+  - component: {fileID: -3694940078360974215}
+  - component: {fileID: 3083578430515194609}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Untagged
@@ -136,19 +138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _stopDistance: 0.5
   _startSpeed: 7
   Speed: 7
-  _jumpForce: 20
   _toPlayerSpeed: 1.5
   _toPlayerSlowingDistance: 6
-  _throwAwaySpeed: 300
   _backMoveForce: 1.5
   _zLimits: {x: 10, y: 80}
   _xLimits: {x: -35, y: 30}
-  _jumpLimits: {x: -1, y: 2}
-  _throwAwayOffsetX: {x: 10, y: 30}
-  _throwAwayOffsetZ: {x: 10, y: 30}
   _movingOffset: {x: 0, y: 0}
 --- !u!114 &-551708208428178138
 MonoBehaviour:
@@ -162,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fb3bfce788d8949a4dbbf6006ef3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zombieMover: {fileID: 4815710542013469597}
+  _zombieJumper: {fileID: 3083578430515194609}
   _zombieAttacker: {fileID: 7154820901196419258}
   _zombieHealth: {fileID: 4191716626977275584}
   _player: {fileID: 0}
@@ -278,6 +274,35 @@ MonoBehaviour:
   _damageColor: {r: 0.49746442, g: 0.6886792, b: 0.43204877, a: 1}
   _deathColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   _renderer: {fileID: 6008923683492922678}
+--- !u!114 &-3694940078360974215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52569cbf8e7f8046a647ffdf04f92bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _throwAwayOffsetX: {x: 10, y: 30}
+  _throwAwayOffsetZ: {x: 10, y: 30}
+  _throwAwaySpeed: 300
+--- !u!114 &3083578430515194609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452346760094399331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f93cd144d08ed40bb6101db0f59948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 20
+  _jumpLimits: {x: -1, y: 2}
 --- !u!1 &6008923683506587682
 GameObject:
   m_ObjectHideFlags: 0

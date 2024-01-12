@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Jump : StateMachineBehaviour
 {
-    private ZombieMover _zombieMover;
+    private ZombieJumper _zombieJumper;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _zombieMover = animator.gameObject.GetComponent<ZombieMover>();
-        _zombieMover.Jump();
+        _zombieJumper = animator.gameObject.GetComponent<ZombieJumper>();
+        _zombieJumper.Jump();
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _zombieMover.StopJump();
+        _zombieJumper.StopJump();
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Input : MonoBehaviour
 {
-    private const string Run = "Run";
+    private const string RunTrigger = "Run";
 
     [SerializeField] private VariableJoystick _joystick;
 
@@ -19,36 +19,47 @@ public class Input : MonoBehaviour
 
     private void Update()
     {
-       Vector3 newDirection = new Vector3(_joystick.Horizontal,transform.position.y,_joystick.Vertical);
+        Vector3 newDirection = new Vector3(_joystick.Horizontal, transform.position.y, _joystick.Vertical);
+        Rotate(newDirection);
 
         if (_joystick.Horizontal != GlobalValues.Zero && _joystick.Vertical != GlobalValues.Zero)
         {
-            _mover.Move(newDirection);
-
-            if (_animator.GetBool(Run) == false)
-            {
-                _animator.SetBool(Run, true);
-            }
+            Run(newDirection);
+            return;
         }
-        else
+        StopRun();
+    }
+
+    private void Run(Vector3 direction)
+    {
+        _mover.Move(direction);
+
+        if (_animator.GetBool(RunTrigger) == false)
         {
-            if (_animator.GetBool(Run))
-            {
-                _animator.SetBool(Run, false);
-            }
+            _animator.SetBool(RunTrigger, true);
         }
+    }
 
+    private void StopRun()
+    {
+        if (_animator.GetBool(RunTrigger))
+        {
+            _animator.SetBool(RunTrigger, false);
+        }
+    }
+
+    private void Rotate(Vector3 direction)
+    {
         if (_shooter.IsShooting == false)
         {
             if (_joystick.Horizontal != GlobalValues.Zero && _joystick.Vertical != GlobalValues.Zero)
             {
-                _mover.Rotate(new Vector3(transform.position.x + newDirection.x, transform.position.y,
-                    transform.position.z + newDirection.z));
+                _mover.Rotate(new Vector3(transform.position.x + direction.x, transform.position.y,
+                    transform.position.z + direction.z));
             }
+            return;
         }
-        else
-        {
-            _mover.Rotate(_shooter.Target.transform.position);
-        }
+
+        _mover.Rotate(_shooter.Target.transform.position);
     }
 }
