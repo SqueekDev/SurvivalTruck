@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class DistanceToCarTransition : BossTransition
+namespace Enemy
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private float _transitionRange;
-
-    private void Update()
+    public class DistanceToCarTransition : BossTransition
     {
-        if (_target.position.z - transform.position.z < _transitionRange)
+        [SerializeField] private Transform _target;
+        [SerializeField] private float _transitionRange;
+
+        private void Update()
         {
-            NeedTransit = true;
+            if (_target.position.z - transform.position.z < _transitionRange)
+            {
+                NeedTransit = true;
+            }
         }
     }
 }

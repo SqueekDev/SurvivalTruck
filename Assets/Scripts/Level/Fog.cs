@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Fog : MonoBehaviour
+namespace Level
 {
+    public class Fog : MonoBehaviour
+    {
+    }
 }

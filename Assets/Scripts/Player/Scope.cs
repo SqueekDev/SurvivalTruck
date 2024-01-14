@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Scope : MonoBehaviour
+namespace Player
 {
+    public class Scope : MonoBehaviour
+    {
+    }
 }

@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class Walk : StateMachineBehaviour
+namespace Enemy
 {
-    private ZombieMover _zombieMover;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class Walk : StateMachineBehaviour
     {
-        _zombieMover = animator.gameObject.GetComponent<ZombieMover>();
-    }
+        private ZombieMover _zombieMover;
 
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _zombieMover.MoveForward();
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieMover = animator.gameObject.GetComponent<ZombieMover>();
+        }
+
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieMover.MoveForward();
+        }
     }
 }

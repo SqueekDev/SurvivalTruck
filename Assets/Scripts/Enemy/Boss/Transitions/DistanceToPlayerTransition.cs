@@ -1,3 +1,6 @@
-public class DistanceToPlayerTransition : DistanceToCarTransition
+namespace Enemy
 {
+    public class DistanceToPlayerTransition : DistanceToCarTransition
+    {
+    }
 }

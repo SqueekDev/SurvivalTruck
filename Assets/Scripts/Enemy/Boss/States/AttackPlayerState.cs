@@ -1,13 +1,17 @@
 using UnityEngine;
+using Player;
 
-public class AttackPlayerState : AttackState
+namespace Enemy
 {
-    private const int DamageMultiplier = 3;
-
-    [SerializeField] private PlayerHealth _player;
-
-    protected override void Attack()
+    public class AttackPlayerState : AttackState
     {
-        _player.TakeDamage(Stats.Damage * DamageMultiplier);
+        private const int DamageMultiplier = 3;
+
+        [SerializeField] private PlayerHealth _player;
+
+        protected override void Attack()
+        {
+            _player.TakeDamage(Stats.Damage * DamageMultiplier);
+        }
     }
 }

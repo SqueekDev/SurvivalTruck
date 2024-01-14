@@ -1,25 +1,30 @@
+using Base;
+using Level;
 using UnityEngine;
 using TMPro;
 
-public class NextLevelButton : GameButton
+namespace UI
 {
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private TMP_Text _nextLevelText;
-    [SerializeField] private TMP_Text _bossLevelText;
-
-    protected override void OnEnable()
+    public class NextLevelButton : GameButton
     {
-        base.OnEnable();
+        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private TMP_Text _nextLevelText;
+        [SerializeField] private TMP_Text _bossLevelText;
 
-        if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == GlobalValues.Zero)
+        protected override void OnEnable()
         {
-            _nextLevelText.gameObject.SetActive(false);
-            _bossLevelText.gameObject.SetActive(true);
-        }
-        else
-        {
-            _nextLevelText.gameObject.SetActive(true);
-            _bossLevelText.gameObject.SetActive(false);
+            base.OnEnable();
+
+            if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == GlobalValues.Zero)
+            {
+                _nextLevelText.gameObject.SetActive(false);
+                _bossLevelText.gameObject.SetActive(true);
+            }
+            else
+            {
+                _nextLevelText.gameObject.SetActive(true);
+                _bossLevelText.gameObject.SetActive(false);
+            }
         }
     }
 }

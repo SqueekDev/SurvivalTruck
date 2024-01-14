@@ -1,70 +1,75 @@
 using System.Collections;
+using Base;
 using UnityEngine;
 using TMPro;
+using Shop;
 
-public class CoinsView : MonoBehaviour
+namespace UI
 {
-    private const float TimeBetweenShowingCount = 0.001f;
-
-    [SerializeField] private CoinCounter _counter;
-    [SerializeField] private TextMeshProUGUI _text;
-
-    private Coroutine _showing;
-    private int _currentCount;
-    private int _trueCount;
-    private WaitForSeconds _showingDelay = new WaitForSeconds(TimeBetweenShowingCount);
-
-    private void OnEnable()
+    public class CoinsView : MonoBehaviour
     {
-        _counter.CoinsAmountChanged += OnCoinsAmountChanged;
-    }
+        private const float TimeBetweenShowingCount = 0.001f;
 
-    private void OnDisable()
-    {
-        _counter.CoinsAmountChanged -= OnCoinsAmountChanged;
-    }
+        [SerializeField] private CoinCounter _counter;
+        [SerializeField] private TextMeshProUGUI _text;
 
-    private void Start()
-    {
-        _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
-        _trueCount = _currentCount;
-        ShowCount(_currentCount);
-    }
+        private Coroutine _showing;
+        private int _currentCount;
+        private int _trueCount;
+        private WaitForSeconds _showingDelay = new WaitForSeconds(TimeBetweenShowingCount);
 
-    private void ShowCount(int coinsCount)
-    {
-        _text.text = coinsCount.ToString();
-    }
-
-    private IEnumerator ShowingCount()
-    {
-
-        while (_currentCount != _trueCount)
+        private void OnEnable()
         {
-            if (_currentCount > _trueCount)
-            {
-                _currentCount--;
-            }
-
-            if (_currentCount < _trueCount)
-            {
-                _currentCount++;
-            }
-
-            ShowCount(_currentCount);
-            yield return _showingDelay;
+            _counter.CoinsAmountChanged += OnCoinsAmountChanged;
         }
 
-        _showing = null;
-    }
-
-    private void OnCoinsAmountChanged(int coinsCount)
-    {
-        _trueCount += coinsCount;
-
-        if (_showing == null)
+        private void OnDisable()
         {
-            _showing = StartCoroutine(ShowingCount());
+            _counter.CoinsAmountChanged -= OnCoinsAmountChanged;
+        }
+
+        private void Start()
+        {
+            _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
+            _trueCount = _currentCount;
+            ShowCount(_currentCount);
+        }
+
+        private void ShowCount(int coinsCount)
+        {
+            _text.text = coinsCount.ToString();
+        }
+
+        private IEnumerator ShowingCount()
+        {
+
+            while (_currentCount != _trueCount)
+            {
+                if (_currentCount > _trueCount)
+                {
+                    _currentCount--;
+                }
+
+                if (_currentCount < _trueCount)
+                {
+                    _currentCount++;
+                }
+
+                ShowCount(_currentCount);
+                yield return _showingDelay;
+            }
+
+            _showing = null;
+        }
+
+        private void OnCoinsAmountChanged(int coinsCount)
+        {
+            _trueCount += coinsCount;
+
+            if (_showing == null)
+            {
+                _showing = StartCoroutine(ShowingCount());
+            }
         }
     }
 }

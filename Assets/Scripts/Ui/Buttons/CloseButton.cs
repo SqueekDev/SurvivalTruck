@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class CloseButton : GameButton
+namespace UI
 {
-    [SerializeField] private GamePanel _panelToClose;
-
-    protected override void OnButtonClick()
+    public class CloseButton : GameButton
     {
-        base.OnButtonClick();
-        _panelToClose.gameObject.SetActive(false);
+        [SerializeField] private GamePanel _panelToClose;
+
+        protected override void OnButtonClick()
+        {
+            base.OnButtonClick();
+            _panelToClose.gameObject.SetActive(false);
+        }
     }
 }

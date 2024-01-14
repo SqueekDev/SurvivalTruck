@@ -1,18 +1,21 @@
 using System;
 using UnityEngine;
 
-public class GamePanel : MonoBehaviour
+namespace UI
 {
-    public event Action Opened;
-    public event Action Closed;
-
-    protected virtual void OnEnable()
+    public class GamePanel : MonoBehaviour
     {
-        Opened?.Invoke();
-    }
+        public event Action Opened;
+        public event Action Closed;
 
-    protected virtual void OnDisable()
-    {
-        Closed?.Invoke();
+        protected virtual void OnEnable()
+        {
+            Opened?.Invoke();
+        }
+
+        protected virtual void OnDisable()
+        {
+            Closed?.Invoke();
+        }
     }
 }

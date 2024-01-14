@@ -1,14 +1,18 @@
 using UnityEngine;
+using Truck;
 
-public class ObstacleDestroyedTransition : BossTransition
+namespace Enemy
 {
-    [SerializeField] private Obstacle _obstacle;
-
-    private void Update()
+    public class ObstacleDestroyedTransition : BossTransition
     {
-        if (_obstacle.IsDestroyed)
+        [SerializeField] private Obstacle _obstacle;
+
+        private void Update()
         {
-            NeedTransit = true;
+            if (_obstacle.IsDestroyed)
+            {
+                NeedTransit = true;
+            }
         }
     }
 }

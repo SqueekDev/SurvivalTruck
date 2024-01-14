@@ -2,26 +2,29 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameButton : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Button _button;
-
-    public event Action Clicked;
-
-    protected Button Button => _button;
-
-    protected virtual void OnEnable()
+    public class GameButton : MonoBehaviour
     {
-        _button.onClick.AddListener(OnButtonClick);
-    }
+        [SerializeField] private Button _button;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnButtonClick);
-    }
+        public event Action Clicked;
 
-    protected virtual void OnButtonClick()
-    {
-        Clicked?.Invoke();
+        protected Button Button => _button;
+
+        protected virtual void OnEnable()
+        {
+            _button.onClick.AddListener(OnButtonClick);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnButtonClick);
+        }
+
+        protected virtual void OnButtonClick()
+        {
+            Clicked?.Invoke();
+        }
     }
 }

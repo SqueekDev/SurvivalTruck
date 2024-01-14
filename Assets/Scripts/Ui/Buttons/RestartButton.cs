@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class RestartButton : GameButton
+namespace UI
 {
-    [SerializeField] private SettingsPanel _settingsPanel;
-
-    protected override void OnButtonClick()
+    public class RestartButton : GameButton
     {
-        base.OnButtonClick();
-        _settingsPanel.gameObject.SetActive(false);
+        [SerializeField] private SettingsPanel _settingsPanel;
+
+        protected override void OnButtonClick()
+        {
+            base.OnButtonClick();
+            _settingsPanel.gameObject.SetActive(false);
+        }
     }
 }

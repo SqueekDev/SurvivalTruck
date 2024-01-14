@@ -1,56 +1,59 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossShooter : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private Weapon _weapon;
-    [SerializeField] private Scope _scope;
-    [SerializeField] private Target _target;
-
-    private Coroutine _shootCorutine;
-    private Vector3 _targetStartPositon;
-
-    private void OnEnable()
+    public class BossShooter : MonoBehaviour
     {
-        _scope.gameObject.SetActive(true);
-        _target.gameObject.SetActive(true);
-        CheckCorutine();
-        _shootCorutine = StartCoroutine(Shooting());
-    }
+        [SerializeField] private Weapon _weapon;
+        [SerializeField] private Scope _scope;
+        [SerializeField] private Target _target;
 
-    private void Start()
-    {
-        _targetStartPositon = _target.transform.localPosition;
-    }
+        private Coroutine _shootCorutine;
+        private Vector3 _targetStartPositon;
 
-    private void LateUpdate()
-    {
-        _target.transform.localPosition = _targetStartPositon;
-    }
-
-    private void OnDisable()
-    {
-        CheckCorutine();
-        _scope.gameObject.SetActive(false);
-        _target.gameObject.SetActive(false);
-    }
-
-    private IEnumerator Shooting()
-    {
-        WaitForSeconds delay = new WaitForSeconds(_weapon.TimeBetweenShoot);
-
-        while (true)
+        private void OnEnable()
         {
-            _weapon.Shoot(_target.transform);
-            yield return delay;
+            _scope.gameObject.SetActive(true);
+            _target.gameObject.SetActive(true);
+            CheckCorutine();
+            _shootCorutine = StartCoroutine(Shooting());
         }
-    }
 
-    private void CheckCorutine()
-    {
-        if (_shootCorutine != null)
+        private void Start()
         {
-            StopCoroutine(_shootCorutine);
+            _targetStartPositon = _target.transform.localPosition;
+        }
+
+        private void LateUpdate()
+        {
+            _target.transform.localPosition = _targetStartPositon;
+        }
+
+        private void OnDisable()
+        {
+            CheckCorutine();
+            _scope.gameObject.SetActive(false);
+            _target.gameObject.SetActive(false);
+        }
+
+        private IEnumerator Shooting()
+        {
+            WaitForSeconds delay = new WaitForSeconds(_weapon.TimeBetweenShoot);
+
+            while (_target != null)
+            {
+                _weapon.Shoot(_target.transform);
+                yield return delay;
+            }
+        }
+
+        private void CheckCorutine()
+        {
+            if (_shootCorutine != null)
+            {
+                StopCoroutine(_shootCorutine);
+            }
         }
     }
 }

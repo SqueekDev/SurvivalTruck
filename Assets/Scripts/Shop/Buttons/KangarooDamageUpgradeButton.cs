@@ -1,30 +1,35 @@
 using System;
+using Base;
+using Truck;
 using UnityEngine;
 
-public class KangarooDamageUpgradeButton : UpgradeButton
+namespace Shop
 {
-    [SerializeField] private CarShield _kangaroo;
-
-    private int _startDamage;
-
-    public event Action DamageUpgraded;
-
-    protected override void OnEnable()
+    public class KangarooDamageUpgradeButton : UpgradeButton
     {
-        base.OnEnable();
-        UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
-        _startDamage = _kangaroo.Damage;
-        Renew(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
-    }
+        [SerializeField] private CarShield _kangaroo;
 
-    protected override void OnUpgradeButtonClick()
-    {
-        BuyUpgrade(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
-        DamageUpgraded?.Invoke();
-    }
+        private int _startDamage;
 
-    protected override void OnPurchaseSuccsessed()
-    {
-        UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
+        public event Action DamageUpgraded;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
+            _startDamage = _kangaroo.Damage;
+            Renew(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
+        }
+
+        protected override void OnUpgradeButtonClick()
+        {
+            BuyUpgrade(PlayerPrefsKeys.KangarooDamage, _startDamage, PlayerPrefsKeys.UpgradeKangarooDamagePrice);
+            DamageUpgraded?.Invoke();
+        }
+
+        protected override void OnPurchaseSuccsessed()
+        {
+            UpgradeabilityCheck(PlayerPrefsKeys.KangarooDamage, _startDamage);
+        }
     }
 }

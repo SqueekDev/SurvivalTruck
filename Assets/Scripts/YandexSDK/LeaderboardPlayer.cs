@@ -1,13 +1,16 @@
-public class LeaderboardPlayer
+namespace YandexSDK
 {
-    public LeaderboardPlayer(string number, string name, string score)
+    public class LeaderboardPlayer
     {
-        Number = number;
-        Name = name;
-        Score = score;
-    }
+        public LeaderboardPlayer(string number, string name, string score)
+        {
+            Number = number;
+            Name = name;
+            Score = score;
+        }
 
-    public string Number { get; private set; }
-    public string Name { get; private set; }
-    public string Score { get; private set; }
+        public string Number { get; private set; }
+        public string Name { get; private set; }
+        public string Score { get; private set; }
+    }
 }

@@ -1,97 +1,102 @@
 using UnityEngine;
+using Level;
+using CameraController;
 
-[RequireComponent(typeof(Rigidbody), typeof(PlayerHealth))]
-
-public class PlayerStateChanger : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private CameraPositionChanger _cameraPositionChanger;
-    [SerializeField] private MoverToShootPlace _moverToShootPlace;
-    [SerializeField] private BossShooter _bossShooter;
-    [SerializeField] private CameraMover _cameraMover;
-    [SerializeField] private Shooter _shooter;
-    [SerializeField] private Input _playerInput;
-    [SerializeField] private PlayerMover _playerMover;
-    [SerializeField] private VariableJoystick _joystick;
+    [RequireComponent(typeof(Rigidbody), typeof(PlayerHealth))]
 
-    private Rigidbody _rigidbody;
-    private PlayerHealth _player;
-    private bool _actionsDisabled;
-
-    private void Awake()
+    public class PlayerStateChanger : MonoBehaviour
     {
-        _player = GetComponent<PlayerHealth>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private CameraPositionChanger _cameraPositionChanger;
+        [SerializeField] private MoverToShootPlace _moverToShootPlace;
+        [SerializeField] private BossShooter _bossShooter;
+        [SerializeField] private CameraMover _cameraMover;
+        [SerializeField] private Shooter _shooter;
+        [SerializeField] private Input _playerInput;
+        [SerializeField] private PlayerMover _playerMover;
+        [SerializeField] private VariableJoystick _joystick;
 
-    private void OnEnable()
-    {
-        _actionsDisabled = false;
-        _levelChanger.BossLevelStarted += OnBossLevelStarted;
-        _levelChanger.BossLevelEnded += OnBossLevelEnded;
-        _cameraPositionChanger.Descended += OnCameraDescended;
-        _cameraPositionChanger.Climbed += OnCameraClimbed;
-    }
+        private Rigidbody _rigidbody;
+        private PlayerHealth _player;
+        private bool _actionsDisabled;
 
-    private void Update()
-    {
-        if (_actionsDisabled == false && _player.IsDead)
+        private void Awake()
         {
-            DisableActions();
+            _player = GetComponent<PlayerHealth>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
-    }
 
-    private void OnDisable()
-    {
-        _levelChanger.BossLevelStarted -= OnBossLevelStarted;
-        _levelChanger.BossLevelEnded -= OnBossLevelEnded;
-        _cameraPositionChanger.Descended -= OnCameraDescended;
-        _cameraPositionChanger.Climbed -= OnCameraClimbed;
-    }
+        private void OnEnable()
+        {
+            _actionsDisabled = false;
+            _levelChanger.BossLevelStarted += OnBossLevelStarted;
+            _levelChanger.BossLevelEnded += OnBossLevelEnded;
+            _cameraPositionChanger.Descended += OnCameraDescended;
+            _cameraPositionChanger.Climbed += OnCameraClimbed;
+        }
 
-    private void DisableActions()
-    {
-        _joystick.gameObject.SetActive(false);
-        _shooter.enabled = false;
-        _playerMover.enabled = false;
-        _playerInput.enabled = false;
-        _cameraMover.enabled = false;
-        _bossShooter.enabled = false;
-        _moverToShootPlace.enabled = false;
-        _actionsDisabled = true;
-    }
+        private void Update()
+        {
+            if (_actionsDisabled == false && _player.IsDead)
+            {
+                DisableActions();
+            }
+        }
 
-    private void OnBossLevelStarted()
-    {
-        _shooter.enabled = false;
-        _playerInput.enabled = false;
-        _playerMover.enabled = false;
-        _joystick.gameObject.SetActive(false);
-        _rigidbody.isKinematic = true;
-        _moverToShootPlace.enabled = true;
-    }
+        private void OnDisable()
+        {
+            _levelChanger.BossLevelStarted -= OnBossLevelStarted;
+            _levelChanger.BossLevelEnded -= OnBossLevelEnded;
+            _cameraPositionChanger.Descended -= OnCameraDescended;
+            _cameraPositionChanger.Climbed -= OnCameraClimbed;
+        }
 
-    private void OnCameraDescended()
-    {
-        _moverToShootPlace.enabled = false;
-        _joystick.gameObject.SetActive(true);
-        _bossShooter.enabled = true;
-        _cameraMover.enabled = true;
-    }
+        private void DisableActions()
+        {
+            _joystick.gameObject.SetActive(false);
+            _shooter.enabled = false;
+            _playerMover.enabled = false;
+            _playerInput.enabled = false;
+            _cameraMover.enabled = false;
+            _bossShooter.enabled = false;
+            _moverToShootPlace.enabled = false;
+            _actionsDisabled = true;
+        }
 
-    private void OnBossLevelEnded()
-    {
-        _bossShooter.enabled = false;
-        _cameraMover.enabled = false;
-        //_joystick.gameObject.SetActive(false);
-        _rigidbody.isKinematic = false;
-    }
+        private void OnBossLevelStarted()
+        {
+            _shooter.enabled = false;
+            _playerInput.enabled = false;
+            _playerMover.enabled = false;
+            _joystick.gameObject.SetActive(false);
+            _rigidbody.isKinematic = true;
+            _moverToShootPlace.enabled = true;
+        }
 
-    private void OnCameraClimbed()
-    {
-        _joystick.gameObject.SetActive(true);
-        _shooter.enabled = true;
-        _playerInput.enabled = true;
-        _playerMover.enabled = true;
+        private void OnCameraDescended()
+        {
+            _moverToShootPlace.enabled = false;
+            _joystick.gameObject.SetActive(true);
+            _bossShooter.enabled = true;
+            _cameraMover.enabled = true;
+        }
+
+        private void OnBossLevelEnded()
+        {
+            _bossShooter.enabled = false;
+            _cameraMover.enabled = false;
+            _joystick.gameObject.SetActive(false);
+            _rigidbody.isKinematic = false;
+        }
+
+        private void OnCameraClimbed()
+        {
+            _joystick.gameObject.SetActive(true);
+            _shooter.enabled = true;
+            _playerInput.enabled = true;
+            _playerMover.enabled = true;
+        }
     }
 }

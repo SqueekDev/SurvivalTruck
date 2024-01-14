@@ -1,18 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossBullet : Bullet
+namespace Player
 {
-    protected override IEnumerator Moving(Transform target)
+    public class BossBullet : Bullet
     {
-        Vector3 startTargetPositon = target.position;
-
-        while (target.gameObject.activeSelf || transform.position != startTargetPositon)
+        protected override IEnumerator Moving(Transform target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, startTargetPositon, Speed * Time.deltaTime);
-            yield return null;
-        }
+            Vector3 startTargetPositon = target.position;
 
-        Destroy(gameObject);
+            while (target.gameObject.activeSelf || transform.position != startTargetPositon)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, startTargetPositon, Speed * Time.deltaTime);
+                yield return null;
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

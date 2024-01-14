@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class HintViewer : MonoBehaviour
+namespace Hints
 {
-    private void Update()
+    public class HintViewer : MonoBehaviour
     {
-        if (UnityEngine.Input.GetMouseButton(0))
+        private void Update()
         {
-            gameObject.SetActive(false);
+            if (Input.GetMouseButton(0))
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

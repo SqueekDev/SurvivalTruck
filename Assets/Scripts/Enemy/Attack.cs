@@ -1,32 +1,37 @@
+using Truck;
+using Player;
 using UnityEngine;
 
-public class Attack : StateMachineBehaviour
+namespace Enemy
 {
-    [SerializeField] private float _attackDistance;
-
-    private Zombie _zombie;
-    private ZombieAttacker _zombieAttacker;
-    private Transform _target;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class Attack : StateMachineBehaviour
     {
-        _zombie = animator.gameObject.GetComponent<Zombie>();
-        _zombieAttacker = animator.gameObject.GetComponent<ZombieAttacker>();
-    }
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _target = _zombie.GetTarget();
+        [SerializeField] private float _attackDistance;
 
-        if (Vector3.Distance(_zombie.transform.position, _target.position) < _attackDistance)
+        private Zombie _zombie;
+        private ZombieAttacker _zombieAttacker;
+        private Transform _target;
+
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_target.TryGetComponent(out Obstacle obstacle))
-            {
-                _zombieAttacker.Attack(obstacle);
-            }
+            _zombie = animator.gameObject.GetComponent<Zombie>();
+            _zombieAttacker = animator.gameObject.GetComponent<ZombieAttacker>();
+        }
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _target = _zombie.GetTarget();
 
-            if (_target.TryGetComponent(out PlayerHealth player))
+            if (Vector3.Distance(_zombie.transform.position, _target.position) < _attackDistance)
             {
-                _zombieAttacker.Attack(player);
+                if (_target.TryGetComponent(out Obstacle obstacle))
+                {
+                    _zombieAttacker.Attack(obstacle);
+                }
+
+                if (_target.TryGetComponent(out PlayerHealth player))
+                {
+                    _zombieAttacker.Attack(player);
+                }
             }
         }
     }

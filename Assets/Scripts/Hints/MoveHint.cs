@@ -1,7 +1,10 @@
-public class MoveHint : Hint
+namespace Hints
 {
-    private void Start()
+    public class MoveHint : Hint
     {
-        Open();
+        private void Start()
+        {
+            Open();
+        }
     }
 }

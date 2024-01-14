@@ -1,44 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
+using YandexSDK;
 
-public class LeaderboardView : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private LeaderboardPlayerView _template;
-    [SerializeField] private LeaderboardDataChanger _leaderboardDataChanger;
-    [SerializeField] private GamePanel _loginPanel;
-
-    private List<LeaderboardPlayerView> _leaderboardPlayerViews = new List<LeaderboardPlayerView>();
-
-    private void OnEnable()
+    public class LeaderboardView : MonoBehaviour
     {
-        _leaderboardDataChanger.Created += OnCreated;
-        _loginPanel.gameObject.SetActive(false);
-    }
+        [SerializeField] private LeaderboardPlayerView _template;
+        [SerializeField] private LeaderboardDataChanger _leaderboardDataChanger;
+        [SerializeField] private GamePanel _loginPanel;
 
-    private void OnDisable()
-    {
-        _leaderboardDataChanger.Created -= OnCreated;
-    }
+        private List<LeaderboardPlayerView> _leaderboardPlayerViews = new List<LeaderboardPlayerView>();
 
-    private void Clear()
-    {
-        foreach (var playerView in _leaderboardPlayerViews)
+        private void OnEnable()
         {
-            Destroy(playerView.gameObject);
+            _leaderboardDataChanger.Created += OnCreated;
+            _loginPanel.gameObject.SetActive(false);
         }
 
-        _leaderboardPlayerViews.Clear();
-    }
-
-    private void OnCreated(List<LeaderboardPlayer> leaderboardPlayers)
-    {
-        Clear();
-
-        foreach (var player in leaderboardPlayers)
+        private void OnDisable()
         {
-            LeaderboardPlayerView leaderboardPlayerView = Instantiate(_template, transform);
-            leaderboardPlayerView.Init(player.Number, player.Name, player.Score);
-            _leaderboardPlayerViews.Add(leaderboardPlayerView);
+            _leaderboardDataChanger.Created -= OnCreated;
+        }
+
+        private void Clear()
+        {
+            foreach (var playerView in _leaderboardPlayerViews)
+            {
+                Destroy(playerView.gameObject);
+            }
+
+            _leaderboardPlayerViews.Clear();
+        }
+
+        private void OnCreated(List<LeaderboardPlayer> leaderboardPlayers)
+        {
+            Clear();
+
+            foreach (var player in leaderboardPlayers)
+            {
+                LeaderboardPlayerView leaderboardPlayerView = Instantiate(_template, transform);
+                leaderboardPlayerView.Init(player.Number, player.Name, player.Score);
+                _leaderboardPlayerViews.Add(leaderboardPlayerView);
+            }
         }
     }
 }

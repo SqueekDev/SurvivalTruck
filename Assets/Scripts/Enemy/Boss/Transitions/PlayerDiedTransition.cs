@@ -1,14 +1,18 @@
+using Player;
 using UnityEngine;
 
-public class PlayerDiedTransition : BossTransition
+namespace Enemy
 {
-    [SerializeField] private PlayerHealth _player;
-
-    private void Update()
+    public class PlayerDiedTransition : BossTransition
     {
-        if (_player.IsDead)
+        [SerializeField] private PlayerHealth _player;
+
+        private void Update()
         {
-            NeedTransit = true;
+            if (_player.IsDead)
+            {
+                NeedTransit = true;
+            }
         }
     }
 }

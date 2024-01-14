@@ -1,44 +1,48 @@
 using System.Collections;
 using UnityEngine;
+using Base;
 
-public class Bullet : MonoBehaviour
+namespace Player
 {
-    private int _damage;
-
-    protected float Speed { get; private set; }
-
-    private void OnTriggerEnter(Collider other)
+    public class Bullet : MonoBehaviour
     {
-        if (other.TryGetComponent(out Health health))
+        private int _damage;
+
+        protected float Speed { get; private set; }
+
+        private void OnTriggerEnter(Collider other)
         {
-            health.TakeDamage(_damage);
+            if (other.TryGetComponent(out Health health))
+            {
+                health.TakeDamage(_damage);
+                Destroy(gameObject);
+            }
+        }
+
+        public void MoveTo(Transform target)
+        {
+            StartCoroutine(Moving(target));
+        }
+
+        public void SetSpeed(float speed)
+        {
+            Speed = speed;
+        }
+
+        public void SetDamage(int damage)
+        {
+            _damage = damage;
+        }
+
+        protected virtual IEnumerator Moving(Transform target)
+        {
+            while (target.gameObject.activeSelf || transform.position != target.position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+                yield return null;
+            }
+
             Destroy(gameObject);
         }
-    }
-
-    public void MoveTo(Transform target)
-    {
-        StartCoroutine(Moving(target));
-    }
-
-    public void SetSpeed(float speed)
-    {
-        Speed = speed;
-    }
-
-    public void SetDamage(int damage)
-    {
-        _damage = damage;
-    }
-
-    protected virtual IEnumerator Moving(Transform target)
-    {
-        while (target.gameObject.activeSelf || transform.position != target.position)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
-            yield return null;
-        }
-
-        Destroy(gameObject);
     }
 }

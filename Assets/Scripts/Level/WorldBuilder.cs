@@ -1,101 +1,108 @@
 using System.Collections.Generic;
+using Base;
 using UnityEngine;
+using Truck;
 
-public class WorldBuilder : MonoBehaviour
+namespace Level
 {
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private int _spawnPlatformCorrection;
-    [SerializeField] private int _platformLimit;
-    [SerializeField] private Car _car;
-    [SerializeField] private List<Platform> _platformTemplates;
-    [SerializeField] private Fog _fogPrefab;
-
-    private bool _needToAddFog = false;
-    private int _changePlatformLevelNumberDivider;
-    private int _previousPlatformIndex = 0;
-    private Platform _currentPlatformTemplate;
-    private Fog _endFog;
-    private List<Platform> _spawnedPlatforms = new List<Platform>();
-
-    private void Awake()
+    public class WorldBuilder : MonoBehaviour
     {
-        _changePlatformLevelNumberDivider = _levelChanger.BossLevelNumber;
-    }
+        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private int _spawnPlatformCorrection;
+        [SerializeField] private int _platformLimit;
+        [SerializeField] private Car _car;
+        [SerializeField] private List<Platform> _platformTemplates;
+        [SerializeField] private Fog _fogPrefab;
 
-    private void OnEnable()
-    {
-        _levelChanger.Changed += OnLevelChanged;
-    }
+        private bool _needToAddFog = false;
+        private int _changePlatformLevelNumberDivider;
+        private int _previousPlatformIndex = 0;
+        private Platform _currentPlatformTemplate;
+        private Fog _endFog;
+        private List<Platform> _spawnedPlatforms = new List<Platform>();
 
-    private void Start()
-    {
-        OnLevelChanged(_levelChanger.CurrentLevelNumber);
-        Platform startPlatform = Instantiate(_currentPlatformTemplate, transform);
-        _spawnedPlatforms.Add(startPlatform);
-    }
-
-    private void Update()
-    {
-        if (_car.transform.position.z > (_spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].transform.position.z - _spawnPlatformCorrection))
+        private void Awake()
         {
-            SpawnPlatform();
+            _changePlatformLevelNumberDivider = _levelChanger.BossLevelNumber;
         }
 
-        if (_spawnedPlatforms.Count >= _platformLimit)
+        private void OnEnable()
         {
-            RemovePlatform();
+            _levelChanger.Changed += OnLevelChanged;
         }
-    }
 
-    private void OnDisable()
-    {
-        _levelChanger.Changed -= OnLevelChanged;
-    }
-
-    private void SpawnPlatform()
-    {
-        Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
-        newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].EndPoint.transform.position + (newPlatform.transform.position - newPlatform.StartPoint.position);
-        Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].EndPoint.transform.position;
-
-        if (_needToAddFog)
+        private void Start()
         {
-            if (_endFog == null)
+            OnLevelChanged(_levelChanger.CurrentLevelNumber);
+            Platform startPlatform = Instantiate(_currentPlatformTemplate, transform);
+            _spawnedPlatforms.Add(startPlatform);
+        }
+
+        private void Update()
+        {
+            if (_car.transform.position.z > (_spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].transform.position.z - _spawnPlatformCorrection))
             {
-                _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
-            }
-            else
-            {
-                _endFog.transform.position = endPosition;
+                SpawnPlatform();
             }
 
-            _needToAddFog = false;
+            if (_spawnedPlatforms.Count >= _platformLimit)
+            {
+                RemovePlatform();
+            }
         }
 
-        _spawnedPlatforms.Add(newPlatform);
-    }
-
-    private void RemovePlatform()
-    {
-        Destroy(_spawnedPlatforms[GlobalValues.Zero].gameObject);
-        _spawnedPlatforms.RemoveAt(GlobalValues.Zero);
-    }
-
-    private void OnLevelChanged(int levelNumber)
-    {
-        int platformIndex = levelNumber / _changePlatformLevelNumberDivider;
-
-        while (platformIndex > _platformTemplates.Count - GlobalValues.ListIndexCorrection)
+        private void OnDisable()
         {
-            platformIndex -= _platformTemplates.Count;
+            _levelChanger.Changed -= OnLevelChanged;
         }
 
-        if (_previousPlatformIndex != platformIndex)
+        private void SpawnPlatform()
         {
-            _needToAddFog = true;
+            Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
+            newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count -
+                GlobalValues.ListIndexCorrection].EndPoint.transform.position +
+                (newPlatform.transform.position - newPlatform.StartPoint.position);
+            Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].EndPoint.transform.position;
+
+            if (_needToAddFog)
+            {
+                if (_endFog == null)
+                {
+                    _endFog = Instantiate(_fogPrefab, endPosition, Quaternion.identity);
+                }
+                else
+                {
+                    _endFog.transform.position = endPosition;
+                }
+
+                _needToAddFog = false;
+            }
+
+            _spawnedPlatforms.Add(newPlatform);
         }
 
-        _previousPlatformIndex = platformIndex;
-        _currentPlatformTemplate = _platformTemplates[platformIndex];
+        private void RemovePlatform()
+        {
+            Destroy(_spawnedPlatforms[GlobalValues.Zero].gameObject);
+            _spawnedPlatforms.RemoveAt(GlobalValues.Zero);
+        }
+
+        private void OnLevelChanged(int levelNumber)
+        {
+            int platformIndex = levelNumber / _changePlatformLevelNumberDivider;
+
+            while (platformIndex > _platformTemplates.Count - GlobalValues.ListIndexCorrection)
+            {
+                platformIndex -= _platformTemplates.Count;
+            }
+
+            if (_previousPlatformIndex != platformIndex)
+            {
+                _needToAddFog = true;
+            }
+
+            _previousPlatformIndex = platformIndex;
+            _currentPlatformTemplate = _platformTemplates[platformIndex];
+        }
     }
 }

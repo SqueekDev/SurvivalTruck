@@ -1,22 +1,28 @@
 using UnityEngine;
+using Base;
+using Truck;
+using UI;
 
-public class AttackObstacleState : AttackState
+namespace Enemy
 {
-    [SerializeField] private Obstacle _obstacle;
-    [SerializeField] private Health _head;
-    [SerializeField] private HealthBar _headHealthBar;
-    [SerializeField] private Collider _bossCollider;
-
-    protected override void OnEnable()
+    public class AttackObstacleState : AttackState
     {
-        base.OnEnable();
-        _bossCollider.enabled = false;
-        _headHealthBar.gameObject.SetActive(true);
-        _head.gameObject.SetActive(true);
-    }
+        [SerializeField] private Obstacle _obstacle;
+        [SerializeField] private Health _head;
+        [SerializeField] private HealthBar _headHealthBar;
+        [SerializeField] private Collider _bossCollider;
 
-    protected override void Attack()
-    {
-        _obstacle.ApplyDamade(Stats.Damage);
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _bossCollider.enabled = false;
+            _headHealthBar.gameObject.SetActive(true);
+            _head.gameObject.SetActive(true);
+        }
+
+        protected override void Attack()
+        {
+            _obstacle.ApplyDamade(Stats.Damage);
+        }
     }
 }

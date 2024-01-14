@@ -1,16 +1,20 @@
+using Base;
 using UnityEngine;
 
-public abstract class Hint : MonoBehaviour
+namespace Hints
 {
-    private const int TutorialLevelNumber = 1;
-
-    [SerializeField] private HintViewer _hintViewer;
-
-    public void Open()
+    public abstract class Hint : MonoBehaviour
     {
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelNumber) && PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber) == TutorialLevelNumber)
+        private const int TutorialLevelNumber = 1;
+
+        [SerializeField] private HintViewer _hintViewer;
+
+        public void Open()
         {
-            _hintViewer.gameObject.SetActive(true);
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelNumber) && PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber) == TutorialLevelNumber)
+            {
+                _hintViewer.gameObject.SetActive(true);
+            }
         }
     }
 }

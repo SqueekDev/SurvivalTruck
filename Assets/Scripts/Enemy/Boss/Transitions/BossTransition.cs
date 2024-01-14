@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class BossTransition : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private BossState _targetState;
-
-    public BossState TargetState => _targetState;
-    public bool NeedTransit { get; protected set; }
-
-    private void OnEnable()
+    public class BossTransition : MonoBehaviour
     {
-        NeedTransit = false;
+        [SerializeField] private BossState _targetState;
+
+        public BossState TargetState => _targetState;
+        public bool NeedTransit { get; protected set; }
+
+        private void OnEnable()
+        {
+            NeedTransit = false;
+        }
     }
 }

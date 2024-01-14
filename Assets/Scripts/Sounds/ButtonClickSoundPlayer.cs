@@ -1,30 +1,34 @@
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
-public class ButtonClickSoundPlayer : MonoBehaviour
+namespace Sounds
 {
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _clickSound;
-    [SerializeField] private List<GameButton> _buttons;
-
-    private void OnEnable()
+    public class ButtonClickSoundPlayer : MonoBehaviour
     {
-        foreach (var button in _buttons)
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _clickSound;
+        [SerializeField] private List<GameButton> _buttons;
+
+        private void OnEnable()
         {
-            button.Clicked += OnButtonClick;
+            foreach (var button in _buttons)
+            {
+                button.Clicked += OnButtonClick;
+            }
         }
-    }
 
-    private void OnDisable()
-    {
-        foreach (var button in _buttons)
+        private void OnDisable()
         {
-            button.Clicked -= OnButtonClick;
+            foreach (var button in _buttons)
+            {
+                button.Clicked -= OnButtonClick;
+            }
         }
-    }
 
-    protected void OnButtonClick()
-    {
-        _audioSource.PlayOneShot(_clickSound);
+        protected void OnButtonClick()
+        {
+            _audioSource.PlayOneShot(_clickSound);
+        }
     }
 }

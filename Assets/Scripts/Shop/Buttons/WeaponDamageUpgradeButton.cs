@@ -1,30 +1,35 @@
 using System;
+using Base;
+using Player;
 using UnityEngine;
 
-public class WeaponDamageUpgradeButton : UpgradeButton
+namespace Shop
 {
-    [SerializeField] private Weapon _weapon;
-
-    private int _startDamage;
-
-    public event Action DamageUpgraded;
-
-    protected override void OnEnable()
+    public class WeaponDamageUpgradeButton : UpgradeButton
     {
-        base.OnEnable();
-        UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
-        _startDamage = _weapon.Damage;
-        Renew(PlayerPrefsKeys.WeaponDamage, _startDamage, PlayerPrefsKeys.UpgradeWeaponDamagePrice);
-    }
+        [SerializeField] private Weapon _weapon;
 
-    protected override void OnUpgradeButtonClick()
-    {
-        BuyUpgrade(PlayerPrefsKeys.WeaponDamage, _startDamage, PlayerPrefsKeys.UpgradeWeaponDamagePrice);
-        DamageUpgraded?.Invoke();
-    }
+        private int _startDamage;
 
-    protected override void OnPurchaseSuccsessed()
-    {
-        UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
+        public event Action DamageUpgraded;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
+            _startDamage = _weapon.Damage;
+            Renew(PlayerPrefsKeys.WeaponDamage, _startDamage, PlayerPrefsKeys.UpgradeWeaponDamagePrice);
+        }
+
+        protected override void OnUpgradeButtonClick()
+        {
+            BuyUpgrade(PlayerPrefsKeys.WeaponDamage, _startDamage, PlayerPrefsKeys.UpgradeWeaponDamagePrice);
+            DamageUpgraded?.Invoke();
+        }
+
+        protected override void OnPurchaseSuccsessed()
+        {
+            UpgradeabilityCheck(PlayerPrefsKeys.WeaponDamage, _startDamage);
+        }
     }
 }

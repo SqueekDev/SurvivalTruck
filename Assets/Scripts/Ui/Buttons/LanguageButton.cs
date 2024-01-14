@@ -1,57 +1,61 @@
 using System;
 using System.Collections.Generic;
+using Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LanguageButton : GameButton
+namespace UI
 {
-    private const int EnglishNumber = 0;
-    private const int RussianNumber = 1;
-    private const int TurkishNumber = 2;
-
-    [SerializeField] private List<Sprite> _icons;
-
-    public event Action<int> LanguageChanged;
-
-    private void Start()
+    public class LanguageButton : GameButton
     {
-        int languageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
-        SetLanguageSprite(languageNumber);
-    }
+        private const int EnglishNumber = 0;
+        private const int RussianNumber = 1;
+        private const int TurkishNumber = 2;
 
-    private void SwitchLanguage()
-    {
-        int currentLanguageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
-        currentLanguageNumber++;
+        [SerializeField] private List<Sprite> _icons;
 
-        if (currentLanguageNumber > _icons.Count - GlobalValues.ListIndexCorrection)
+        public event Action<int> LanguageChanged;
+
+        private void Start()
         {
-            currentLanguageNumber -= _icons.Count;
+            int languageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
+            SetLanguageSprite(languageNumber);
         }
 
-        SetLanguageSprite(currentLanguageNumber);
-        LanguageChanged?.Invoke(currentLanguageNumber);
-    }
+        private void SwitchLanguage()
+        {
+            int currentLanguageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
+            currentLanguageNumber++;
 
-    private void SetLanguageSprite(int languageNumber)
-    {
-        if (languageNumber == EnglishNumber)
-        {
-            Button.image.sprite = _icons[EnglishNumber];
-        }
-        else if (languageNumber == RussianNumber)
-        {
-            Button.image.sprite = _icons[RussianNumber];
-        }
-        else if (languageNumber == TurkishNumber)
-        {
-            Button.image.sprite = _icons[TurkishNumber];
-        }
-    }
+            if (currentLanguageNumber > _icons.Count - GlobalValues.ListIndexCorrection)
+            {
+                currentLanguageNumber -= _icons.Count;
+            }
 
-    protected override void OnButtonClick()
-    {
-        base.OnButtonClick();
-        SwitchLanguage();
+            SetLanguageSprite(currentLanguageNumber);
+            LanguageChanged?.Invoke(currentLanguageNumber);
+        }
+
+        private void SetLanguageSprite(int languageNumber)
+        {
+            if (languageNumber == EnglishNumber)
+            {
+                Button.image.sprite = _icons[EnglishNumber];
+            }
+            else if (languageNumber == RussianNumber)
+            {
+                Button.image.sprite = _icons[RussianNumber];
+            }
+            else if (languageNumber == TurkishNumber)
+            {
+                Button.image.sprite = _icons[TurkishNumber];
+            }
+        }
+
+        protected override void OnButtonClick()
+        {
+            base.OnButtonClick();
+            SwitchLanguage();
+        }
     }
 }

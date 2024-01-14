@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class SettingButton : GameButton
+namespace UI
 {
-    [SerializeField] private GamePanel _settingPanel;
-
-    protected override void OnButtonClick()
+    public class SettingButton : GameButton
     {
-        base.OnButtonClick();
-        _settingPanel.gameObject.SetActive(true);
+        [SerializeField] private GamePanel _settingPanel;
+
+        protected override void OnButtonClick()
+        {
+            base.OnButtonClick();
+            _settingPanel.gameObject.SetActive(true);
+        }
     }
 }

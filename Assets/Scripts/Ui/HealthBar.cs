@@ -1,25 +1,29 @@
+using Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Health _health;
-    [SerializeField] private Slider _hpSlider;
-
-
-    private void OnEnable()
+    public class HealthBar : MonoBehaviour
     {
-        _hpSlider.value = 0;
-        _health.HealthChanged += OnHealthChanged;
-    }
+        [SerializeField] private Health _health;
+        [SerializeField] private Slider _hpSlider;
 
-    private void OnDisable()
-    {
-        _health.HealthChanged -= OnHealthChanged;        
-    }
 
-    private void OnHealthChanged(float precentageValue)
-    {
-        _hpSlider.value = precentageValue;
+        private void OnEnable()
+        {
+            _hpSlider.value = 0;
+            _health.HealthChanged += OnHealthChanged;
+        }
+
+        private void OnDisable()
+        {
+            _health.HealthChanged -= OnHealthChanged;
+        }
+
+        private void OnHealthChanged(float precentageValue)
+        {
+            _hpSlider.value = precentageValue;
+        }
     }
 }

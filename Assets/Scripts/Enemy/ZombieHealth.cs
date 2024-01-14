@@ -1,45 +1,50 @@
+using Base;
+using Level;
 using UnityEngine;
 
-public class ZombieHealth : Health
+namespace Enemy
 {
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private Mover _mover;
-    [SerializeField] private int _reward;
-
-    private bool _isAngry = false;
-
-    public int Reward => _reward;
-    public bool IsAngry => _isAngry;
-
-    protected override void OnEnable()
+    public class ZombieHealth : Health
     {
-        ChangeHealthMultiplier();
-        base.OnEnable();
-        _mover.SetStartSpeed();
-        _isAngry = false;
-    }
+        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private Mover _mover;
+        [SerializeField] private int _reward;
 
-    private void Update()
-    {
-        if (transform.position.y < 0)
+        private bool _isAngry = false;
+
+        public int Reward => _reward;
+        public bool IsAngry => _isAngry;
+
+        protected override void OnEnable()
         {
-            gameObject.SetActive(false);
+            ChangeHealthMultiplier();
+            base.OnEnable();
+            _mover.SetStartSpeed();
+            _isAngry = false;
         }
-    }
 
-    public void SetAngry()
-    {
-        _isAngry = true;
-    }
+        private void Update()
+        {
+            if (transform.position.y < 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
 
-    protected override void Die()
-    {
-        _mover.SetZeroSpeed();
-        base.Die();
-    }
+        public void SetAngry()
+        {
+            _isAngry = true;
+        }
 
-    private void ChangeHealthMultiplier()
-    {
-        AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
+        protected override void Die()
+        {
+            _mover.SetZeroSpeed();
+            base.Die();
+        }
+
+        private void ChangeHealthMultiplier()
+        {
+            AddHealthMultiplier = _levelChanger.CurrentLevelNumber / _levelChanger.BossLevelNumber;
+        }
     }
 }

@@ -2,21 +2,25 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
+using Base;
 
-public class InitSDK : MonoBehaviour
+namespace YandexSDK
 {
-    private void Awake()
+    public class InitSDK : MonoBehaviour
     {
-        YandexGamesSdk.CallbackLogging = true;
-    }
+        private void Awake()
+        {
+            YandexGamesSdk.CallbackLogging = true;
+        }
 
-    private IEnumerator Start()
-    {
-        yield return YandexGamesSdk.Initialize(OnInitialized);
-    }
+        private IEnumerator Start()
+        {
+            yield return YandexGamesSdk.Initialize(OnInitialized);
+        }
 
-    private void OnInitialized()
-    {
-        SceneManager.LoadScene(GlobalValues.MainMenuSceneNumber);
+        private void OnInitialized()
+        {
+            SceneManager.LoadScene(GlobalValues.MainMenuSceneNumber);
+        }
     }
 }

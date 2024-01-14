@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class FallDistanceTransition : BossTransition
+namespace Enemy
 {
-    [SerializeField] private PushBackState _pushBackState;
-
-    private void OnEnable()
+    public class FallDistanceTransition : BossTransition
     {
-        NeedTransit = false;
-        _pushBackState.Fell += OnFell;
-    }
+        [SerializeField] private PushBackState _pushBackState;
 
-    private void OnDisable()
-    {
-        _pushBackState.Fell -= OnFell;        
-    }
+        private void OnEnable()
+        {
+            NeedTransit = false;
+            _pushBackState.Fell += OnFell;
+        }
 
-    private void OnFell()
-    {
-        NeedTransit = true;
+        private void OnDisable()
+        {
+            _pushBackState.Fell -= OnFell;
+        }
+
+        private void OnFell()
+        {
+            NeedTransit = true;
+        }
     }
 }

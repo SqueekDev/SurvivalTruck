@@ -1,19 +1,23 @@
+using Base;
 using UnityEngine;
 
-public class PushBackTransition : BossTransition
+namespace Enemy
 {
-    [SerializeField] private Health _head;
-
-    private void OnEnable()
+    public class PushBackTransition : BossTransition
     {
-        NeedTransit = false;
-    }
+        [SerializeField] private Health _head;
 
-    private void Update()
-    {
-        if (_head.IsDead)
+        private void OnEnable()
         {
-            NeedTransit = true;
+            NeedTransit = false;
+        }
+
+        private void Update()
+        {
+            if (_head.IsDead)
+            {
+                NeedTransit = true;
+            }
         }
     }
 }

@@ -1,61 +1,66 @@
 using UnityEngine;
+using Truck;
+using Base;
 
-public class MoverToShootPlace : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private ShootPlace _shootPlace;
-    [SerializeField] private float _speed = 100f;
-    [SerializeField] private float _rotationSpeed = 10f;
-
-    private float _targetRotation = 180f;
-    private float _rotateInaccuracy = 1f;
-    private bool _achievedTarget;
-    private bool _rotatedToTarget;
-
-    private void OnEnable()
+    public class MoverToShootPlace : MonoBehaviour
     {
-        _shootPlace.gameObject.SetActive(true);
-        _rotatedToTarget = false;
-        _achievedTarget = false;
-    }
+        [SerializeField] private ShootPlace _shootPlace;
+        [SerializeField] private float _speed = 100f;
+        [SerializeField] private float _rotationSpeed = 10f;
 
-    private void Update()
-    {
-        if (_achievedTarget && _rotatedToTarget)
+        private float _targetRotation = 180f;
+        private float _rotateInaccuracy = 1f;
+        private bool _achievedTarget;
+        private bool _rotatedToTarget;
+
+        private void OnEnable()
         {
-            enabled = false;
+            _shootPlace.gameObject.SetActive(true);
+            _rotatedToTarget = false;
+            _achievedTarget = false;
         }
-    }
 
-    private void FixedUpdate()
-    {
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _shootPlace.transform.localPosition, _speed * Time.deltaTime);
-        RotateToTarget();
-    }
-
-    private void OnDisable()
-    {
-        _shootPlace.gameObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out ShootPlace shootPlace))
+        private void Update()
         {
-            _achievedTarget = true;
+            if (_achievedTarget && _rotatedToTarget)
+            {
+                enabled = false;
+            }
         }
-    }
 
-    private void RotateToTarget()
-    {
-        if (transform.eulerAngles.y >= _targetRotation - _rotateInaccuracy && transform.eulerAngles.y <= _targetRotation + _rotateInaccuracy)
+        private void FixedUpdate()
         {
-            transform.localRotation = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
-            _rotatedToTarget = true;
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, _shootPlace.transform.localPosition, _speed * Time.deltaTime);
+            RotateToTarget();
         }
-        else
+
+        private void OnDisable()
         {
-            Quaternion direcrion = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, direcrion, _rotationSpeed * Time.deltaTime);
+            _shootPlace.gameObject.SetActive(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ShootPlace shootPlace))
+            {
+                _achievedTarget = true;
+            }
+        }
+
+        private void RotateToTarget()
+        {
+            if (transform.eulerAngles.y >= _targetRotation - _rotateInaccuracy && transform.eulerAngles.y <= _targetRotation + _rotateInaccuracy)
+            {
+                transform.localRotation = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
+                _rotatedToTarget = true;
+            }
+            else
+            {
+                Quaternion direcrion = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
+                transform.localRotation = Quaternion.Lerp(transform.localRotation, direcrion, _rotationSpeed * Time.deltaTime);
+            }
         }
     }
 }

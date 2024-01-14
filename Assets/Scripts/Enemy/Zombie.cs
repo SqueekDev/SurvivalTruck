@@ -1,109 +1,114 @@
+using Truck;
+using Player;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+namespace Enemy
 {
-    private const string AttackDistance = "attackDistance";
-    private const string MoveTo = "MoveTo";
-    private const string Jump = "Jump";
-    private const string Kangaroo = "Kangaroo";
-
-    [SerializeField] private ZombieJumper _zombieJumper;
-    [SerializeField] private ZombieAttacker _zombieAttacker;
-    [SerializeField] private ZombieHealth _zombieHealth;
-    [SerializeField] private PlayerHealth _player;
-    [SerializeField] private AudioSource _kangarooCollision;
-
-    private Transform _target;
-    private Obstacle _obstacle;
-    private Animator _animator;
-    private bool _firstRageAreaCollision = true;
-
-    private void OnEnable()
+    public class Zombie : MonoBehaviour
     {
-        _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
-        _firstRageAreaCollision = true;
-    }
+        private const string AttackDistance = "attackDistance";
+        private const string MoveTo = "MoveTo";
+        private const string Jump = "Jump";
+        private const string Kangaroo = "Kangaroo";
 
-    private void OnDisable()
-    {
-        _zombieAttacker.OnObstacleDestroyed -= OnOstacleDestroyed;
-    }
+        [SerializeField] private ZombieJumper _zombieJumper;
+        [SerializeField] private ZombieAttacker _zombieAttacker;
+        [SerializeField] private ZombieHealth _zombieHealth;
+        [SerializeField] private PlayerHealth _player;
+        [SerializeField] private AudioSource _kangarooCollision;
 
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
-        SetTarget(_player.transform);
-    }
+        private Transform _target;
+        private Obstacle _obstacle;
+        private Animator _animator;
+        private bool _firstRageAreaCollision = true;
 
-    private void Update()
-    {
-        _target = GetTarget();
-
-        if (_target.TryGetComponent(out Obstacle obstacle))
+        private void OnEnable()
         {
-            Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
-            _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, newPosition));
-        }
-        else
-        {
-            _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, _target.position));
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_firstRageAreaCollision && other.TryGetComponent(out RageArea rageArea))
-        {
-            _firstRageAreaCollision = false;
-            SetObstacle(rageArea.Obstacle);
-            _animator.SetTrigger(MoveTo);
-            _zombieHealth.SetAngry();
-            rageArea.Attacked(_zombieHealth);
-            transform.SetParent(rageArea.transform.parent);
+            _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
+            _firstRageAreaCollision = true;
         }
 
-        if (other.TryGetComponent(out JumpTrigger jumpTrigger))
+        private void OnDisable()
         {
-            _zombieJumper.SetJumpPoint(jumpTrigger.JumpPoint);
-            _animator.SetTrigger(Jump);
+            _zombieAttacker.OnObstacleDestroyed -= OnOstacleDestroyed;
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent(out CarShield kangaroo))
+        private void Start()
         {
-            _animator.SetTrigger(Kangaroo);
-            _kangarooCollision.Play();
+            _animator = GetComponent<Animator>();
+            SetTarget(_player.transform);
         }
-    }
 
-    public void SetObstacle(Obstacle obstacle)
-    {
-        _obstacle = obstacle;
-    }
-
-    public Transform GetTarget()
-    {
-        if (_obstacle != null && _obstacle.IsDestroyed == false)
+        private void Update()
         {
-            SetTarget(_obstacle.transform);
+            _target = GetTarget();
+
+            if (_target.TryGetComponent(out Obstacle obstacle))
+            {
+                Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
+                _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, newPosition));
+            }
+            else
+            {
+                _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, _target.position));
+            }
         }
-        else
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (_firstRageAreaCollision && other.TryGetComponent(out RageArea rageArea))
+            {
+                _firstRageAreaCollision = false;
+                SetObstacle(rageArea.Obstacle);
+                _animator.SetTrigger(MoveTo);
+                _zombieHealth.SetAngry();
+                rageArea.Attacked(_zombieHealth);
+                transform.SetParent(rageArea.transform.parent);
+            }
+
+            if (other.TryGetComponent(out JumpTrigger jumpTrigger))
+            {
+                _zombieJumper.SetJumpPoint(jumpTrigger.JumpPoint);
+                _animator.SetTrigger(Jump);
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent(out CarShield kangaroo))
+            {
+                _animator.SetTrigger(Kangaroo);
+                _kangarooCollision.Play();
+            }
+        }
+
+        public void SetObstacle(Obstacle obstacle)
+        {
+            _obstacle = obstacle;
+        }
+
+        public Transform GetTarget()
+        {
+            if (_obstacle != null && _obstacle.IsDestroyed == false)
+            {
+                SetTarget(_obstacle.transform);
+            }
+            else
+            {
+                SetTarget(_player.transform);
+            }
+
+            return _target;
+        }
+
+        private void OnOstacleDestroyed()
         {
             SetTarget(_player.transform);
         }
 
-        return _target;
-    }
-
-    private void OnOstacleDestroyed()
-    {
-        SetTarget(_player.transform);
-    }
-
-    private void SetTarget(Transform target)
-    {
-        _target = target;
+        private void SetTarget(Transform target)
+        {
+            _target = target;
+        }
     }
 }

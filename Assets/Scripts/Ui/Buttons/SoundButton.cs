@@ -1,48 +1,52 @@
 using System;
+using Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundButton : GameButton
+namespace UI
 {
-    private const int FalseValue = 0;
-    private const int TrueValue = 1;
-
-    [SerializeField] private Sprite _soundOnIcon;
-    [SerializeField] private Sprite _soundOffIcon;
-
-    private bool _isMuted;
-
-    public event Action<bool> Muted;
-
-    private void Awake()
+    public class SoundButton : GameButton
     {
-        _isMuted = PlayerPrefs.GetInt(PlayerPrefsKeys.Sound, FalseValue) == TrueValue;
-        Button.image.sprite = _isMuted ? _soundOffIcon : _soundOnIcon;
-    }
+        private const int FalseValue = 0;
+        private const int TrueValue = 1;
 
-    private void SaveData(bool isMuted)
-    {
-        int value = isMuted ? TrueValue : FalseValue;
-        PlayerPrefs.SetInt(PlayerPrefsKeys.Sound, value);
-        PlayerPrefs.Save();
-    }
+        [SerializeField] private Sprite _soundOnIcon;
+        [SerializeField] private Sprite _soundOffIcon;
 
-    protected override void OnButtonClick()
-    {
-        base.OnButtonClick();
+        private bool _isMuted;
 
-        if (_isMuted == false)
+        public event Action<bool> Muted;
+
+        private void Awake()
         {
-            Button.image.sprite = _soundOffIcon;
-            _isMuted = true;
-        }
-        else
-        {
-            Button.image.sprite = _soundOnIcon;
-            _isMuted = false;
+            _isMuted = PlayerPrefs.GetInt(PlayerPrefsKeys.Sound, FalseValue) == TrueValue;
+            Button.image.sprite = _isMuted ? _soundOffIcon : _soundOnIcon;
         }
 
-        SaveData(_isMuted);
-        Muted?.Invoke(_isMuted);
+        private void SaveData(bool isMuted)
+        {
+            int value = isMuted ? TrueValue : FalseValue;
+            PlayerPrefs.SetInt(PlayerPrefsKeys.Sound, value);
+            PlayerPrefs.Save();
+        }
+
+        protected override void OnButtonClick()
+        {
+            base.OnButtonClick();
+
+            if (_isMuted == false)
+            {
+                Button.image.sprite = _soundOffIcon;
+                _isMuted = true;
+            }
+            else
+            {
+                Button.image.sprite = _soundOnIcon;
+                _isMuted = false;
+            }
+
+            SaveData(_isMuted);
+            Muted?.Invoke(_isMuted);
+        }
     }
 }

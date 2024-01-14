@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class WeaponShootPoint : MonoBehaviour
+namespace Player
 {
+    public class WeaponShootPoint : MonoBehaviour
+    {
+    }
 }

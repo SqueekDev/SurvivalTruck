@@ -1,69 +1,78 @@
 using System.Collections;
+using Base;
+using Level;
+using Truck;
 using UnityEngine;
 
-public class ChasingCarState : BossState
+namespace Enemy
 {
-    private const int Correction = 1;
-    private const float MultiplierDivider = 20;
-    private const float TimeToChangeDirection = 1;
-
-    [SerializeField] private LevelChanger _levelChanger;
-    [SerializeField] private float _extraSpeed;
-    [SerializeField] private Car _car;
-
-    private Coroutine _changeDirectionCorutine;
-    private float _speed;
-    private float _startXPosition;
-    private float _xPositionLimit = 2f;
-    private float _startXDirectionSpread = 0.5f;
-    private float _additionalXDirectionSpread;
-    private float _zDirection = 1f;
-    private Vector3 _direction;
-    private WaitForSeconds _delayToChangeDirection = new WaitForSeconds(TimeToChangeDirection);
-
-    private void Awake()
+    public class ChasingCarState : BossState
     {
-        _startXPosition = transform.position.x;
-        _speed = _car.Speed + _extraSpeed;
-    }
+        private const int Correction = 1;
+        private const float MultiplierDivider = 20;
+        private const float TimeToChangeDirection = 1;
 
-    private void OnEnable()
-    {
-        if (_changeDirectionCorutine != null)
+        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private float _extraSpeed;
+        [SerializeField] private Car _car;
+
+        private Coroutine _changeDirectionCorutine;
+        private float _speed;
+        private float _startXPosition;
+        private float _xPositionLimit = 2f;
+        private float _startXDirectionSpread = 0.5f;
+        private float _additionalXDirectionSpread;
+        private float _zDirection = 1f;
+        private Vector3 _direction;
+        private WaitForSeconds _delayToChangeDirection = new WaitForSeconds(TimeToChangeDirection);
+
+        private void Awake()
         {
-            StopCoroutine(_changeDirectionCorutine);
+            _startXPosition = transform.position.x;
+            _speed = _car.Speed + _extraSpeed;
         }
 
-        ChangeRunningSpread();
-        _changeDirectionCorutine = StartCoroutine(ChangeDirection());
-    }
-
-    private void FixedUpdate()
-    {
-        transform.Translate(_direction * _speed * Time.deltaTime);
-    }
-
-    private IEnumerator ChangeDirection()
-    {
-        float xDirectionSpread = _startXDirectionSpread + _additionalXDirectionSpread;
-
-        while (enabled)
+        private void OnEnable()
         {
-            float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
-
-            if (transform.position.x > _startXPosition + _xPositionLimit && xDirection > GlobalValues.Zero || transform.position.x < _startXPosition - _xPositionLimit && xDirection < GlobalValues.Zero)
+            if (_changeDirectionCorutine != null)
             {
-                xDirection = -xDirection;
+                StopCoroutine(_changeDirectionCorutine);
             }
 
-            _direction = new Vector3(xDirection, GlobalValues.Zero, _zDirection);
-            yield return _delayToChangeDirection;
+            ChangeRunningSpread();
+            _changeDirectionCorutine = StartCoroutine(ChangeDirection());
         }
-    }
 
-    private void ChangeRunningSpread()
-    {
-        int currentSpreadMultiplier = _levelChanger.CurrentLevelNumber / (_levelChanger.BossLevelNumber + Correction);
-        _additionalXDirectionSpread = currentSpreadMultiplier / MultiplierDivider;
+        private void FixedUpdate()
+        {
+            transform.Translate(_direction * _speed * Time.deltaTime);
+        }
+
+        private IEnumerator ChangeDirection()
+        {
+            float xDirectionSpread = _startXDirectionSpread + _additionalXDirectionSpread;
+
+            while (enabled)
+            {
+                float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
+
+                if (transform.position.x > _startXPosition + _xPositionLimit &&
+                    xDirection > GlobalValues.Zero ||
+                    transform.position.x < _startXPosition - _xPositionLimit &&
+                    xDirection < GlobalValues.Zero)
+                {
+                    xDirection = -xDirection;
+                }
+
+                _direction = new Vector3(xDirection, GlobalValues.Zero, _zDirection);
+                yield return _delayToChangeDirection;
+            }
+        }
+
+        private void ChangeRunningSpread()
+        {
+            int currentSpreadMultiplier = _levelChanger.CurrentLevelNumber / (_levelChanger.BossLevelNumber + Correction);
+            _additionalXDirectionSpread = currentSpreadMultiplier / MultiplierDivider;
+        }
     }
 }

@@ -1,3 +1,6 @@
-public class DyingState : BossState
+namespace Enemy
 {
+    public class DyingState : BossState
+    {
+    }
 }

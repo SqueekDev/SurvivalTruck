@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class Jump : StateMachineBehaviour
+namespace Enemy
 {
-    private ZombieJumper _zombieJumper;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class Jump : StateMachineBehaviour
     {
-        _zombieJumper = animator.gameObject.GetComponent<ZombieJumper>();
-        _zombieJumper.Jump();
-    }
+        private ZombieJumper _zombieJumper;
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _zombieJumper.StopJump();
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieJumper = animator.gameObject.GetComponent<ZombieJumper>();
+            _zombieJumper.Jump();
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieJumper.StopJump();
+        }
     }
 }

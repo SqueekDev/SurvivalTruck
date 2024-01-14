@@ -1,40 +1,44 @@
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBar : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Image _filledHealthBar;
-    [SerializeField] private PlayerHealth _player;
-    [SerializeField] private Gradient _gradient;
-
-    private Camera _camera;
-
-    private void Awake()
+    public class PlayerHealthBar : MonoBehaviour
     {
-        _camera = Camera.main;
-    }
+        [SerializeField] private Image _filledHealthBar;
+        [SerializeField] private PlayerHealth _player;
+        [SerializeField] private Gradient _gradient;
 
-    private void OnEnable()
-    {
-        _player.HealthChanged += OnHealthChanged;
-    }
+        private Camera _camera;
 
-    private void LateUpdate()
-    {
-        Vector3 forward = transform.position - _camera.transform.position;
-        forward.Normalize();
-        Vector3 up = Vector3.Cross(forward, _camera.transform.right);
-        transform.rotation = Quaternion.LookRotation(forward, up);
-    }
+        private void Awake()
+        {
+            _camera = Camera.main;
+        }
 
-    private void OnDisable()
-    {
-        _player.HealthChanged -= OnHealthChanged;        
-    }
+        private void OnEnable()
+        {
+            _player.HealthChanged += OnHealthChanged;
+        }
 
-    private void OnHealthChanged(float healthPercentage)
-    {
-        _filledHealthBar.fillAmount = healthPercentage;
-        _filledHealthBar.color = _gradient.Evaluate(healthPercentage);
+        private void LateUpdate()
+        {
+            Vector3 forward = transform.position - _camera.transform.position;
+            forward.Normalize();
+            Vector3 up = Vector3.Cross(forward, _camera.transform.right);
+            transform.rotation = Quaternion.LookRotation(forward, up);
+        }
+
+        private void OnDisable()
+        {
+            _player.HealthChanged -= OnHealthChanged;
+        }
+
+        private void OnHealthChanged(float healthPercentage)
+        {
+            _filledHealthBar.fillAmount = healthPercentage;
+            _filledHealthBar.color = _gradient.Evaluate(healthPercentage);
+        }
     }
 }

@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class SettingsPanel : GamePanel
+namespace UI
 {
-    [SerializeField] private SettingButton _settingsButton;
-
-    protected override void OnEnable()
+    public class SettingsPanel : GamePanel
     {
-        base.OnEnable();
-        _settingsButton.gameObject.SetActive(false);
-    }
+        [SerializeField] private SettingButton _settingsButton;
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        _settingsButton.gameObject.SetActive(true);
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _settingsButton.gameObject.SetActive(false);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            _settingsButton.gameObject.SetActive(true);
+        }
     }
 }

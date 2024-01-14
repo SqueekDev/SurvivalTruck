@@ -1,121 +1,126 @@
-using UnityEngine;
-using Lean.Localization;
 using Agava.YandexGames;
+using Base;
+using Lean.Localization;
+using UnityEngine;
+using UI;
 
-public class Localization : MonoBehaviour
+namespace YandexSDK
 {
-    private const string EnglishCode = "en";
-    private const string RussianCode = "ru";
-    private const string TurkishCode = "tr";
-    private const string English = "English";
-    private const string Russian = "Russian";
-    private const string Turkish = "Turkish";
-    private const int EnglishNumber = 0;
-    private const int RussianNumber = 1;
-    private const int TurkishNumber = 2;
-
-    [SerializeField] private LanguageButton _languageButton;
-
-    private string _systemLanguage;
-
-    private void OnEnable()
+    public class Localization : MonoBehaviour
     {
-        _languageButton.LanguageChanged += OnLanguageChanged;
-    }
+        private const string EnglishCode = "en";
+        private const string RussianCode = "ru";
+        private const string TurkishCode = "tr";
+        private const string English = "English";
+        private const string Russian = "Russian";
+        private const string Turkish = "Turkish";
+        private const int EnglishNumber = 0;
+        private const int RussianNumber = 1;
+        private const int TurkishNumber = 2;
 
-    private void Start()
-    {
-        ChangeLanguage();
-    }
+        [SerializeField] private LanguageButton _languageButton;
 
-    private void OnDisable()
-    {
-        _languageButton.LanguageChanged -= OnLanguageChanged;
-    }
+        private string _systemLanguage;
 
-    private void ChangeLanguage()
-    {
-        if (UnityEngine.PlayerPrefs.HasKey(PlayerPrefsKeys.Language))
+        private void OnEnable()
         {
-            int languageNumber = UnityEngine.PlayerPrefs.GetInt(PlayerPrefsKeys.Language);
+            _languageButton.LanguageChanged += OnLanguageChanged;
+        }
 
-            if (languageNumber == EnglishNumber)
+        private void Start()
+        {
+            ChangeLanguage();
+        }
+
+        private void OnDisable()
+        {
+            _languageButton.LanguageChanged -= OnLanguageChanged;
+        }
+
+        private void ChangeLanguage()
+        {
+            if (UnityEngine.PlayerPrefs.HasKey(PlayerPrefsKeys.Language))
             {
-                LeanLocalization.SetCurrentLanguageAll(English);
-            }
-            else if (languageNumber == RussianNumber)
-            {
-                LeanLocalization.SetCurrentLanguageAll(Russian);
-            }
-            else if (languageNumber == TurkishNumber)
-            {
-                LeanLocalization.SetCurrentLanguageAll(Turkish);
+                int languageNumber = UnityEngine.PlayerPrefs.GetInt(PlayerPrefsKeys.Language);
+
+                if (languageNumber == EnglishNumber)
+                {
+                    LeanLocalization.SetCurrentLanguageAll(English);
+                }
+                else if (languageNumber == RussianNumber)
+                {
+                    LeanLocalization.SetCurrentLanguageAll(Russian);
+                }
+                else if (languageNumber == TurkishNumber)
+                {
+                    LeanLocalization.SetCurrentLanguageAll(Turkish);
+                }
+                else
+                {
+                    LeanLocalization.SetCurrentLanguageAll(English);
+                }
             }
             else
             {
-                LeanLocalization.SetCurrentLanguageAll(English);
-            }
-        }
-        else
-        {
 #if UNITY_WEBGL && !UNITY_EDITOR
             _systemLanguage = YandexGamesSdk.Environment.i18n.lang;
 #endif
-            if (_systemLanguage != null)
-            {
-                if (_systemLanguage == EnglishCode)
+                if (_systemLanguage != null)
                 {
-                    SetLanguage(English, EnglishNumber);
-                }
-                else if (_systemLanguage == RussianCode)
-                {
-                    SetLanguage(Russian, RussianNumber);
-                }
-                else if (_systemLanguage == TurkishCode)
-                {
-                    SetLanguage(Turkish, TurkishNumber);
+                    if (_systemLanguage == EnglishCode)
+                    {
+                        SetLanguage(English, EnglishNumber);
+                    }
+                    else if (_systemLanguage == RussianCode)
+                    {
+                        SetLanguage(Russian, RussianNumber);
+                    }
+                    else if (_systemLanguage == TurkishCode)
+                    {
+                        SetLanguage(Turkish, TurkishNumber);
+                    }
+                    else
+                    {
+                        SetLanguage(English, EnglishNumber);
+                    }
                 }
                 else
                 {
                     SetLanguage(English, EnglishNumber);
                 }
             }
-            else
+
+            LeanLocalization.UpdateTranslations();
+        }
+
+        private void SetLanguage(string language, int number)
+        {
+            LeanLocalization.SetCurrentLanguageAll(language);
+            SetPlayerPrefsNumber(number);
+        }
+
+        private void SetPlayerPrefsNumber(int number)
+        {
+            UnityEngine.PlayerPrefs.SetInt(PlayerPrefsKeys.Language, number);
+            UnityEngine.PlayerPrefs.Save();
+        }
+
+        private void OnLanguageChanged(int currentLanguageNumber)
+        {
+            if (currentLanguageNumber == EnglishNumber)
             {
-                SetLanguage(English, EnglishNumber);
+                SetLanguage(English, currentLanguageNumber);
             }
+            else if (currentLanguageNumber == RussianNumber)
+            {
+                SetLanguage(Russian, currentLanguageNumber);
+            }
+            else if (currentLanguageNumber == TurkishNumber)
+            {
+                SetLanguage(Turkish, currentLanguageNumber);
+            }
+
+            LeanLocalization.UpdateTranslations();
         }
-
-        LeanLocalization.UpdateTranslations();
-    }
-
-    private void SetLanguage(string language, int number)
-    {
-        LeanLocalization.SetCurrentLanguageAll(language);
-        SetPlayerPrefsNumber(number);
-    }
-
-    private void SetPlayerPrefsNumber(int number)
-    {
-        UnityEngine.PlayerPrefs.SetInt(PlayerPrefsKeys.Language, number);
-        UnityEngine.PlayerPrefs.Save();
-    }
-
-    private void OnLanguageChanged(int currentLanguageNumber)
-    {
-        if (currentLanguageNumber == EnglishNumber)
-        {
-            SetLanguage(English, currentLanguageNumber);
-        }
-        else if (currentLanguageNumber == RussianNumber)
-        {
-            SetLanguage(Russian, currentLanguageNumber);
-        }
-        else if (currentLanguageNumber == TurkishNumber)
-        {
-            SetLanguage(Turkish, currentLanguageNumber);
-        }
-
-        LeanLocalization.UpdateTranslations();
     }
 }

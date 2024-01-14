@@ -1,64 +1,68 @@
 using System.Collections;
 using UnityEngine;
+using Truck;
 
-[RequireComponent(typeof(Boss))]
-public class AttackState : BossState
+namespace Enemy
 {
-    private const int DelayDivider = 2;
-    private const string AttackAnimationName = "Attack";
-
-    [SerializeField] private Car _car;
-
-    private Animator _animator;
-    private Vector3 _offset;
-    private Coroutine _attackCorutine;
-
-    public Boss Stats { get; private set; }
-
-    private void Awake()
+    [RequireComponent(typeof(Boss))]
+    public class AttackState : BossState
     {
-        _animator = GetComponent<Animator>();
-        Stats = GetComponent<Boss>();
-    }
+        private const int DelayDivider = 2;
+        private const string AttackAnimationName = "Attack";
 
-    protected virtual void OnEnable()
-    {
-        _offset = _car.transform.position - transform.position;
-        StopAttackCorutine();
-        _attackCorutine = StartCoroutine(StartAttack());
-        _animator.SetBool(AttackAnimationName, true);
-    }
+        [SerializeField] private Car _car;
 
-    private void FixedUpdate()
-    {
-        transform.position = _car.transform.position - _offset;
-    }
+        private Animator _animator;
+        private Vector3 _offset;
+        private Coroutine _attackCorutine;
 
-    private void OnDisable()
-    {
-        StopAttackCorutine();
-        _animator.SetBool(AttackAnimationName, false);
-    }
+        public Boss Stats { get; private set; }
 
-    protected virtual void Attack() {}
-
-    private IEnumerator StartAttack()
-    {
-        WaitForSeconds delay = new WaitForSeconds(Stats.AttackDelayTime/DelayDivider);
-
-        while (enabled)
+        private void Awake()
         {
-            yield return delay;
-            Attack();
-            yield return delay;
+            _animator = GetComponent<Animator>();
+            Stats = GetComponent<Boss>();
         }
-    }
 
-    private void StopAttackCorutine()
-    {
-        if (_attackCorutine != null)
+        protected virtual void OnEnable()
         {
-            StopCoroutine(StartAttack());
+            _offset = _car.transform.position - transform.position;
+            StopAttackCorutine();
+            _attackCorutine = StartCoroutine(StartAttack());
+            _animator.SetBool(AttackAnimationName, true);
+        }
+
+        private void FixedUpdate()
+        {
+            transform.position = _car.transform.position - _offset;
+        }
+
+        private void OnDisable()
+        {
+            StopAttackCorutine();
+            _animator.SetBool(AttackAnimationName, false);
+        }
+
+        protected virtual void Attack() { }
+
+        private IEnumerator StartAttack()
+        {
+            WaitForSeconds delay = new WaitForSeconds(Stats.AttackDelayTime / DelayDivider);
+
+            while (enabled)
+            {
+                yield return delay;
+                Attack();
+                yield return delay;
+            }
+        }
+
+        private void StopAttackCorutine()
+        {
+            if (_attackCorutine != null)
+            {
+                StopCoroutine(StartAttack());
+            }
         }
     }
 }

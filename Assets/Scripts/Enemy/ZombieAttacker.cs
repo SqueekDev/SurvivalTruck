@@ -1,101 +1,108 @@
 using System;
 using System.Collections;
+using Base;
+using Truck;
+using Player;
+using Level;
 using UnityEngine;
 
-public class ZombieAttacker : MonoBehaviour
+namespace Enemy
 {
-    private const float TimeBetweenAttacks = 1f;
-
-    [SerializeField] private int _startDamage;
-    [SerializeField] private LevelChanger _levelChanger;
-
-    private Coroutine _obstacleAttacking;
-    private Coroutine _attacking;
-    private int _currentDamage;
-    private int _damageModifier;
-    private int _midDamageModifierValue = 2;
-    private int _maxDamageModifierValue = 6;
-    private float _rotationAngleX = 0f;
-    private float _rotationAngleY = 90f;
-    private float _rotationAngleZ = 0f;
-    private bool _isAttacking = false;
-    private WaitForSeconds _delayBetweenAttacks = new WaitForSeconds(TimeBetweenAttacks);
-
-    public event Action OnObstacleDestroyed;
-
-    public bool IsAttacking => _isAttacking;
-
-    private void Awake()
+    public class ZombieAttacker : MonoBehaviour
     {
-        _damageModifier = UnityEngine.Random.Range(_midDamageModifierValue, _maxDamageModifierValue);
-    }
+        private const float TimeBetweenAttacks = 1f;
 
-    private void OnEnable()
-    {
-        _isAttacking = false;
-        _levelChanger.Changed += OnLevelChanged;
-        OnLevelChanged(_levelChanger.CurrentLevelNumber);
-    }
+        [SerializeField] private int _startDamage;
+        [SerializeField] private LevelChanger _levelChanger;
 
-    private void OnDisable()
-    {
-        _levelChanger.Changed -= OnLevelChanged;
-    }
+        private Coroutine _obstacleAttacking;
+        private Coroutine _attacking;
+        private int _currentDamage;
+        private int _damageModifier;
+        private int _midDamageModifierValue = 2;
+        private int _maxDamageModifierValue = 6;
+        private float _rotationAngleX = 0f;
+        private float _rotationAngleY = 90f;
+        private float _rotationAngleZ = 0f;
+        private bool _isAttacking = false;
+        private WaitForSeconds _delayBetweenAttacks = new WaitForSeconds(TimeBetweenAttacks);
 
-    public void Attack(Obstacle obstacle)
-    {
-        if (obstacle.transform.parent.position.x > transform.position.x)
+        public event Action OnObstacleDestroyed;
+
+        public bool IsAttacking => _isAttacking;
+
+        private void Awake()
         {
-            transform.localEulerAngles = new Vector3(_rotationAngleX, _rotationAngleY, _rotationAngleZ);
+            _damageModifier = UnityEngine.Random.Range(_midDamageModifierValue, _maxDamageModifierValue);
         }
 
-        if (obstacle.transform.parent.position.x < transform.position.x)
+        private void OnEnable()
         {
-            transform.localEulerAngles = new Vector3(_rotationAngleX, -_rotationAngleY, _rotationAngleZ);
+            _isAttacking = false;
+            _levelChanger.Changed += OnLevelChanged;
+            OnLevelChanged(_levelChanger.CurrentLevelNumber);
         }
 
-        if (_obstacleAttacking == null)
+        private void OnDisable()
         {
-            _obstacleAttacking = StartCoroutine(Attacking(obstacle));
-        }
-    }
-
-    public void Attack(PlayerHealth player)
-    {
-        transform.LookAt(player.transform);
-
-        if (_attacking == null)
-        {
-            _attacking = StartCoroutine(Attacking(player));
-        }
-    }
-
-    private IEnumerator Attacking(Obstacle obstacle)
-    {
-        _isAttacking = true;
-        obstacle.ApplyDamade(_currentDamage);
-        yield return _delayBetweenAttacks;
-
-        if (obstacle.IsDestroyed)
-        {
-            OnObstacleDestroyed?.Invoke();
+            _levelChanger.Changed -= OnLevelChanged;
         }
 
-        _obstacleAttacking = null;
-        _isAttacking = false;
-    }
+        public void Attack(Obstacle obstacle)
+        {
+            if (obstacle.transform.parent.position.x > transform.position.x)
+            {
+                transform.localEulerAngles = new Vector3(_rotationAngleX, _rotationAngleY, _rotationAngleZ);
+            }
 
-    private IEnumerator Attacking(Health playerHealth)
-    {
-        _isAttacking = true;
-        playerHealth.TakeDamage(_currentDamage);
-        yield return _delayBetweenAttacks;
-        _attacking = null;
-        _isAttacking = false;
-    }
+            if (obstacle.transform.parent.position.x < transform.position.x)
+            {
+                transform.localEulerAngles = new Vector3(_rotationAngleX, -_rotationAngleY, _rotationAngleZ);
+            }
 
-    private void OnLevelChanged(int levelNumber)
-    {
-        _currentDamage = _startDamage + (levelNumber / _damageModifier);
+            if (_obstacleAttacking == null)
+            {
+                _obstacleAttacking = StartCoroutine(Attacking(obstacle));
+            }
+        }
+
+        public void Attack(PlayerHealth player)
+        {
+            transform.LookAt(player.transform);
+
+            if (_attacking == null)
+            {
+                _attacking = StartCoroutine(Attacking(player));
+            }
+        }
+
+        private IEnumerator Attacking(Obstacle obstacle)
+        {
+            _isAttacking = true;
+            obstacle.ApplyDamade(_currentDamage);
+            yield return _delayBetweenAttacks;
+
+            if (obstacle.IsDestroyed)
+            {
+                OnObstacleDestroyed?.Invoke();
+            }
+
+            _obstacleAttacking = null;
+            _isAttacking = false;
+        }
+
+        private IEnumerator Attacking(Health playerHealth)
+        {
+            _isAttacking = true;
+            playerHealth.TakeDamage(_currentDamage);
+            yield return _delayBetweenAttacks;
+            _attacking = null;
+            _isAttacking = false;
+        }
+
+        private void OnLevelChanged(int levelNumber)
+        {
+            _currentDamage = _startDamage + (levelNumber / _damageModifier);
+        }
     }
 }

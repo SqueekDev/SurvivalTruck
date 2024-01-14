@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class ThrowingOut : StateMachineBehaviour
+namespace Enemy
 {
-    private ZombieAwayThrower _zombieAwayThrower;
-    private Zombie _zombie;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class ThrowingOut : StateMachineBehaviour
     {
-        _zombieAwayThrower = animator.gameObject.GetComponent<ZombieAwayThrower>();
-        _zombie = animator.gameObject.GetComponent<Zombie>();
-        _zombieAwayThrower.ThrowAway(_zombie.GetTarget());
-    }
+        private ZombieAwayThrower _zombieAwayThrower;
+        private Zombie _zombie;
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _zombieAwayThrower.StopThrowingAway();
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieAwayThrower = animator.gameObject.GetComponent<ZombieAwayThrower>();
+            _zombie = animator.gameObject.GetComponent<Zombie>();
+            _zombieAwayThrower.ThrowAway(_zombie.GetTarget());
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _zombieAwayThrower.StopThrowingAway();
+        }
     }
 }
