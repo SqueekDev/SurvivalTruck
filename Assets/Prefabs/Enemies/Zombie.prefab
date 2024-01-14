@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
-  _startSpeed: 7
+  StartSpeed: 7
   Speed: 7
   _toPlayerSpeed: 1.5
   _toPlayerSlowingDistance: 6

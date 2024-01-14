@@ -4071,6 +4071,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1909947092847833823, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: StartSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
       value: 
@@ -4227,7 +4231,8 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 308994112}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9022730237309275913, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
 --- !u!1001 &3741213319255109424
 PrefabInstance:
