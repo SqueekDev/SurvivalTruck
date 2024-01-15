@@ -1543,6 +1543,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816bbbc719f4d854d85a7f354c20c014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1580734256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3685216000612974052, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_PrefabInstance: {fileID: 3685216000199233681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7327aeca3d3314bad123948b3cb419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1581703135 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1581703135, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
@@ -4071,9 +4082,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1905808243929645953, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _cameraPositionChanger
+      value: 
+      objectReference: {fileID: 1580734256}
     - target: {fileID: 1909947092847833823, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: StartSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038990916224761038, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
@@ -4167,6 +4186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 3685216000195483177, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3685216000612974052, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4183,6 +4206,10 @@ PrefabInstance:
       propertyPath: _upgradePanel
       value: 
       objectReference: {fileID: 110423820}
+    - target: {fileID: 4793271105869172608, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4203,6 +4230,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 308994112}
+    - target: {fileID: 4889376646357463886, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4889376646357463886, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4231,6 +4262,18 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 308994112}
+    - target: {fileID: 6053431534899881711, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714964891108182718, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _cameraPositionChanger
+      value: 
+      objectReference: {fileID: 1580734256}
+    - target: {fileID: 8021799919153629791, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     m_RemovedComponents:
     - {fileID: 9022730237309275913, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
@@ -5321,6 +5364,10 @@ PrefabInstance:
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}
+    - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
+      propertyPath: cameraPositionChanger
+      value: 
+      objectReference: {fileID: 1580734256}
     - target: {fileID: 7282262947135627865, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: m_Name
       value: BossSpawner
@@ -5912,6 +5959,10 @@ PrefabInstance:
       propertyPath: _coins
       value: 
       objectReference: {fileID: 8653259143751937566}
+    - target: {fileID: 4958215408334909654, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _kangaroo
+      value: 
+      objectReference: {fileID: 404730993}
     - target: {fileID: 8224473251056355274, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _coins
       value: 

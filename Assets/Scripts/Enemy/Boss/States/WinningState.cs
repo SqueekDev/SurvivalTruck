@@ -1,10 +1,11 @@
+using Base;
 using Truck;
 using UnityEngine;
 
 namespace Enemy
 {
     [RequireComponent(typeof(Animator))]
-    public class WinningState : BossState
+    public class WinningState : State
     {
         private const string WinAnimationName = "Win";
 

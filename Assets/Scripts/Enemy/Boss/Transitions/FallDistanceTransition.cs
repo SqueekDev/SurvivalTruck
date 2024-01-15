@@ -1,14 +1,15 @@
+using Base;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class FallDistanceTransition : BossTransition
+    public class FallDistanceTransition : Transition
     {
         [SerializeField] private PushBackState _pushBackState;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            NeedTransit = false;
+            base.OnEnable();
             _pushBackState.Fell += OnFell;
         }
 

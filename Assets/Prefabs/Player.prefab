@@ -1558,11 +1558,9 @@ GameObject:
   - component: {fileID: 8279466994925834845}
   - component: {fileID: 3773304898508023456}
   - component: {fileID: 2339591092849784467}
-  - component: {fileID: 384220406333063252}
   - component: {fileID: 384220406333063248}
   - component: {fileID: 6540487954674569172}
   - component: {fileID: 6633510373078483397}
-  - component: {fileID: 6729081215824752570}
   - component: {fileID: 384220406333063253}
   - component: {fileID: 384220406333063254}
   - component: {fileID: 384220406333063255}
@@ -1641,27 +1639,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &384220406333063252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8279466994935357563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d592aa3870b5d4293d05a6fb0709d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _levelChanger: {fileID: 0}
-  _cameraPositionChanger: {fileID: 0}
-  _moverToShootPlace: {fileID: 384220406333063255}
-  _bossShooter: {fileID: 384220406333063254}
-  _cameraMover: {fileID: 384220406333063253}
-  _shooter: {fileID: 6540487954674569172}
-  _playerInput: {fileID: 6729081215824752570}
-  _playerMover: {fileID: 6633510373078483397}
-  _joystick: {fileID: 0}
 --- !u!114 &384220406333063248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,9 +1653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 500
   _additionalHealth: 0
-  _damageColor: {r: 0.39215687, g: 0.827451, b: 0.93333334, a: 1}
-  _deathColor: {r: 0.05490196, g: 0.06666667, b: 0.3882353, a: 1}
-  _renderer: {fileID: 5285041854423752746}
+  _colorChanger: {fileID: 0}
   _mover: {fileID: 6633510373078483397}
   _cameraLowerPoint: {fileID: 8478884080972885638}
   _playerHealthUpgradeButton: {fileID: 0}
@@ -1716,25 +1691,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 12
-  _stopDistance: 0.5
-  _startSpeed: 3
+  StartSpeed: 0
   Speed: 0
   _xLimits: {x: 0, y: 0}
   _zLimits: {x: 0, y: 0}
   _body: {fileID: 0}
---- !u!114 &6729081215824752570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8279466994935357563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebe5dc3bb4f1d44b825a5c9b959b018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _joystick: {fileID: 0}
 --- !u!114 &384220406333063253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,7 +1710,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _floatingJoystick: {fileID: 0}
   _weapon: {fileID: 803228061831392328}
-  _speed: 200
+  _speedXAxis: 0
+  _speedYAxis: 0
   _verticalBorded: 20
   _leftBorder: 150
   _rightBorder: 210

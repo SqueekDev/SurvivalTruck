@@ -1,9 +1,10 @@
-using UnityEngine;
+using Base;
 using Truck;
+using UnityEngine;
 
 namespace Enemy
 {
-    public class JumpingOnCarState : BossState
+    public class JumpingOnCarState : State
     {
         private const string JumpAnimationName = "Jump";
 

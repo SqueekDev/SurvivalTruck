@@ -3,14 +3,9 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class PushBackTransition : BossTransition
+    public class PushBackTransition : Transition
     {
         [SerializeField] private Health _head;
-
-        private void OnEnable()
-        {
-            NeedTransit = false;
-        }
 
         private void Update()
         {

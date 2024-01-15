@@ -1,8 +1,9 @@
+using Base;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class DistanceToCarTransition : BossTransition
+    public class DistanceToCarTransition : Transition
     {
         [SerializeField] private Transform _target;
         [SerializeField] private float _transitionRange;

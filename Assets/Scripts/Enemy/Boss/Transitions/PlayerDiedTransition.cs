@@ -1,9 +1,10 @@
+using Base;
 using Player;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class PlayerDiedTransition : BossTransition
+    public class PlayerDiedTransition : Transition
     {
         [SerializeField] private PlayerHealth _player;
 

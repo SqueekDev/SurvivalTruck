@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 3597398177912842079}
   - component: {fileID: 3597398177912842076}
   - component: {fileID: 3597398177912842061}
-  - component: {fileID: 3597398177912842077}
+  - component: {fileID: 8063975717945798340}
   - component: {fileID: 3597398177912842074}
   - component: {fileID: 3597398177912842075}
   - component: {fileID: 3597398177912842072}
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   _reward: 100
   _damage: 20
   _attackDelayTime: 2
---- !u!114 &3597398177912842077
+--- !u!114 &8063975717945798340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1259,11 +1259,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3597398177922192748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb44225e380b7374187aaef0f302b3a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c325d7d4ae3a754d8fc79f76feb3b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _firstState: {fileID: 3597398177912842074}
   _dyingState: {fileID: 3597398177912842053}
+  _health: {fileID: 3597398177912842061}
 --- !u!114 &3597398177912842074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,7 +1398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3597398177922192748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ae702a2ee8edf44ab7dc40e48ec257, type: 3}
+  m_Script: {fileID: 11500000, guid: edb027f73a5788949b214323318201c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _transitions: []

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class ChasingCarState : BossState
+    public class ChasingCarState : State
     {
         private const int Correction = 1;
         private const float MultiplierDivider = 20;

@@ -5,7 +5,7 @@ using UI;
 
 namespace Enemy
 {
-    public class MoveToPlayerState : BossState
+    public class MoveToPlayerState : State
     {
         [SerializeField] private PlayerHealth _target;
         [SerializeField] private float _speed;

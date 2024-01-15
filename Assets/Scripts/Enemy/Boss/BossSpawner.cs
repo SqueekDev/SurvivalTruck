@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using Level;
-using UnityEngine;
 using Truck;
 using UI;
+using UnityEngine;
 
 namespace Enemy
 {

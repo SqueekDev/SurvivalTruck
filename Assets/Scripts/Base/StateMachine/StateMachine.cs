@@ -1,31 +1,29 @@
 using UnityEngine;
-using Base;
 
-namespace Enemy
+namespace Base
 {
-    [RequireComponent(typeof(Boss))]
-    public class BossStateMachine : MonoBehaviour
+    public class StateMachine : MonoBehaviour
     {
-        [SerializeField] private BossState _firstState;
+        [SerializeField] private State _firstState;
         [SerializeField] private DyingState _dyingState;
+        [SerializeField] private Health _health;
 
-        private Boss _boss;
-        private BossState _currentState;
+        private State _currentState;
 
         private void Awake()
         {
-            _boss = GetComponent<Boss>();
+            _health = GetComponent<Health>();
         }
 
         private void OnEnable()
         {
-            _boss.Died += OnDying;
+            _health.Died += OnDying;
             Transit(_firstState);
         }
 
         private void OnDisable()
         {
-            _boss.Died -= OnDying;
+            _health.Died -= OnDying;
         }
 
         private void Update()
@@ -43,7 +41,7 @@ namespace Enemy
             }
         }
 
-        private void Transit(BossState nextState)
+        private void Transit(State nextState)
         {
             if (_currentState != null)
             {
@@ -58,7 +56,7 @@ namespace Enemy
             }
         }
 
-        private void OnDying(Health boss)
+        private void OnDying(Health health)
         {
             Transit(_dyingState);
         }

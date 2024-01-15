@@ -1,11 +1,12 @@
 using System.Collections;
-using UnityEngine;
+using Base;
 using Truck;
+using UnityEngine;
 
 namespace Enemy
 {
     [RequireComponent(typeof(Boss))]
-    public class AttackState : BossState
+    public class AttackState : State
     {
         private const int DelayDivider = 2;
         private const string AttackAnimationName = "Attack";
