@@ -58,7 +58,9 @@ namespace Enemy
 
             while (transform.position.x != newPosition.x)
             {
-                _rigidbody.AddForceAtPosition(direction.normalized * _throwAwaySpeed * Time.deltaTime, transform.position, ForceMode.Impulse);
+                _rigidbody.AddForceAtPosition(
+                    direction.normalized * _throwAwaySpeed * Time.deltaTime,
+                    transform.position, ForceMode.Impulse);
                 yield return null;
             }
         }

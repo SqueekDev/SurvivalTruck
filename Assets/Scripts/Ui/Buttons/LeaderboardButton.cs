@@ -1,6 +1,6 @@
 using System;
-using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine;
 
 namespace UI
 {

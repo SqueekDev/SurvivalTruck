@@ -1,6 +1,6 @@
-using UnityEngine;
 using Base;
 using Level;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -14,7 +14,9 @@ namespace Enemy
         [SerializeField] private float _attackDelayTime;
 
         public int Reward => _reward;
+
         public int Damage => _damage;
+
         public float AttackDelayTime => _attackDelayTime;
 
         protected override void OnEnable()

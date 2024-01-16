@@ -1,6 +1,6 @@
-using UnityEngine;
-using Truck;
 using Base;
+using Truck;
+using UnityEngine;
 
 namespace Player
 {
@@ -32,7 +32,10 @@ namespace Player
 
         private void FixedUpdate()
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, _shootPlace.transform.localPosition, _speed * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(
+                transform.localPosition,
+                _shootPlace.transform.localPosition,
+                _speed * Time.deltaTime);
             RotateToTarget();
         }
 

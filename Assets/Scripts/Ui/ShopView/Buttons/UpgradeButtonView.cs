@@ -1,7 +1,7 @@
-using TMPro;
-using UnityEngine;
 using Lean.Localization;
 using Shop;
+using TMPro;
+using UnityEngine;
 
 namespace UI
 {

@@ -1,8 +1,8 @@
 using System.Collections;
 using Base;
-using UnityEngine;
-using TMPro;
 using Shop;
+using TMPro;
+using UnityEngine;
 
 namespace UI
 {

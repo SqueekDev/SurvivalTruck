@@ -1,6 +1,6 @@
 using Base;
-using UnityEngine;
 using Truck;
+using UnityEngine;
 
 namespace Enemy
 {

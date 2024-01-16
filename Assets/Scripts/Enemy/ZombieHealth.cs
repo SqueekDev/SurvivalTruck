@@ -13,6 +13,7 @@ namespace Enemy
         private bool _isAngry = false;
 
         public int Reward => _reward;
+
         public bool IsAngry => _isAngry;
 
         protected override void OnEnable()

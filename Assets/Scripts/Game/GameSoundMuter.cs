@@ -1,5 +1,5 @@
-using UnityEngine;
 using StartMenu;
+using UnityEngine;
 using YandexSDK;
 
 namespace Game

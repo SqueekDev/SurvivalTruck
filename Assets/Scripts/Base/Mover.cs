@@ -4,11 +4,12 @@ namespace Base
 {
     public abstract class Mover : MonoBehaviour
     {
-        [SerializeField] private float _rotationSpeed;
         [SerializeField] protected float StartSpeed;
         [SerializeField] protected float Speed;
 
         protected Rigidbody Rigidbody;
+
+        [SerializeField] private float _rotationSpeed;
 
         private void Awake()
         {

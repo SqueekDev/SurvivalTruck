@@ -23,6 +23,7 @@ namespace Base
         private WaitForSeconds _dyingDelay = new WaitForSeconds(DyingDelayTime);
 
         public event Action<float> HealthChanged;
+
         public event Action<Health> Died;
 
         public bool IsDead { get; private set; } = false;

@@ -1,7 +1,7 @@
 using System;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using UI;
 
 namespace Shop
 {
@@ -21,6 +21,7 @@ namespace Shop
         public event Action SkillUpgraded;
 
         public int MaxValue => _maxValue;
+
         protected CoinCounter CoinCounter => _coins;
 
 

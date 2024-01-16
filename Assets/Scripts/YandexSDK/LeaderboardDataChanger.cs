@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Agava.YandexGames;
 using Lean.Localization;
-using UI;
-using Shop;
 using Level;
+using Shop;
+using UI;
+using UnityEngine;
 
 namespace YandexSDK
 {

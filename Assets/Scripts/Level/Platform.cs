@@ -8,6 +8,7 @@ namespace Level
         [SerializeField] private Transform _endPoint;
 
         public Transform StartPoint => _startPoint;
+
         public Transform EndPoint => _endPoint;
     }
 }

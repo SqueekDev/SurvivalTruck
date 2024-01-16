@@ -1,7 +1,7 @@
-using UnityEngine;
 using Base;
 using Truck;
 using UI;
+using UnityEngine;
 
 namespace Enemy
 {

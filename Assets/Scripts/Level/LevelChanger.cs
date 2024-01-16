@@ -38,7 +38,9 @@ namespace Level
         public event Action BossLevelEnded;
 
         public int BossLevelNumber => _bossLevelNumber;
+
         public bool IsWave => _isWave;
+
         public int CurrentLevelNumber { get; private set; } = 1;
 
         private void Awake()

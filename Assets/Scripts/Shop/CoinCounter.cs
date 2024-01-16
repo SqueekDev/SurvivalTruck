@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UI;
-using Truck;
-using Enemy;
-using YandexSDK;
-using Level;
 using Base;
+using Enemy;
+using Level;
+using Truck;
+using UI;
+using UnityEngine;
+using YandexSDK;
 
 namespace Shop
 {
@@ -37,8 +37,11 @@ namespace Shop
         public event Action VideoBonusAdded;
 
         public int Count => _count;
+
         public int TotalEarnedCoins => _totalEarnedCoins;
+
         public int EarnModifier { get; private set; }
+
         public int CurrentAdReward { get; private set; }
 
         private void Awake()

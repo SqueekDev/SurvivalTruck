@@ -1,6 +1,6 @@
-using UnityEngine;
 using Player;
 using UI;
+using UnityEngine;
 
 namespace Truck
 {

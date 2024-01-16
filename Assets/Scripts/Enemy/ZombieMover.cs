@@ -56,8 +56,8 @@ namespace Enemy
             Vector3 newDirection = new Vector3(target.position.x + offset, transform.position.y, target.position.z + offset);
             Rotate(newDirection);
 
-            if (target.TryGetComponent(out PlayerHealth player) && Vector3.Distance(transform.position, player.transform.position)
-                < _toPlayerSlowingDistance)
+            if (target.TryGetComponent(out PlayerHealth player) &&
+                Vector3.Distance(transform.position, player.transform.position) < _toPlayerSlowingDistance)
             {
                 transform.Translate(Vector3.forward * _toPlayerSpeed * Time.deltaTime);
             }

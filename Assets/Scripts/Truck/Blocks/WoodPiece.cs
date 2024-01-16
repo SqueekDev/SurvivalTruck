@@ -10,8 +10,11 @@ namespace Truck
         [SerializeField] private Rigidbody _rigidbody;
 
         public Vector3 StartPosition => _startPosition;
+
         public Quaternion StartRotation => _startRotation;
+
         public Vector3 StartScale => _startScale;
+
         public Rigidbody Rigidbody => _rigidbody;
     }
 }

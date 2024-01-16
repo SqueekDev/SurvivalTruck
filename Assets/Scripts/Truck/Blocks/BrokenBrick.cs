@@ -47,7 +47,9 @@ namespace Truck
             {
                 foreach (var woodPiece in _woodPieces)
                 {
-                    woodPiece.transform.localScale = Vector3.Lerp(woodPiece.transform.localScale, targetScale, timer * _decreacingSpeed * Time.deltaTime);
+                    woodPiece.transform.localScale = Vector3.Lerp(
+                        woodPiece.transform.localScale,
+                        targetScale, timer * _decreacingSpeed * Time.deltaTime);
                 }
 
                 timer += Time.deltaTime;

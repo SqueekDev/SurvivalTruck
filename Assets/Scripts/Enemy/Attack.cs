@@ -1,5 +1,5 @@
-using Truck;
 using Player;
+using Truck;
 using UnityEngine;
 
 namespace Enemy

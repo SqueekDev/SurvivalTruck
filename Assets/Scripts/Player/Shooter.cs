@@ -17,6 +17,7 @@ namespace Player
         private bool _isShooting = false;
 
         public ZombieHealth Target => _currentTarget;
+
         public bool IsShooting => _isShooting;
 
         private void Update()

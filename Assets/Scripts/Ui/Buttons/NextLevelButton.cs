@@ -1,7 +1,7 @@
 using Base;
 using Level;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 namespace UI
 {

@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using Base;
 using Enemy;
-using UnityEngine;
 using Shop;
+using UnityEngine;
 
 namespace Truck
 {

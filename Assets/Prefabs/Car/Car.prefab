@@ -7294,12 +7294,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266257d34cf78a84aa3ffd2360f3b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 12
   StartSpeed: 3
   Speed: 3
+  _rotationSpeed: 12
   _xLimits: {x: 4, y: -4}
   _zLimits: {x: 5.95, y: -7.6}
   _body: {fileID: 1168097519658484860}
+  _input: {fileID: 6053431534899881711}
+  _animator: {fileID: 3776579546714366279}
 --- !u!114 &4889376646357463887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7506,7 +7508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 4322981718531467725}
-  _cameraPositionChanger: {fileID: 0}
+  _cameraPositionChanger: {fileID: 3685216000612974052}
 --- !u!114 &4793271105869172608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7534,7 +7536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 8899588233658019978}
-  _cameraPositionChanger: {fileID: 0}
+  _cameraPositionChanger: {fileID: 3685216000612974052}
 --- !u!1 &3831375174242984604
 GameObject:
   m_ObjectHideFlags: 0

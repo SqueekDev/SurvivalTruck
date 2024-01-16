@@ -7,6 +7,7 @@ namespace Base
         [SerializeField] private State _targetState;
 
         public State TargetState => _targetState;
+
         public bool NeedTransit { get; protected set; }
 
         protected virtual void OnEnable()
