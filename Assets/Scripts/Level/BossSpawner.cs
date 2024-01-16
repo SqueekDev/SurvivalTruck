@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
-using Level;
+using Enemy;
 using Truck;
 using UI;
 using UnityEngine;
 
-namespace Enemy
+namespace Level
 {
     public class BossSpawner : MonoBehaviour
     {
@@ -21,8 +20,6 @@ namespace Enemy
         private WaitForSeconds _delayBeforeSpawn = new WaitForSeconds(TimeBeforeSpawn);
 
         public Coroutine _spawnCorutine;
-
-        public event Action<Boss> BossSpawned;
 
         private void OnEnable()
         {
@@ -61,7 +58,6 @@ namespace Enemy
                 _woodBlock.transform.position.z - _zSpawnOffset);
             _boss.transform.position = spawnPosition;
             _boss.gameObject.SetActive(true);
-            BossSpawned?.Invoke(_boss);
         }
     }
 }

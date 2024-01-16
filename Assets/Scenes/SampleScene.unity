@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4082,6 +4082,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1141238641388746954, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
       value: 
@@ -4190,6 +4194,14 @@ PrefabInstance:
       propertyPath: _upgradePanel
       value: 
       objectReference: {fileID: 110423820}
+    - target: {fileID: 4384946124858251706, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _wave
+      value: 
+      objectReference: {fileID: 1972587206}
+    - target: {fileID: 4384946124858251706, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     - target: {fileID: 4793271105869172608, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -5926,6 +5938,14 @@ PrefabInstance:
       propertyPath: _kangaroo
       value: 
       objectReference: {fileID: 404730993}
+    - target: {fileID: 5312344083765858568, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _wave
+      value: 
+      objectReference: {fileID: 1972587206}
+    - target: {fileID: 6882139790830743671, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
     - target: {fileID: 8224473251056355274, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _coins
       value: 
@@ -5938,6 +5958,10 @@ PrefabInstance:
       propertyPath: _weapon
       value: 
       objectReference: {fileID: 747748197}
+    - target: {fileID: 8452661621217869450, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _playerHealth
+      value: 
+      objectReference: {fileID: 8141956493425255387}
     - target: {fileID: 8931753863240528794, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _levelChanger
       value: 

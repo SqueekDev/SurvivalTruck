@@ -1,10 +1,11 @@
 using Base;
 using Enemy;
+using Level;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Level
+namespace UI
 {
     public class LevelWaveView : MonoBehaviour
     {

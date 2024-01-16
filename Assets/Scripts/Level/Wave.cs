@@ -14,25 +14,23 @@ namespace Level
 
         [SerializeField] private LevelChanger _levelChanger;
         [SerializeField] private List<RageArea> _rageAreas;
-        [SerializeField] private BossSpawner _bossSpawner;
+        [SerializeField] private Boss _boss;
         [SerializeField] private int _startZombieinWaveCount;
-        [SerializeField] private LevelWaveView _levelWaveView;
 
         private int _attackingZombiesCount = 0;
         private int _ragedZombieCount = 0;
         private int _zombiesInWaveCount;
-        private bool _isBossLevel;
         private bool _isMaxZombieCount = false;
 
-        public event Action WaveEnded;
+        public event Action Ended;
+        public event Action AllZombiesAttacked;
         public event Action<int, int> ZombieCountChanged;
         public event Action<ZombieHealth> ZombieAttacked;
 
         private void OnEnable()
         {
             _levelChanger.Changed += OnlevelChanged;
-            _levelChanger.BossLevelStarted += OnBossLevelStarted;
-            _bossSpawner.BossSpawned += OnBossSpawned;
+            _boss.Died += OnBossDied;
 
             foreach (var rageArea in _rageAreas)
             {
@@ -43,8 +41,7 @@ namespace Level
         private void OnDisable()
         {
             _levelChanger.Changed -= OnlevelChanged;
-            _levelChanger.BossLevelStarted -= OnBossLevelStarted;
-            _bossSpawner.BossSpawned -= OnBossSpawned;
+            _boss.Died -= OnBossDied;
 
             foreach (var rageArea in _rageAreas)
             {
@@ -65,40 +62,18 @@ namespace Level
 
         private void OnlevelChanged(int levelNumber)
         {
-            if (_isBossLevel == false)
+            if (_isMaxZombieCount == false)
             {
-                if (_isMaxZombieCount == false)
-                {
-                    ChangeZombiesCount(levelNumber);
-                }
-
-                _attackingZombiesCount = _zombiesInWaveCount;
-
-                foreach (var rageArea in _rageAreas)
-                {
-                    rageArea.gameObject.SetActive(true);
-                }
-
-                _levelWaveView.gameObject.SetActive(true);
-                ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
+                ChangeZombiesCount(levelNumber);
             }
-        }
 
-        private void OnBossLevelStarted()
-        {
-            _isBossLevel = true;
-        }
-
-        private void OnBossSpawned(Health boss)
-        {
-            boss.Died += OnBossDied;
+            _attackingZombiesCount = _zombiesInWaveCount;
+            ZombieCountChanged?.Invoke(levelNumber, _zombiesInWaveCount);
         }
 
         private void OnBossDied(Health boss)
         {
-            _isBossLevel = false;
-            boss.Died -= OnBossDied;
-            WaveEnded?.Invoke();
+            Ended?.Invoke();
         }
 
         private void OnZombieAttacked(ZombieHealth zombie)
@@ -109,10 +84,7 @@ namespace Level
 
             if (_ragedZombieCount >= _zombiesInWaveCount)
             {
-                foreach (var rageArea in _rageAreas)
-                {
-                    rageArea.gameObject.SetActive(false);
-                }
+                AllZombiesAttacked?.Invoke();
             }
         }
 
@@ -124,7 +96,7 @@ namespace Level
             if (_attackingZombiesCount <= GlobalValues.Zero)
             {
                 _ragedZombieCount = GlobalValues.Zero;
-                WaveEnded?.Invoke();
+                Ended?.Invoke();
             }
         }
     }

@@ -38,7 +38,7 @@ namespace Truck
         {
             _repairZone.Repaired += OnRepaired;
             _levelChanger.Changed += OnLevelChanged;
-            _waveController.WaveEnded += OnWaveEnded;
+            _waveController.Ended += OnWaveEnded;
             _obstacleHealthUpgradeButton.HealthUpgraded += OnHealthUpgraded;
         }
 
@@ -51,7 +51,7 @@ namespace Truck
         {
             _repairZone.Repaired -= OnRepaired;
             _levelChanger.Changed -= OnLevelChanged;
-            _waveController.WaveEnded -= OnWaveEnded;
+            _waveController.Ended -= OnWaveEnded;
             _obstacleHealthUpgradeButton.HealthUpgraded -= OnHealthUpgraded;
         }
 
