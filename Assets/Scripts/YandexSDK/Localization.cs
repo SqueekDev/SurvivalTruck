@@ -43,21 +43,20 @@ namespace YandexSDK
             {
                 int languageNumber = UnityEngine.PlayerPrefs.GetInt(PlayerPrefsKeys.Language);
 
-                if (languageNumber == EnglishNumber)
+                switch(languageNumber)
                 {
-                    LeanLocalization.SetCurrentLanguageAll(English);
-                }
-                else if (languageNumber == RussianNumber)
-                {
-                    LeanLocalization.SetCurrentLanguageAll(Russian);
-                }
-                else if (languageNumber == TurkishNumber)
-                {
-                    LeanLocalization.SetCurrentLanguageAll(Turkish);
-                }
-                else
-                {
-                    LeanLocalization.SetCurrentLanguageAll(English);
+                    case EnglishNumber:
+                        LeanLocalization.SetCurrentLanguageAll(English);
+                        break;
+                    case RussianNumber:
+                        LeanLocalization.SetCurrentLanguageAll(Russian);
+                        break;
+                    case TurkishNumber:
+                        LeanLocalization.SetCurrentLanguageAll(Turkish);
+                        break;
+                    default:
+                        LeanLocalization.SetCurrentLanguageAll(English);
+                        break;
                 }
             }
             else
@@ -65,28 +64,20 @@ namespace YandexSDK
 #if UNITY_WEBGL && !UNITY_EDITOR
             _systemLanguage = YandexGamesSdk.Environment.i18n.lang;
 #endif
-                if (_systemLanguage != null)
+                switch(_systemLanguage)
                 {
-                    if (_systemLanguage == EnglishCode)
-                    {
+                    case EnglishCode:
                         SetLanguage(English, EnglishNumber);
-                    }
-                    else if (_systemLanguage == RussianCode)
-                    {
+                        break;
+                    case RussianCode:
                         SetLanguage(Russian, RussianNumber);
-                    }
-                    else if (_systemLanguage == TurkishCode)
-                    {
+                        break;
+                    case TurkishCode:
                         SetLanguage(Turkish, TurkishNumber);
-                    }
-                    else
-                    {
+                        break;
+                    default:
                         SetLanguage(English, EnglishNumber);
-                    }
-                }
-                else
-                {
-                    SetLanguage(English, EnglishNumber);
+                        break;
                 }
             }
 
@@ -107,17 +98,17 @@ namespace YandexSDK
 
         private void OnLanguageChanged(int currentLanguageNumber)
         {
-            if (currentLanguageNumber == EnglishNumber)
+            switch(currentLanguageNumber)
             {
-                SetLanguage(English, currentLanguageNumber);
-            }
-            else if (currentLanguageNumber == RussianNumber)
-            {
-                SetLanguage(Russian, currentLanguageNumber);
-            }
-            else if (currentLanguageNumber == TurkishNumber)
-            {
-                SetLanguage(Turkish, currentLanguageNumber);
+                case EnglishNumber:
+                    SetLanguage(English, currentLanguageNumber);
+                    break;
+                case RussianNumber:
+                    SetLanguage(Russian, currentLanguageNumber);
+                    break;
+                case TurkishNumber:
+                    SetLanguage(Turkish, currentLanguageNumber);
+                    break;
             }
 
             LeanLocalization.UpdateTranslations();

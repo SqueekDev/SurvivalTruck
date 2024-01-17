@@ -38,18 +38,13 @@ namespace UI
 
         private void SetLanguageSprite(int languageNumber)
         {
-            if (languageNumber == EnglishNumber)
+            Button.image.sprite = languageNumber switch
             {
-                Button.image.sprite = _icons[EnglishNumber];
-            }
-            else if (languageNumber == RussianNumber)
-            {
-                Button.image.sprite = _icons[RussianNumber];
-            }
-            else if (languageNumber == TurkishNumber)
-            {
-                Button.image.sprite = _icons[TurkishNumber];
-            }
+                EnglishNumber => _icons[EnglishNumber],
+                RussianNumber => _icons[RussianNumber],
+                TurkishNumber => _icons[TurkishNumber],
+                _ => _icons[EnglishNumber],
+            };
         }
 
         protected override void OnButtonClick()
