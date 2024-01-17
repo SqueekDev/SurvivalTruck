@@ -18,7 +18,8 @@ namespace UI
         public virtual void ChangeValues(int upgradeValue, int currentValue, int price)
         {
             _startDescription = LeanLocalization.GetTranslationText(_descriprionPhrase.name);
-            _descriptionText.text = "+" + upgradeValue.ToString() + " " + _startDescription + currentValue.ToString();
+            string description = $"+{upgradeValue} {_startDescription}{currentValue}";
+            _descriptionText.text = description;
 
             if (currentValue < _stats.MaxValue)
             {

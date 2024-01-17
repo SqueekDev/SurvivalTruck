@@ -57,8 +57,7 @@ namespace Player
 
         private void Move(Vector3 direction)
         {
-            Vector3 target = new Vector3(
-                transform.position.x + direction.x * Time.deltaTime * Speed,
+            Vector3 target = new Vector3(transform.position.x + direction.x * Time.deltaTime * Speed,
                 transform.position.y,
                 transform.position.z + direction.z * Time.deltaTime * Speed);
 
