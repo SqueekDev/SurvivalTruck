@@ -6,11 +6,10 @@ namespace Base
     {
         [SerializeField] protected float StartSpeed;
         [SerializeField] protected float Speed;
-
-        protected Rigidbody Rigidbody;
-
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private Health _health;
+
+        protected Rigidbody Rigidbody;
 
         private void Awake()
         {

@@ -15,6 +15,7 @@ namespace UI
         private int _currentGroupIndex;
 
         public event Action PurchaseSuccsessed;
+
         public event Action Closed;
 
         private void OnEnable()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -374,17 +374,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e81f242728ebef48b73cdfbeaf7aa35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &132900330 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3646710111718898528, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
-  m_PrefabInstance: {fileID: 9150028078246563362}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f59fa998c387d4c9149e04966d84d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &139791906 stripped
@@ -4125,10 +4114,6 @@ PrefabInstance:
       propertyPath: _obstacleHealthUpgradeButton
       value: 
       objectReference: {fileID: 1573164090}
-    - target: {fileID: 3685215999517269404, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _car
-      value: 
-      objectReference: {fileID: 5263502733032369210}
     - target: {fileID: 3685215999799633178, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -4225,10 +4210,6 @@ PrefabInstance:
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}
-    - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-      propertyPath: _bossLevelHealthBar
-      value: 
-      objectReference: {fileID: 132900330}
     - target: {fileID: 4889376646357463882, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _playerHealthUpgradeButton
       value: 

@@ -14,7 +14,9 @@ namespace Enemy
         [SerializeField] private float _zOffset;
 
         protected WoodBlock Target => _target;
+
         protected float ZOffset => _zOffset;
+
         protected Animator BossAnimator { get; private set; }
 
         private void Awake()

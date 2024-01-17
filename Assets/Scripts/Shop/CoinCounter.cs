@@ -34,6 +34,7 @@ namespace Shop
         private WaitForSeconds _removingDelay = new WaitForSeconds(RemovingDelayTime);
 
         public event Action<int> CoinsAmountChanged;
+
         public event Action VideoBonusAdded;
 
         public int Count => _count;

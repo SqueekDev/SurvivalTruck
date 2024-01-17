@@ -7298,7 +7298,6 @@ MonoBehaviour:
   _startHealth: 500
   _additionalHealth: 0
   _colorChanger: {fileID: 7972584567798351662}
-  _mover: {fileID: 1909947092847833823}
   _playerHealthUpgradeButton: {fileID: 0}
   _levelChanger: {fileID: 0}
 --- !u!114 &2038990916224761038
@@ -7308,7 +7307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3776579546707071841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8afe0cc5ec5e3a94da69393483af7041, type: 3}
   m_Name: 
@@ -7340,6 +7339,7 @@ MonoBehaviour:
   _body: {fileID: 1168097519658484860}
   _input: {fileID: 6053431534899881711}
   _animator: {fileID: 3776579546714366279}
+  _shooter: {fileID: 2038990916224761038}
 --- !u!114 &4889376646357463887
 MonoBehaviour:
   m_ObjectHideFlags: 0

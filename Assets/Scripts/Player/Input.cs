@@ -9,6 +9,7 @@ namespace Player
         [SerializeField] private VariableJoystick _joystick;
 
         public event Action<Vector3> JoystickPushed;
+
         public event Action JoystickPulled;
 
         private void Update()

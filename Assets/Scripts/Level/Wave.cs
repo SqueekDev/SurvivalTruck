@@ -23,8 +23,11 @@ namespace Level
         private bool _isMaxZombieCount = false;
 
         public event Action Ended;
+
         public event Action AllZombiesAttacked;
+
         public event Action<int, int> ZombieCountChanged;
+
         public event Action<ZombieHealth> ZombieAttacked;
 
         private void OnEnable()

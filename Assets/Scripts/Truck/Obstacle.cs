@@ -26,8 +26,11 @@ namespace Truck
         private bool _lowerBlockDestroyed;
 
         public event Action UpperBlockDestroyed;
+
         public event Action MiddleBlockDestroyed;
+
         public event Action LowerBlockDestroyed;
+
         public event Action BlocksRepaired;
 
         public int MaxHealth => _maxHealth;

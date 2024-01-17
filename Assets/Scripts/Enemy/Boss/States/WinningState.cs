@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Enemy
 {
     [RequireComponent(typeof(Animator))]
+
     public class WinningState : State
     {
         private const string WinAnimationName = "Win";

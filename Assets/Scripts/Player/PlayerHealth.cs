@@ -7,10 +7,8 @@ namespace Player
 {
     public class PlayerHealth : Health
     {
-        [SerializeField] private Mover _mover;
         [SerializeField] private PlayerHealthUpgradeButton _playerHealthUpgradeButton;
         [SerializeField] private LevelChanger _levelChanger;
-
 
         protected override void OnEnable()
         {

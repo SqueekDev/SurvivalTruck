@@ -17,6 +17,7 @@ namespace CameraController
         private Coroutine _moveCoroutine;
 
         public event Action Descended;
+
         public event Action Climbed;
 
         private void OnEnable()

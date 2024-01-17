@@ -22,9 +22,13 @@ namespace Level
         private Scene _currentScene;
 
         public event Action<int> Changed;
+
         public event Action Finished;
+
         public event Action NormalLevelStarted;
+
         public event Action BossLevelStarted;
+
         public event Action BossLevelEnded;
 
         public int BossLevelNumber => _bossLevelNumber;

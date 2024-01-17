@@ -18,6 +18,7 @@ namespace YandexSDK
         private int _counter;
 
         public event Action<bool> AdShowing;
+
         public event Action VideoAdShowed;
 
         private void OnEnable()
