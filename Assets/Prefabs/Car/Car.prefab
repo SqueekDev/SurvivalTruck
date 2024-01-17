@@ -5601,7 +5601,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3685215999298598209}
   - component: {fileID: 3685215999298598238}
-  - component: {fileID: 4323089830730905876}
   m_Layer: 0
   m_Name: CameraUpperPoint
   m_TagString: Untagged
@@ -5635,18 +5634,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c61abc1c82c5d24ea66dafe24776869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4323089830730905876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685215999298598239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d3b95310b41334c970459933d31d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 4889376646357463882}
@@ -5852,6 +5839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21cb47463544e0448cd5aa06fc4de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 4889376646357463882}
+  _car: {fileID: 8804312646343408811}
 --- !u!1 &3685215999574557676
 GameObject:
   m_ObjectHideFlags: 0
@@ -7310,11 +7299,8 @@ MonoBehaviour:
   _additionalHealth: 0
   _colorChanger: {fileID: 7972584567798351662}
   _mover: {fileID: 1909947092847833823}
-  _cameraLowerPoint: {fileID: 3685215999517269404}
   _playerHealthUpgradeButton: {fileID: 0}
   _levelChanger: {fileID: 0}
-  _bossLevelHealthBar: {fileID: 0}
-  _normalLevelHealthBar: {fileID: 9079629119895354863}
 --- !u!114 &2038990916224761038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7348,6 +7334,7 @@ MonoBehaviour:
   StartSpeed: 3
   Speed: 3
   _rotationSpeed: 12
+  _health: {fileID: 4889376646357463882}
   _xLimits: {x: 4, y: -4}
   _zLimits: {x: 5.95, y: -7.6}
   _body: {fileID: 1168097519658484860}

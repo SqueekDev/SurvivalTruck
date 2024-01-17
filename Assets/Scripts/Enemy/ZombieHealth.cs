@@ -20,7 +20,6 @@ namespace Enemy
         {
             ChangeHealthMultiplier();
             base.OnEnable();
-            _mover.SetStartSpeed();
             _isAngry = false;
         }
 
@@ -35,12 +34,6 @@ namespace Enemy
         public void SetAngry()
         {
             _isAngry = true;
-        }
-
-        protected override void Die()
-        {
-            _mover.SetZeroSpeed();
-            base.Die();
         }
 
         private void ChangeHealthMultiplier()

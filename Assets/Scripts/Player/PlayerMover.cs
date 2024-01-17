@@ -16,17 +16,18 @@ namespace Player
         [SerializeField] private Input _input;
         [SerializeField] private Animator _animator;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _input.JoystickPushed += OnJoystickPushed;
             _input.JoystickPulled += OnJoystickPulled;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             _input.JoystickPushed -= OnJoystickPushed;
             _input.JoystickPulled -= OnJoystickPulled;
-
         }
 
         private void OnJoystickPushed(Vector3 direction)

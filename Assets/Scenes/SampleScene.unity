@@ -899,6 +899,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7ae5c1ea1898a469f1d3845b1ca425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &774244481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9079629119895354863, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+  m_PrefabInstance: {fileID: 3685216000199233681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e296d7b4397b74a4ea1f3783644e8c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &793779765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8548581239404562766, guid: 76ed9a61c026d834fbebde319eef8ed4, type: 3}
@@ -4114,6 +4125,10 @@ PrefabInstance:
       propertyPath: _obstacleHealthUpgradeButton
       value: 
       objectReference: {fileID: 1573164090}
+    - target: {fileID: 3685215999517269404, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _car
+      value: 
+      objectReference: {fileID: 5263502733032369210}
     - target: {fileID: 3685215999799633178, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -5906,6 +5921,14 @@ PrefabInstance:
       propertyPath: _leaderboardDataChanger
       value: 
       objectReference: {fileID: 3763780157703378511}
+    - target: {fileID: 3636816581183898760, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1593400594}
+    - target: {fileID: 3636816581183898760, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _normalLevelHealthBar
+      value: 
+      objectReference: {fileID: 774244481}
     - target: {fileID: 3646710111718898528, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _health
       value: 

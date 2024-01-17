@@ -137,9 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68331c9453560b746aecfcc692be2c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
   StartSpeed: 7
   Speed: 7
+  _rotationSpeed: 10
+  _health: {fileID: 4191716626977275584}
   _toPlayerSpeed: 1.5
   _toPlayerSlowingDistance: 6
   _backMoveForce: 1.5

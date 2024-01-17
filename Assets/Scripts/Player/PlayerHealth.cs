@@ -1,9 +1,6 @@
 using Base;
-using CameraController;
 using Level;
 using Shop;
-using Truck;
-using UI;
 using UnityEngine;
 
 namespace Player
@@ -11,44 +8,21 @@ namespace Player
     public class PlayerHealth : Health
     {
         [SerializeField] private Mover _mover;
-        [SerializeField] private CameraLowerPoint _cameraLowerPoint;
         [SerializeField] private PlayerHealthUpgradeButton _playerHealthUpgradeButton;
         [SerializeField] private LevelChanger _levelChanger;
-        [SerializeField] private HealthBar _bossLevelHealthBar;
-        [SerializeField] private PlayerHealthBar _normalLevelHealthBar;
 
-        private Car _car;
-
-        private void Awake()
-        {
-            _car = GetComponentInParent<Car>();
-        }
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            _mover.SetStartSpeed();
-            _playerHealthUpgradeButton.SkillUpgraded += ChangeMaxHealth;
+            _playerHealthUpgradeButton.SkillUpgraded += OnMaxHealthUpgraded;
             _levelChanger.Changed += OnLevelChanged;
-            _levelChanger.BossLevelStarted += OnBossLevelStarted;
-            _levelChanger.BossLevelEnded += OnBossLevelEnded;
         }
 
         private void OnDisable()
         {
-            _playerHealthUpgradeButton.SkillUpgraded -= ChangeMaxHealth;
+            _playerHealthUpgradeButton.SkillUpgraded -= OnMaxHealthUpgraded;
             _levelChanger.Changed -= OnLevelChanged;
-            _levelChanger.BossLevelStarted -= OnBossLevelStarted;
-            _levelChanger.BossLevelEnded -= OnBossLevelEnded;
-        }
-
-        protected override void Die()
-        {
-            Vector3 cameraLowerPointRotation = _cameraLowerPoint.transform.rotation.eulerAngles;
-            _cameraLowerPoint.transform.parent = _car.transform;
-            _cameraLowerPoint.transform.rotation = Quaternion.Euler(cameraLowerPointRotation);
-            _mover.SetZeroSpeed();
-            base.Die();
         }
 
         protected override void ChangeMaxHealth()
@@ -62,16 +36,9 @@ namespace Player
             ChangeMaxHealth();
         }
 
-        private void OnBossLevelStarted()
+        private void OnMaxHealthUpgraded()
         {
-            _normalLevelHealthBar.gameObject.SetActive(false);
-            _bossLevelHealthBar.gameObject.SetActive(true);
-        }
-
-        private void OnBossLevelEnded()
-        {
-            _bossLevelHealthBar.gameObject.SetActive(false);
-            _normalLevelHealthBar.gameObject.SetActive(true);
+            ChangeMaxHealth();
         }
     }
 }

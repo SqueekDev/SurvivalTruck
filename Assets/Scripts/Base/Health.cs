@@ -13,7 +13,6 @@ namespace Base
         [SerializeField] private int _additionalHealth;
         [SerializeField] private ColorChanger _colorChanger;
 
-
         protected int AddHealthMultiplier = 0;
 
         private int _currentHealth;
@@ -27,6 +26,7 @@ namespace Base
         public event Action<Health> Died;
 
         public bool IsDead { get; private set; } = false;
+
         public int MaxHealth { get; protected set; }
 
         protected virtual void OnEnable()
@@ -64,15 +64,6 @@ namespace Base
             }
         }
 
-        protected virtual void Die()
-        {
-            if (_dying == null)
-            {
-                IsDead = true;
-                _dying = StartCoroutine(Dying());
-            }
-        }
-
         protected virtual void ChangeMaxHealth()
         {
             MaxHealth = _startHealth + (_additionalHealth * AddHealthMultiplier);
@@ -97,11 +88,20 @@ namespace Base
             HealthChanged?.Invoke(currentHealthByMaxHealth);
         }
 
+        private void Die()
+        {
+            if (_dying == null)
+            {
+                IsDead = true;
+                _dying = StartCoroutine(Dying());
+            }
+        }
+
         private IEnumerator Dying()
         {
+            Died?.Invoke(this);
             _animator.SetTrigger(DieTrigger);
             _colorChanger.ChangeColorDeath();
-            Died?.Invoke(this);
             yield return _dyingDelay;
             _dying = null;
             gameObject.SetActive(false);
