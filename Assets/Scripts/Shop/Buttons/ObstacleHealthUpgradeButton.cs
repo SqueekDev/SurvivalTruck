@@ -1,4 +1,3 @@
-using System;
 using Base;
 using Truck;
 using UnityEngine;
@@ -9,27 +8,16 @@ namespace Shop
     {
         [SerializeField] private Obstacle _obstacle;
 
-        private int _startHealth;
-
-        public event Action HealthUpgraded;
+        private void Awake()
+        {
+            PlayerPrefsCurrentValue = PlayerPrefsKeys.ObstacleHealth;
+            PlayerPrefsPrice = PlayerPrefsKeys.UpgradeObstacleHealthPrice;
+        }
 
         protected override void OnEnable()
         {
+            StartValue = _obstacle.MaxHealth;
             base.OnEnable();
-            UpgradeabilityCheck(PlayerPrefsKeys.ObstacleHealth, _startHealth);
-            _startHealth = _obstacle.MaxHealth;
-            Renew(PlayerPrefsKeys.ObstacleHealth, _startHealth, PlayerPrefsKeys.UpgradeObstacleHealthPrice);
-        }
-
-        protected override void OnUpgradeButtonClick()
-        {
-            BuyUpgrade(PlayerPrefsKeys.ObstacleHealth, _startHealth, PlayerPrefsKeys.UpgradeObstacleHealthPrice);
-            HealthUpgraded?.Invoke();
-        }
-
-        protected override void OnPurchaseSuccsessed()
-        {
-            UpgradeabilityCheck(PlayerPrefsKeys.ObstacleHealth, _startHealth);
         }
     }
 }

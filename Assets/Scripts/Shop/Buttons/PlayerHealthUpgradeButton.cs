@@ -1,4 +1,3 @@
-using System;
 using Base;
 using Player;
 using UnityEngine;
@@ -9,27 +8,16 @@ namespace Shop
     {
         [SerializeField] private PlayerHealth _player;
 
-        private int _startHealth;
-
-        public event Action HealthUpgraded;
+        private void Awake()
+        {
+            PlayerPrefsCurrentValue = PlayerPrefsKeys.PlayerHealth;
+            PlayerPrefsPrice = PlayerPrefsKeys.UpgradePlayerHealthPrice;
+        }
 
         protected override void OnEnable()
         {
+            StartValue = _player.MaxHealth;
             base.OnEnable();
-            UpgradeabilityCheck(PlayerPrefsKeys.PlayerHealth, _startHealth);
-            _startHealth = _player.MaxHealth;
-            Renew(PlayerPrefsKeys.PlayerHealth, _startHealth, PlayerPrefsKeys.UpgradePlayerHealthPrice);
-        }
-
-        protected override void OnUpgradeButtonClick()
-        {
-            BuyUpgrade(PlayerPrefsKeys.PlayerHealth, _startHealth, PlayerPrefsKeys.UpgradePlayerHealthPrice);
-            HealthUpgraded?.Invoke();
-        }
-
-        protected override void OnPurchaseSuccsessed()
-        {
-            UpgradeabilityCheck(PlayerPrefsKeys.PlayerHealth, _startHealth);
         }
     }
 }

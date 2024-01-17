@@ -39,7 +39,7 @@ namespace Truck
             _repairZone.Repaired += OnRepaired;
             _levelChanger.Changed += OnLevelChanged;
             _waveController.Ended += OnWaveEnded;
-            _obstacleHealthUpgradeButton.HealthUpgraded += OnHealthUpgraded;
+            _obstacleHealthUpgradeButton.SkillUpgraded += OnHealthUpgraded;
         }
 
         private void Start()
@@ -52,7 +52,7 @@ namespace Truck
             _repairZone.Repaired -= OnRepaired;
             _levelChanger.Changed -= OnLevelChanged;
             _waveController.Ended -= OnWaveEnded;
-            _obstacleHealthUpgradeButton.HealthUpgraded -= OnHealthUpgraded;
+            _obstacleHealthUpgradeButton.SkillUpgraded -= OnHealthUpgraded;
         }
 
         public void ApplyDamade(int damage)

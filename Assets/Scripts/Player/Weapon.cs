@@ -37,8 +37,8 @@ namespace Player
 
         private void OnEnable()
         {
-            _weaponDamageUpgradeButton.DamageUpgraded += OnDamageUpgraded;
-            _weaponShootDelayUpgradeButton.ShootDelayUpgraded += OnShootDelayUpdated;
+            _weaponDamageUpgradeButton.SkillUpgraded += OnDamageUpgraded;
+            _weaponShootDelayUpgradeButton.SkillUpgraded += OnShootDelayUpdated;
             _levelChanger.BossLevelStarted += OnBossLevelStarted;
             _levelChanger.BossLevelEnded += OnBossLevelEnded;
         }
@@ -51,8 +51,8 @@ namespace Player
 
         private void OnDisable()
         {
-            _weaponDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;
-            _weaponShootDelayUpgradeButton.ShootDelayUpgraded -= OnShootDelayUpdated;
+            _weaponDamageUpgradeButton.SkillUpgraded -= OnDamageUpgraded;
+            _weaponShootDelayUpgradeButton.SkillUpgraded -= OnShootDelayUpdated;
             _levelChanger.BossLevelStarted -= OnBossLevelStarted;
             _levelChanger.BossLevelEnded -= OnBossLevelEnded;
         }

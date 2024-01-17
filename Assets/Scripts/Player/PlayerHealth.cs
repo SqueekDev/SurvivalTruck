@@ -28,7 +28,7 @@ namespace Player
         {
             base.OnEnable();
             _mover.SetStartSpeed();
-            _playerHealthUpgradeButton.HealthUpgraded += ChangeMaxHealth;
+            _playerHealthUpgradeButton.SkillUpgraded += ChangeMaxHealth;
             _levelChanger.Changed += OnLevelChanged;
             _levelChanger.BossLevelStarted += OnBossLevelStarted;
             _levelChanger.BossLevelEnded += OnBossLevelEnded;
@@ -36,7 +36,7 @@ namespace Player
 
         private void OnDisable()
         {
-            _playerHealthUpgradeButton.HealthUpgraded -= ChangeMaxHealth;
+            _playerHealthUpgradeButton.SkillUpgraded -= ChangeMaxHealth;
             _levelChanger.Changed -= OnLevelChanged;
             _levelChanger.BossLevelStarted -= OnBossLevelStarted;
             _levelChanger.BossLevelEnded -= OnBossLevelEnded;

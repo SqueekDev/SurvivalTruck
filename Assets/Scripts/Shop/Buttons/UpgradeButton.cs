@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Shop
 {
-    public class UpgradeButton : MonoBehaviour
+    public abstract class UpgradeButton : MonoBehaviour
     {
         private const float PriceIncreace = 0.15f;
 
@@ -24,11 +24,17 @@ namespace Shop
 
         protected CoinCounter CoinCounter => _coins;
 
+        protected string PlayerPrefsCurrentValue { get; set; }
+
+        protected string PlayerPrefsPrice { get; set; }
+
+        protected int StartValue { get; set; }
 
         protected virtual void OnEnable()
         {
             _gameButton.Clicked += OnUpgradeButtonClick;
             _upgradesPanel.PurchaseSuccsessed += OnPurchaseSuccsessed;
+            Renew(PlayerPrefsCurrentValue, StartValue, PlayerPrefsPrice);
         }
 
         private void OnDisable()
@@ -36,8 +42,6 @@ namespace Shop
             _gameButton.Clicked -= OnUpgradeButtonClick;
             _upgradesPanel.PurchaseSuccsessed -= OnPurchaseSuccsessed;
         }
-
-        protected virtual void OnUpgradeButtonClick() { }
 
         protected void Renew(string playerPrefsCurrentValue, int defaultValue, string playerPrefsPrice)
         {
@@ -82,6 +86,14 @@ namespace Shop
             }
         }
 
-        protected virtual void OnPurchaseSuccsessed() { }
+        private void OnUpgradeButtonClick()
+        {
+            BuyUpgrade(PlayerPrefsCurrentValue, StartValue, PlayerPrefsPrice);
+        }
+
+        private void OnPurchaseSuccsessed()
+        {
+            UpgradeabilityCheck(PlayerPrefsCurrentValue, StartValue);
+        }
     }
 }

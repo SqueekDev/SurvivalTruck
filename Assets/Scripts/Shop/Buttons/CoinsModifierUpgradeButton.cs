@@ -1,35 +1,19 @@
-using System;
 using Base;
 
 namespace Shop
 {
     public class CoinsModifierUpgradeButton : UpgradeButton
     {
-        private int _startValue;
-
-        public event Action CoinsModifierUpgraded;
+        private void Awake()
+        {
+            PlayerPrefsCurrentValue = PlayerPrefsKeys.CoinsModifier;
+            PlayerPrefsPrice = PlayerPrefsKeys.UpgradeCoinsModifierPrice;
+        }
 
         protected override void OnEnable()
         {
+            StartValue = CoinCounter.EarnModifier;
             base.OnEnable();
-            UpgradeabilityCheck(PlayerPrefsKeys.CoinsModifier, _startValue);
-            _startValue = CoinCounter.EarnModifier;
-            Renew(PlayerPrefsKeys.CoinsModifier, _startValue, PlayerPrefsKeys.UpgradeCoinsModifierPrice);
-        }
-
-        private void Start()
-        {
-        }
-
-        protected override void OnUpgradeButtonClick()
-        {
-            BuyUpgrade(PlayerPrefsKeys.CoinsModifier, _startValue, PlayerPrefsKeys.UpgradeCoinsModifierPrice);
-            CoinsModifierUpgraded?.Invoke();
-        }
-
-        protected override void OnPurchaseSuccsessed()
-        {
-            UpgradeabilityCheck(PlayerPrefsKeys.CoinsModifier, _startValue);
         }
     }
 }

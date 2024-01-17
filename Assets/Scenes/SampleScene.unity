@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0f5897055a81644b7984b976a53ec6, type: 3}
+  m_Script: {fileID: 11500000, guid: a0cc741248aeca74bbb71a51acf69ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1162344128 stripped
@@ -4584,6 +4584,10 @@ PrefabInstance:
       value: WaveController
       objectReference: {fileID: 0}
     - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 8758378300194660580}
+    - target: {fileID: 9018624723100345358, guid: 41657af294688d54b9ce64a3681470f1, type: 3}
       propertyPath: _bossSpawner
       value: 
       objectReference: {fileID: 27061451}
@@ -5938,6 +5942,10 @@ PrefabInstance:
       propertyPath: _kangaroo
       value: 
       objectReference: {fileID: 404730993}
+    - target: {fileID: 4958215408334909654, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _carShield
+      value: 
+      objectReference: {fileID: 404730993}
     - target: {fileID: 5312344083765858568, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: _wave
       value: 
@@ -5966,6 +5974,10 @@ PrefabInstance:
       propertyPath: _levelChanger
       value: 
       objectReference: {fileID: 1593400594}
+    - target: {fileID: 9150028077419321833, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
+      propertyPath: _buttons.Array.data[4]
+      value: 
+      objectReference: {fileID: 1031018728}
     - target: {fileID: 9150028078573007035, guid: 3d942422052694b4fa009e0a9141e9f3, type: 3}
       propertyPath: m_Name
       value: Canvas

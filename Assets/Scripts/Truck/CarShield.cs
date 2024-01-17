@@ -12,7 +12,7 @@ namespace Truck
         private const float ApplyingDamageDelay = 0.5f;
 
         [SerializeField] private int _damage;
-        [SerializeField] private KangarooDamageUpgradeButton _kangarooDamageUpgradeButton;
+        [SerializeField] private CarShieldDamageUpgradeButton _kangarooDamageUpgradeButton;
         [SerializeField] private ParticleSystem _poofKangarooPartical;
 
         private WaitForSeconds _delay = new WaitForSeconds(ApplyingDamageDelay);
@@ -28,12 +28,12 @@ namespace Truck
 
         private void OnEnable()
         {
-            _kangarooDamageUpgradeButton.DamageUpgraded += OnDamageUpgraded;
+            _kangarooDamageUpgradeButton.SkillUpgraded += OnDamageUpgraded;
         }
 
         private void OnDisable()
         {
-            _kangarooDamageUpgradeButton.DamageUpgraded -= OnDamageUpgraded;
+            _kangarooDamageUpgradeButton.SkillUpgraded -= OnDamageUpgraded;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -55,7 +55,7 @@ namespace Truck
 
         private void OnDamageUpgraded()
         {
-            _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.KangarooDamage, _damage);
+            _damage = PlayerPrefs.GetInt(PlayerPrefsKeys.CarShieldDamage, _damage);
         }
     }
 }

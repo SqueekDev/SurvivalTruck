@@ -11026,7 +11026,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6076579096502096196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0f5897055a81644b7984b976a53ec6, type: 3}
+  m_Script: {fileID: 11500000, guid: a0cc741248aeca74bbb71a51acf69ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeValue: 5
@@ -11037,7 +11037,7 @@ MonoBehaviour:
   _gameButton: {fileID: 3718375095963477520}
   _upgradesPanel: {fileID: 9150028077419321833}
   _upgradeButtonView: {fileID: 5304865240786836659}
-  _kangaroo: {fileID: 0}
+  _carShield: {fileID: 0}
 --- !u!1 &6100301134472107217
 GameObject:
   m_ObjectHideFlags: 0
