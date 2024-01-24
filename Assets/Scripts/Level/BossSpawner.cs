@@ -17,9 +17,8 @@ namespace Level
         [SerializeField] private float _zSpawnOffset;
         [SerializeField] private float _ySpawnOffset;
 
+        private Coroutine _spawnCorutine;
         private WaitForSeconds _delayBeforeSpawn = new WaitForSeconds(TimeBeforeSpawn);
-
-        public Coroutine _spawnCorutine;
 
         private void OnEnable()
         {
@@ -33,23 +32,7 @@ namespace Level
             _levelChanger.BossLevelEnded -= OnBossLevelEnded;
         }
 
-        private void OnBossLevelStarted()
-        {
-            if (_spawnCorutine != null)
-            {
-                StopCoroutine(_spawnCorutine);
-            }
-
-            _healthBar.gameObject.SetActive(true);
-            _spawnCorutine = StartCoroutine(EnableTemplate());
-        }
-
-        private void OnBossLevelEnded()
-        {
-            _healthBar.gameObject.SetActive(false);
-        }
-
-        private IEnumerator EnableTemplate()
+        private IEnumerator EnablingBoss()
         {
             yield return _delayBeforeSpawn;
             Vector3 spawnPosition = new Vector3(
@@ -58,6 +41,22 @@ namespace Level
                 _woodBlock.transform.position.z - _zSpawnOffset);
             _boss.transform.position = spawnPosition;
             _boss.gameObject.SetActive(true);
+        }
+
+        private void OnBossLevelStarted()
+        {
+            if (_spawnCorutine != null)
+            {
+                StopCoroutine(_spawnCorutine);
+            }
+
+            _healthBar.gameObject.SetActive(true);
+            _spawnCorutine = StartCoroutine(EnablingBoss());
+        }
+
+        private void OnBossLevelEnded()
+        {
+            _healthBar.gameObject.SetActive(false);
         }
     }
 }

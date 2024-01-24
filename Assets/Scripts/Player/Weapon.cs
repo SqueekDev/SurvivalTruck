@@ -24,11 +24,9 @@ namespace Player
 
         private Bullet _currentBulletTemplate;
 
-        public float BulletSpeed => _bulletSpeed;
-
         public int Damage => _damage;
 
-        public float TimeBetweenShoot => (StartDelay - _delayModifier / Divider);
+        public float TimeBetweenShoot => StartDelay - _delayModifier / Divider;
 
         private void Awake()
         {

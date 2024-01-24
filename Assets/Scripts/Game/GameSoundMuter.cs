@@ -8,7 +8,7 @@ namespace Game
     {
         [SerializeField] private AdShower _adShower;
 
-        private bool _adShowing = false;
+        private bool _isAdShowing = false;
 
         protected override void OnEnable()
         {
@@ -29,7 +29,7 @@ namespace Game
                 PauseGame(!inApp);
                 PauseSound(!inApp);
             }
-            else if (_adShowing == false)
+            else if (_isAdShowing == false)
             {
                 PauseGame(!inApp);
                 PauseSound(!inApp);
@@ -43,7 +43,7 @@ namespace Game
                 PauseGame(inBackground);
                 PauseSound(inBackground);
             }
-            else if (_adShowing == false)
+            else if (_isAdShowing == false)
             {
                 PauseGame(inBackground);
                 PauseSound(inBackground);
@@ -52,7 +52,7 @@ namespace Game
 
         private void OnAdShowed(bool showing)
         {
-            _adShowing = showing;
+            _isAdShowing = showing;
             AudioListener.pause = showing;
         }
     }

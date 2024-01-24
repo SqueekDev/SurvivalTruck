@@ -11,7 +11,7 @@ namespace Enemy
 
         protected override void Attack()
         {
-            _player.TakeDamage(Stats.Damage * DamageMultiplier);
+            _player.TakeDamage(Boss.Damage * DamageMultiplier);
         }
     }
 }

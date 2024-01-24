@@ -2380,6 +2380,7 @@ GameObject:
   - component: {fileID: 6882139790830743671}
   - component: {fileID: 5312344083765858568}
   - component: {fileID: 8452661621217869450}
+  - component: {fileID: 1693882142532051488}
   m_Layer: 5
   m_Name: PanelsEnabler
   m_TagString: Untagged
@@ -2444,6 +2445,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 0}
   _lostPanel: {fileID: 6385308924325003660}
+--- !u!114 &1693882142532051488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828298835274930784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf59989f40186d946b2092f91444699d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _addCoinsButton: {fileID: 7287559205081156779}
+  _addCoinsPanel: {fileID: 2806386135302752743}
 --- !u!1 &953647607214249962
 GameObject:
   m_ObjectHideFlags: 0

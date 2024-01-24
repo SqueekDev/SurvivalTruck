@@ -11,8 +11,8 @@ namespace Hints
 
         public void Open()
         {
-            if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelNumber) &&
-                PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber) == TutorialLevelNumber)
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.LevelNumber)
+                && PlayerPrefs.GetInt(PlayerPrefsKeys.LevelNumber) == TutorialLevelNumber)
             {
                 _hintViewer.gameObject.SetActive(true);
             }

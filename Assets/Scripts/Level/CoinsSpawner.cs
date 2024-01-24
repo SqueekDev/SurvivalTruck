@@ -12,6 +12,9 @@ namespace Level
         [SerializeField] private int _maxCoinsCount = 5;
         [SerializeField] private AudioSource _coinsSound;
 
+        private float _minSpread = -1f;
+        private float _maxSpred = 1f;
+
         private void OnEnable()
         {
             foreach (var zombie in _zombiePooler.PooledObjects)
@@ -19,6 +22,7 @@ namespace Level
                 zombie.GetComponent<Health>().Died += OnZombieDied;
             }
         }
+
         private void OnDisable()
         {
             foreach (var zombie in _zombiePooler.PooledObjects)
@@ -27,25 +31,41 @@ namespace Level
             }
         }
 
-        public void OnZombieDied(Health spawnPoint)
+        private int GetRandomCoinsNumber()
         {
-            EnableRandomCoinsNumber(spawnPoint);
+            int coinsCount = Random.Range(0, _maxCoinsCount);
+            return coinsCount;
         }
 
-        public void EnableRandomCoinsNumber(Health spawnPoint)
+        private Vector3 GetSpawnPoint(Health zombie)
         {
-            int randomCoinsCount = Random.Range(0, _maxCoinsCount);
+            float spread = Random.Range(_minSpread, _maxSpred);
+            Vector3 spawnPoint = new Vector3(
+                zombie.transform.position.x + spread, 
+                zombie.transform.position.y, 
+                zombie.transform.position.z + spread);
+            return spawnPoint;
+        }
 
-            for (int i = 0; i < randomCoinsCount; i++)
+        private void EnableCoins(Health zombie)
+        {
+            int coinsCount = GetRandomCoinsNumber();
+
+            for (int i = 0; i < coinsCount; i++)
             {
-                if (_coinsPooler.TryGetObject(out GameObject pooledObject) && pooledObject.TryGetComponent(out Coin coin))
+                if (_coinsPooler.TryGetObject(out Coin coin))
                 {
-                    coin.transform.position = spawnPoint.transform.position;
-                    pooledObject.SetActive(true);
+                    coin.transform.position = GetSpawnPoint(zombie);
+                    coin.gameObject.SetActive(true);
                     coin.MoveTarget(_player.transform);
                     _coinsSound.Play();
                 }
             }
+        }
+
+        private void OnZombieDied(Health spawnPoint)
+        {
+            EnableCoins(spawnPoint);
         }
     }
 }

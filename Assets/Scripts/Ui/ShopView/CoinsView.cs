@@ -42,7 +42,6 @@ namespace UI
 
         private IEnumerator ShowingCount()
         {
-
             while (_currentCount != _trueCount)
             {
                 if (_currentCount > _trueCount)

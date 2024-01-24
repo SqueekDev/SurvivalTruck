@@ -34,10 +34,10 @@ namespace Player
             _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
             _weapon.transform.localRotation = Quaternion.Euler(-_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
 
-            if (transform.localRotation.eulerAngles.y < _rightBorder &&
-                _finalXInput > GlobalValues.Zero ||
-                transform.localRotation.eulerAngles.y > _leftBorder &&
-                _finalXInput < GlobalValues.Zero)
+            if (((transform.localRotation.eulerAngles.y < _rightBorder)
+                && (_finalXInput > GlobalValues.Zero))
+                || ((transform.localRotation.eulerAngles.y > _leftBorder)
+                && (_finalXInput < GlobalValues.Zero)))
             {
                 transform.Rotate(Vector3.up * _finalXInput);
             }

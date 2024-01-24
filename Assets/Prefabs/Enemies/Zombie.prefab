@@ -163,7 +163,7 @@ MonoBehaviour:
   _zombieAttacker: {fileID: 7154820901196419258}
   _zombieHealth: {fileID: 4191716626977275584}
   _player: {fileID: 0}
-  _kangarooCollision: {fileID: 7618092376629469359}
+  _carShieldCollision: {fileID: 7618092376629469359}
 --- !u!82 &7618092376629469359
 AudioSource:
   m_ObjectHideFlags: 0

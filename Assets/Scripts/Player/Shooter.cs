@@ -30,11 +30,11 @@ namespace Player
                 {
                     foreach (var collider in colliders)
                     {
-                        if (collider.gameObject.TryGetComponent(out ZombieHealth zombie) &&
-                            zombie.IsAngry &&
-                            zombie.IsDead == false &&
-                            zombie.gameObject != gameObject &&
-                            _shooting == null)
+                        if (collider.gameObject.TryGetComponent(out ZombieHealth zombie)
+                            && zombie.IsAngry
+                            && zombie.IsDead == false
+                            && zombie.gameObject != gameObject
+                            && _shooting == null)
                         {
                             Shoot(zombie);
                             return;
@@ -55,9 +55,9 @@ namespace Player
         {
             WaitForSeconds waitForSeconds = new WaitForSeconds(_weapon.TimeBetweenShoot);
 
-            while (zombie.IsDead == false &&
-                _currentTarget != null &&
-                Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
+            while (zombie.IsDead == false
+                && _currentTarget != null
+                && Vector3.Distance(_currentTarget.transform.position, transform.position) < _stopShootingDistance)
             {
                 _weapon.Shoot(_currentTarget.transform);
                 yield return null;

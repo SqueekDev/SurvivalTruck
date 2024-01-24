@@ -21,7 +21,7 @@ namespace Truck
             _obstacle.BlocksRepaired -= OnBlocksRepaired;
         }
 
-        protected void OnBlockDestroyed()
+        public void Destroy()
         {
             _brick.gameObject.SetActive(false);
             int brokenBrickNumber = Random.Range(0, _brokenBricks.Count);

@@ -10,26 +10,26 @@ namespace Truck
     {
         private const int HalfHPDivider = 2;
 
+        [Header("Blocks")]
+        [SerializeField] private WoodBlock _upperBlock;
+        [SerializeField] private WoodBlock _middleBlock;
+        [SerializeField] private WoodBlock _lowerBlock;
+        [Header("Audio")]
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _woodHitSound;
+        [SerializeField] private AudioClip _destroyWoodSound;
+        [Header("Other")]
         [SerializeField] private int _maxHealth;
         [SerializeField] private RepairZone _repairZone;
         [SerializeField] private LevelChanger _levelChanger;
         [SerializeField] private Wave _waveController;
         [SerializeField] private ObstacleHealthUpgradeButton _obstacleHealthUpgradeButton;
         [SerializeField] private ParticleSystem _poofParticle;
-        [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _woodHitSound;
-        [SerializeField] private AudioClip _destroyWoodSound;
 
         private int _currentHealth;
         private bool _upperBlockDestroyed;
         private bool _middleBlockDestroyed;
         private bool _lowerBlockDestroyed;
-
-        public event Action UpperBlockDestroyed;
-
-        public event Action MiddleBlockDestroyed;
-
-        public event Action LowerBlockDestroyed;
 
         public event Action BlocksRepaired;
 
@@ -66,22 +66,22 @@ namespace Truck
             if (_currentHealth < _maxHealth && _upperBlockDestroyed == false)
             {
                 PlayDestroyEffects();
-                UpperBlockDestroyed?.Invoke();
+                _upperBlock.Destroy();
                 _upperBlockDestroyed = true;
             }
 
             if (_currentHealth < _maxHealth / HalfHPDivider && _middleBlockDestroyed == false)
             {
                 PlayDestroyEffects();
-                MiddleBlockDestroyed?.Invoke();
+                _middleBlock.Destroy();
                 _middleBlockDestroyed = true;
             }
 
             if (_currentHealth <= 0 && _lowerBlockDestroyed == false)
             {
-                PlayDestroyEffects();
-                LowerBlockDestroyed?.Invoke();
                 _currentHealth = 0;
+                PlayDestroyEffects();
+                _lowerBlock.Destroy();
                 _lowerBlockDestroyed = true;
                 IsDestroyed = true;
             }

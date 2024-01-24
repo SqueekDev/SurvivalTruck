@@ -9,7 +9,6 @@ namespace UI
         [SerializeField] private Health _health;
         [SerializeField] private Slider _hpSlider;
 
-
         private void OnEnable()
         {
             _hpSlider.value = 0;

@@ -1,8 +1,8 @@
 using Agava.YandexGames;
 using Base;
 using Lean.Localization;
-using UnityEngine;
 using UI;
+using UnityEngine;
 
 namespace YandexSDK
 {
@@ -43,7 +43,7 @@ namespace YandexSDK
             {
                 int languageNumber = UnityEngine.PlayerPrefs.GetInt(PlayerPrefsKeys.Language);
 
-                switch(languageNumber)
+                switch (languageNumber)
                 {
                     case EnglishNumber:
                         LeanLocalization.SetCurrentLanguageAll(English);
@@ -64,7 +64,7 @@ namespace YandexSDK
 #if UNITY_WEBGL && !UNITY_EDITOR
             _systemLanguage = YandexGamesSdk.Environment.i18n.lang;
 #endif
-                switch(_systemLanguage)
+                switch (_systemLanguage)
                 {
                     case EnglishCode:
                         SetLanguage(English, EnglishNumber);
@@ -98,7 +98,7 @@ namespace YandexSDK
 
         private void OnLanguageChanged(int currentLanguageNumber)
         {
-            switch(currentLanguageNumber)
+            switch (currentLanguageNumber)
             {
                 case EnglishNumber:
                     SetLanguage(English, currentLanguageNumber);

@@ -16,7 +16,7 @@ namespace CameraController
 
         private void OnDisable()
         {
-            _player.Died -= OnPlayerDied;            
+            _player.Died -= OnPlayerDied;
         }
 
         private void OnPlayerDied(Health player)

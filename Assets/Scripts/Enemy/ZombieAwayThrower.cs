@@ -60,7 +60,8 @@ namespace Enemy
             {
                 _rigidbody.AddForceAtPosition(
                     direction.normalized * _throwAwaySpeed * Time.deltaTime,
-                    transform.position, ForceMode.Impulse);
+                    transform.position,
+                    ForceMode.Impulse);
                 yield return null;
             }
         }

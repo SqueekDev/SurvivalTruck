@@ -19,7 +19,7 @@ namespace Truck
         private void OnDisable()
         {
             _levelChanger.NormalLevelStarted -= OnNormalLevelStarted;
-            _wave.AllZombiesAttacked -= OnAllZombiesAttacked;            
+            _wave.AllZombiesAttacked -= OnAllZombiesAttacked;
         }
 
         private void Toggle(bool enabled)

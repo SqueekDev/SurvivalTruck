@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523303, a: 1}
+  m_IndirectSpecularColor: {r: 0.80784535, g: 0.6023318, b: 0.6523308, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -961,17 +961,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af7612ea64d03646b54409d60af3c75, type: 3}
---- !u!114 &858253285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4105073251916105608, guid: 1af7612ea64d03646b54409d60af3c75, type: 3}
-  m_PrefabInstance: {fileID: 858253284}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab81b2f945f83040a6320b986b2dea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &927284347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1186,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0cc741248aeca74bbb71a51acf69ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1082165429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9055407970271306199, guid: 1af7612ea64d03646b54409d60af3c75, type: 3}
+  m_PrefabInstance: {fileID: 858253284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab81b2f945f83040a6320b986b2dea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1162344128 stripped
@@ -1619,28 +1619,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 560417337411496022, guid: 2e500c57e9c35cd4482f12a5b56ee750, type: 3}
   m_PrefabInstance: {fileID: 560417335781691164}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1676486134 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2953945726364727799, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-  m_PrefabInstance: {fileID: 3685216000199233681}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966544bc72a3d82478cfa9e2502565b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1803767975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6227607160451786680, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
-  m_PrefabInstance: {fileID: 3685216000199233681}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f69478a5bad81b43895a0430ccdf74a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1910286164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7770109792452296184, guid: d891e40891f6fa245a40170e28ed51cc, type: 3}
@@ -3848,11 +3826,15 @@ PrefabInstance:
     - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: _coinsPooler
       value: 
-      objectReference: {fileID: 858253285}
+      objectReference: {fileID: 1082165429}
     - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: _zombiePooler
       value: 
       objectReference: {fileID: 1514613842}
+    - target: {fileID: 2284538344701291546, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
+      propertyPath: _maxCoinsCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2284538344701291547, guid: e22e2e189eeae73418d9792ca5fdec36, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -4088,6 +4070,10 @@ PrefabInstance:
       objectReference: {fileID: 1593400594}
     - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
       propertyPath: _kangarooDamageUpgradeButton
+      value: 
+      objectReference: {fileID: 1031018728}
+    - target: {fileID: 2153554977252664704, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
+      propertyPath: _CarShieldDamageUpgradeButton
       value: 
       objectReference: {fileID: 1031018728}
     - target: {fileID: 3685215998898304141, guid: 61fe60f7cb5bb2b44955ed4a2dd2a55e, type: 3}
@@ -5262,7 +5248,7 @@ PrefabInstance:
     - target: {fileID: 2054707104933572193, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 1803767975}
+      objectReference: {fileID: 0}
     - target: {fileID: 2054707104933572194, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _car
       value: 
@@ -5278,7 +5264,7 @@ PrefabInstance:
     - target: {fileID: 2054707104933572195, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 1803767975}
+      objectReference: {fileID: 0}
     - target: {fileID: 2054707104933572195, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _headHealthBar
       value: 
@@ -5334,7 +5320,7 @@ PrefabInstance:
     - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _woodBlock
       value: 
-      objectReference: {fileID: 1676486134}
+      objectReference: {fileID: 0}
     - target: {fileID: 7282262947135627864, guid: 3d2774dedb58286499cab5436d63b2d0, type: 3}
       propertyPath: _levelChanger
       value: 
@@ -5716,6 +5702,10 @@ PrefabInstance:
       objectReference: {fileID: 387104255}
     - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
       propertyPath: _kangaroo
+      value: 
+      objectReference: {fileID: 404730993}
+    - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}
+      propertyPath: _carShield
       value: 
       objectReference: {fileID: 404730993}
     - target: {fileID: 186023909809996522, guid: 3eb47d62d4c3ab348a63018cfc633f2e, type: 3}

@@ -22,7 +22,7 @@ namespace Enemy
 
         protected override void Attack()
         {
-            _obstacle.ApplyDamade(Stats.Damage);
+            _obstacle.ApplyDamade(Boss.Damage);
         }
     }
 }

@@ -56,10 +56,10 @@ namespace Enemy
             {
                 float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
 
-                if (transform.position.x > _startXPosition + _xPositionLimit &&
-                    xDirection > GlobalValues.Zero ||
-                    transform.position.x < _startXPosition - _xPositionLimit &&
-                    xDirection < GlobalValues.Zero)
+                if (((transform.position.x > (_startXPosition + _xPositionLimit))
+                    && (xDirection > GlobalValues.Zero))
+                    || ((transform.position.x < (_startXPosition - _xPositionLimit))
+                    && (xDirection < GlobalValues.Zero)))
                 {
                     xDirection = -xDirection;
                 }

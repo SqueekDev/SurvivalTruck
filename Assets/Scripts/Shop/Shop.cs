@@ -33,7 +33,7 @@ namespace Shop
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent(out Shooter player) && _levelChanger.IsWave == false)
+            if (collision.gameObject.TryGetComponent(out Shooter player) && _levelChanger.IsInWaveState == false)
             {
                 StartCoroutine(CoverOpening());
             }
@@ -44,6 +44,7 @@ namespace Shop
             _coverOpeningAnimator.SetTrigger(OpenTrigger);
             _coverOpeningSound.Play();
         }
+
         private void Close()
         {
             _coverOpeningAnimator.SetTrigger(CloseTrigger);

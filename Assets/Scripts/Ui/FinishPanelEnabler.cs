@@ -1,5 +1,5 @@
-using Level;
 using System.Collections;
+using Level;
 using UnityEngine;
 
 namespace UI

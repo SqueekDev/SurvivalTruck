@@ -49,7 +49,8 @@ namespace Truck
                 {
                     woodPiece.transform.localScale = Vector3.Lerp(
                         woodPiece.transform.localScale,
-                        targetScale, timer * _decreacingSpeed * Time.deltaTime);
+                        targetScale,
+                        timer * _decreacingSpeed * Time.deltaTime);
                 }
 
                 timer += Time.deltaTime;

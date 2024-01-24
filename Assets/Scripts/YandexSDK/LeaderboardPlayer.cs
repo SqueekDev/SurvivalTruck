@@ -10,7 +10,9 @@ namespace YandexSDK
         }
 
         public string Number { get; private set; }
+
         public string Name { get; private set; }
+
         public string Score { get; private set; }
     }
 }

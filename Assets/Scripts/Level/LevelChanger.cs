@@ -9,7 +9,6 @@ namespace Level
 {
     public class LevelChanger : MonoBehaviour
     {
-        [SerializeField] private Wave _waveController;
         [SerializeField] private Boss _boss;
         [SerializeField] private GameButton _nextLevelButton;
         [SerializeField] private GameButton _restartLevelButton;
@@ -18,7 +17,7 @@ namespace Level
         [SerializeField] private int _bossLevelNumber;
 
         private int _playerPrefsSavedLevelNumber = 1;
-        private bool _isWave = false;
+        private bool _isInWaveState = false;
         private Scene _currentScene;
 
         public event Action<int> Changed;
@@ -33,7 +32,7 @@ namespace Level
 
         public int BossLevelNumber => _bossLevelNumber;
 
-        public bool IsWave => _isWave;
+        public bool IsInWaveState => _isInWaveState;
 
         public int CurrentLevelNumber { get; private set; } = 1;
 
@@ -87,7 +86,7 @@ namespace Level
                 NormalLevelStarted?.Invoke();
             }
 
-            _isWave = true;
+            _isInWaveState = true;
             Changed?.Invoke(CurrentLevelNumber);
         }
 
@@ -108,7 +107,7 @@ namespace Level
 
         private void OnFinishLevelButtonClick()
         {
-            _isWave = false;
+            _isInWaveState = false;
             CurrentLevelNumber++;
 
             if (CurrentLevelNumber != _playerPrefsSavedLevelNumber)

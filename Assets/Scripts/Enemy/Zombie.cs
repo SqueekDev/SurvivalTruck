@@ -1,31 +1,32 @@
+using Base;
 using Player;
 using Truck;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class Zombie : MonoBehaviour
+    public class Zombie : PoolObject
     {
         private const string AttackDistance = "attackDistance";
         private const string MoveTo = "MoveTo";
         private const string Jump = "Jump";
-        private const string Kangaroo = "Kangaroo";
+        private const string CarShield = "CarShield";
 
         [SerializeField] private ZombieJumper _zombieJumper;
         [SerializeField] private ZombieAttacker _zombieAttacker;
         [SerializeField] private ZombieHealth _zombieHealth;
         [SerializeField] private PlayerHealth _player;
-        [SerializeField] private AudioSource _kangarooCollision;
+        [SerializeField] private AudioSource _carShieldCollision;
 
         private Transform _target;
         private Obstacle _obstacle;
         private Animator _animator;
-        private bool _firstRageAreaCollision = true;
+        private bool _isAttacking;
 
         private void OnEnable()
         {
             _zombieAttacker.OnObstacleDestroyed += OnOstacleDestroyed;
-            _firstRageAreaCollision = true;
+            _isAttacking = false;
         }
 
         private void OnDisable()
@@ -42,23 +43,25 @@ namespace Enemy
         private void Update()
         {
             _target = GetTarget();
+            Vector3 newPosition;
 
             if (_target.TryGetComponent(out Obstacle obstacle))
             {
-                Vector3 newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
-                _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, newPosition));
+                newPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
             }
             else
             {
-                _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, _target.position));
+                newPosition = _target.position;
             }
+
+            _animator.SetFloat(AttackDistance, Vector3.Distance(transform.position, newPosition));
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_firstRageAreaCollision && other.TryGetComponent(out RageArea rageArea))
+            if (_isAttacking == false && other.TryGetComponent(out RageArea rageArea))
             {
-                _firstRageAreaCollision = false;
+                _isAttacking = true;
                 SetObstacle(rageArea.Obstacle);
                 _animator.SetTrigger(MoveTo);
                 _zombieHealth.SetAngry();
@@ -75,10 +78,10 @@ namespace Enemy
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent(out CarShield kangaroo))
+            if (collision.gameObject.TryGetComponent(out CarShield carShield))
             {
-                _animator.SetTrigger(Kangaroo);
-                _kangarooCollision.Play();
+                _animator.SetTrigger(CarShield);
+                _carShieldCollision.Play();
             }
         }
 
@@ -89,15 +92,18 @@ namespace Enemy
 
         public Transform GetTarget()
         {
+            Transform target;
+
             if (_obstacle != null && _obstacle.IsDestroyed == false)
             {
-                SetTarget(_obstacle.transform);
+                target = _obstacle.transform;
             }
             else
             {
-                SetTarget(_player.transform);
+                target = _player.transform;
             }
 
+            SetTarget(target);
             return _target;
         }
 

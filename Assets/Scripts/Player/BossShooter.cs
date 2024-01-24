@@ -41,7 +41,7 @@ namespace Player
         {
             WaitForSeconds delay = new WaitForSeconds(_weapon.TimeBetweenShoot);
 
-            while (_target != null)
+            while (true)
             {
                 _weapon.Shoot(_target.transform);
                 yield return delay;

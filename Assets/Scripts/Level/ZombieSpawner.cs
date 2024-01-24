@@ -1,4 +1,6 @@
 using System.Collections;
+using Base;
+using Enemy;
 using Truck;
 using UnityEngine;
 
@@ -17,23 +19,41 @@ namespace Level
 
         private void Start()
         {
-            StartCoroutine(EnableTemplates());
+            StartCoroutine(EnablingEnemies());
         }
 
-        private IEnumerator EnableTemplates()
+        private Zombie TryGetEnemy()
         {
-            while (_car != null)
+            if (_zombiePooler.TryGetObject(out Zombie zombie))
             {
-                float randomX = Random.Range(_xLimits.x, _xLimits.y);
+                return zombie;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
-                if (_zombiePooler.TryGetObject(out GameObject zombie))
+        private Vector3 GetSpawnPosition()
+        {
+            float randomX = Random.Range(_xLimits.x, _xLimits.y);
+            float startY = 0.5f;
+            Vector3 spawnPosition = new Vector3(randomX, startY, _car.transform.position.z + _carZOffset);
+            return spawnPosition;
+        }
+
+        private IEnumerator EnablingEnemies()
+        {
+            while (true)
+            {
+                Zombie zombie = TryGetEnemy();
+
+                if (zombie != null)
                 {
-                    float startY = 0.5f;
-                    Vector3 spawnPosition = new Vector3(randomX, startY, _car.transform.position.z + _carZOffset);
-                    zombie.transform.position = spawnPosition;
+                    zombie.transform.position = GetSpawnPosition();
                     zombie.transform.SetParent(null);
                     zombie.transform.rotation = Quaternion.identity;
-                    zombie.SetActive(true);
+                    zombie.gameObject.SetActive(true);
                 }
 
                 yield return null;

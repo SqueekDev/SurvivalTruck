@@ -11,8 +11,8 @@ namespace Base
         public const string UpgradePlayerHealthPrice = "PlayerHealthPrice";
         public const string ObstacleHealth = "ObstacleHealth";
         public const string UpgradeObstacleHealthPrice = "ObstacleHealthPrice";
-        public const string CarShieldDamage = "KangarooDamage";
-        public const string UpgradeCarShieldDamagePrice = "KangarooDamagePrice";
+        public const string CarShieldDamage = "CarShieldDamage";
+        public const string UpgradeCarShieldDamagePrice = "CarShieldPrice";
         public const string CoinsModifier = "CoinsModifier";
         public const string UpgradeCoinsModifierPrice = "CoinsModifierPrice";
         public const string CurrentCoinsCount = "CurrentCoins";

@@ -17,12 +17,12 @@ namespace Enemy
         private Vector3 _offset;
         private Coroutine _attackCorutine;
 
-        public Boss Stats { get; private set; }
+        public Boss Boss { get; private set; }
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            Stats = GetComponent<Boss>();
+            Boss = GetComponent<Boss>();
         }
 
         protected virtual void OnEnable()
@@ -44,11 +44,13 @@ namespace Enemy
             _animator.SetBool(AttackAnimationName, false);
         }
 
-        protected virtual void Attack() { }
+        protected virtual void Attack()
+        {
+        }
 
         private IEnumerator StartAttack()
         {
-            WaitForSeconds delay = new WaitForSeconds(Stats.AttackDelayTime / DelayDivider);
+            WaitForSeconds delay = new WaitForSeconds(Boss.AttackDelayTime / DelayDivider);
 
             while (enabled)
             {

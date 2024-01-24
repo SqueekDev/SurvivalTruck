@@ -15,7 +15,7 @@ namespace UI
 
         private void OnDisable()
         {
-            _playerHealth.Died -= OnPlayerDied;            
+            _playerHealth.Died -= OnPlayerDied;
         }
 
         private void OnPlayerDied(Health player)

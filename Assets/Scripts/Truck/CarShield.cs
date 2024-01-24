@@ -12,8 +12,8 @@ namespace Truck
         private const float ApplyingDamageDelay = 0.5f;
 
         [SerializeField] private int _damage;
-        [SerializeField] private CarShieldDamageUpgradeButton _kangarooDamageUpgradeButton;
-        [SerializeField] private ParticleSystem _poofKangarooPartical;
+        [SerializeField] private CarShieldDamageUpgradeButton _CarShieldDamageUpgradeButton;
+        [SerializeField] private ParticleSystem _poofCarShieldPartical;
 
         private WaitForSeconds _delay = new WaitForSeconds(ApplyingDamageDelay);
 
@@ -28,12 +28,12 @@ namespace Truck
 
         private void OnEnable()
         {
-            _kangarooDamageUpgradeButton.SkillUpgraded += OnDamageUpgraded;
+            _CarShieldDamageUpgradeButton.SkillUpgraded += OnDamageUpgraded;
         }
 
         private void OnDisable()
         {
-            _kangarooDamageUpgradeButton.SkillUpgraded -= OnDamageUpgraded;
+            _CarShieldDamageUpgradeButton.SkillUpgraded -= OnDamageUpgraded;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -42,8 +42,8 @@ namespace Truck
             {
                 ZombieHited?.Invoke(zombie);
                 StartCoroutine(ApplyingDamage(zombie));
-                _poofKangarooPartical.transform.position = zombie.transform.position;
-                _poofKangarooPartical.Play();
+                _poofCarShieldPartical.transform.position = zombie.transform.position;
+                _poofCarShieldPartical.Play();
             }
         }
 

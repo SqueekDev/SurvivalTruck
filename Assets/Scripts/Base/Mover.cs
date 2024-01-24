@@ -9,13 +9,6 @@ namespace Base
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private Health _health;
 
-        protected Rigidbody Rigidbody;
-
-        private void Awake()
-        {
-            Rigidbody = GetComponent<Rigidbody>();
-        }
-
         protected virtual void OnEnable()
         {
             SetStartSpeed();
@@ -24,7 +17,7 @@ namespace Base
 
         protected virtual void OnDisable()
         {
-            _health.Died -= OnDied;            
+            _health.Died -= OnDied;
         }
 
         public void Rotate(Vector3 destination)
@@ -35,7 +28,6 @@ namespace Base
             if (direction != Vector3.zero)
             {
                 newDirection = Quaternion.LookRotation(direction);
-
             }
 
             transform.rotation = Quaternion.Lerp(transform.rotation, newDirection, _rotationSpeed * Time.deltaTime);
