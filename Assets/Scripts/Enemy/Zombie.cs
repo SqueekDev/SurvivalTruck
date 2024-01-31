@@ -85,11 +85,6 @@ namespace Enemy
             }
         }
 
-        public void SetObstacle(Obstacle obstacle)
-        {
-            _obstacle = obstacle;
-        }
-
         public Transform GetTarget()
         {
             Transform target;
@@ -105,6 +100,11 @@ namespace Enemy
 
             SetTarget(target);
             return _target;
+        }
+
+        private void SetObstacle(Obstacle obstacle)
+        {
+            _obstacle = obstacle;
         }
 
         private void OnOstacleDestroyed()
