@@ -1,5 +1,4 @@
 using System;
-using Base;
 using Shop;
 using UnityEngine;
 
@@ -61,11 +60,11 @@ namespace UI
 
         private void OnNextButtonClicked()
         {
-            if (_currentGroupIndex == _buttonGroups.Length - GlobalValues.ListIndexCorrection)
+            if (_currentGroupIndex == _buttonGroups.Length - 1)
             {
                 _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
                 ShowFirstButtons();
-                _currentGroupIndex = GlobalValues.Zero;
+                _currentGroupIndex = 0;
             }
             else
             {
@@ -77,11 +76,11 @@ namespace UI
 
         private void OnPreviousButtonClicked()
         {
-            if (_currentGroupIndex == GlobalValues.Zero)
+            if (_currentGroupIndex == 0)
             {
                 _buttonGroups[_currentGroupIndex].gameObject.SetActive(false);
                 ShowLastButtons();
-                _currentGroupIndex = _buttonGroups.Length - GlobalValues.ListIndexCorrection;
+                _currentGroupIndex = _buttonGroups.Length - 1;
             }
             else
             {

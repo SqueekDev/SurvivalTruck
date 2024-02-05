@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Base;
 using UnityEngine;
 
 namespace Level
@@ -14,9 +13,9 @@ namespace Level
 
         private void Start()
         {
-            int currentTemplateNumber = Random.Range(GlobalValues.Zero, _templates.Count);
-            int yRotarion = Random.Range(GlobalValues.Zero, MaxRotation);
-            Quaternion rotation = Quaternion.Euler(GlobalValues.Zero, yRotarion, GlobalValues.Zero);
+            int currentTemplateNumber = Random.Range(0, _templates.Count);
+            int yRotarion = Random.Range(0, MaxRotation);
+            Quaternion rotation = Quaternion.Euler(0, yRotarion, 0);
             Instantiate(_templates[currentTemplateNumber], transform.position, rotation, transform);
             float scaleModifier = Random.Range(MinScale, MaxScale);
             transform.localScale *= scaleModifier;

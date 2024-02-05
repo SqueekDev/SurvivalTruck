@@ -24,7 +24,7 @@ namespace Enemy
         {
             Vector3 direction = new Vector3(
                 _target.transform.position.x - transform.position.x,
-                GlobalValues.Zero,
+                0,
                 _target.transform.position.z - transform.position.z).normalized;
             transform.Translate(direction * _speed * Time.deltaTime);
         }

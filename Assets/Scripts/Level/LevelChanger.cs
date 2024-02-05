@@ -77,7 +77,7 @@ namespace Level
 
         private void ChangeLevel()
         {
-            if (CurrentLevelNumber % _bossLevelNumber == GlobalValues.Zero)
+            if (CurrentLevelNumber % _bossLevelNumber == 0)
             {
                 BossLevelStarted?.Invoke();
             }

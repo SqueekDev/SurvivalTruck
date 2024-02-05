@@ -1,4 +1,3 @@
-using Base;
 using UnityEngine;
 
 namespace Player
@@ -31,13 +30,13 @@ namespace Player
             _finalYInput = Mathf.Clamp(_floatingJoystick.Vertical * _speedYAxis * Time.deltaTime, -MaxInputValue, MaxInputValue);
             _yCameraRotation -= _finalYInput;
             _yCameraRotation = Mathf.Clamp(_yCameraRotation, -_verticalBorded, _verticalBorded);
-            _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
-            _weapon.transform.localRotation = Quaternion.Euler(-_yCameraRotation, GlobalValues.Zero, GlobalValues.Zero);
+            _camera.transform.localRotation = Quaternion.Euler(_yCameraRotation, 0, 0);
+            _weapon.transform.localRotation = Quaternion.Euler(-_yCameraRotation, 0, 0);
 
             if (((transform.localRotation.eulerAngles.y < _rightBorder)
-                && (_finalXInput > GlobalValues.Zero))
+                && (_finalXInput > 0))
                 || ((transform.localRotation.eulerAngles.y > _leftBorder)
-                && (_finalXInput < GlobalValues.Zero)))
+                && (_finalXInput < 0)))
             {
                 transform.Rotate(Vector3.up * _finalXInput);
             }

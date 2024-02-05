@@ -52,9 +52,9 @@ namespace Base
                 _currentHealth -= count;
                 ChangeHealthStatus();
 
-                if (_currentHealth <= GlobalValues.Zero)
+                if (_currentHealth <= 0)
                 {
-                    _currentHealth = GlobalValues.Zero;
+                    _currentHealth = 0;
                     Die();
                 }
                 else

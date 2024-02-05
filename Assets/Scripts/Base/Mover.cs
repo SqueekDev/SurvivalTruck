@@ -35,7 +35,7 @@ namespace Base
 
         private void SetZeroSpeed()
         {
-            Speed = GlobalValues.Zero;
+            Speed = 0;
         }
 
         private void SetStartSpeed()

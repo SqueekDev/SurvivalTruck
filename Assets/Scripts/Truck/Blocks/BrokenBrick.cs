@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Base;
 using UnityEngine;
 
 namespace Truck
@@ -40,7 +39,7 @@ namespace Truck
             }
 
             yield return _delayToDecreace;
-            Vector3 targetScale = new Vector3(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
+            Vector3 targetScale = new Vector3(0, 0, 0);
             float timer = 0;
 
             while (timer < _decreacingTime)

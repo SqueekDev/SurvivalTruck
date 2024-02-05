@@ -1,4 +1,3 @@
-using Base;
 using Level;
 using TMPro;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace UI
         {
             base.OnEnable();
 
-            if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == GlobalValues.Zero)
+            if (_levelChanger.CurrentLevelNumber % _levelChanger.BossLevelNumber == 0)
             {
                 _nextLevelText.gameObject.SetActive(false);
                 _bossLevelText.gameObject.SetActive(true);

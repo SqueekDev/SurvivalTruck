@@ -57,14 +57,14 @@ namespace Enemy
                 float xDirection = Random.Range(-xDirectionSpread, xDirectionSpread);
 
                 if (((transform.position.x > (_startXPosition + _xPositionLimit))
-                    && (xDirection > GlobalValues.Zero))
+                    && (xDirection > 0))
                     || ((transform.position.x < (_startXPosition - _xPositionLimit))
-                    && (xDirection < GlobalValues.Zero)))
+                    && (xDirection < 0)))
                 {
                     xDirection = -xDirection;
                 }
 
-                _direction = new Vector3(xDirection, GlobalValues.Zero, _zDirection);
+                _direction = new Vector3(xDirection, 0, _zDirection);
                 yield return _delayToChangeDirection;
             }
         }

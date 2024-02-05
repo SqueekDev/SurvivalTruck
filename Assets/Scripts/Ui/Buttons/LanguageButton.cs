@@ -27,7 +27,7 @@ namespace UI
             int currentLanguageNumber = PlayerPrefs.GetInt(PlayerPrefsKeys.Language, EnglishNumber);
             currentLanguageNumber++;
 
-            if (currentLanguageNumber > _icons.Count - GlobalValues.ListIndexCorrection)
+            if (currentLanguageNumber > _icons.Count - 1)
             {
                 currentLanguageNumber -= _icons.Count;
             }

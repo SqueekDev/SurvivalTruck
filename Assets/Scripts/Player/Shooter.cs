@@ -1,5 +1,4 @@
 using System.Collections;
-using Base;
 using Enemy;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ namespace Player
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, _shootingDistance, _layerMask);
 
-                if (colliders.Length > GlobalValues.Zero)
+                if (colliders.Length > 0)
                 {
                     foreach (var collider in colliders)
                     {

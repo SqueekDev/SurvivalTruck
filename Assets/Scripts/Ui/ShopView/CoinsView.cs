@@ -30,7 +30,7 @@ namespace UI
 
         private void Start()
         {
-            _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
+            _currentCount = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
             _trueCount = _currentCount;
             ShowCount(_currentCount);
         }

@@ -30,7 +30,7 @@ namespace UI
         {
             _levelNumberText.text = levelNumber.ToString();
             _slider.maxValue = zombiesInWave;
-            _slider.value = GlobalValues.Zero;
+            _slider.value = 0;
         }
 
         private void OnZombieAttacked(ZombieHealth zombie)

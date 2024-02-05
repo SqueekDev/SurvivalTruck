@@ -41,8 +41,8 @@ namespace Shop
         {
             OnLevelChanged(_levelChanger.CurrentLevelNumber);
             OnCoinsModifierUpgraded();
-            _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, GlobalValues.Zero);
-            int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, GlobalValues.Zero);
+            _totalEarnedCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.TotalEarnedCoins, 0);
+            int currentCoins = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentCoinsCount, 0);
             _count = currentCoins;
         }
 
@@ -121,7 +121,7 @@ namespace Shop
 
         private void OnCoinsModifierUpgraded()
         {
-            EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, GlobalValues.Zero);
+            EarnModifier = PlayerPrefs.GetInt(PlayerPrefsKeys.CoinsModifier, 0);
         }
     }
 }

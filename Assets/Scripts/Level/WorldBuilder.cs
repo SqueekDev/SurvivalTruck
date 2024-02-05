@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Base;
 using Truck;
 using UnityEngine;
 
@@ -41,8 +40,8 @@ namespace Level
         private void Update()
         {
             float platformEndPosition =
-                _spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].transform.position.z -
-                _spawnPlatformCorrection;
+                _spawnedPlatforms[_spawnedPlatforms.Count - 1].transform.position.z 
+                - _spawnPlatformCorrection;
 
             if (_car.transform.position.z > platformEndPosition)
             {
@@ -63,10 +62,9 @@ namespace Level
         private void SpawnPlatform()
         {
             Platform newPlatform = Instantiate(_currentPlatformTemplate, transform);
-            newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count -
-                GlobalValues.ListIndexCorrection].EndPoint.transform.position +
-                (newPlatform.transform.position - newPlatform.StartPoint.position);
-            Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - GlobalValues.ListIndexCorrection].EndPoint.transform.position;
+            newPlatform.transform.position = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position 
+                + (newPlatform.transform.position - newPlatform.StartPoint.position);
+            Vector3 endPosition = _spawnedPlatforms[_spawnedPlatforms.Count - 1].EndPoint.transform.position;
 
             if (_needToAddFog)
             {
@@ -87,15 +85,15 @@ namespace Level
 
         private void RemovePlatform()
         {
-            Destroy(_spawnedPlatforms[GlobalValues.Zero].gameObject);
-            _spawnedPlatforms.RemoveAt(GlobalValues.Zero);
+            Destroy(_spawnedPlatforms[0].gameObject);
+            _spawnedPlatforms.RemoveAt(0);
         }
 
         private void OnLevelChanged(int levelNumber)
         {
             int platformIndex = levelNumber / _changePlatformLevelNumberDivider;
 
-            while (platformIndex > _platformTemplates.Count - GlobalValues.ListIndexCorrection)
+            while (platformIndex > _platformTemplates.Count - 1)
             {
                 platformIndex -= _platformTemplates.Count;
             }

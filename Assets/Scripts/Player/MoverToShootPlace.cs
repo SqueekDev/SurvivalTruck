@@ -1,4 +1,3 @@
-using Base;
 using Truck;
 using UnityEngine;
 
@@ -56,12 +55,12 @@ namespace Player
         {
             if (transform.eulerAngles.y >= _targetRotation - _rotateInaccuracy && transform.eulerAngles.y <= _targetRotation + _rotateInaccuracy)
             {
-                transform.localRotation = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
+                transform.localRotation = Quaternion.Euler(0, _targetRotation, 0);
                 _rotatedToTarget = true;
             }
             else
             {
-                Quaternion direcrion = Quaternion.Euler(GlobalValues.Zero, _targetRotation, GlobalValues.Zero);
+                Quaternion direcrion = Quaternion.Euler(0, _targetRotation, 0);
                 transform.localRotation = Quaternion.Lerp(transform.localRotation, direcrion, _rotationSpeed * Time.deltaTime);
             }
         }

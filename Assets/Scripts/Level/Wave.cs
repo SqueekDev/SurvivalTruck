@@ -96,9 +96,9 @@ namespace Level
             zombie.Died -= OnZombieDied;
             _attackingZombiesCount--;
 
-            if (_attackingZombiesCount <= GlobalValues.Zero)
+            if (_attackingZombiesCount <= 0)
             {
-                _ragedZombieCount = GlobalValues.Zero;
+                _ragedZombieCount = 0;
                 Ended?.Invoke();
             }
         }

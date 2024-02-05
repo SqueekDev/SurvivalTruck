@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Base;
 using Level;
 using UnityEngine;
 
@@ -34,8 +33,8 @@ namespace CameraController
 
         private IEnumerator MoveToTarget(Action action)
         {
-            Vector3 newPosition = new Vector3(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
-            Quaternion newAngle = Quaternion.Euler(GlobalValues.Zero, GlobalValues.Zero, GlobalValues.Zero);
+            Vector3 newPosition = new Vector3(0, 0, 0);
+            Quaternion newAngle = Quaternion.Euler(0, 0, 0);
 
             while (transform.localPosition != newPosition)
             {
